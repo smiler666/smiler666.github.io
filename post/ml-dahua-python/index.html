@@ -1,0 +1,485 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#202020"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  
+    <meta name="keywords" content="机器学习,人工智能," />
+  
+
+  
+    <meta name="description" content="《大话Python机器学习》笔记" />
+  
+  
+  
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  
+  <title>《大话Python机器学习》笔记 - ZQH&#39;s Blog</title>
+  
+    <!-- stylesheets list from config.yml -->
+    
+      <link rel="stylesheet" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css">
+    
+      <link rel="stylesheet" href="/css/xoxo.css">
+    
+  
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="ZQH's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  <div class="nav-container">
+    <nav class="home-menu pure-menu pure-menu-horizontal">
+  <a class="pure-menu-heading" href="/">
+    
+    <span class="title" style="text-transform:none">ZQH&#39;s Blog</span>
+  </a>
+
+  <ul class="pure-menu-list clearfix">
+      
+          
+            
+              <li class="pure-menu-item"><a href="/" class="pure-menu-link">首页</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/archives" class="pure-menu-link">归档</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/about" class="pure-menu-link">关于</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/search" class="pure-menu-link">搜索</a></li>
+            
+          
+      
+  </ul>
+   
+</nav>
+
+  </div>
+
+  <div class="container" id="content-outer">
+    <div class="inner" id="content-inner">
+      <div class="post-container">
+  <article class="post" id="post">
+    <header class="post-header text-center">
+      <h1 class="title">
+        《大话Python机器学习》笔记
+      </h1>
+      <span>
+        
+        <time class="time" datetime="2020-05-11T07:09:21.000Z">
+        2020-05-11
+      </time>
+        
+      </span>
+      <span class="slash">/</span>
+      <span class="post-meta">
+      <span class="post-tags">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" rel="tag">人工智能</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li></ul>
+      </span>
+    </span>
+      <span class="slash">/</span>
+      <span class="read">阅读耗时 22 分钟</span>
+    </header>
+
+    <div class="post-content">
+      <h1 id="零、前言"><a href="#零、前言" class="headerlink" title="零、前言"></a>零、前言</h1><p>今天刚开了《现代港口规划与运营理论及其应用》这门课，在笔记本上做笔记的时候，偶然发现了刚研究生入学时读过的《大话Python机器学习》的手写笔记，现在看来记录的还算是认真，毕竟当时也是花了些精力的。于是把它搬到这里，防止其走丢。</p>
+<blockquote>
+<p>注：如果您想继续看下去，请做好【字迹丑、笔记乱、难看懂】的准备~ ~建议阅读原书籍！</p>
+</blockquote>
+<p>我对于机器学习相关知识的学习，包括两部分，一部分是《大话Python机器学习》，另一部分是吴恩达老师的机器学习课程。主要以了解机器学习算法为目的。</p>
+<a id="more"></a>
+<h2 id="阅读时间"><a href="#阅读时间" class="headerlink" title="阅读时间"></a>阅读时间</h2><p>2019年11月26日——2019年12月29日，历时33天。</p>
+<h2 id="书籍介绍"><a href="#书籍介绍" class="headerlink" title="书籍介绍"></a>书籍介绍</h2><p>先来介绍一下这本书吧，这本书由张居营老师编写，官方是这样介绍这本书的：</p>
+<blockquote>
+<p>《大话Python机器学习》从机器学习的基础知识讲起，全面、系统地介绍了机器学习算法的主要脉络与框架，并在每个算法原理、应用等内容基础上，结合Python编程语言深入浅出地介绍了机器学习中的数据处理、特征选择、算法应用等技巧，是一本兼具专业性与入门性的Python机器学习书籍。</p>
+<p>《大话Python机器学习》分为13章，主要内容有机器学习入门基础、应用Python实现机器学习前的准备、单变量线性回归算法、线性回归算法进阶、逻辑回归算法、贝叶斯分类算法、基于决策树的分类算法、K近邻算法、支持向量机、人工神经网络、聚类算法、降维技术与关联规则挖掘，在具体介绍时侧重于机器学习原理、思想的理解，注重算法的应用，并辅助以相关的数据案例，方便读者快速入门。后一章从一个关于房价预测的机器学习项目出发，系统展示了数据处理、特征提取、建模训练等机器学习完整流程，带领读者完成从零基础到入门数据科学家的飞跃。</p>
+<p>《大话Python机器学习》条理清晰，内容深入浅出，以生活、工作中常见的例子来解释机器学习中的相关概念、算法原理和运算思维等，特别适合互联网创业者、数据挖掘相关人员、Python程序员、人工智能从业者、数据分析师、计算机专业的学生学习，任何对机器学习、人工智能感兴趣的读者均可选择本书作为入门图书参考学习。</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/1.png" alt=""></p>
+<h2 id="感受"><a href="#感受" class="headerlink" title="感受"></a>感受</h2><blockquote>
+<p>注：从这里开始，以下大部分文字直接从我的笔记本上搬取，仅对较为明显的错误和表述不清的地方做了少量的修改。</p>
+<p>再次声明：以下内容【字迹丑、笔记乱、难看懂】，请谨慎阅读~</p>
+</blockquote>
+<p>这是研究生第一个学期期间完整读完的第二本书，这本书使我对机器学习有了进一步的了解，对一些算法有了基础的认识。尽管书中有许多小错误，但我还是认为这是一本不错的、值得新手入门的启蒙书。在阅读的过程中我也发现了许多错误并反馈给了作者。</p>
+<p>接下来我将整理此书的笔记，毕竟是从图书馆借的书，要还回去的(●’◡’●)</p>
+<p>好消息是在我读完此书之后，张居营老师发给了我一份《大话Python机器学习》电子版，在这里再次感谢张老师。</p>
+<blockquote>
+<p>由于版权问题，我就不把电子版公布出来了，想读的小伙伴建议去购买正版。</p>
+</blockquote>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>《大话Python机器学习》中所有代码使用的是 Python 2，而现在用的比较多的是 Python 3，其中语法有细微的区别，印象中有这几处变动：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Python 2</th>
+<th>Python 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>print “hello world”</td>
+<td>print(“hello world”)</td>
+</tr>
+<tr>
+<td>from sklearn.cross_validation import train_test_split</td>
+<td>from sklearn.model_selection import train_test_split</td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>书中具体有哪些错误我现在也记不清了~</p>
+</blockquote>
+<h1 id="一、机器学习入门基础"><a href="#一、机器学习入门基础" class="headerlink" title="一、机器学习入门基础"></a>一、机器学习入门基础</h1><p>什么是机器学习呢？简单来说就是让机器去学习。网络上对其有各种各样的解释，这里就不解释了。下面这张图是人脑思考与机器学习的比较：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/3.png" alt=""></p>
+<p>本书的学习框架是这样的：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/2.png" alt=""></p>
+<p>机器学习项目的实施流程：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/4.png" alt=""></p>
+<p>机器学习的模板：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/5.png" alt=""></p>
+<h1 id="二、应用Python实现机器学习前的准备"><a href="#二、应用Python实现机器学习前的准备" class="headerlink" title="二、应用Python实现机器学习前的准备"></a>二、应用Python实现机器学习前的准备</h1><p>第二章主要介绍了以下Python实现机器学习的一些优势，并介绍了机器学习操作中需要经常用到的一些程序库，包括科学计算包 Numpy、数据分析工具 Pandas、数值计算包 Scipy、绘图工具库Matplotlib、机器学习包 Scikit-learn，涵盖了在机器学中数据导入、整理、数据处理、可视化、数值计算以及算法运行等等方面。</p>
+<p>这本书上只是简单介绍了一下，我记得当时觉得不够用从简书上找了份详细的教程进行了学习。关于库的学习资料网上很多，这里不赘述。</p>
+<h1 id="三、单变量线性回归"><a href="#三、单变量线性回归" class="headerlink" title="三、单变量线性回归"></a>三、单变量线性回归</h1><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/73.png" alt=""></p>
+<h2 id="1、常规求解方法（最小二乘法）"><a href="#1、常规求解方法（最小二乘法）" class="headerlink" title="1、常规求解方法（最小二乘法）"></a>1、常规求解方法（最小二乘法）</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/6.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/7.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/8.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/9.png" alt=""></p>
+<h2 id="2、单变量线性回归Python求解"><a href="#2、单变量线性回归Python求解" class="headerlink" title="2、单变量线性回归Python求解"></a>2、单变量线性回归Python求解</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LinearRegression <span class="comment">#使用 LinearRegression 库</span></span><br><span class="line">lr=LinearRegression()  <span class="comment">#设定回归算法</span></span><br><span class="line">lr.fit(X_train,y_train) <span class="comment">#使用训练数据进行参数求解 </span></span><br><span class="line"><span class="keyword">print</span> (<span class="string">'求解系数为'</span>：,lr.intercept_) </span><br><span class="line"><span class="keyword">print</span> ()<span class="string">'求解系数为：'</span>,lr.coef_ )</span><br><span class="line">y_hat = lr.predict(X_test) <span class="comment">#对测试集的预测</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/10.png" alt=""></p>
+<h1 id="四、多变量线性回归算法"><a href="#四、多变量线性回归算法" class="headerlink" title="四、多变量线性回归算法"></a>四、多变量线性回归算法</h1><h2 id="1、最小二乘法求解"><a href="#1、最小二乘法求解" class="headerlink" title="1、最小二乘法求解"></a>1、最小二乘法求解</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/11.png" alt="11"></p>
+<h2 id="2、梯度下降法求解"><a href="#2、梯度下降法求解" class="headerlink" title="2、梯度下降法求解"></a>2、梯度下降法求解</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/12.png" alt=""></p>
+<h2 id="3、线性回归正则化"><a href="#3、线性回归正则化" class="headerlink" title="3、线性回归正则化"></a>3、线性回归正则化</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/13.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/14.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/15.png" alt=""></p>
+<h3 id="3-1-岭回归"><a href="#3-1-岭回归" class="headerlink" title="3.1 岭回归"></a>3.1 岭回归</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/16.png" alt=""></p>
+<h3 id="3-2-Lasso回归"><a href="#3-2-Lasso回归" class="headerlink" title="3.2 Lasso回归"></a>3.2 Lasso回归</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/17.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/18.png" alt=""></p>
+<h1 id="五、逻辑回归算法"><a href="#五、逻辑回归算法" class="headerlink" title="五、逻辑回归算法"></a>五、逻辑回归算法</h1><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/19.png" alt=""></p>
+<h2 id="1、使用梯度下降法求解"><a href="#1、使用梯度下降法求解" class="headerlink" title="1、使用梯度下降法求解"></a>1、使用梯度下降法求解</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/20.png" alt="20"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/21.png" alt="21"></p>
+<h2 id="2、用Scikit-learn做逻辑回归"><a href="#2、用Scikit-learn做逻辑回归" class="headerlink" title="2、用Scikit-learn做逻辑回归"></a>2、用Scikit-learn做逻辑回归</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/22.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/23.png" alt=""></p>
+<h1 id="六、贝叶斯分类算法"><a href="#六、贝叶斯分类算法" class="headerlink" title="六、贝叶斯分类算法"></a>六、贝叶斯分类算法</h1><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/24.png" alt=""></p>
+<h2 id="1、高斯朴素贝叶斯"><a href="#1、高斯朴素贝叶斯" class="headerlink" title="1、高斯朴素贝叶斯"></a>1、高斯朴素贝叶斯</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/25.png" alt=""></p>
+<h2 id="2、多项式朴素贝叶斯分类"><a href="#2、多项式朴素贝叶斯分类" class="headerlink" title="2、多项式朴素贝叶斯分类"></a>2、多项式朴素贝叶斯分类</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/26.png" alt=""></p>
+<h2 id="3、伯努利朴素贝叶斯分类"><a href="#3、伯努利朴素贝叶斯分类" class="headerlink" title="3、伯努利朴素贝叶斯分类"></a>3、伯努利朴素贝叶斯分类</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/27.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/28.png" alt=""></p>
+<blockquote>
+<p>周志华教授提出的深度森林好像是个更厉害的算法。</p>
+</blockquote>
+<h1 id="七、基于决策树的分类算法"><a href="#七、基于决策树的分类算法" class="headerlink" title="七、基于决策树的分类算法"></a>七、基于决策树的分类算法</h1><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/29.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/30.png" alt=""></p>
+<h2 id="1、ID3算法"><a href="#1、ID3算法" class="headerlink" title="1、ID3算法"></a>1、ID3算法</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/31.png" alt=""></p>
+<p>整个 ID3 决策树算法流程用图形表示为：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/32.png" alt=""></p>
+<h3 id="1-1-一个手算的例子"><a href="#1-1-一个手算的例子" class="headerlink" title="1.1  一个手算的例子"></a>1.1  一个手算的例子</h3><blockquote>
+<p>之前我的手写笔记上是没有这一块的，现在把书中截图贴在这里。这个例子当时我手推了一遍，对于理解还是帮助挺大的。</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/33.png" alt="33"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/34.png" alt="34"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/35.png" alt="35"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/36.png" alt="36"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/37.png" alt="37"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/38.png" alt="38"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/39.png" alt="39"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/40.png" alt="40"></p>
+<h3 id="1-2-Python实现-ID3-算法"><a href="#1-2-Python实现-ID3-算法" class="headerlink" title="1.2 Python实现 ID3 算法"></a>1.2 Python实现 ID3 算法</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/41.png" alt=""></p>
+<blockquote>
+<p>安装库及Gtaphviz：</p>
+<p>Anaconda Brompt =&gt;pip install pydotplus</p>
+<p>下载 Gtaphviz，将bin目录添加到path环境变量中</p>
+</blockquote>
+<h2 id="2、C4-5算法"><a href="#2、C4-5算法" class="headerlink" title="2、C4.5算法"></a>2、C4.5算法</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/42.png" alt=""></p>
+<h2 id="3、CART算法"><a href="#3、CART算法" class="headerlink" title="3、CART算法"></a>3、CART算法</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/43.png" alt=""></p>
+<h2 id="4、决策树剪枝方法"><a href="#4、决策树剪枝方法" class="headerlink" title="4、决策树剪枝方法"></a>4、决策树剪枝方法</h2><p>决策树对训练属性有很好的分类能力，但是对于未知的测试集未必有好的分类能力，泛化能力弱，即可能过拟合，需要进行剪枝。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/44.png" alt=""></p>
+<h2 id="5、集成学习算法"><a href="#5、集成学习算法" class="headerlink" title="5、集成学习算法"></a>5、集成学习算法</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/45.png" alt=""></p>
+<h1 id="八、K近邻算法"><a href="#八、K近邻算法" class="headerlink" title="八、K近邻算法"></a>八、K近邻算法</h1><h2 id="1、KNN"><a href="#1、KNN" class="headerlink" title="1、KNN"></a>1、KNN</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/46.png" alt=""></p>
+<h2 id="2、常见距离"><a href="#2、常见距离" class="headerlink" title="2、常见距离"></a>2、常见距离</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/47.png" alt=""></p>
+<h2 id="3、一个手算的例子"><a href="#3、一个手算的例子" class="headerlink" title="3、一个手算的例子"></a>3、一个手算的例子</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/49.png" alt="49"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/50.png" alt="50"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/51.png" alt="51"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/52.png" alt="52"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/53.png" alt="53"></p>
+<h2 id="4、Python实现例子"><a href="#4、Python实现例子" class="headerlink" title="4、Python实现例子"></a>4、Python实现例子</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/48.png" alt=""></p>
+<h1 id="九、支持向量机"><a href="#九、支持向量机" class="headerlink" title="九、支持向量机"></a>九、支持向量机</h1><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/54.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/55.png" alt=""></p>
+<h2 id="1、线性可分下的支持向量机"><a href="#1、线性可分下的支持向量机" class="headerlink" title="1、线性可分下的支持向量机"></a>1、线性可分下的支持向量机</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/56.png" alt=""></p>
+<h2 id="2、线性不可分下的支持向量机"><a href="#2、线性不可分下的支持向量机" class="headerlink" title="2、线性不可分下的支持向量机"></a>2、线性不可分下的支持向量机</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/57.png" alt=""></p>
+<h2 id="3、非线性支持向量机"><a href="#3、非线性支持向量机" class="headerlink" title="3、非线性支持向量机"></a>3、非线性支持向量机</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/58.png" alt=""></p>
+<h2 id="4、支持向量回归机"><a href="#4、支持向量回归机" class="headerlink" title="4、支持向量回归机"></a>4、支持向量回归机</h2><p>支持向量机本身是针对经典的二分类问题提出的，在实际应用中不断发展逐渐延伸到多 分类问题，而随着支持向量机在现实中应用日益广泛且在分类问题上的良好表现，也逐步拓 展到在回归问题上的学习与实现，也就是支持向量回归机（Support Vector Regression，SVR）。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/59.png" alt=""></p>
+<h1 id="十、人工神经网络"><a href="#十、人工神经网络" class="headerlink" title="十、人工神经网络"></a>十、人工神经网络</h1><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/60.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/61.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/62.png" alt=""></p>
+<blockquote>
+<p>不久之后把吴恩达老师的机器学习课程看完了，过年期间吴恩达老师的深度学习课程也看完了。尽管当时笔记上写的等搞明白了再回来整理，但直到现在也没整理，主要还是因为懒吧~ ~</p>
+</blockquote>
+<h1 id="十一、聚类算法"><a href="#十一、聚类算法" class="headerlink" title="十一、聚类算法"></a>十一、聚类算法</h1><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/63.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/64.png" alt=""></p>
+<h2 id="1、K均值算法"><a href="#1、K均值算法" class="headerlink" title="1、K均值算法"></a>1、K均值算法</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/65.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/66.png" alt=""></p>
+<h2 id="2、层次聚类Python实现"><a href="#2、层次聚类Python实现" class="headerlink" title="2、层次聚类Python实现"></a>2、层次聚类Python实现</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/67.png" alt=""></p>
+<h1 id="十二、降维技术与关键规则挖掘"><a href="#十二、降维技术与关键规则挖掘" class="headerlink" title="十二、降维技术与关键规则挖掘"></a>十二、降维技术与关键规则挖掘</h1><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/68.png" alt=""></p>
+<h2 id="1、PCA"><a href="#1、PCA" class="headerlink" title="1、PCA"></a>1、PCA</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/69.png" alt=""></p>
+<h2 id="2、LDA"><a href="#2、LDA" class="headerlink" title="2、LDA"></a>2、LDA</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/70.png" alt=""></p>
+<h2 id="3、关键数据挖掘"><a href="#3、关键数据挖掘" class="headerlink" title="3、关键数据挖掘"></a>3、关键数据挖掘</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/71.png" alt=""></p>
+<blockquote>
+<p>降维和关键数据挖掘这两块内容我记得当时好看没太看明白，所以记录的比较浅。</p>
+</blockquote>
+<h1 id="十三、机器学习项目实战"><a href="#十三、机器学习项目实战" class="headerlink" title="十三、机器学习项目实战"></a>十三、机器学习项目实战</h1><p>最后一张具体对一个项目进行了实战，我记得当时我预测的结果跟书中预测的结果不太一样，最后还请教了作者。笔记中只记录了项目中处理的几个要点。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ml-dahua-python/72.png" alt=""></p>
+<hr>
+<p>对于这本书的笔记就这么多了。</p>
+
+    </div>
+
+  </article>
+  <div class="toc-container">
+    
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#零、前言"><span class="toc-text">零、前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#阅读时间"><span class="toc-text">阅读时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#书籍介绍"><span class="toc-text">书籍介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#感受"><span class="toc-text">感受</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-text">注意事项</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一、机器学习入门基础"><span class="toc-text">一、机器学习入门基础</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、应用Python实现机器学习前的准备"><span class="toc-text">二、应用Python实现机器学习前的准备</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、单变量线性回归"><span class="toc-text">三、单变量线性回归</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、常规求解方法（最小二乘法）"><span class="toc-text">1、常规求解方法（最小二乘法）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、单变量线性回归Python求解"><span class="toc-text">2、单变量线性回归Python求解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、多变量线性回归算法"><span class="toc-text">四、多变量线性回归算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、最小二乘法求解"><span class="toc-text">1、最小二乘法求解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、梯度下降法求解"><span class="toc-text">2、梯度下降法求解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、线性回归正则化"><span class="toc-text">3、线性回归正则化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-岭回归"><span class="toc-text">3.1 岭回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Lasso回归"><span class="toc-text">3.2 Lasso回归</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#五、逻辑回归算法"><span class="toc-text">五、逻辑回归算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、使用梯度下降法求解"><span class="toc-text">1、使用梯度下降法求解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、用Scikit-learn做逻辑回归"><span class="toc-text">2、用Scikit-learn做逻辑回归</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#六、贝叶斯分类算法"><span class="toc-text">六、贝叶斯分类算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、高斯朴素贝叶斯"><span class="toc-text">1、高斯朴素贝叶斯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、多项式朴素贝叶斯分类"><span class="toc-text">2、多项式朴素贝叶斯分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、伯努利朴素贝叶斯分类"><span class="toc-text">3、伯努利朴素贝叶斯分类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#七、基于决策树的分类算法"><span class="toc-text">七、基于决策树的分类算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、ID3算法"><span class="toc-text">1、ID3算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-一个手算的例子"><span class="toc-text">1.1  一个手算的例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Python实现-ID3-算法"><span class="toc-text">1.2 Python实现 ID3 算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、C4-5算法"><span class="toc-text">2、C4.5算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、CART算法"><span class="toc-text">3、CART算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、决策树剪枝方法"><span class="toc-text">4、决策树剪枝方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、集成学习算法"><span class="toc-text">5、集成学习算法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#八、K近邻算法"><span class="toc-text">八、K近邻算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、KNN"><span class="toc-text">1、KNN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、常见距离"><span class="toc-text">2、常见距离</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、一个手算的例子"><span class="toc-text">3、一个手算的例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、Python实现例子"><span class="toc-text">4、Python实现例子</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#九、支持向量机"><span class="toc-text">九、支持向量机</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、线性可分下的支持向量机"><span class="toc-text">1、线性可分下的支持向量机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、线性不可分下的支持向量机"><span class="toc-text">2、线性不可分下的支持向量机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、非线性支持向量机"><span class="toc-text">3、非线性支持向量机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、支持向量回归机"><span class="toc-text">4、支持向量回归机</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#十、人工神经网络"><span class="toc-text">十、人工神经网络</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#十一、聚类算法"><span class="toc-text">十一、聚类算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、K均值算法"><span class="toc-text">1、K均值算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、层次聚类Python实现"><span class="toc-text">2、层次聚类Python实现</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#十二、降维技术与关键规则挖掘"><span class="toc-text">十二、降维技术与关键规则挖掘</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、PCA"><span class="toc-text">1、PCA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、LDA"><span class="toc-text">2、LDA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、关键数据挖掘"><span class="toc-text">3、关键数据挖掘</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#十三、机器学习项目实战"><span class="toc-text">十三、机器学习项目实战</span></a></li></ol>
+  </div>
+
+
+  </div>
+</div>
+<div class="copyright">
+    <span>本作品采用</span>
+    <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">知识共享署名 4.0 国际许可协议</a>
+    <span>进行许可。 转载时请注明原文链接。</span>
+</div>
+
+
+  
+    <div class="post-nav">
+      <div class="post-nav-item post-nav-next">
+        
+          <span>〈 </span>
+          <a href="/post/System-Simulation-8/" rel="next" title="系统仿真笔记（八）系统动力学模拟">
+          系统仿真笔记（八）系统动力学模拟
+          </a>
+        
+      </div>
+  
+      <div class="post-nav-item post-nav-prev">
+          
+          <a href="/post/note-1/" rel="prev" title="Mac更改管理员用户名之后变为普通用户的解决办法">
+            Mac更改管理员用户名之后变为普通用户的解决办法
+          </a>
+          <span>〉</span>
+        
+      </div>
+    </div>
+  
+
+
+
+    </div>
+
+    
+
+  </div>
+  <footer class="footer text-center">
+    <div id="bottom-inner">
+        <a class="bottom-item" href="" target="_blank">ZQH&#39;s Blog</a> |
+        <a class="bottom-item">Powered by hexo</a> |
+        <a class="bottom-item">Copyright © 2020</a>  |
+        <a>博客已运行<a id="days">0</a>天</a> 
+        <script> 
+        var s1 = '2020-04-15';//设置为你的建站时间 
+        s1 = new Date(s1.replace(/-/g, "/")); 
+        s2 = new Date(); 
+        var days = s2.getTime() - s1.getTime(); 
+        var number_of_days = parseInt(days / (1000 * 60 * 60 * 24)); 
+        document.getElementById('days').innerHTML = number_of_days; 
+        </script> |
+        <a class="bottom-item" href="/atom.xml">RSS</a>
+        <div style="display:none"><script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1278827997&web_id=1278827997"></script></div>
+    </div>
+</footer>
+
+  
+
+<script>
+  (function(window, document, undefined) {
+
+    var timer = null;
+
+    function returnTop() {
+      cancelAnimationFrame(timer);
+      timer = requestAnimationFrame(function fn() {
+        var oTop = document.body.scrollTop || document.documentElement.scrollTop;
+        if (oTop > 0) {
+          document.body.scrollTop = document.documentElement.scrollTop = oTop - 50;
+          timer = requestAnimationFrame(fn);
+        } else {
+          cancelAnimationFrame(timer);
+        }
+      });
+    }
+
+    var hearts = [];
+    window.requestAnimationFrame = (function() {
+      return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(callback) {
+          setTimeout(callback, 1000 / 60);
+        }
+    })();
+    init();
+
+    function init() {
+      css(".heart{z-index:9999;width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: absolute;}.heart:after{top: -5px;}.heart:before{left: -5px;}");
+      attachEvent();
+      gameloop();
+      addMenuEvent();
+    }
+
+    function gameloop() {
+      for (var i = 0; i < hearts.length; i++) {
+        if (hearts[i].alpha <= 0) {
+          document.body.removeChild(hearts[i].el);
+          hearts.splice(i, 1);
+          continue;
+        }
+        hearts[i].y--;
+        hearts[i].scale += 0.004;
+        hearts[i].alpha -= 0.013;
+        hearts[i].el.style.cssText = "left:" + hearts[i].x + "px;top:" + hearts[i].y + "px;opacity:" + hearts[i].alpha + ";transform:scale(" + hearts[i].scale + "," + hearts[i].scale + ") rotate(45deg);background:" + hearts[i].color;
+      }
+      requestAnimationFrame(gameloop);
+    }
+
+    /**
+     * 给logo设置点击事件
+     * 
+     * - 回到顶部
+     * - 出现爱心
+     */
+    function attachEvent() {
+      var old = typeof window.onclick === "function" && window.onclick;
+      var logo = document.getElementById("logo");
+      if (logo) {
+        logo.onclick = function(event) {
+          returnTop();
+          old && old();
+          createHeart(event);
+        }
+      }
+      
+    }
+
+    function createHeart(event) {
+      var d = document.createElement("div");
+      d.className = "heart";
+      hearts.push({
+        el: d,
+        x: event.clientX - 5,
+        y: event.clientY - 5,
+        scale: 1,
+        alpha: 1,
+        color: randomColor()
+      });
+      document.body.appendChild(d);
+    }
+
+    function css(css) {
+      var style = document.createElement("style");
+      style.type = "text/css";
+      try {
+        style.appendChild(document.createTextNode(css));
+      } catch (ex) {
+        style.styleSheet.cssText = css;
+      }
+      document.getElementsByTagName('head')[0].appendChild(style);
+    }
+
+    function randomColor() {
+      // return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + ")";
+      return "#F44336";
+    }
+
+    function addMenuEvent() {
+      var menu = document.getElementById('menu-main-post');
+      if (menu) {
+        var toc = document.getElementById('toc');
+        if (toc) {
+          menu.onclick = function() {
+            if (toc) {
+              if (toc.style.display == 'block') {
+                toc.style.display = 'none';
+              } else {
+                toc.style.display = 'block';
+              }
+            }
+          };
+        } else {
+          menu.style.display = 'none';
+        }
+      }
+    }
+
+  })(window, document);
+</script>
+
+  
+
+
+
+  
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

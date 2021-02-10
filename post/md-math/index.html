@@ -1,0 +1,488 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#202020"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  
+    <meta name="keywords" content="笔记," />
+  
+
+  
+    <meta name="description" content="Markdown数学公式语法整理" />
+  
+  
+  
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  
+  <title>Markdown数学公式语法整理 - ZQH&#39;s Blog</title>
+  
+    <!-- stylesheets list from config.yml -->
+    
+      <link rel="stylesheet" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css">
+    
+      <link rel="stylesheet" href="/css/xoxo.css">
+    
+  
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="ZQH's Blog" type="application/atom+xml">
+</head>
+
+
+<body>
+  <div class="nav-container">
+    <nav class="home-menu pure-menu pure-menu-horizontal">
+  <a class="pure-menu-heading" href="/">
+    
+    <span class="title" style="text-transform:none">ZQH&#39;s Blog</span>
+  </a>
+
+  <ul class="pure-menu-list clearfix">
+      
+          
+            
+              <li class="pure-menu-item"><a href="/" class="pure-menu-link">首页</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/archives" class="pure-menu-link">归档</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/about" class="pure-menu-link">关于</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/search" class="pure-menu-link">搜索</a></li>
+            
+          
+      
+  </ul>
+   
+</nav>
+
+  </div>
+
+  <div class="container" id="content-outer">
+    <div class="inner" id="content-inner">
+      <div class="post-container">
+  <article class="post" id="post">
+    <header class="post-header text-center">
+      <h1 class="title">
+        Markdown数学公式语法整理
+      </h1>
+      <span>
+        
+        <time class="time" datetime="2020-04-29T12:41:21.000Z">
+        2020-04-29
+      </time>
+        
+      </span>
+      <span class="slash">/</span>
+      <span class="post-meta">
+      <span class="post-tags">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a></li></ul>
+      </span>
+    </span>
+      <span class="slash">/</span>
+      <span class="read">阅读耗时 11 分钟</span>
+    </header>
+
+    <div class="post-content">
+      <p>最近用Markdown语法来写数学公式比较多，所以整理一下，以便查阅。后续边用边补充。</p>
+<a id="more"></a>
+<h1 id="一、基础"><a href="#一、基础" class="headerlink" title="一、基础"></a>一、基础</h1><ol>
+<li>行内公式：将公式插入到本行内，符号：两个<code>$</code></li>
+<li>独行公式：将公式插入到新的一行内，并且居中，符号：四个<code>$</code></li>
+<li>上标符号，符号：<code>^</code>，如：$x^4$</li>
+<li>下标符号，符号：<code>_</code>，如：$x_1$</li>
+<li>组合符号，符号：<code>{}</code>，如：${A}_{b}X{(23)}^{2}$</li>
+</ol>
+<h2 id="汉字、字体与格式"><a href="#汉字、字体与格式" class="headerlink" title="汉字、字体与格式"></a>汉字、字体与格式</h2><ol>
+<li>汉字形式，符号：<code>\mbox{}</code>，如：$V_{\mbox{初始}}$</li>
+<li>字体控制，符号：<code>\displaystyle</code>，如：$\displaystyle \frac{x+y}{y+z}$</li>
+<li>下划线符号，符号：<code>\underline</code>，如：$\underline{x+y}$</li>
+<li>标签，符号<code>\tag{数字}</code>，如：$\tag{11}$</li>
+<li>上大括号，符号：<code>\overbrace{算式}</code>，如：$\overbrace{a+b+c+d}^{2.0}$</li>
+<li>下大括号，符号：<code>\underbrace{算式}</code>，如：$a+\underbrace{b+c}_{1.0}+d$</li>
+<li>上位符号，符号：<code>\stacrel{上位符号}{基位符号}</code>，如：$\vec{x}\stackrel{\mathrm{def}}{=}{x_1,\dots,x_n}$</li>
+</ol>
+<h2 id="占位符"><a href="#占位符" class="headerlink" title="占位符"></a>占位符</h2><ol>
+<li>两个quad空格，符号：<code>\qquad</code>，如：$x \qquad y$</li>
+<li>quad空格，符号：<code>\quad</code>，如：$x \quad y$</li>
+<li>大空格，符号<code>\</code>，如：$x   y$</li>
+<li>中空格，符号<code>\:</code>，如：$x : y$</li>
+<li>小空格，符号<code>\,</code>，如：$x , y$</li>
+<li>没有空格，符号``，如：$xy$</li>
+<li>紧贴，符号<code>\!</code>，如：$x ! y$</li>
+</ol>
+<h2 id="定界符与组合"><a href="#定界符与组合" class="headerlink" title="定界符与组合"></a>定界符与组合</h2><ol>
+<li>括号，符号：<code>（）\big(\big) \Big(\Big) \bigg(\bigg) \Bigg(\Bigg)</code>，如：$（）\big(\big) \Big(\Big) \bigg(\bigg) \Bigg(\Bigg)$</li>
+<li>中括号，符号：<code>[]</code>，如：$[x+y]$</li>
+<li>大括号，符号：<code>\{ \}</code>，如：${x+y}$</li>
+<li>自适应括号，符号：<code>\left \right</code>，如：$\left(x\right)$，$\left(x{yz}\right)$</li>
+<li>组合公式，符号：<code>{上位公式 \choose 下位公式}</code>，如：${n+1 \choose k}={n \choose k}+{n \choose k-1}$</li>
+<li>组合公式，符号：<code>{上位公式 \atop 下位公式}</code>，如：$\sum_{k_0,k_1,\ldots&gt;0 \atop k_0+k_1+\cdots=n}A_{k_0}A_{k_1}\cdots$</li>
+</ol>
+<h2 id="四则运算"><a href="#四则运算" class="headerlink" title="四则运算"></a>四则运算</h2><ol>
+<li>加法运算，符号：<code>+</code>，如：$x+y=z$</li>
+<li>减法运算，符号：<code>-</code>，如：$x-y=z$</li>
+<li>加减运算，符号：<code>\pm</code>，如：$x \pm y=z$</li>
+<li>减甲运算，符号：<code>\mp</code>，如：$x \mp y=z$</li>
+<li>乘法运算，符号：<code>\times</code>，如：$x \times y=z$</li>
+<li>点乘运算，符号：<code>\cdot</code>，如：$x \cdot y=z$</li>
+<li>星乘运算，符号：<code>\ast</code>，如：$x \ast y=z$</li>
+<li>除法运算，符号：<code>\div</code>，如：$x \div y=z$</li>
+<li>斜法运算，符号：<code>/</code>，如：$x/y=z$</li>
+<li>分式表示，符号：<code>\frac{分子}{分母}</code>，如：$\frac{x+y}{y+z}$</li>
+<li>分式表示，符号：<code>{分子} \voer {分母}</code>，如：${x+y} \over {y+z}$</li>
+<li>绝对值表示，符号：<code>||</code>，如：$|x+y|$</li>
+</ol>
+<h2 id="高级运算"><a href="#高级运算" class="headerlink" title="高级运算"></a>高级运算</h2><ol>
+<li>平均数运算，符号：<code>\overline{算式}</code>，如：$\overline{xyz}$</li>
+<li>开二次方运算，符号：<code>\sqrt</code>，如：$\sqrt x$</li>
+<li>开方运算，符号：<code>\sqrt[开方数]{被开方数}</code>，如：$\sqrt[3]{x+y}$</li>
+<li>对数运算，符号：<code>\log</code>，如：$\log(x)$</li>
+<li>极限运算，符号：<code>\lim</code>，如：$\lim^{x \to \infty}_{y \to 0}{\frac{x}{y}}$</li>
+<li>极限运算，符号：<code>\displaystyle \lim</code>，如：$\displaystyle \lim^{x \to \infty}_{y \to 0}{\frac{x}{y}}$</li>
+<li>求和运算，符号：<code>\sum</code>，如：$\sum^{x \to \infty}_{y \to 0}{\frac{x}{y}}$</li>
+<li>求和运算，符号：<code>\displaystyle \sum</code>，如：$\displaystyle \sum^{x \to \infty}_{y \to 0}{\frac{x}{y}}$</li>
+<li>积分运算，符号：<code>\int</code>，如：$\int^{\infty}_{0}{xdx}$</li>
+<li>积分运算，符号：<code>\displaystyle \int</code>，如：$\displaystyle \int^{\infty}_{0}{xdx}$</li>
+<li>微分运算，符号：<code>\partial</code>，如：$\frac{\partial x}{\partial y}$</li>
+<li>矩阵表示，符号：<code>\begin{matrix} \end{matrix}</code>，如：$\left[ \begin{matrix} 1 &amp;2 &amp;\cdots &amp;4 &amp;5 &amp;6 &amp;\cdots &amp;8\\vdots &amp;\vdots &amp;\ddots &amp;\vdots &amp;13 &amp;14 &amp;\cdots &amp;16\end{matrix} \right]$</li>
+</ol>
+<h1 id="五、逻辑运算"><a href="#五、逻辑运算" class="headerlink" title="五、逻辑运算"></a>五、逻辑运算</h1><ol>
+<li>等于运算，Markdown：<code>=</code>，效果：$x+y=z$</li>
+<li>大于运算，Markdown：<code>&gt;</code>，效果：$x+y&gt;z$</li>
+<li>小于运算，Markdown：<code>&lt;</code>，效果：$x+y&lt;z$</li>
+<li>大于等于运算，Markdown：<code>\geq</code>，效果：$x+y \geq z$</li>
+<li>小于等于运算，Markdown：<code>\leq</code>，效果：$x+y \leq z$</li>
+<li>不等于运算，Markdown：<code>\neq</code>，效果：$x+y \neq z$</li>
+<li>不大于等于运算，Markdown：<code>\ngeq</code>，效果：$x+y \ngeq z$</li>
+<li>不大于等于运算，Markdown：<code>\not\geq</code>，效果：$x+y \not\geq z$</li>
+<li>不小于等于运算，Markdown：<code>\nleq</code>，效果：$x+y \nleq z$</li>
+<li>不小于等于运算，Markdown：<code>\not\leq</code>，效果：$x+y \not\leq z$</li>
+<li>约等于运算，Markdown：<code>\approx</code>，效果：$x+y \approx z$</li>
+<li>恒定等于运算，Markdown：<code>\equiv</code>，效果：$x+y \equiv z$</li>
+</ol>
+<h1 id="六、集合"><a href="#六、集合" class="headerlink" title="六、集合"></a>六、集合</h1><ol>
+<li>属于，Markdown：<code>\in</code>，效果：$x \in y$</li>
+<li>不属于，Markdown：<code>\notin</code>，效果：$x \notin y$</li>
+<li>子集，Markdown：<code>\subset</code>，效果：$x \subset y$</li>
+<li>子集，Markdown：<code>\supset</code>，效果：$x \supset y$</li>
+<li>真子集，Markdown：<code>\subseteq</code>，效果：$x \subseteq y$</li>
+<li>非真子集，Markdown：<code>\subsetneq</code>，效果：$x \subsetneq y$</li>
+<li>真子集，Markdown：<code>\supseteq</code>，效果：$x \supseteq y$</li>
+<li>非真子集，Markdown：<code>\supsetneq</code>，效果：$x \supsetneq y$</li>
+<li>非子集，Markdown：<code>\not\subset</code>，效果：$x \not\subset y$</li>
+<li>非子集，Markdown：<code>\not\supset</code>，效果：$x \not\supset y$</li>
+<li>并集，Markdown：<code>\cup</code>，效果：$x \cup y$</li>
+<li>交集，Markdown：<code>\cap</code>，效果：$x \cap y$</li>
+<li>差集，Markdown：<code>\setminus</code>，效果：$x \setminus y$</li>
+<li>同或，Markdown：<code>\bigodot</code>，效果：$x \bigodot y$</li>
+<li>同与，Markdown：<code>\bigotimes</code>，效果：$x \bigotimes y$</li>
+<li>实数，Markdown：<code>\mathbb{R}</code>，效果：<code>\mathbb{R}</code></li>
+<li>自然数，Markdown：<code>\mathbb{Z}</code>，效果：<code>\mathbb{Z}</code></li>
+<li>空集，Markdown：<code>\emptyset</code>，效果：$\emptyset$</li>
+</ol>
+<h1 id="七、数学"><a href="#七、数学" class="headerlink" title="七、数学"></a>七、数学</h1><ol>
+<li>无穷，Markdown：<code>\infty</code>，效果：$\infty$</li>
+<li>虚数，Markdown：<code>\imath</code>，效果：$\imath$</li>
+<li>虚数，Markdown：<code>\jmath</code>，效果：$\jmath$</li>
+<li>数学Markdown：<code>\hat{a}</code>，效果：$\hat{a}$</li>
+<li>数学Markdown：<code>\check{a}</code>，效果：$\check{a}$</li>
+<li>数学Markdown：<code>\breve{a}</code>，效果：$\breve{a}$</li>
+<li>数学Markdown：<code>\tilde{a}</code>，效果：$\tilde{a}$</li>
+<li>数学Markdown：<code>\bar{a}</code>，效果：$\bar{a}$</li>
+<li>矢量Markdown：<code>\vec{a}</code>，效果：$\vec{a}$</li>
+<li>数学Markdown：<code>\acute{a}</code>，效果：$\acute{a}$</li>
+<li>数学Markdown：<code>\grave{a}</code>，效果：$\grave{a}$</li>
+<li>数学Markdown：<code>\mathring{a}</code>，效果：$\mathring{a}$</li>
+<li>一阶导数Markdown，<code>\dot{a}</code>，效果：$\dot{a}$</li>
+<li>二阶导数Markdown：<code>\ddot{a}</code>，效果：$\ddot{a}$</li>
+<li>上箭头，Markdown：<code>\uparrow</code>，效果：$\uparrow$</li>
+<li>上箭头，Markdown：<code>\Uparrow</code>，效果：$\Uparrow$</li>
+<li>下箭头，Markdown：<code>\downarrow</code>，效果：$\downarrow$</li>
+<li>下箭头，Markdown：<code>\Downarrow</code>，效果：$\Downarrow$</li>
+<li>左箭头，Markdown：<code>\leftarrow</code>，效果：$\leftarrow$</li>
+<li>左箭头，Markdown：<code>\Leftarrow</code>，效果：$\Leftarrow$</li>
+<li>右箭头，Markdown：<code>\rightarrow</code>，效果：$\rightarrow$</li>
+<li>右箭头，Markdown：<code>\Rightarrow</code>，效果：$\Rightarrow$</li>
+<li>底端对齐的省略号，Markdown：<code>\ldots</code>，效果：$1,2,\ldots,n$</li>
+<li>中线对齐的省略号，Markdown：<code>\cdots</code>，效果：$x_1^2 + x_2^2 + \cdots + x_n^2$</li>
+<li>竖直对齐的省略号，Markdown：<code>\vdots</code>，效果：$\vdots$</li>
+<li>斜对齐的省略号，Markdown：<code>\ddots</code>，效果：$\ddots$</li>
+<li>常用数集，Markdown：<code>\mathbb{数集字母}</code>，效果：$\mathbb{R}$,$\mathbb{Z}$</li>
+</ol>
+<h1 id="八、希腊字母"><a href="#八、希腊字母" class="headerlink" title="八、希腊字母"></a>八、希腊字母</h1><p><img src="/post/md-math/1.jpg" alt="1"></p>
+<h1 id="九、几个常见例子"><a href="#九、几个常见例子" class="headerlink" title="九、几个常见例子"></a>九、几个常见例子</h1><h2 id="方程组"><a href="#方程组" class="headerlink" title="方程组"></a>方程组</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\left\&#123;</span><br><span class="line">	\begin&#123;array&#125;&#123;c&#125;</span><br><span class="line">		a_1x+b_1y+c_1z&#x3D;d_1\\</span><br><span class="line">		a_2x+b_2y+c_2z&#x3D;d_2\\</span><br><span class="line">		a_3x+b_3y+c_3z&#x3D;d_3</span><br><span class="line">	\end&#123;array&#125;</span><br><span class="line">\right.</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+\left\{
+    \begin{array}{c}
+        a_1x+b_1y+c_1z=d_1\\
+        a_2x+b_2y+c_2z=d_2\\
+        a_3x+b_3y+c_3z=d_3
+    \end{array}
+\right.</script><h2 id="分段函数"><a href="#分段函数" class="headerlink" title="分段函数"></a>分段函数</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">f(n)&#x3D;</span><br><span class="line">	\begin&#123;cases&#125;</span><br><span class="line">		n&#x2F;2, &amp; \text&#123;if $n$ is even&#125;\\</span><br><span class="line">		3n+1,&amp; \text&#123;if $n$ is odd&#125;</span><br><span class="line">	\end&#123;cases&#125;</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+f(n)=
+    \begin{cases}
+        n/2, & \text{if $n$ is even}\\
+        3n+1,& \text{if $n$ is odd}
+    \end{cases}</script><h2 id="批量梯度下降"><a href="#批量梯度下降" class="headerlink" title="批量梯度下降"></a>批量梯度下降</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">	\frac&#123;\partial J(\theta)&#125;&#123;\partial\theta_j&#125; &#x3D; -\frac1m\sum_&#123;i&#x3D;0&#125;^m(y^i - 	h_\theta(x^i))x^i_j</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">\frac{\partial J(\theta)}{\partial\theta_j} = -\frac1m\sum_{i=0}^m(y^i -     h_\theta(x^i))x^i_j</script><h2 id="行列式"><a href="#行列式" class="headerlink" title="行列式"></a>行列式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">A&#x3D;\left[</span><br><span class="line">\begin&#123;matrix&#125;</span><br><span class="line">1&amp;2&amp;3&amp;\\</span><br><span class="line">4&amp;5&amp;6&amp;\\</span><br><span class="line">7&amp;8&amp;9&amp;</span><br><span class="line">\end&#123;matrix&#125;</span><br><span class="line">\right]</span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+A=\left[
+\begin{matrix}
+1&2&3&\\
+4&5&6&\\
+7&8&9&
+\end{matrix}
+\right]</script><blockquote>
+<p>注：后续边用边补充。</p>
+</blockquote>
+
+    </div>
+
+  </article>
+  <div class="toc-container">
+    
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、基础"><span class="toc-text">一、基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#汉字、字体与格式"><span class="toc-text">汉字、字体与格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#占位符"><span class="toc-text">占位符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定界符与组合"><span class="toc-text">定界符与组合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四则运算"><span class="toc-text">四则运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高级运算"><span class="toc-text">高级运算</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#五、逻辑运算"><span class="toc-text">五、逻辑运算</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#六、集合"><span class="toc-text">六、集合</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#七、数学"><span class="toc-text">七、数学</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#八、希腊字母"><span class="toc-text">八、希腊字母</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#九、几个常见例子"><span class="toc-text">九、几个常见例子</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#方程组"><span class="toc-text">方程组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分段函数"><span class="toc-text">分段函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#批量梯度下降"><span class="toc-text">批量梯度下降</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#行列式"><span class="toc-text">行列式</span></a></li></ol></li></ol>
+  </div>
+
+
+  </div>
+</div>
+<div class="copyright">
+    <span>本作品采用</span>
+    <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">知识共享署名 4.0 国际许可协议</a>
+    <span>进行许可。 转载时请注明原文链接。</span>
+</div>
+
+
+  
+    <div class="post-nav">
+      <div class="post-nav-item post-nav-next">
+        
+          <span>〈 </span>
+          <a href="/post/System-Simulation-3/" rel="next" title="系统仿真笔记（三）离散事件系统仿真基础">
+          系统仿真笔记（三）离散事件系统仿真基础
+          </a>
+        
+      </div>
+  
+      <div class="post-nav-item post-nav-prev">
+          
+          <a href="/post/System-Simulation-4/" rel="prev" title="系统仿真笔记（四）离散事件系统模型">
+            系统仿真笔记（四）离散事件系统模型
+          </a>
+          <span>〉</span>
+        
+      </div>
+    </div>
+  
+
+
+
+    </div>
+
+    
+
+  </div>
+  <footer class="footer text-center">
+    <div id="bottom-inner">
+        <a class="bottom-item" href="" target="_blank">ZQH&#39;s Blog</a> |
+        <a class="bottom-item">Powered by hexo</a> |
+        <a class="bottom-item">Copyright © 2020</a>  |
+        <a>博客已运行<a id="days">0</a>天</a> 
+        <script> 
+        var s1 = '2020-04-15';//设置为你的建站时间 
+        s1 = new Date(s1.replace(/-/g, "/")); 
+        s2 = new Date(); 
+        var days = s2.getTime() - s1.getTime(); 
+        var number_of_days = parseInt(days / (1000 * 60 * 60 * 24)); 
+        document.getElementById('days').innerHTML = number_of_days; 
+        </script> |
+        <a class="bottom-item" href="/atom.xml">RSS</a>
+        <div style="display:none"><script type="text/javascript" src="https://s4.cnzz.com/z_stat.php?id=1278827997&web_id=1278827997"></script></div>
+    </div>
+</footer>
+
+  
+
+<script>
+  (function(window, document, undefined) {
+
+    var timer = null;
+
+    function returnTop() {
+      cancelAnimationFrame(timer);
+      timer = requestAnimationFrame(function fn() {
+        var oTop = document.body.scrollTop || document.documentElement.scrollTop;
+        if (oTop > 0) {
+          document.body.scrollTop = document.documentElement.scrollTop = oTop - 50;
+          timer = requestAnimationFrame(fn);
+        } else {
+          cancelAnimationFrame(timer);
+        }
+      });
+    }
+
+    var hearts = [];
+    window.requestAnimationFrame = (function() {
+      return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(callback) {
+          setTimeout(callback, 1000 / 60);
+        }
+    })();
+    init();
+
+    function init() {
+      css(".heart{z-index:9999;width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: absolute;}.heart:after{top: -5px;}.heart:before{left: -5px;}");
+      attachEvent();
+      gameloop();
+      addMenuEvent();
+    }
+
+    function gameloop() {
+      for (var i = 0; i < hearts.length; i++) {
+        if (hearts[i].alpha <= 0) {
+          document.body.removeChild(hearts[i].el);
+          hearts.splice(i, 1);
+          continue;
+        }
+        hearts[i].y--;
+        hearts[i].scale += 0.004;
+        hearts[i].alpha -= 0.013;
+        hearts[i].el.style.cssText = "left:" + hearts[i].x + "px;top:" + hearts[i].y + "px;opacity:" + hearts[i].alpha + ";transform:scale(" + hearts[i].scale + "," + hearts[i].scale + ") rotate(45deg);background:" + hearts[i].color;
+      }
+      requestAnimationFrame(gameloop);
+    }
+
+    /**
+     * 给logo设置点击事件
+     * 
+     * - 回到顶部
+     * - 出现爱心
+     */
+    function attachEvent() {
+      var old = typeof window.onclick === "function" && window.onclick;
+      var logo = document.getElementById("logo");
+      if (logo) {
+        logo.onclick = function(event) {
+          returnTop();
+          old && old();
+          createHeart(event);
+        }
+      }
+      
+    }
+
+    function createHeart(event) {
+      var d = document.createElement("div");
+      d.className = "heart";
+      hearts.push({
+        el: d,
+        x: event.clientX - 5,
+        y: event.clientY - 5,
+        scale: 1,
+        alpha: 1,
+        color: randomColor()
+      });
+      document.body.appendChild(d);
+    }
+
+    function css(css) {
+      var style = document.createElement("style");
+      style.type = "text/css";
+      try {
+        style.appendChild(document.createTextNode(css));
+      } catch (ex) {
+        style.styleSheet.cssText = css;
+      }
+      document.getElementsByTagName('head')[0].appendChild(style);
+    }
+
+    function randomColor() {
+      // return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + ")";
+      return "#F44336";
+    }
+
+    function addMenuEvent() {
+      var menu = document.getElementById('menu-main-post');
+      if (menu) {
+        var toc = document.getElementById('toc');
+        if (toc) {
+          menu.onclick = function() {
+            if (toc) {
+              if (toc.style.display == 'block') {
+                toc.style.display = 'none';
+              } else {
+                toc.style.display = 'block';
+              }
+            }
+          };
+        } else {
+          menu.style.display = 'none';
+        }
+      }
+    }
+
+  })(window, document);
+</script>
+
+  
+
+
+
+  
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
