@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://smiler666.github.io/"/>
-  <updated>2021-02-10T01:14:11.633Z</updated>
+  <updated>2021-03-08T12:57:30.007Z</updated>
   <id>https://smiler666.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ABAQUS中的单位制</title>
+    <link href="https://smiler666.github.io/post/abaqus-note-unit/"/>
+    <id>https://smiler666.github.io/post/abaqus-note-unit/</id>
+    <published>2021-03-08T12:47:36.000Z</published>
+    <updated>2021-03-08T12:57:30.007Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;ABAQUS中没有固定的单位制，因此用户要为各个量选用相应匹配的单位，最后计算出的结果的单位与所采用的单位制相对应。&lt;/p&gt;
+&lt;p&gt;ABAQUS中常用的单位制如下：&lt;/p&gt;
+&lt;div
+        
+      
+    
+    </summary>
+    
+    
+      <category term="知识回顾" scheme="https://smiler666.github.io/categories/%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE/"/>
+    
+    
+      <category term="笔记" scheme="https://smiler666.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="Abaqus" scheme="https://smiler666.github.io/tags/Abaqus/"/>
+    
+  </entry>
   
   <entry>
     <title>Abaqus无法启动的解决方法</title>
@@ -500,31 +531,6 @@ document.getElementById(&quot;spkj&quot;).style.height=document.getElementById(&
       <category term="研究僧" scheme="https://smiler666.github.io/tags/%E7%A0%94%E7%A9%B6%E5%83%A7/"/>
     
       <category term="随笔" scheme="https://smiler666.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>系统仿真笔记（四）离散事件系统模型</title>
-    <link href="https://smiler666.github.io/post/System-Simulation-4/"/>
-    <id>https://smiler666.github.io/post/System-Simulation-4/</id>
-    <published>2020-05-02T09:23:58.000Z</published>
-    <updated>2020-08-06T10:57:06.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;之前内容请回顾：&lt;a href=&quot;/post/System-Simulation-3/&quot;&gt;系统仿真笔记（三）离散事件系统仿真基础&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;此为《系统仿真》上课笔记&lt;/p&gt;
-&lt;p&gt;本节笔记主要介绍离散事件系统的主要理论模型，如：排队模型、库存模型、Petri网模型、实体流图模型、活动循环图法和网络计划法。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="知识回顾" scheme="https://smiler666.github.io/categories/%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE/"/>
-    
-    
-      <category term="系统仿真" scheme="https://smiler666.github.io/tags/%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F/"/>
-    
-      <category term="笔记" scheme="https://smiler666.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   

@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>ABAQUS中的单位制</title>
+      <link href="/post/abaqus-note-unit/"/>
+      <url>/post/abaqus-note-unit/</url>
+      
+        <content type="html"><![CDATA[<p>ABAQUS中没有固定的单位制，因此用户要为各个量选用相应匹配的单位，最后计算出的结果的单位与所采用的单位制相对应。</p><p>ABAQUS中常用的单位制如下：</p><div class="table-container"><table><thead><tr><th style="text-align:center">国际单位制</th><th style="text-align:center">长度</th><th style="text-align:center">力</th><th style="text-align:center">质量</th><th style="text-align:center">时间</th><th style="text-align:center">应力、弹性模量</th><th style="text-align:center">能量</th><th style="text-align:center">密度</th><th style="text-align:center">加速度</th></tr></thead><tbody><tr><td style="text-align:center">$SI（m）$</td><td style="text-align:center">$m$</td><td style="text-align:center">$N$</td><td style="text-align:center">$kg$</td><td style="text-align:center">$s$</td><td style="text-align:center">$Pa$<br />($N/m^2$)</td><td style="text-align:center">$J$</td><td style="text-align:center">$kg/m^3$</td><td style="text-align:center">$m/s^2$</td></tr><tr><td style="text-align:center">$SI（mm）$</td><td style="text-align:center">$mm$</td><td style="text-align:center">$N$</td><td style="text-align:center">$tonne$<br />($10^3kg$)</td><td style="text-align:center">$s$</td><td style="text-align:center">$MPa$<br />($N/mm^2$)</td><td style="text-align:center">$mJ$<br />($10^{-3}J$)</td><td style="text-align:center">$tonne/mm^3$</td><td style="text-align:center">$mm/s^2$</td></tr></tbody></table></div><p>以下是一个实例中材料的属性，分别用两套单位制来表示：</p><p><img src="/post/abaqus-note-unit/1.png" alt=""></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 知识回顾 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 笔记 </tag>
+            
+            <tag> Abaqus </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Abaqus无法启动的解决方法</title>
       <link href="/post/abaqus-note-1/"/>
       <url>/post/abaqus-note-1/</url>
