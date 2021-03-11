@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://smiler666.github.io/"/>
-  <updated>2021-03-08T12:57:30.007Z</updated>
+  <updated>2021-03-11T11:37:25.379Z</updated>
   <id>https://smiler666.github.io/</id>
   
   <author>
@@ -17,11 +17,74 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>TensorFlow2.1安装、GPU加速设置及第三方库常用源</title>
+    <link href="https://smiler666.github.io/post/tensorflow2-note-1/"/>
+    <id>https://smiler666.github.io/post/tensorflow2-note-1/</id>
+    <published>2021-03-11T11:30:16.000Z</published>
+    <updated>2021-03-11T11:37:25.379Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;安装好Anaconda后打开Anaconda Prompt&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+    
+      <category term="知识回顾" scheme="https://smiler666.github.io/categories/%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE/"/>
+    
+    
+      <category term="笔记" scheme="https://smiler666.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="人工智能" scheme="https://smiler666.github.io/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+      <category term="深度学习" scheme="https://smiler666.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="tensorflow" scheme="https://smiler666.github.io/tags/tensorflow/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Abaqus常用功能中英文对照</title>
+    <link href="https://smiler666.github.io/post/abaqus-note-zh-en/"/>
+    <id>https://smiler666.github.io/post/abaqus-note-zh-en/</id>
+    <published>2021-03-10T11:35:54.000Z</published>
+    <updated>2021-03-11T11:47:00.473Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Part（部件）模块&quot;&gt;&lt;a href=&quot;#Part（部件）模块&quot; class=&quot;headerlink&quot; title=&quot;Part（部件）模块&quot;&gt;&lt;/a&gt;Part（部件）模块&lt;/h1&gt;&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+    
+      <category term="知识回顾" scheme="https://smiler666.github.io/categories/%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE/"/>
+    
+    
+      <category term="笔记" scheme="https://smiler666.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="Abaqus" scheme="https://smiler666.github.io/tags/Abaqus/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ABAQUS中的单位制</title>
     <link href="https://smiler666.github.io/post/abaqus-note-unit/"/>
     <id>https://smiler666.github.io/post/abaqus-note-unit/</id>
     <published>2021-03-08T12:47:36.000Z</published>
-    <updated>2021-03-08T12:57:30.007Z</updated>
+    <updated>2021-03-09T10:51:34.619Z</updated>
     
     <summary type="html">
     
@@ -483,54 +546,6 @@ document.getElementById(&quot;spkj&quot;).style.height=document.getElementById(&
       <category term="系统仿真" scheme="https://smiler666.github.io/tags/%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F/"/>
     
       <category term="笔记" scheme="https://smiler666.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>系统仿真笔记（五）离散事件系统仿真原理</title>
-    <link href="https://smiler666.github.io/post/System-Simulation-5/"/>
-    <id>https://smiler666.github.io/post/System-Simulation-5/</id>
-    <published>2020-05-04T08:49:57.000Z</published>
-    <updated>2020-08-06T10:57:06.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;之前内容请回顾：&lt;a href=&quot;/post/System-Simulation-4/&quot;&gt;系统仿真笔记（四）离散事件系统模型&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;此为《系统仿真》上课笔记&lt;/p&gt;
-&lt;p&gt;本节笔记主要介绍离散事件系统的形式化描述、表处理方法、离散事件系统模拟策略概述、事件调度法、活动扫描法、三阶段扫描法和进程交互法等&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="知识回顾" scheme="https://smiler666.github.io/categories/%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE/"/>
-    
-    
-      <category term="系统仿真" scheme="https://smiler666.github.io/tags/%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F/"/>
-    
-      <category term="笔记" scheme="https://smiler666.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>记读研第一个小项目——工程经济与项目评价研学辅助系统</title>
-    <link href="https://smiler666.github.io/post/dut-1/"/>
-    <id>https://smiler666.github.io/post/dut-1/</id>
-    <published>2020-05-02T14:31:53.000Z</published>
-    <updated>2020-09-22T13:13:14.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;今晚无意在学部网站上看到了两个月前对&lt;strong&gt;工程经济与项目评价研学辅助系统&lt;/strong&gt;进行了报道，这是我入学做的第一个项目，所以记录一下。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="研究僧涯" scheme="https://smiler666.github.io/categories/%E7%A0%94%E7%A9%B6%E5%83%A7%E6%B6%AF/"/>
-    
-    
-      <category term="研究僧" scheme="https://smiler666.github.io/tags/%E7%A0%94%E7%A9%B6%E5%83%A7/"/>
-    
-      <category term="随笔" scheme="https://smiler666.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
