@@ -117,7 +117,7 @@
 <p>然后再次<strong>循环上述２、３步骤，直到$V(s)$与$π(s)$都收敛</strong>。</p>
 <h2 id="1-策略评估"><a href="#1-策略评估" class="headerlink" title="1.策略评估"></a>1.策略评估</h2><p>策略评估就是计算任意策略的状态值函数$V_\pi$，也就是对当前策略下计算出每个状态下的状态值，这就是策略预估，我们也把它称为<strong>预测</strong>(predict)问题。</p>
 <script type="math/tex; mode=display">
-v_{k+1}(s_t)=\sum_{a∈A}\pi(a|s)[R(s,a)+\gamma \sum_{s∈S}p(s'|s,a)v_t(s')]</script><p>下面介绍一个策略评估的例子：</p>
+v_{k+1}(s)=\sum_{a∈A}\pi(a|s)[R(s,a)+\gamma \sum_{s'∈S}p(s'|s,a)v_k(s')]</script><p>下面介绍一个策略评估的例子：</p>
 <p>这是一个经典的Grid World的例子。这里有一个$4*4$的的格子世界。只有左上和右下的格子是终止格子。该位置的价值固定为0，个体如果到达了该2个格子，则停止移动，此后每轮奖励都是0。个体在16宫格其他格的每次移动，得到的即时奖励$R$都是-1。注意个体每次只能移动一个格子，且只能上下左右4种移动选择，不能斜着走, 如果在边界格往外走，则会直接移动回到之前的边界格。衰减因子我们定义为$γ=1$。由于这里每次移动，下一格都是固定的，因此所有可行的的状态转化概率$P=1$。这里给定的策略是随机策略，即每个格子里有25%的概率向周围的4个格子移动。</p>
 <p><img src="/post/rl-policy-iteration/3.jpg" alt=""></p>
 <p>首先我们初始化所有格子的状态价值为0，如上图k=0的时候。现在我们开始策略迭代了。由于终止格子的价值固定为0，我们可以不将其加入迭代过程。在$k=1$的时候，我们利用上面的贝尔曼方程先计算第二行第一个格子的价值：</p>
@@ -166,7 +166,7 @@ v_{k+1}(s_t)=\sum_{a∈A}\pi(a|s)[R(s,a)+\gamma \sum_{s∈S}p(s'|s,a)v_t(s')]</s
 <ul>
 <li><a href="https://www.cnblogs.com/pinard/p/9463815.html" target="_blank" rel="noopener">https://www.cnblogs.com/pinard/p/9463815.html</a></li>
 <li><a href="https://blog.csdn.net/panglinzhuo/article/details/77752574" target="_blank" rel="noopener">https://blog.csdn.net/panglinzhuo/article/details/77752574</a></li>
-<li>周博磊《强化学习纲要》课件</li>
+<li><a href="https://github.com/zhoubolei/introRL" target="_blank" rel="noopener">周博磊《强化学习纲要》课件</a></li>
 </ul>
 
     </div>
