@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#202020"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  
+    <meta name="keywords" content="机器学习,深度学习,强化学习," />
+  
+
+  
+    <meta name="description" content="QH的博客" />
+  
+  
+  
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  
+  <title>机器学习系列（一）走进机器学习 - QH的博客</title>
+  
+    <!-- stylesheets list from config.yml -->
+    
+      <link rel="stylesheet" href="/css/pure-min.css">
+    
+      <link rel="stylesheet" href="/css/xoxo.css">
+    
+  
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="QH的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="nav-container">
+<nav class="home-menu pure-menu pure-menu-horizontal">
+  <a class="pure-menu-heading" href="/">
+    
+      <img class="avatar" src="https://smiler666.github.io/images/favicon.ico">
+    
+    <span class="title" style="text-transform:none">QH的博客</span>
+  </a>
+
+  <ul class="pure-menu-list clearfix">
+      
+          
+            
+              <li class="pure-menu-item"><a href="/" class="pure-menu-link">首页</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+            
+              <a href="#" id="合集" class="pure-menu-link">合集</a>
+              <ul class="pure-menu-children">
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/探索/" style="color:#202020;" class="pure-menu-link">探索</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/categories/程序/" style="color:#202020;" class="pure-menu-link">程序</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/post/py-1/" style="color:#202020;" class="pure-menu-link">Python</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/categories/数值计算/" style="color:#202020;" class="pure-menu-link">数值计算</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/机器学习/" style="color:#202020;" class="pure-menu-link">机器学习</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/RITSS/" style="color:#202020;" class="pure-menu-link">Abaqus/RITSS</a></li>
+                  
+              
+              </ul>
+            </li>
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/archives" class="pure-menu-link">文章</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/post/share-1/" class="pure-menu-link">工具</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/about" class="pure-menu-link">关于</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/search" class="pure-menu-link">搜索</a></li>
+            
+          
+      
+  </ul>
+   
+</nav>
+
+</div>
+
+<div class="container" id="content-outer">
+<div class="inner" id="content-inner">
+<div class="post-container">
+  <article class="post" id="post">
+    <header class="post-header text-center">
+      <h1 class="title">
+        机器学习系列（一）走进机器学习
+      </h1>
+      <span>
+        
+        <time class="time" datetime="2021-03-21T04:21:30.000Z">
+        2021-03-21
+      </time>
+        
+      </span>
+      <span class="slash">/</span>
+      <span class="post-meta">
+      <span class="post-tags">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li></ul>
+      </span>
+    </span>
+      <span class="slash">/</span>
+      <span class="read">阅读耗时 14 分钟</span>
+    </header>
+
+    <div class="post-content">
+      <a id="more"></a>
+<h1 id="第1章：走进机器学习"><a href="#第1章：走进机器学习" class="headerlink" title="第1章：走进机器学习"></a>第1章：走进机器学习</h1><p>机器学习是一门研究如何让计算机从数据中学习知识和技能的科学。它是人工智能的一个重要分支，也是当今最具前景和影响力的技术之一。在本章中，将介绍机器学习的基本概念、应用领域和基本步骤，为后续章节打下基础。</p>
+<h2 id="1-1-机器学习概述"><a href="#1-1-机器学习概述" class="headerlink" title="1.1 机器学习概述"></a>1.1 机器学习概述</h2><p>机器学习的核心问题是如何让计算机能够自动地从数据中提取有用的信息，从而实现智能的行为。例如，我们可以让计算机通过观察大量的人脸照片，学习如何识别不同的人；我们也可以让计算机通过分析历史的股票数据，学习如何预测未来的股价；我们还可以让计算机通过玩游戏，学习如何制定有效的策略，例如围棋高手Alpha Go。</p>
+<p>机器学习有多种类型，根据是否需要人为提供标签或反馈，可以分为三大类：监督学习、无监督学习和强化学习。</p>
+<ul>
+<li>监督学习是指从已知输入和输出之间的对应关系中学习规律，例如分类和回归问题。</li>
+<li>无监督学习是指从没有标签或反馈的数据中发现隐藏的结构或模式，例如聚类和降维问题。</li>
+<li>强化学习是指在与环境交互的过程中，通过不断尝试和错误，学习如何做出最优的决策，例如下棋和驾驶问题。</li>
+</ul>
+<p>机器学习有多种方法，根据所使用的数学模型或算法，可以分为多个流派或范式。例如，统计学习、符号学习、神经网络、支持向量机、贝叶斯网络、决策树、遗传算法等。这些方法各有优劣，适用于不同的场景和任务。在本机器学习合集中，将重点介绍一些最常用和最有效的方法，并给出相应的理论和实例。</p>
+<h2 id="1-2-机器学习的应用领域"><a href="#1-2-机器学习的应用领域" class="headerlink" title="1.2 机器学习的应用领域"></a>1.2 机器学习的应用领域</h2><p>机器学习已经广泛地应用于各个领域，为人类社会带来了巨大的便利和价值。以下是一些典型的应用领域：</p>
+<ul>
+<li>计算机视觉：利用机器学习技术，可以让计算机具备视觉能力，从而实现人脸识别、物体检测、场景分析、图像生成等功能。</li>
+<li>自然语言处理：利用机器学习技术，可以让计算机理解和生成自然语言，从而实现语音识别、文本分析、机器翻译、对话系统等功能。</li>
+<li>数据挖掘：利用机器学习技术，可以从海量的数据中挖掘出有价值的信息，从而实现推荐系统、异常检测、关联规则发现等功能。</li>
+<li>人工智能：利用机器学习技术，可以让计算机模拟和超越人类的智能（ChatGPT），从而实现自动驾驶、智能医疗、智能教育、智能家居等功能。</li>
+</ul>
+<p>这些应用领域只是机器学习的冰山一角，随着技术的发展和创新，机器学习将会在更多的领域发挥作用，为人类带来更多的惊喜和挑战。</p>
+<h2 id="1-3-机器学习的基本步骤"><a href="#1-3-机器学习的基本步骤" class="headerlink" title="1.3 机器学习的基本步骤"></a>1.3 机器学习的基本步骤</h2><p>机器学习的过程并不是一蹴而就的，而是需要经过一系列的步骤，才能从数据中得到有效的模型和结果。一般来说，机器学习的基本步骤包括以下几个方面：</p>
+<ol>
+<li>数据收集：这是机器学习的第一步，也是最重要的一步。没有数据，就没有机器学习。数据收集的目的是为了获取足够多、足够好、足够相关的数据，以便训练和测试机器学习模型。数据可以来自于各种渠道，例如网络爬虫、传感器、问卷、日志等。数据收集的质量和数量直接影响了机器学习的效果和性能。</li>
+<li>数据预处理：这是机器学习的第二步，也是一个很重要的步骤。数据预处理的目的是为了清洗、整理、转换和规范化数据，以便让数据更适合于机器学习模型的输入。数据预处理包括了很多操作，例如去除噪声和异常值、填补缺失值、删除重复值、进行编码和标准化等。数据预处理的好坏也会影响到机器学习的效果和性能。</li>
+<li>模型选择：这是机器学习的第三步，也是一个很关键的步骤。模型选择的目的是为了选择一个合适的数学模型或算法，以便对数据进行建模和分析。模型选择需要考虑很多因素，例如问题类型、数据特征、计算资源、可解释性等。模型选择需要有一定的理论知识和实践经验，以便在众多的候选模型中找到一个最优或最适合的模型。</li>
+<li>模型训练：这是机器学习的第四步，也是一个很核心的步骤。模型训练的目的是为了利用已有的数据，通过优化算法，调整模型中的参数或权重，使得模型能够更好地拟合数据中的规律或特征。模型训练需要有一定的数学基础和编程技巧，以便设计和实现有效和高效的优化算法。</li>
+<li>模型评估：这是机器学习的第五步，也是一个很重要的步骤。模型评估的目的是为了检验模型在未知数据上的泛化能力和预测性能。模型评估需要有一定的统计知识和评价指标，以便对模型进行客观和公正的评价。模型评估通常需要将数据分为训练集、验证集和测试集，分别用于模型训练、模型选择和模型评估。模型评估还可以采用交叉验证、自助法等方法，以提高评估的可靠性和稳定性。</li>
+<li>模型调参：这是机器学习的第六步，也是一个很细致的步骤。模型调参的目的是为了通过调整模型中的超参数或配置，进一步提升模型的效果和性能。模型调参需要有一定的经验和技巧，以便在合理的范围内，寻找到最优或最适合的参数或配置。模型调参可以采用网格搜索、随机搜索、贝叶斯优化等方法，以提高调参的效率和精度。</li>
+<li>模型应用：这是机器学习的第七步，也是一个很实用的步骤。模型应用的目的是为了将训练好的模型部署到实际的场景中，以解决实际的问题或满足实际的需求。模型应用需要有一定的工程能力和系统知识，以便将模型与其他组件或平台进行集成和交互。模型应用还需要考虑模型的可扩展性、可维护性、可更新性等因素，以保证模型在实际中的稳定性和可靠性。</li>
+</ol>
+<p>以上就是机器学习的基本步骤，当然，在实际中，这些步骤并不是一次性完成的，而是需要反复迭代和优化的。机器学习是一个动态和创造性的过程，需要不断地尝试和改进，才能得到最佳或最满意的结果。</p>
+<h2 id="本章小结："><a href="#本章小结：" class="headerlink" title="本章小结："></a>本章小结：</h2><ul>
+<li>机器学习是一门研究如何让计算机从数据中学习知识和技能的科学。</li>
+<li>机器学习有多种类型，包括监督学习、无监督学习和强化学习。</li>
+<li>机器学习有多种方法，包括统计学习、符号学习、神经网络、支持向量机等。</li>
+<li>机器学习有多种应用领域，包括计算机视觉、自然语言处理、数据挖掘、人工智能等。</li>
+<li>机器学习有多个基本步骤，包括数据收集、数据预处理、模型选择、模型训练、模型评估、模型调参和模型应用。</li>
+</ul>
+
+    </div>
+
+  </article>
+  <div class="toc-container">
+    
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第1章：走进机器学习"><span class="toc-text">第1章：走进机器学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-机器学习概述"><span class="toc-text">1.1 机器学习概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-机器学习的应用领域"><span class="toc-text">1.2 机器学习的应用领域</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-机器学习的基本步骤"><span class="toc-text">1.3 机器学习的基本步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本章小结："><span class="toc-text">本章小结：</span></a></li></ol></li></ol>
+  </div>
+
+
+  </div>
+</div>
+<div class="copyright">
+    <span>本作品采用</span>
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>
+    <span>进行许可。转载时请注明原文链接。</span>
+</div>
+
+
+  
+    <div class="post-nav">
+      <div class="post-nav-item post-nav-next">
+        
+          <span>〈 </span>
+          <a href="/post/ai-1-dl-tensorflow2-note-1/" rel="next" title="TensorFlow2.1安装、GPU加速设置及第三方库常用源">
+          TensorFlow2.1安装、GPU加速设置及第三方库常用源
+          </a>
+        
+      </div>
+  
+      <div class="post-nav-item post-nav-prev">
+          
+          <a href="/post/ai-0-ml-2/" rel="prev" title="机器学习系列（二）Python基础">
+            机器学习系列（二）Python基础
+          </a>
+          <span>〉</span>
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+</div>
+
+<footer class="footer text-center">
+    <div id="bottom-inner">
+        <a class="bottom-item" href="" target="_blank">QH的博客</a> |
+        <a class="bottom-item">Powered by hexo</a> |
+        <a class="bottom-item">Copyright © 2023</a>  |
+        <a>博客已运行<a id="days">0</a>天</a> 
+        <script> 
+        var s1 = '2020-04-15';//设置为你的建站时间 
+        s1 = new Date(s1.replace(/-/g, "/")); 
+        s2 = new Date(); 
+        var days = s2.getTime() - s1.getTime(); 
+        var number_of_days = parseInt(days / (1000 * 60 * 60 * 24)); 
+        document.getElementById('days').innerHTML = number_of_days; 
+        </script> |
+        <a class="bottom-item" href="/atom.xml">RSS</a>
+        <script>
+			var _hmt = _hmt || [];
+			(function() {
+			  var hm = document.createElement("script");
+			  hm.src = "https://hm.baidu.com/hm.js?7241c66da4c19bc02e939e6776919ff8";
+			  var s = document.getElementsByTagName("script")[0]; 
+			  s.parentNode.insertBefore(hm, s);
+			})();
+		</script>
+    </div>
+</footer>
+
+
+
+<script>
+  (function(window, document, undefined) {
+
+    var timer = null;
+
+    function returnTop() {
+      cancelAnimationFrame(timer);
+      timer = requestAnimationFrame(function fn() {
+        var oTop = document.body.scrollTop || document.documentElement.scrollTop;
+        if (oTop > 0) {
+          document.body.scrollTop = document.documentElement.scrollTop = oTop - 50;
+          timer = requestAnimationFrame(fn);
+        } else {
+          cancelAnimationFrame(timer);
+        }
+      });
+    }
+
+    var hearts = [];
+    window.requestAnimationFrame = (function() {
+      return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(callback) {
+          setTimeout(callback, 1000 / 60);
+        }
+    })();
+    init();
+
+    function init() {
+      css(".heart{z-index:9999;width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: absolute;}.heart:after{top: -5px;}.heart:before{left: -5px;}");
+      attachEvent();
+      gameloop();
+      addMenuEvent();
+    }
+
+    function gameloop() {
+      for (var i = 0; i < hearts.length; i++) {
+        if (hearts[i].alpha <= 0) {
+          document.body.removeChild(hearts[i].el);
+          hearts.splice(i, 1);
+          continue;
+        }
+        hearts[i].y--;
+        hearts[i].scale += 0.004;
+        hearts[i].alpha -= 0.013;
+        hearts[i].el.style.cssText = "left:" + hearts[i].x + "px;top:" + hearts[i].y + "px;opacity:" + hearts[i].alpha + ";transform:scale(" + hearts[i].scale + "," + hearts[i].scale + ") rotate(45deg);background:" + hearts[i].color;
+      }
+      requestAnimationFrame(gameloop);
+    }
+
+    /**
+     * 给logo设置点击事件
+     * 
+     * - 回到顶部
+     * - 出现爱心
+     */
+    function attachEvent() {
+      var old = typeof window.onclick === "function" && window.onclick;
+      var logo = document.getElementById("logo");
+      if (logo) {
+        logo.onclick = function(event) {
+          returnTop();
+          old && old();
+          createHeart(event);
+        }
+      }
+      
+    }
+
+    function createHeart(event) {
+      var d = document.createElement("div");
+      d.className = "heart";
+      hearts.push({
+        el: d,
+        x: event.clientX - 5,
+        y: event.clientY - 5,
+        scale: 1,
+        alpha: 1,
+        color: randomColor()
+      });
+      document.body.appendChild(d);
+    }
+
+    function css(css) {
+      var style = document.createElement("style");
+      style.type = "text/css";
+      try {
+        style.appendChild(document.createTextNode(css));
+      } catch (ex) {
+        style.styleSheet.cssText = css;
+      }
+      document.getElementsByTagName('head')[0].appendChild(style);
+    }
+
+    function randomColor() {
+      // return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + ")";
+      return "#F44336";
+    }
+
+    function addMenuEvent() {
+      var menu = document.getElementById('menu-main-post');
+      if (menu) {
+        var toc = document.getElementById('toc');
+        if (toc) {
+          menu.onclick = function() {
+            if (toc) {
+              if (toc.style.display == 'block') {
+                toc.style.display = 'none';
+              } else {
+                toc.style.display = 'block';
+              }
+            }
+          };
+        } else {
+          menu.style.display = 'none';
+        }
+      }
+    }
+
+  })(window, document);
+</script>
+
+
+
+
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

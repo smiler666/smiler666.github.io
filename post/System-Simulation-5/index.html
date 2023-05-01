@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#202020"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  
+    <meta name="keywords" content="系统仿真," />
+  
+
+  
+    <meta name="description" content="QH的博客" />
+  
+  
+  
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  
+  <title>系统仿真笔记（五）离散事件系统仿真原理 - QH的博客</title>
+  
+    <!-- stylesheets list from config.yml -->
+    
+      <link rel="stylesheet" href="/css/pure-min.css">
+    
+      <link rel="stylesheet" href="/css/xoxo.css">
+    
+  
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="QH的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="nav-container">
+<nav class="home-menu pure-menu pure-menu-horizontal">
+  <a class="pure-menu-heading" href="/">
+    
+      <img class="avatar" src="https://smiler666.github.io/images/favicon.ico">
+    
+    <span class="title" style="text-transform:none">QH的博客</span>
+  </a>
+
+  <ul class="pure-menu-list clearfix">
+      
+          
+            
+              <li class="pure-menu-item"><a href="/" class="pure-menu-link">首页</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+            
+              <a href="#" id="合集" class="pure-menu-link">合集</a>
+              <ul class="pure-menu-children">
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/探索/" style="color:#202020;" class="pure-menu-link">探索</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/categories/程序/" style="color:#202020;" class="pure-menu-link">程序</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/post/py-1/" style="color:#202020;" class="pure-menu-link">Python</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/categories/数值计算/" style="color:#202020;" class="pure-menu-link">数值计算</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/机器学习/" style="color:#202020;" class="pure-menu-link">机器学习</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/RITSS/" style="color:#202020;" class="pure-menu-link">Abaqus/RITSS</a></li>
+                  
+              
+              </ul>
+            </li>
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/archives" class="pure-menu-link">文章</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/post/share-1/" class="pure-menu-link">工具</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/about" class="pure-menu-link">关于</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/search" class="pure-menu-link">搜索</a></li>
+            
+          
+      
+  </ul>
+   
+</nav>
+
+</div>
+
+<div class="container" id="content-outer">
+<div class="inner" id="content-inner">
+<div class="post-container">
+  <article class="post" id="post">
+    <header class="post-header text-center">
+      <h1 class="title">
+        系统仿真笔记（五）离散事件系统仿真原理
+      </h1>
+      <span>
+        
+        <time class="time" datetime="2020-05-04T08:49:57.000Z">
+        2020-05-04
+      </time>
+        
+      </span>
+      <span class="slash">/</span>
+      <span class="post-meta">
+      <span class="post-tags">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F/" rel="tag">系统仿真</a></li></ul>
+      </span>
+    </span>
+      <span class="slash">/</span>
+      <span class="read">阅读耗时 41 分钟</span>
+    </header>
+
+    <div class="post-content">
+      <a id="more"></a>
+<p>之前内容请回顾：<a href="/post/System-Simulation-4/">系统仿真笔记（四）离散事件系统模型</a></p>
+<p>本节笔记主要介绍离散事件系统的形式化描述、表处理方法、离散事件系统模拟策略概述、事件调度法、活动扫描法、三阶段扫描法和进程交互法等</p>
+<h1 id="一、离散事件系统的形式化描述"><a href="#一、离散事件系统的形式化描述" class="headerlink" title="一、离散事件系统的形式化描述"></a>一、离散事件系统的形式化描述</h1><h2 id="1-1-基本概念"><a href="#1-1-基本概念" class="headerlink" title="1.1 基本概念"></a>1.1 基本概念</h2><p>离散事件系统的状态是在一些不规则的时间点上发生变化，且无法用常规的数学方程描述。Zeigler提出了一种描述离散事件系统形式化的方法——离散事件系统规范（Discrete Event Specification, DEVS），它具有层次化、模块化的特点，利用该方法可以对复杂的离散事件系统进行建模、设计、分析和仿真。</p>
+<p>DEVS有两种模型：基本模型、耦合模型。</p>
+<ul>
+<li>基本模型（Atomic DEVS）：描述系统的自治行为，包括状态转换、外部输入事件响应、系统输出等。</li>
+<li>耦合模型（Coupled DEVS）：基本模型通过连接形成耦合模型。</li>
+</ul>
+<h2 id="1-2-DEVS基本模型："><a href="#1-2-DEVS基本模型：" class="headerlink" title="1.2 DEVS基本模型："></a>1.2 DEVS基本模型：</h2><p>一个DEVS基本模型可表示为一个七元组结构 <script type="math/tex">Atomic DEVS = <S, ta, fint, X, fext, Y, O></script></p>
+<p>X：外部输入事件集；</p>
+<p>Y：输出集：向外部输出事件。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/1.png" alt></p>
+<p>模型结构说明：</p>
+<p>$S$：系统状态集，即状态变量与参数的集合。定义系统的总状态： $Q=\{(s,e)│ s∈𝑺,𝟎≤e ≤ ta(s)\}$,其中，e表示在状态s停留的时间，(s,e)表示总状态。</p>
+<p>$T$：模型时间基，$T ∈R$， $ta$为时间推进函数，用于控制内部转移的时间。$ta(s)$表示在没有外部时间到达时系统状态保持为s的时间；$ta(s)=0$表示瞬态，仿真钟不推进。</p>
+<p>$fint$ ：内部转移函数。在时间推进函数给定的时间流后，系统转移到的新状态。$fint: S→S$，经过时间$ta(s)$ 后，状态s转移到$ fint(s)$, 同时$e=0$。</p>
+<p>$fext$ ：外部转移函数。在接收到输入X后，系统如何转移新状态。$ fext ：QxX→S$，$Qx$为外部事件作用下的系统状态。若有某外部事件$x ∈ X$到达，系统在状态$s$一停留时间为$e$，则它立即转移到$fext: (s,e,x)$， 同时，$e=0$。</p>
+<p>$O$：输出函数。在内部转移发生前产生一个外部输出。 $O ：S→Y∪\{P\}$。输出事件在系统内部状态转移时产生，且状态转移前的状态$s$用于产生输出$O(s)$，其它非内部状态转移时的输出为P。</p>
+<h2 id="1-3-DEVS耦合模型"><a href="#1-3-DEVS耦合模型" class="headerlink" title="1.3 DEVS耦合模型"></a>1.3 DEVS耦合模型</h2><p>一个DEVS耦合模型可表示为一个七元组结构<script type="math/tex">Coupled DEVS = <X_{self}, Y_{self}, D, \{M_i\}, \{I_i\}, \{Z_{i,j}\}, select></script></p>
+<p>其中</p>
+<p>$\{M_i\}$：基本模型成员集，$\{M_i│i∈D\}$且<script type="math/tex">Mi = <S_i, tai, fint,i, X_i, fext,i, Y_i, O_i></script></p>
+<p>$I_i$：内部耦合</p>
+<p>$Z_{i,j}$：外部输入耦合</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/2.png" alt></p>
+<h2 id="1-4-耦合模型与基本模型的关系"><a href="#1-4-耦合模型与基本模型的关系" class="headerlink" title="1.4 耦合模型与基本模型的关系"></a>1.4 耦合模型与基本模型的关系</h2><p>对任一个DEVS耦合模型，可以构造出一个与之等价的基本模型<script type="math/tex">Coupled DEVS = <X_self, Y_self, D,\{M_i\}, \{I_i\},\{Z_{i,j}\}, select></script></p>
+<script type="math/tex; mode=display">M_i = <S_i, tai, fint,i, X_i, fext,i, Y_i, O_i></script><p>等价于基本模型<script type="math/tex">M = <S, ta, fint, X, fext, Y, O></script></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/3.png" alt></p>
+<h2 id="1-5-DEVS模型实现"><a href="#1-5-DEVS模型实现" class="headerlink" title="1.5 DEVS模型实现"></a>1.5 DEVS模型实现</h2><p>一个DEVS耦合模型可以是一个层次结构</p>
+<p>这个层次结构还可以嵌套</p>
+<p>一个DEVS耦合模型的实现算法是一个递归算法（recursion algorithm）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/4.png" alt></p>
+<h1 id="二、表的处理方法"><a href="#二、表的处理方法" class="headerlink" title="二、表的处理方法"></a>二、表的处理方法</h1><p>由控制论可知，系统行为就是在给定时间t的系统的全部状态的变化过程形成的，而状态则是描述系统行为所需变量的最小集合。同样，离散事件系统仿真的核心问题是：如何建立描述系统行为的逻辑模型。离散事件系统某一时刻t的状态用表来表示，如下所示。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>时钟</th>
+<th>系统状态</th>
+<th>实体和属性</th>
+<th>集合1</th>
+<th>集合2</th>
+<th>…</th>
+<th>FEL</th>
+<th>累计统计和计数器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>t1</td>
+<td>(x,y<em>,</em>z,…)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>(3,t2):类型3事件出现在t2</td>
+<td></td>
+</tr>
+<tr>
+<td>t2</td>
+<td>……</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>(1,t3):类型1事件出现在t3</td>
+<td></td>
+</tr>
+<tr>
+<td>t3</td>
+<td>……</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>t4</td>
+<td>……</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>离散事件系统仿真模型中的数据用表(List)的结构形式表示，表处理指的是使用表和操作表的总称。</p>
+<p>表具有<u>有序记录</u>、<u>表头</u>、<u>表尾</u>、<u>表的遍历</u>的基本性质</p>
+<p>表的操作：</p>
+<ul>
+<li>顶部删除一条记录</li>
+<li>任意位置删除记录</li>
+<li>表顶或底部添加记录</li>
+<li>表的任意部位添加记录，且符合排序规则</li>
+</ul>
+<p>表的处理：</p>
+<ul>
+<li>使用数组（Array）</li>
+<li>使用动态分配和链表（常用）：单链表、双链表；</li>
+<li>目前，主流仿真软件采用多指针链表（头、尾、中）。</li>
+</ul>
+<p><strong>JAVA语言表的处理方法</strong>：</p>
+<ul>
+<li>ArrayList：动态数组</li>
+<li>LinkList：链表操作</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/5.png" alt></p>
+<h1 id="三、离散事件系统模拟策略概述"><a href="#三、离散事件系统模拟策略概述" class="headerlink" title="三、离散事件系统模拟策略概述"></a>三、离散事件系统模拟策略概述</h1><h2 id="3-1-系统模拟的一般步骤"><a href="#3-1-系统模拟的一般步骤" class="headerlink" title="3.1 系统模拟的一般步骤"></a>3.1 系统模拟的一般步骤</h2><p>一般地，一个离散系统的计算机模拟过程是一个包括时间的推进、系统状态的更新等操作的迭代过程，通用过程如下：</p>
+<p><strong>Step1</strong>:预置状态变量<script type="math/tex">X=\{x_1,…,x_m\}</script>的值为<script type="math/tex">Y=\{y_1,…,y_m\}</script>,描述变量<script type="math/tex">Y_d=\{y_{m+1},…,y_n\}</script> ；</p>
+<p><strong>Step2</strong>:预置时标为$t=tM$；</p>
+<p><strong>Step3</strong>:将相互关系规则f(Y)应用于状态变量<script type="math/tex">Y=\{y_1,…,y_m\}</script>，使之产生新内容，<script type="math/tex">f(Y)=Y’</script>，<script type="math/tex">Y’=\{y$1’,…,y$m’\}</script> ；同样使描述变量<script type="math/tex">Y_d’=\{y_{m+1},…,y_n\}</script>产生新内容，<script type="math/tex">g(Y_d)=Yd’</script>，<script type="math/tex">Y_d’=\{y_{m+1’},…,y_n’\}</script> ；<script type="math/tex">Y=Y’</script>, <script type="math/tex">Y_d=Y_d’</script>;</p>
+<p><strong>Step4</strong>:推进时标$t=t+h$（h为步长）；</p>
+<p><strong>Step5</strong>:if  $t&gt;tM+Nh$，停止计算。否则，返回Step3。</p>
+<h2 id="3-2-常用的离散事件系统模拟策略"><a href="#3-2-常用的离散事件系统模拟策略" class="headerlink" title="3.2 常用的离散事件系统模拟策略"></a>3.2 常用的离散事件系统模拟策略</h2><p>离散事件系统属于动态系统，即与时间有关的系统，因此，离散事件系统模拟要考虑系统中时间的变化，即时间如何推进的问题。</p>
+<p>离散事件系统的模拟<strong>算法</strong>或模拟<strong>策略</strong>要决定实体之间的逻辑联系，时间的推进，事件间的关系，活动的关系等问题。目前，比较成熟的离散事件系统模拟策略有四种，即：</p>
+<ul>
+<li>事件调度法（ES）</li>
+<li>活动扫描法（AS）</li>
+<li>三阶段扫描法（TPS）</li>
+<li>进程交互法（PI）</li>
+</ul>
+<h1 id="四、事件调度法"><a href="#四、事件调度法" class="headerlink" title="四、事件调度法"></a>四、事件调度法</h1><h2 id="4-1-基本思想"><a href="#4-1-基本思想" class="headerlink" title="4.1 基本思想"></a>4.1 基本思想</h2><p>事件调度法（Event Scheduling，ES）是用“事件”的观点来抽象真实系统，即：定义事件及每一事件发生对系统状态的影响，并按事件发生时间顺序来确定每类事件发生时系统中的各实体之间的逻辑关系及其状态。事件调度法的模拟时钟的推进，是按照下一事件的发生时刻来触发。大多数发生的事件，两个相邻事件发生的时间间隔一般是随机的，因此事件调度法是变步长法。</p>
+<h2 id="4-2-事件调度法仿真时钟的推进"><a href="#4-2-事件调度法仿真时钟的推进" class="headerlink" title="4.2 事件调度法仿真时钟的推进"></a>4.2 事件调度法仿真时钟的推进</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/6.png" alt></p>
+<blockquote>
+<p>仿真钟的推进:按事件发生的时间间隔进行</p>
+</blockquote>
+<h2 id="4-3-事件调度法具体描述"><a href="#4-3-事件调度法具体描述" class="headerlink" title="4.3 事件调度法具体描述"></a>4.3 事件调度法具体描述</h2><p>仿真模型中所有事件均按时间先后顺序存放在事件表中；</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/7.png" alt></p>
+<p>模型中要设计一个时间控制部件实现仿真钟的管理与控制。每当处理一类事件时，它总是从事件表中选择最早发生的事件；并将仿真钟推进到该事件发生的时间；然后调用与该事件相应的事件处理模块；</p>
+<p>事件处理模块在执行完后都必须返回到时间控制部件。这样，事件的选择与处理不断地进行，仿真钟按事件时间往前推进，直到仿真终止的条件满足为止。</p>
+<h2 id="4-4-事件调度法的算法"><a href="#4-4-事件调度法的算法" class="headerlink" title="4.4 事件调度法的算法"></a>4.4 事件调度法的算法</h2><p>1）执行初始化操作：仿真时钟TIME、系统状态及统计量等置初始值：</p>
+<ul>
+<li>置初始时间<script type="math/tex">t=t_0</script>，结束时间<script type="math/tex">t_∞=te</script></li>
+<li>事件表初始化，置系统初始事件</li>
+<li>成分状态初始化:$S=((sa1,ta1),…,(sam,tam),sam+1,…,san)$</li>
+</ul>
+<p>2）操作、扫描事件表，将时钟TIME增加到下一个最早发生事件的时间上；</p>
+<ul>
+<li>取出具有$t(s)=min\{ta|a∈CA\}$事件记录</li>
+<li>修改事件表</li>
+</ul>
+<p>3）推进仿真钟 $TIME=t(s)$</p>
+<p>4）While($TIME&lt;=t_∞$)则执行</p>
+<ul>
+<li>Case 根据事件类型$i$</li>
+<li>$i=1$执行第1类事件处理程序，处理该事件，相应的改变系统状态；</li>
+<li>$i=2$执行第2类事件处理程序，处理该事件，相应的改变系统状态；</li>
+<li>$……$</li>
+<li>$i=m$执行第m类事件处理程序，处理该事件，相应的改变系统状态；</li>
+<li>endcase </li>
+<li>取出具有$t(s)=min\{ta|a∈CA\}$事件记录（若有若干个，则按解结规则处理）</li>
+<li>置仿真时间$TIME=t(s)$，若仿真期间未到，返回2)，否则，执行下一步；</li>
+<li>收集统计数据；</li>
+<li>endwhile</li>
+</ul>
+<p>5）分析收集的统计数据，产生报告。</p>
+<h2 id="4-5事件调度法流程图"><a href="#4-5事件调度法流程图" class="headerlink" title="4.5事件调度法流程图"></a>4.5事件调度法流程图</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/8.png" alt></p>
+<h2 id="4-6-事件调度法的流程控制"><a href="#4-6-事件调度法的流程控制" class="headerlink" title="4.6 事件调度法的流程控制"></a>4.6 事件调度法的流程控制</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/9.png" alt="9"></p>
+<h2 id="4-7-事件调度法的注意事项"><a href="#4-7-事件调度法的注意事项" class="headerlink" title="4.7 事件调度法的注意事项"></a>4.7 事件调度法的注意事项</h2><p>两个特别注意的基本问题</p>
+<ul>
+<li>第一是所谓“同时事件”。即具有相同发生时间的事件，模型中必须事先规定其处理顺序，亦称为规定“解结规则”，因为在任何时刻，计算机只能执行某一个事件的程序。<strong>这一般是通过定义事件的优先级来解决的。</strong></li>
+<li>第二是所谓“<strong>条件事件</strong>”。在某些系统中，事件的发生不仅具有时间属性，还往往带有条件属性。从本质上讲，事件调度法是一种“预定事件发生时间”的策略，如果按预定时间某一事件应该发生，但发生该事件的条件（如果有的话）不满足，则必须推迟或取消该事件的发生。</li>
+</ul>
+<p>所有上述两方面的问题，都应在相应的模块中特别加以处理，以免产生模型的死锁。</p>
+<p><strong>实体状态和状态转换:</strong></p>
+<ul>
+<li>活动状态（active）：实体被激活，处于活动状态；</li>
+<li>挂起状态（scheduled）：实体被再次激活的时间是确定的；</li>
+<li>阻塞状态（blocked）：实体处于等待状态，一旦满足某种条件，实体马上就会被激活。这种实体叫做条件活动实体；</li>
+<li>锁定状态（locked）：类似于阻塞状态，实体被监控，解除锁定后进入阻塞状态。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/10.png" alt></p>
+<h1 id="五、活动扫描法"><a href="#五、活动扫描法" class="headerlink" title="五、活动扫描法"></a>五、活动扫描法</h1><h2 id="5-1-事件调度法的弱点"><a href="#5-1-事件调度法的弱点" class="headerlink" title="5.1 事件调度法的弱点"></a>5.1 事件调度法的弱点</h2><p>事件调度法具有省时间的优点，但是它的实现和设计较复杂。</p>
+<p>仿真钟的推进：仅依据对最早发生的事件的扫描。因此，事件调度法是一种“预订事件发生时间”的策略。</p>
+<p>这样，仿真模型中必须预先设定系统中最先发生的事件，以便启动仿真进程。在每一类事件处理程序中，需要：①处理该事件，②相应的改变状态；③预定本类事件的下一次事件发生的时间。所以，事件调度策略对于系统活动时间的确定性较强（服从某种分布的随机变量）的系统来说，比较方便。</p>
+<p>问题点：当事件的发生不仅与时间有关，而且其它条件也有关时，事件调度策略便会显示其弱点。原因在于，这类系统活动时间的不确定性较强，无法预定事件的下一次发生的时间。</p>
+<h2 id="5-2-活动扫描法的基本思想"><a href="#5-2-活动扫描法的基本思想" class="headerlink" title="5.2 活动扫描法的基本思想"></a>5.2 活动扫描法的基本思想</h2><p>活动扫描法（Activity Scanning，AS）是针对系统活动时间不确定性较强的系统产生的。它的基本思想是：</p>
+<ul>
+<li>系统由成分组成，而成分包含着活动，这些活动的发生必须满足某些条件；每一个主动成分均有一个相应的活动子例程；仿真过程中，活动的发生时间也作为条件之一，而且是较之其他条件具有更高的优先权。</li>
+<li>由于是采用“活动”的观点建模，活动扫描法要求定义系统中所有“活动”及相应处理“活动”的子例程，包括定义活动发生的条件，活动发生的时间也作为条件之一，但它具有最高的优先权。</li>
+</ul>
+<h2 id="5-3-活动扫描法的仿真钟推进策略"><a href="#5-3-活动扫描法的仿真钟推进策略" class="headerlink" title="5.3 活动扫描法的仿真钟推进策略"></a>5.3 活动扫描法的仿真钟推进策略</h2><p>AS策略包括两个控制仿真流程的基本部件：</p>
+<ul>
+<li>活动扫描部件：任务是在仿真的每一步对系统中定义的全部活动按优先级从高到低逐个扫描；</li>
+<li>条件处理部件：对被扫描活动的有关条件进行测试。</li>
+</ul>
+<p>AS法是按照活动的开始、结束时刻来推进仿真时钟。它们不仅取决于时间，还取决于其它因素（条件因素）。</p>
+<p>在AS法中，时间的扫描通过时间元（time-cell）进行，时间元是指各个实体的局部时钟，与仿真时钟（全局时钟）相对应。</p>
+<p>时间元的取值方法为：</p>
+<ul>
+<li>绝对时间法，将时间元的时钟设在实体的确定事件发生时刻。</li>
+<li>相对时间法，将时间元的时钟设在实体的确定事件发生的时间间隔上。</li>
+</ul>
+<p>如果实体处于等待服务状态，对于绝对时间法，实体的时间元应小于当前仿真时刻；对于相对时间法，实体的时间元应小于0.</p>
+<p><strong>活动扫描法仿真时钟的推进：</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/11.png" alt></p>
+<p>ta&gt;TIME，表示该活动在将来某一时刻可能发生；</p>
+<p>ta=TIME，表示该活动如果条件满足立即发生；</p>
+<p>ta&lt;TIME，表示该活动按预定时间早该发生，但因条件没满足，到目前实际上没发生。当前是否发生，需要判断其发生的条件。</p>
+<h2 id="5-4-活动扫描法的一种基本算法"><a href="#5-4-活动扫描法的一种基本算法" class="headerlink" title="5.4 活动扫描法的一种基本算法"></a>5.4 活动扫描法的一种基本算法</h2><p>执行初始化操作，包括：</p>
+<ul>
+<li>置初始时间和结束时间分别为<script type="math/tex">t=t_0 \quad t_ \infty=te</script></li>
+<li>设置主动成分$a_i$的仿真钟$ta(i)(i=1,2,…,m)$</li>
+<li>成分$a_1,…,a_n$状态$Sa_i$初始化</li>
+<li><script type="math/tex; mode=display">S=((s_{a1},t_{a1}),…,(s_{am},t_{am}),s_{am+1},…,s_{an})</script></li>
+<li>设置系统仿真$TIME=t_0$</li>
+<li>While$(TIME&lt;=t_∞)$则执行扫描</li>
+</ul>
+<p>for j = 最高优先数 to 最低优先数</p>
+<ul>
+<li><p>将优先数为j的成分置成i</p>
+</li>
+<li><p>if <script type="math/tex">(t_a(i)<=TIME$ 且 $D_{ai}(S)=true)</script></p>
+</li>
+<li>执行活动子例程$i$</li>
+<li>退出，重新开始扫描</li>
+<li>end if</li>
+<li>end for</li>
+<li>$TIME=min(t_a|a∈FUTURE(S))$</li>
+</ul>
+<p>end while</p>
+<h2 id="5-5-活动扫描法流程图"><a href="#5-5-活动扫描法流程图" class="headerlink" title="5.5 活动扫描法流程图"></a>5.5 活动扫描法流程图</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/12.png" alt></p>
+<h2 id="5-6-活动扫面发的流程控制"><a href="#5-6-活动扫面发的流程控制" class="headerlink" title="5.6 活动扫面发的流程控制"></a>5.6 活动扫面发的流程控制</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/13.png" alt></p>
+<h2 id="5-7-活动表AL-Activity-List"><a href="#5-7-活动表AL-Activity-List" class="headerlink" title="5.7 活动表AL(Activity List)"></a>5.7 活动表AL(Activity List)</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>活动</strong></th>
+<th><strong>开始时间</strong></th>
+<th><strong>结束时间</strong></th>
+<th><strong>条件</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>activity1</strong></td>
+<td><strong>t11</strong></td>
+<td><strong>t12</strong></td>
+<td><strong>○</strong></td>
+</tr>
+<tr>
+<td><strong>activity2</strong></td>
+<td><strong>t21</strong></td>
+<td><strong>t22</strong></td>
+<td><strong>○</strong></td>
+</tr>
+<tr>
+<td><strong>activity3</strong></td>
+<td><strong>t31</strong></td>
+<td><strong>t32</strong></td>
+<td><strong>○</strong></td>
+</tr>
+<tr>
+<td><strong>…</strong></td>
+<td><strong>…</strong></td>
+<td><strong>…</strong></td>
+<td><strong>…</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="5-8-活动扫描法小结"><a href="#5-8-活动扫描法小结" class="headerlink" title="5.8 活动扫描法小结"></a>5.8 活动扫描法小结</h2><p>活动扫描法的核心是建立活动子例程，包括：</p>
+<ul>
+<li>此活动发生引起的状态变化（自身的）</li>
+<li>对其他成分的状态产生的作用等</li>
+<li>而条件处理模块则是这种策略实现的本质，它相应于事件调度法中的定时模块</li>
+</ul>
+<h1 id="六、三阶段扫描法"><a href="#六、三阶段扫描法" class="headerlink" title="六、三阶段扫描法"></a>六、三阶段扫描法</h1><h2 id="6-1-概述"><a href="#6-1-概述" class="headerlink" title="6.1 概述"></a>6.1 概述</h2><p>活动扫描法具有以下弱点：活动扫描法将确定事件、条件事件的活动例程同等对待，都要通过反复扫描来执行，因而影响执行效率。</p>
+<p>1963年，K.D.Tocher借鉴事件调度法的思想，对活动扫描法进行改进，提出了三阶段扫描法（Three-phase scanning）。</p>
+<p>三阶段扫描法兼有活动扫描法程序实现简单和事件调度法时间推进高效的优点，已逐步取代了最初的活动扫描法。</p>
+<p>下面介绍三阶段扫描法的一些基本概念。</p>
+<ul>
+<li>活动例程的分类</li>
+<li>实体的三个重要属性</li>
+</ul>
+<h3 id="6-1-1-活动例程的分类"><a href="#6-1-1-活动例程的分类" class="headerlink" title="6.1.1 活动例程的分类"></a>6.1.1 活动例程的分类</h3><p>三阶段扫描法的基本模型单元是活动例程（同活动扫描发），但三阶段扫描法中，活动例程分为两类：</p>
+<p>（1）B类活动例程（bound routine）：可明确预知活动的起始时间和结束时间的例程（必然会发生）；</p>
+<p>（2）C类活动例程（condition routine）：描述条件事件的活动例程，在协同活动开始或满足其他特定条件时被执行，又称条件活动例程或合作活动例程。 C类活动例程的发生和结束时间不可事先预知；<br>执行特点：</p>
+<p>B类活动：同事件调度法，在预定时刻直接执行；</p>
+<p>C类活动：需要扫描。</p>
+<h3 id="6-1-2-实体的三个重要属性"><a href="#6-1-2-实体的三个重要属性" class="headerlink" title="6.1.2 实体的三个重要属性"></a>6.1.2 实体的三个重要属性</h3><p>实体的三个重要属性：时间片、可用性、下一活动</p>
+<p>（1）时间片（时间元）（time cell）</p>
+<ul>
+<li>下一状态转移时间。每一实体带有标志自身时钟值的时间片，只有该实体属于将来某时刻发生的B类活动时，该属性才有意义。</li>
+</ul>
+<p>（2）可用性（availability）</p>
+<ul>
+<li>一个布尔型的标志（True/False），表示该实体是否能属于将来某时刻发生的B类活动，或者说该实体是否可以被无条件占用。标志为True时，表明可用；否则为不可用。</li>
+</ul>
+<p>（3）下一活动（next activity）</p>
+<ul>
+<li>同“时间片”属性，仅当“可用性”为False时，该属性才有意义，它表示“时间片”所预期的B类活动。</li>
+</ul>
+<h2 id="6-2-三阶段扫描法策略流程图"><a href="#6-2-三阶段扫描法策略流程图" class="headerlink" title="6.2 三阶段扫描法策略流程图"></a>6.2 三阶段扫描法策略流程图</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/14.png" alt></p>
+<p>下面是三阶段法中每个实体分配的记录表：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/15.png" alt></p>
+<h2 id="6-3-三阶段法的基本描述"><a href="#6-3-三阶段法的基本描述" class="headerlink" title="6.3 三阶段法的基本描述"></a>6.3 三阶段法的基本描述</h2><h3 id="A阶段"><a href="#A阶段" class="headerlink" title="A阶段"></a>A阶段</h3><p>A阶段：时间扫描</p>
+<p>扫描事件表，找出下一最早发生事件。将系统仿真时钟推进到该事件发生的时刻。系统时钟一直保持这一时刻直到下一个A阶段发生。具体做法是：</p>
+<p>仿真控制程序搜寻出那些“可用性”属性为“False”且具有最小时间片（time cell）的实体，并将time cell 作为下一最早事件发生时刻。因为可能有多个B类活动在下一时刻发生，所以仿真控制程序必须记录在该时刻所有的不可用实体而形成一个DueNow列表。</p>
+<h3 id="B阶段"><a href="#B阶段" class="headerlink" title="B阶段"></a>B阶段</h3><p>B阶段：执行DueNow列表（当前时刻的B类活动例程）</p>
+<p>一旦DueNow列表形成，仿真控制程序将顺序扫描该表中的每个实体，从中挑选出可执行的实体，并对每一个可执行的实体进行如下操作：</p>
+<ol>
+<li>将实体从DueNow列表中删除；</li>
+<li>将该实体的“可用性”属性置为“True”；</li>
+<li>执行该实体的“下一活动”属性所代表的活动</li>
+</ol>
+<p>注意：执行一个相应的B类活动将导致同一实体或其它实体归属于当前B类活动或其它未来的B类活动。</p>
+<h3 id="C阶段"><a href="#C阶段" class="headerlink" title="C阶段"></a>C阶段</h3><p>C阶段：扫描C类活动例程</p>
+<p>注意对其中的事件进行条件测试，看看其条件是否满足。如果条件满足，则执行相应的操作。</p>
+<p>在查询C事件表期间，保持当前仿真钟不变，直到C事件表中所有的事件都不满足启动条件为止。</p>
+<h1 id="七、进程交互法"><a href="#七、进程交互法" class="headerlink" title="七、进程交互法"></a>七、进程交互法</h1><h2 id="7-1-什么是进程"><a href="#7-1-什么是进程" class="headerlink" title="7.1 什么是进程"></a>7.1 什么是进程</h2><p>进程由若干个有序事件及若干有序活动组成，一个进程描述了它所包括的事件及活动时间的相互逻辑关系及时序关系。</p>
+<h2 id="7-2-PI的基本思想"><a href="#7-2-PI的基本思想" class="headerlink" title="7.2 PI的基本思想"></a>7.2 PI的基本思想</h2><p>进程交互法（Process Interaction，PI）采用进程描述系统，它将模型中的主动成分历经系统时所发生的事件及活动按时间顺序进行组合，从而形成进程表，一个成分一旦进入进程，它将完成该进程的全部活动。这种方法主要用于对实体活动较规则的系统建模。进程交互法是面向进程的。从用户的观点这种策略更易于使用，但较之其他两种方法要复杂得多。</p>
+<h2 id="7-3-进程交互法的基本描述"><a href="#7-3-进程交互法的基本描述" class="headerlink" title="7.3 进程交互法的基本描述"></a>7.3 进程交互法的基本描述</h2><p>进程交互法是事件调度法与活动扫描法的结合（类似于三段扫描法）。它是以模型的各主动成分的活动为主线来调度事件生成的顺序的。这种策略要求建立两种事件表：</p>
+<ul>
+<li>当前事件表（CEL，Current Event List），它存放着从当前时间点开始有资格执行的事件的记录，该事件是否能发生的条件尚未判断。</li>
+<li>将来事件表（FEL，Future Event List），它包含在将来某个仿真时刻发生的事件的事件记录。每一个事件记录中有包括该事件的若干个属性项，其中必须有一个属性，说明该事件所在进程及在该进程中所处位置的指针。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/16.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/17.png" alt></p>
+<h2 id="7-4-进程交互法调度算法"><a href="#7-4-进程交互法调度算法" class="headerlink" title="7.4 进程交互法调度算法"></a>7.4 进程交互法调度算法</h2><p>执行初始化操作，包括：</p>
+<p>设置开始时间$t=t_0$,结束时间$t_∞$</p>
+<p>设置初始化事件，并置于FEL中</p>
+<p>将FEL中有关事件记录置于CEL中</p>
+<p>成分状态初始化： $S=((s_{a1},t_{a1}),…,(s_{am},t_{am}),s_{am+1},…,s_{an})$</p>
+<p>设置系统仿真钟$TIME=t$</p>
+<p>While($TIME&lt;=t_∞$)，则执行</p>
+<p>1 CEL扫描</p>
+<p>While(CEL中最后一个纪录未处理完) 则</p>
+<p>While($Dai(S)=true$且当前成分为处理完) 则</p>
+<p>执行该成分的活动</p>
+<p>确定该成分的下一事件</p>
+<p>end while</p>
+<p>end while</p>
+<p>2 推进仿真钟</p>
+<p>TIME=FEL中安排的最早时间</p>
+<p>if($TIME&lt;= t_∞$)则</p>
+<p>将FEL中所在TIME时刻发生的事件记录移到CEL中</p>
+<p>end if</p>
+<p>end while</p>
+<h2 id="7-5-进程交互法流程图"><a href="#7-5-进程交互法流程图" class="headerlink" title="7.5 进程交互法流程图"></a>7.5 进程交互法流程图</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/18.png" alt></p>
+<h2 id="7-6-进程交互法的流程控制"><a href="#7-6-进程交互法的流程控制" class="headerlink" title="7.6 进程交互法的流程控制"></a>7.6 进程交互法的流程控制</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/19.png" alt></p>
+<h2 id="7-7-基本描述"><a href="#7-7-基本描述" class="headerlink" title="7.7 基本描述"></a>7.7 基本描述</h2><p>进程交互法的处理过程是：</p>
+<p>​    ① 推进系统仿真钟 TIME。</p>
+<p>​    ② 把满足Ta&lt;=TIME 的所有事件从 FEL移动到 CEL 。</p>
+<p>​    ③ 取出 CEL的事件，判断所属的进程及在进程中的位置。</p>
+<p>​    ④ 判断该事件发生的条件是否满足。</p>
+<p>​    ⑤ 如条件满足则该进程尽可能地连续推进，直到进程结束。</p>
+<p>​    ⑥ 如该进程推进过程中，条件不满足，则记录该进程的位置，退出该进程。</p>
+<p>​    ⑦重复③-⑥，直到 CEL事件处理完毕。</p>
+<p>​    ⑧重复①-⑦，直到到仿真结束。</p>
+<h2 id="7-8-四种方针策略的比较"><a href="#7-8-四种方针策略的比较" class="headerlink" title="7.8 四种方针策略的比较"></a>7.8 四种方针策略的比较</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>项目</strong></th>
+<th><strong>ES</strong></th>
+<th><strong>AS</strong></th>
+<th><strong>TPS</strong></th>
+<th><strong>PI</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>系统描述</strong></td>
+<td>主动/被动成分<br>仅主动成分施加作用<br>主动成分产生事件</td>
+<td>主动/被动成分<br>均可施加作用<br>主动成分产生活动</td>
+<td>主动/被动成分<br>均可施加作用<br>定义B、C类活动</td>
+<td>主动/被动成分<br>均可施加作用<br>成分在进程中推进</td>
+</tr>
+<tr>
+<td><strong>建模要点（关注点）</strong></td>
+<td>定义全部事件<br>条件测试在时间处理过程中进行</td>
+<td>定义全部活动<br>专用条件子例程测试条件<br>有活动扫描模块</td>
+<td>三段法<br>DueNow事件表的维护</td>
+<td>实体行为的进程分为若干步<br>每一步包括条件测试、执行活动两部分</td>
+</tr>
+<tr>
+<td><strong>仿真钟推进</strong></td>
+<td>事件表中下一时间时间</td>
+<td>按最小成分仿真钟推进</td>
+<td>可用性属性为假且最小time Cell</td>
+<td>将来事件表中最早事件发生时间</td>
+</tr>
+<tr>
+<td><strong>执行控制</strong></td>
+<td>解结规则建模时规定<br>按事件优先级</td>
+<td>解结规则建模时规定<br>按事件优先级</td>
+<td>执行DueNow事件表</td>
+<td>解结规则建模时规定<br>按当前事件优先级，一直执行</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="本章小结"><a href="#本章小结" class="headerlink" title="本章小结"></a>本章小结</h1><ul>
+<li>离散事件系统的形式化描述</li>
+<li>表处理方法</li>
+<li>离散事件系统模拟策略概述</li>
+<li>事件调度法、活动扫描法</li>
+<li>三阶段扫描法</li>
+<li>进程交互法</li>
+<li>几种策略的比较</li>
+</ul>
+
+    </div>
+
+  </article>
+  <div class="toc-container">
+    
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、离散事件系统的形式化描述"><span class="toc-text">一、离散事件系统的形式化描述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-基本概念"><span class="toc-text">1.1 基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-DEVS基本模型："><span class="toc-text">1.2 DEVS基本模型：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-DEVS耦合模型"><span class="toc-text">1.3 DEVS耦合模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-耦合模型与基本模型的关系"><span class="toc-text">1.4 耦合模型与基本模型的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-DEVS模型实现"><span class="toc-text">1.5 DEVS模型实现</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、表的处理方法"><span class="toc-text">二、表的处理方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、离散事件系统模拟策略概述"><span class="toc-text">三、离散事件系统模拟策略概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-系统模拟的一般步骤"><span class="toc-text">3.1 系统模拟的一般步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-常用的离散事件系统模拟策略"><span class="toc-text">3.2 常用的离散事件系统模拟策略</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、事件调度法"><span class="toc-text">四、事件调度法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-基本思想"><span class="toc-text">4.1 基本思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-事件调度法仿真时钟的推进"><span class="toc-text">4.2 事件调度法仿真时钟的推进</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-事件调度法具体描述"><span class="toc-text">4.3 事件调度法具体描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-事件调度法的算法"><span class="toc-text">4.4 事件调度法的算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5事件调度法流程图"><span class="toc-text">4.5事件调度法流程图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6-事件调度法的流程控制"><span class="toc-text">4.6 事件调度法的流程控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-7-事件调度法的注意事项"><span class="toc-text">4.7 事件调度法的注意事项</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#五、活动扫描法"><span class="toc-text">五、活动扫描法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-事件调度法的弱点"><span class="toc-text">5.1 事件调度法的弱点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-活动扫描法的基本思想"><span class="toc-text">5.2 活动扫描法的基本思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-活动扫描法的仿真钟推进策略"><span class="toc-text">5.3 活动扫描法的仿真钟推进策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-活动扫描法的一种基本算法"><span class="toc-text">5.4 活动扫描法的一种基本算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-5-活动扫描法流程图"><span class="toc-text">5.5 活动扫描法流程图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-6-活动扫面发的流程控制"><span class="toc-text">5.6 活动扫面发的流程控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-7-活动表AL-Activity-List"><span class="toc-text">5.7 活动表AL(Activity List)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-8-活动扫描法小结"><span class="toc-text">5.8 活动扫描法小结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#六、三阶段扫描法"><span class="toc-text">六、三阶段扫描法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-概述"><span class="toc-text">6.1 概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-1-活动例程的分类"><span class="toc-text">6.1.1 活动例程的分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-2-实体的三个重要属性"><span class="toc-text">6.1.2 实体的三个重要属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-三阶段扫描法策略流程图"><span class="toc-text">6.2 三阶段扫描法策略流程图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3-三阶段法的基本描述"><span class="toc-text">6.3 三阶段法的基本描述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#A阶段"><span class="toc-text">A阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#B阶段"><span class="toc-text">B阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C阶段"><span class="toc-text">C阶段</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#七、进程交互法"><span class="toc-text">七、进程交互法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-什么是进程"><span class="toc-text">7.1 什么是进程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-PI的基本思想"><span class="toc-text">7.2 PI的基本思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-进程交互法的基本描述"><span class="toc-text">7.3 进程交互法的基本描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-4-进程交互法调度算法"><span class="toc-text">7.4 进程交互法调度算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-5-进程交互法流程图"><span class="toc-text">7.5 进程交互法流程图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-6-进程交互法的流程控制"><span class="toc-text">7.6 进程交互法的流程控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-7-基本描述"><span class="toc-text">7.7 基本描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-8-四种方针策略的比较"><span class="toc-text">7.8 四种方针策略的比较</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#本章小结"><span class="toc-text">本章小结</span></a></li></ol>
+  </div>
+
+
+  </div>
+</div>
+<div class="copyright">
+    <span>本作品采用</span>
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>
+    <span>进行许可。转载时请注明原文链接。</span>
+</div>
+
+
+  
+    <div class="post-nav">
+      <div class="post-nav-item post-nav-next">
+        
+          <span>〈 </span>
+          <a href="/post/System-Simulation-4/" rel="next" title="系统仿真笔记（四）离散事件系统模型">
+          系统仿真笔记（四）离散事件系统模型
+          </a>
+        
+      </div>
+  
+      <div class="post-nav-item post-nav-prev">
+          
+          <a href="/post/System-Simulation-6/" rel="prev" title="系统仿真笔记（六）基于Agent的仿真建模">
+            系统仿真笔记（六）基于Agent的仿真建模
+          </a>
+          <span>〉</span>
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+</div>
+
+<footer class="footer text-center">
+    <div id="bottom-inner">
+        <a class="bottom-item" href="" target="_blank">QH的博客</a> |
+        <a class="bottom-item">Powered by hexo</a> |
+        <a class="bottom-item">Copyright © 2023</a>  |
+        <a>博客已运行<a id="days">0</a>天</a> 
+        <script> 
+        var s1 = '2020-04-15';//设置为你的建站时间 
+        s1 = new Date(s1.replace(/-/g, "/")); 
+        s2 = new Date(); 
+        var days = s2.getTime() - s1.getTime(); 
+        var number_of_days = parseInt(days / (1000 * 60 * 60 * 24)); 
+        document.getElementById('days').innerHTML = number_of_days; 
+        </script> |
+        <a class="bottom-item" href="/atom.xml">RSS</a>
+        <script>
+			var _hmt = _hmt || [];
+			(function() {
+			  var hm = document.createElement("script");
+			  hm.src = "https://hm.baidu.com/hm.js?7241c66da4c19bc02e939e6776919ff8";
+			  var s = document.getElementsByTagName("script")[0]; 
+			  s.parentNode.insertBefore(hm, s);
+			})();
+		</script>
+    </div>
+</footer>
+
+
+
+<script>
+  (function(window, document, undefined) {
+
+    var timer = null;
+
+    function returnTop() {
+      cancelAnimationFrame(timer);
+      timer = requestAnimationFrame(function fn() {
+        var oTop = document.body.scrollTop || document.documentElement.scrollTop;
+        if (oTop > 0) {
+          document.body.scrollTop = document.documentElement.scrollTop = oTop - 50;
+          timer = requestAnimationFrame(fn);
+        } else {
+          cancelAnimationFrame(timer);
+        }
+      });
+    }
+
+    var hearts = [];
+    window.requestAnimationFrame = (function() {
+      return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(callback) {
+          setTimeout(callback, 1000 / 60);
+        }
+    })();
+    init();
+
+    function init() {
+      css(".heart{z-index:9999;width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: absolute;}.heart:after{top: -5px;}.heart:before{left: -5px;}");
+      attachEvent();
+      gameloop();
+      addMenuEvent();
+    }
+
+    function gameloop() {
+      for (var i = 0; i < hearts.length; i++) {
+        if (hearts[i].alpha <= 0) {
+          document.body.removeChild(hearts[i].el);
+          hearts.splice(i, 1);
+          continue;
+        }
+        hearts[i].y--;
+        hearts[i].scale += 0.004;
+        hearts[i].alpha -= 0.013;
+        hearts[i].el.style.cssText = "left:" + hearts[i].x + "px;top:" + hearts[i].y + "px;opacity:" + hearts[i].alpha + ";transform:scale(" + hearts[i].scale + "," + hearts[i].scale + ") rotate(45deg);background:" + hearts[i].color;
+      }
+      requestAnimationFrame(gameloop);
+    }
+
+    /**
+     * 给logo设置点击事件
+     * 
+     * - 回到顶部
+     * - 出现爱心
+     */
+    function attachEvent() {
+      var old = typeof window.onclick === "function" && window.onclick;
+      var logo = document.getElementById("logo");
+      if (logo) {
+        logo.onclick = function(event) {
+          returnTop();
+          old && old();
+          createHeart(event);
+        }
+      }
+      
+    }
+
+    function createHeart(event) {
+      var d = document.createElement("div");
+      d.className = "heart";
+      hearts.push({
+        el: d,
+        x: event.clientX - 5,
+        y: event.clientY - 5,
+        scale: 1,
+        alpha: 1,
+        color: randomColor()
+      });
+      document.body.appendChild(d);
+    }
+
+    function css(css) {
+      var style = document.createElement("style");
+      style.type = "text/css";
+      try {
+        style.appendChild(document.createTextNode(css));
+      } catch (ex) {
+        style.styleSheet.cssText = css;
+      }
+      document.getElementsByTagName('head')[0].appendChild(style);
+    }
+
+    function randomColor() {
+      // return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + ")";
+      return "#F44336";
+    }
+
+    function addMenuEvent() {
+      var menu = document.getElementById('menu-main-post');
+      if (menu) {
+        var toc = document.getElementById('toc');
+        if (toc) {
+          menu.onclick = function() {
+            if (toc) {
+              if (toc.style.display == 'block') {
+                toc.style.display = 'none';
+              } else {
+                toc.style.display = 'block';
+              }
+            }
+          };
+        } else {
+          menu.style.display = 'none';
+        }
+      }
+    }
+
+  })(window, document);
+</script>
+
+
+
+
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

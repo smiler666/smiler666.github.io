@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>QH的博客</title>
+  
+  <subtitle>Passion for Life</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://smiler666.github.io/"/>
+  <updated>2023-04-30T12:50:40.451Z</updated>
+  <id>https://smiler666.github.io/</id>
+  
+  <author>
+    <name>QH</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于ABAQUS/RITSS大变形有限元分析方法相关的一些论文</title>
+    <link href="https://smiler666.github.io/post/share-2-paper-ritss-1/"/>
+    <id>https://smiler666.github.io/post/share-2-paper-ritss-1/</id>
+    <published>2023-04-30T12:18:18.000Z</published>
+    <updated>2023-04-30T12:50:40.451Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;备份并分享一些关于ABAQUS/RITSS大变形有限元分析方法的一些论文。&lt;/p&gt;
+&lt;h1 id=&quot;RITSS提出&quot;&gt;&lt;a href=&quot;#RITSS提出&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="资源分享" scheme="https://smiler666.github.io/categories/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="ABAQUS" scheme="https://smiler666.github.io/tags/ABAQUS/"/>
+    
+      <category term="RITSS" scheme="https://smiler666.github.io/tags/RITSS/"/>
+    
+      <category term="资源分享" scheme="https://smiler666.github.io/tags/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于ABAQUS的大变形有限元RITSS方法教程（四）例子：管道从土体表面连续贯入</title>
+    <link href="https://smiler666.github.io/post/abaqus-1-ritss-04/"/>
+    <id>https://smiler666.github.io/post/abaqus-1-ritss-04/</id>
+    <published>2023-04-11T09:00:00.000Z</published>
+    <updated>2023-04-30T10:59:12.970Z</updated>
+    
+    <summary type="html">
+    
+      文章已加密，请输入密码查看！
+    
+    </summary>
+    
+    
+      <category term="数值计算" scheme="https://smiler666.github.io/categories/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/"/>
+    
+    
+      <category term="ABAQUS" scheme="https://smiler666.github.io/tags/ABAQUS/"/>
+    
+      <category term="RITSS" scheme="https://smiler666.github.io/tags/RITSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于ABAQUS的大变形有限元RITSS方法教程（三）例子：贯入仪在土中深埋贯入</title>
+    <link href="https://smiler666.github.io/post/abaqus-1-ritss-03/"/>
+    <id>https://smiler666.github.io/post/abaqus-1-ritss-03/</id>
+    <published>2023-04-10T09:00:00.000Z</published>
+    <updated>2023-04-30T10:58:51.243Z</updated>
+    
+    <summary type="html">
+    
+      文章已加密，请输入密码查看！
+    
+    </summary>
+    
+    
+      <category term="数值计算" scheme="https://smiler666.github.io/categories/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/"/>
+    
+    
+      <category term="ABAQUS" scheme="https://smiler666.github.io/tags/ABAQUS/"/>
+    
+      <category term="RITSS" scheme="https://smiler666.github.io/tags/RITSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于ABAQUS的大变形有限元RITSS方法教程（二）自动化建模及RITSS实现</title>
+    <link href="https://smiler666.github.io/post/abaqus-1-ritss-02/"/>
+    <id>https://smiler666.github.io/post/abaqus-1-ritss-02/</id>
+    <published>2023-04-09T09:00:00.000Z</published>
+    <updated>2023-05-01T13:35:11.828Z</updated>
+    
+    <summary type="html">
+    
+      文章已加密，请输入密码查看！
+    
+    </summary>
+    
+    
+      <category term="数值计算" scheme="https://smiler666.github.io/categories/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/"/>
+    
+    
+      <category term="ABAQUS" scheme="https://smiler666.github.io/tags/ABAQUS/"/>
+    
+      <category term="RITSS" scheme="https://smiler666.github.io/tags/RITSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于ABAQUS的大变形有限元RITSS方法教程（一）基础知识</title>
+    <link href="https://smiler666.github.io/post/abaqus-1-ritss-01/"/>
+    <id>https://smiler666.github.io/post/abaqus-1-ritss-01/</id>
+    <published>2023-04-08T09:00:00.000Z</published>
+    <updated>2023-05-01T06:18:57.702Z</updated>
+    
+    <summary type="html">
+    
+      文章已加密，请输入密码查看！
+    
+    </summary>
+    
+    
+      <category term="数值计算" scheme="https://smiler666.github.io/categories/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/"/>
+    
+    
+      <category term="ABAQUS" scheme="https://smiler666.github.io/tags/ABAQUS/"/>
+    
+      <category term="RITSS" scheme="https://smiler666.github.io/tags/RITSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>分享一些常用的在线小工具（常用在线工具汇总）</title>
+    <link href="https://smiler666.github.io/post/share-1/"/>
+    <id>https://smiler666.github.io/post/share-1/</id>
+    <published>2023-04-05T00:24:21.000Z</published>
+    <updated>2023-05-01T03:00:34.550Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;AI&quot;&gt;&lt;a href=&quot;#AI&quot; class=&quot;headerlink&quot; title=&quot;AI&quot;&gt;&lt;/a&gt;AI&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;😀New Bing（需要魔法）：&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="资源分享" scheme="https://smiler666.github.io/categories/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="资源分享" scheme="https://smiler666.github.io/tags/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ChatGPT vs 文心一言 vs 新必应（2023年4月4日）</title>
+    <link href="https://smiler666.github.io/post/ramble-1/"/>
+    <id>https://smiler666.github.io/post/ramble-1/</id>
+    <published>2023-04-04T09:00:00.000Z</published>
+    <updated>2023-04-08T13:48:42.850Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;截止2023-04-04，从提问的两个问题来看，微软新必应完胜，百度文心一言有待加强。&lt;/p&gt;
+&lt;p&gt;不过百度文心一言AI绘图功能不错。&lt;/p&gt;
+&lt;h1 id=&quot;问题1&quot;&gt;&lt;a href=&quot;#问题1&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="闲谈" scheme="https://smiler666.github.io/categories/%E9%97%B2%E8%B0%88/"/>
+    
+    
+      <category term="闲谈" scheme="https://smiler666.github.io/tags/%E9%97%B2%E8%B0%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>山东水设青岛分公司小记</title>
+    <link href="https://smiler666.github.io/post/experience-2/"/>
+    <id>https://smiler666.github.io/post/experience-2/</id>
+    <published>2023-01-16T09:00:00.000Z</published>
+    <updated>2023-04-28T12:33:18.789Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/experience-2/1.jpg&quot; alt=&quot;1&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+    
+      <category term="经历" scheme="https://smiler666.github.io/categories/%E7%BB%8F%E5%8E%86/"/>
+    
+    
+      <category term="经历" scheme="https://smiler666.github.io/tags/%E7%BB%8F%E5%8E%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>分享几款开源的在线放松小游戏</title>
+    <link href="https://smiler666.github.io/post/ent-2-game-1/"/>
+    <id>https://smiler666.github.io/post/ent-2-game-1/</id>
+    <published>2022-12-11T04:00:00.000Z</published>
+    <updated>2023-05-01T03:03:03.897Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;分享Github上几款开源的在线放松小游戏：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;/game/runner/&quot; style=&quot;color:black;&quot;&gt;病毒快跑&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="娱乐" scheme="https://smiler666.github.io/categories/%E5%A8%B1%E4%B9%90/"/>
+    
+    
+      <category term="游戏" scheme="https://smiler666.github.io/tags/%E6%B8%B8%E6%88%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于ABAQUS的大变形有限元RITSS方法之贯入结果</title>
+    <link href="https://smiler666.github.io/post/abaqus-1-ritss-1/"/>
+    <id>https://smiler666.github.io/post/abaqus-1-ritss-1/</id>
+    <published>2022-09-11T12:31:16.000Z</published>
+    <updated>2023-04-30T11:09:20.155Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;div style=&quot;display: flex; justify-content: center;&quot;&gt;
+&lt;video width=&quot;640&quot; height=&quot;360&quot; controls controlslist=&quot;nodownload&quot;&gt;
+  &lt;source
+        
+      
+    
+    </summary>
+    
+    
+      <category term="数值计算" scheme="https://smiler666.github.io/categories/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/"/>
+    
+    
+      <category term="ABAQUS" scheme="https://smiler666.github.io/tags/ABAQUS/"/>
+    
+      <category term="RITSS" scheme="https://smiler666.github.io/tags/RITSS/"/>
+    
+      <category term="探索" scheme="https://smiler666.github.io/tags/%E6%8E%A2%E7%B4%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2022珠江口-南海西部海洋地质和水文科考任务</title>
+    <link href="https://smiler666.github.io/post/experience-1/"/>
+    <id>https://smiler666.github.io/post/experience-1/</id>
+    <published>2022-09-01T09:00:00.000Z</published>
+    <updated>2023-04-22T02:01:45.210Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;搭乘中科院南海所“实验3”科考船在珠江口-南海西部进行了为期约一个月的地质和水文科考任务，主要包括地质采样（重力式柱状取样器、重力式箱式取样器）、地质勘探（球型贯入仪、十字板等）、CTD采水等&lt;/p&gt;
+&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+    
+      <category term="经历" scheme="https://smiler666.github.io/categories/%E7%BB%8F%E5%8E%86/"/>
+    
+    
+      <category term="经历" scheme="https://smiler666.github.io/tags/%E7%BB%8F%E5%8E%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>B哥音乐存档</title>
+    <link href="https://smiler666.github.io/post/ent-1-lizhi-5/"/>
+    <id>https://smiler666.github.io/post/ent-1-lizhi-5/</id>
+    <published>2022-06-01T15:30:00.000Z</published>
+    <updated>2023-04-23T13:09:39.128Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;歌曲地址（复制下载即可）：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+    
+      <category term="娱乐" scheme="https://smiler666.github.io/categories/%E5%A8%B1%E4%B9%90/"/>
+    
+    
+      <category term="歌曲" scheme="https://smiler666.github.io/tags/%E6%AD%8C%E6%9B%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>B哥2018洗心革面跨年演唱会</title>
+    <link href="https://smiler666.github.io/post/ent-1-lizhi-4/"/>
+    <id>https://smiler666.github.io/post/ent-1-lizhi-4/</id>
+    <published>2022-06-01T14:30:00.000Z</published>
+    <updated>2023-04-23T13:05:41.070Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;div class=&quot;video-container&quot;&gt;
+  &lt;!-- 引入 hls.js 库 --&gt;
+  &lt;script
+        
+      
+    
+    </summary>
+    
+    
+      <category term="娱乐" scheme="https://smiler666.github.io/categories/%E5%A8%B1%E4%B9%90/"/>
+    
+    
+      <category term="歌曲" scheme="https://smiler666.github.io/tags/%E6%AD%8C%E6%9B%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>B哥2015看见北京站直播实录</title>
+    <link href="https://smiler666.github.io/post/ent-1-lizhi-3/"/>
+    <id>https://smiler666.github.io/post/ent-1-lizhi-3/</id>
+    <published>2022-06-01T13:30:00.000Z</published>
+    <updated>2023-04-23T13:05:33.024Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;div class=&quot;video-container&quot;&gt;
+  &lt;!-- 引入 hls.js 库 --&gt;
+  &lt;script
+        
+      
+    
+    </summary>
+    
+    
+      <category term="娱乐" scheme="https://smiler666.github.io/categories/%E5%A8%B1%E4%B9%90/"/>
+    
+    
+      <category term="歌曲" scheme="https://smiler666.github.io/tags/%E6%AD%8C%E6%9B%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>B哥2014 IO跨年演唱会</title>
+    <link href="https://smiler666.github.io/post/ent-1-lizhi-2/"/>
+    <id>https://smiler666.github.io/post/ent-1-lizhi-2/</id>
+    <published>2022-06-01T12:30:00.000Z</published>
+    <updated>2023-04-23T13:05:25.387Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;div class=&quot;video-container&quot;&gt;
+  &lt;!-- 引入 hls.js 库 --&gt;
+  &lt;script
+        
+      
+    
+    </summary>
+    
+    
+      <category term="娱乐" scheme="https://smiler666.github.io/categories/%E5%A8%B1%E4%B9%90/"/>
+    
+    
+      <category term="歌曲" scheme="https://smiler666.github.io/tags/%E6%AD%8C%E6%9B%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>B哥2009我爱南京跨年演唱会</title>
+    <link href="https://smiler666.github.io/post/ent-1-lizhi-1/"/>
+    <id>https://smiler666.github.io/post/ent-1-lizhi-1/</id>
+    <published>2022-06-01T11:30:00.000Z</published>
+    <updated>2023-04-23T13:05:09.271Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;div class=&quot;video-container&quot;&gt;
+  &lt;!-- 引入 hls.js 库 --&gt;
+  &lt;script
+        
+      
+    
+    </summary>
+    
+    
+      <category term="娱乐" scheme="https://smiler666.github.io/categories/%E5%A8%B1%E4%B9%90/"/>
+    
+    
+      <category term="歌曲" scheme="https://smiler666.github.io/tags/%E6%AD%8C%E6%9B%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python系列文档</title>
+    <link href="https://smiler666.github.io/post/py-1/"/>
+    <id>https://smiler666.github.io/post/py-1/</id>
+    <published>2022-05-23T11:30:00.000Z</published>
+    <updated>2023-04-14T05:37:38.504Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;&lt;a href=&quot;/post/ai-0-ml-2/#2-1-Python基础语法&quot;&gt;（一）Python基础语法&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="编程" scheme="https://smiler666.github.io/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="Python" scheme="https://smiler666.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ABAQUS/UINTER子程序定义结构与粘土的粘性接触</title>
+    <link href="https://smiler666.github.io/post/abaqus-2-nim/"/>
+    <id>https://smiler666.github.io/post/abaqus-2-nim/</id>
+    <published>2022-04-27T12:00:00.000Z</published>
+    <updated>2023-04-23T13:12:17.200Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;使用ABAQUSS/UINTER子程序定义的结构（如桩、管道、锚、贯入仪等）与粘土的&lt;strong&gt;粘性接触&lt;/strong&gt;，可以模拟结构与粘土之间的粘性接触行为。&lt;/p&gt;
+&lt;h2 id=&quot;（1）法向粘性&quot;&gt;&lt;a href=&quot;#（1）法向粘性&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="数值计算" scheme="https://smiler666.github.io/categories/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/"/>
+    
+    
+      <category term="ABAQUS" scheme="https://smiler666.github.io/tags/ABAQUS/"/>
+    
+      <category term="探索" scheme="https://smiler666.github.io/tags/%E6%8E%A2%E7%B4%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>分享一本余海岁的《岩土塑性理论》英文原版和中译本</title>
+    <link href="https://smiler666.github.io/post/share-0-geobook-2/"/>
+    <id>https://smiler666.github.io/post/share-0-geobook-2/</id>
+    <published>2021-10-01T00:24:21.000Z</published>
+    <updated>2023-04-30T06:35:23.882Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;最近读过的一本比较好的岩土工程方面的书籍，推荐阅读英文原版，比较容易理解。同时也提供周国庆、刘恩龙和商翔宇的中译本，便于对照学习。 
+        
+      
+    
+    </summary>
+    
+    
+      <category term="资源分享" scheme="https://smiler666.github.io/categories/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="资源分享" scheme="https://smiler666.github.io/tags/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>分享一本郑颖人、龚晓南的 《岩土塑性力学基础》</title>
+    <link href="https://smiler666.github.io/post/share-0-geobook-1/"/>
+    <id>https://smiler666.github.io/post/share-0-geobook-1/</id>
+    <published>2021-08-05T00:24:21.000Z</published>
+    <updated>2023-04-30T06:22:01.376Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="资源分享" scheme="https://smiler666.github.io/categories/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="资源分享" scheme="https://smiler666.github.io/tags/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/"/>
+    
+  </entry>
+  
+</feed>

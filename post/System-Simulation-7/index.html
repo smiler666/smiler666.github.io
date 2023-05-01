@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#202020"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  
+    <meta name="keywords" content="系统仿真," />
+  
+
+  
+    <meta name="description" content="QH的博客" />
+  
+  
+  
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  
+  <title>系统仿真笔记（七）连续系统仿真方法 - QH的博客</title>
+  
+    <!-- stylesheets list from config.yml -->
+    
+      <link rel="stylesheet" href="/css/pure-min.css">
+    
+      <link rel="stylesheet" href="/css/xoxo.css">
+    
+  
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="QH的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="nav-container">
+<nav class="home-menu pure-menu pure-menu-horizontal">
+  <a class="pure-menu-heading" href="/">
+    
+      <img class="avatar" src="https://smiler666.github.io/images/favicon.ico">
+    
+    <span class="title" style="text-transform:none">QH的博客</span>
+  </a>
+
+  <ul class="pure-menu-list clearfix">
+      
+          
+            
+              <li class="pure-menu-item"><a href="/" class="pure-menu-link">首页</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+            
+              <a href="#" id="合集" class="pure-menu-link">合集</a>
+              <ul class="pure-menu-children">
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/探索/" style="color:#202020;" class="pure-menu-link">探索</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/categories/程序/" style="color:#202020;" class="pure-menu-link">程序</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/post/py-1/" style="color:#202020;" class="pure-menu-link">Python</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/categories/数值计算/" style="color:#202020;" class="pure-menu-link">数值计算</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/机器学习/" style="color:#202020;" class="pure-menu-link">机器学习</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/RITSS/" style="color:#202020;" class="pure-menu-link">Abaqus/RITSS</a></li>
+                  
+              
+              </ul>
+            </li>
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/archives" class="pure-menu-link">文章</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/post/share-1/" class="pure-menu-link">工具</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/about" class="pure-menu-link">关于</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/search" class="pure-menu-link">搜索</a></li>
+            
+          
+      
+  </ul>
+   
+</nav>
+
+</div>
+
+<div class="container" id="content-outer">
+<div class="inner" id="content-inner">
+<div class="post-container">
+  <article class="post" id="post">
+    <header class="post-header text-center">
+      <h1 class="title">
+        系统仿真笔记（七）连续系统仿真方法
+      </h1>
+      <span>
+        
+        <time class="time" datetime="2020-05-05T13:25:44.000Z">
+        2020-05-05
+      </time>
+        
+      </span>
+      <span class="slash">/</span>
+      <span class="post-meta">
+      <span class="post-tags">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F/" rel="tag">系统仿真</a></li></ul>
+      </span>
+    </span>
+      <span class="slash">/</span>
+      <span class="read">阅读耗时 18 分钟</span>
+    </header>
+
+    <div class="post-content">
+      <a id="more"></a>
+<p>之前内容请回顾：<a href="/post/System-Simulation-6/">系统仿真笔记（六）基于Agent的仿真建模</a></p>
+<p>本节内容较少，主要介绍连续系统建模概述和方法，连续系统仿真方法。</p>
+<h1 id="一、连续系统建模概"><a href="#一、连续系统建模概" class="headerlink" title="一、连续系统建模概"></a>一、连续系统建模概</h1><h2 id="1-1-连续系统的数学模型"><a href="#1-1-连续系统的数学模型" class="headerlink" title="1.1 连续系统的数学模型"></a>1.1 连续系统的数学模型</h2><p>连续系统是指系统的状态变量随时间连续变化的系统。一般用微分方程描述。</p>
+<ul>
+<li>对于集中参数系统，一般用一组微分方程描述。</li>
+<li>对于分布参数系统，一般用一组偏微分方程描述。</li>
+</ul>
+<p>连续系统的数学模型有三类：</p>
+<ul>
+<li>微分方程模型</li>
+<li>传递函数模型</li>
+<li>状态空间模型</li>
+</ul>
+<h2 id="1-2-相关术语"><a href="#1-2-相关术语" class="headerlink" title="1.2 相关术语"></a>1.2 相关术语</h2><h4 id="状态变量（state-variable）"><a href="#状态变量（state-variable）" class="headerlink" title="状态变量（state variable）"></a>状态变量（state variable）</h4><p>足以完全表征系统状态的最小个数的一组变量。一般包括水平变量（level variable）、速率变量（rate variable）。一个用n阶微分方程描述的系统就有n个独立变量。</p>
+<h4 id="状态向量（state-vector）"><a href="#状态向量（state-vector）" class="headerlink" title="状态向量（state vector）"></a>状态向量（state vector）</h4><p>用  $x^T(t)=[x_1(t), …, x_n(t)]$ 表示状态向量/状态矢量，状态变量$x_i(t)$是矢量$x^T(t)$的分量。</p>
+<h4 id="状态空间（state-space）"><a href="#状态空间（state-space）" class="headerlink" title="状态空间（state space）"></a>状态空间（state space）</h4><p>由系统状态变量$x_1(t), …, x_n(t)$为坐标轴所构成的n维空间，称为状态空间。在某一时刻t，状态向量  $x^T(t)$在状态空间中是一点。随时间的推移， $x^T(t)$在状态空间中描绘出一条曲线，称为轨迹曲线。</p>
+<h4 id="状态方程（state-equation）"><a href="#状态方程（state-equation）" class="headerlink" title="状态方程（state equation）"></a>状态方程（state equation）</h4><p>由系统状态变量构成的一阶微分方程组。是描述连续系统的学数学模型。如果系统的输入量u(t)，输出量y(t)，系统内部状态变量x(t)都是时间的连续函数，则可用连续时间模型。<br>否则，用离散模型表示上述离散时间序列。</p>
+<h4 id="模拟时间-模拟时钟（simulation-clock）"><a href="#模拟时间-模拟时钟（simulation-clock）" class="headerlink" title="模拟时间/模拟时钟（simulation clock）"></a>模拟时间/模拟时钟（simulation clock）</h4><p>与离散事件系统的概念相同。对于连续系统仿真，一般采用固定步长时间推进机制。</p>
+<h2 id="1-3-连续系统模型分类"><a href="#1-3-连续系统模型分类" class="headerlink" title="1.3 连续系统模型分类"></a>1.3 连续系统模型分类</h2><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>模型分类</th>
+<th>表达式</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>微分方程模型</td>
+<td>设定系统的输入、输出参数。  微分方程模型  偏微分方程模型  差分方程模型</td>
+<td>求出输入参数和输出参数之间的关系。往往是一个高阶微分方程。  面向集中参数系统。  面向分布参数系统。  面向连续时间离散化的系统。</td>
+</tr>
+<tr>
+<td>传递函数模型</td>
+<td>用传递函数表示上述方程</td>
+<td>简便，但对于动态系统不适合。</td>
+</tr>
+<tr>
+<td>状态空间模型</td>
+<td>由系统的状态变量表示的一组微分方程组。</td>
+<td>求出由系统状态变量表示的一组微分方程组。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="二、连续系统建模方法"><a href="#二、连续系统建模方法" class="headerlink" title="二、连续系统建模方法"></a>二、连续系统建模方法</h1><h2 id="2-1-基于机理建模方法"><a href="#2-1-基于机理建模方法" class="headerlink" title="2.1 基于机理建模方法"></a>2.1 基于机理建模方法</h2><p>建立系统数学模型的主要方法有两种：</p>
+<p>（<strong>1）机理建模法：</strong></p>
+<p>跟据物理定律，列出系统个变量之间的关系的动力学方程，然后得到所需要的微分方程。通常有高阶微分方程、一阶微分方程组、状态方程、传递函数等。</p>
+<p><strong>（2）系统辨识建模法：</strong></p>
+<p>对系统施加一定的实验信号，跟据输入、输出数据进行分析，得到较好描述输入-输出关系的数学模型。</p>
+<p>本课程学习基于机理建模的微分方程建模法，下面举例说明。</p>
+<h2 id="2-2-微分方程建模例子"><a href="#2-2-微分方程建模例子" class="headerlink" title="2.2 微分方程建模例子"></a>2.2 微分方程建模例子</h2><p><strong>例7.1</strong>：如图的RLC电路系统，其中：系统的输入量$u(t)$，输出量$u_c(t)$，试建立该系统的微分方程模型。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-7/9.png" alt></p>
+<p>解：</p>
+<p>根据电路基本定律，列出如下的微分方程</p>
+<script type="math/tex; mode=display">
+u(t) = Ldi(t)/dt + Ri(t) + u_c(t) \\ i(t) = Cduc (t)/dt</script><p>整理上述方程，用两种方式：高阶微分方程、一阶微分方程组。</p>
+<p><strong>（1）高阶微分方程：</strong></p>
+<p>​     将所有原始微分方程合并为一个总微分方程。在该微分方程中只包括输入量、输出项、导数项。<br>   消去中间变量$Ri(t)$，得到：</p>
+<script type="math/tex; mode=display">
+LCd^2uc (t)/dt^2 + RCdu_c (t)/dt + u_c(t) = u(t)</script><p>该微分方程的最高阶导数为2，于是该微分方程为2阶微分方程，进而该系统为2阶系统。</p>
+<p>​     系统的阶次  = 微分方程的阶次。</p>
+<p><strong>（2）一阶微分方程组：</strong></p>
+<p>​     一阶微分方程组中的每一个方程只包含一个未知量，其最高阶导数为1，方程个数 = 未知变量个数。</p>
+<p>​     这些未知变量称为状态变量，他们是系统中的独立变量。这些状态变量完全确定了系统的状态，其个数等于系统的阶次。</p>
+<p>​     选$i(t)$、 $u(t)$为状态变量，可求得如下的微分方程组：</p>
+<script type="math/tex; mode=display">
+\frac{di(t)}{dt}=-\frac{R}{L} \frac{du_c(t)}{dt}-\frac{1}{L}u_c(t)+\frac{1}{L}u(t) \\ \\ \frac{du_c(t)}{dt}=\frac{1}{c}i(t)</script><p>高阶微分方程:已知输入$u(t)$、初始条件$u_c (0)$、 $du_c (0)/dt$ ，即可得出输出 $u_c(t)$ 。便于手工解析。</p>
+<p>一阶微分方程组：已知输入$u(t)$、初始条件$u_c (0)$和$i(0)$ ，即可得出输出$i(t)$ 、 $u_c(t)$ 。便于计算机数值求解。</p>
+<p><strong>（3）传递函数表示法</strong></p>
+<p>微分方程模型的求解往往比较困难，也不便于系统的分析与设计。如不需要准确解，可采用传递函数表示方法。</p>
+<p>传递函数的主要性质：</p>
+<ul>
+<li>适用于线性、定常、集总参数系统；</li>
+<li>只与系统的结构有关，与系统的变量无关。可用来分析系统的稳定性。</li>
+<li>系统的传递函数等于系统单位脉冲相应的拉普拉斯函数。</li>
+<li>可由系统的高阶微分方程转换到传递函数形式。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-7/10.png" alt></p>
+<h2 id="2-3-状态方程建模"><a href="#2-3-状态方程建模" class="headerlink" title="2.3 状态方程建模"></a>2.3 状态方程建模</h2><p><strong>（1）状态方程</strong></p>
+<p>状态方程实际上就是前述的一阶微分方程组，只不过表示成矩阵和向量的形式，因而更加简洁。<br>前述一阶微分方程组为：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-7/11.png" alt></p>
+<p>则上式可以写成如下矩阵形式：</p>
+<script type="math/tex; mode=display">
+\frac{dx(t)}{dt} =Ax(t) + Bu(t)</script><p>其中，x称为状态向量，其中的元素称为状态变量。一般输出用$y$表示，则$y (t) =u_c (t)$, 则输出可表示为：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-7/12.png" alt></p>
+<p>于是，本系统的状态方程为：</p>
+<script type="math/tex; mode=display">
+\dot{x}(t)=Ax(t)+Bu(t) \\ y(t)=Cx(t)</script><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-7/13.png" alt></p>
+<p>一般系统情况下，系统的状态方程模型可表示为：</p>
+<script type="math/tex; mode=display">
+\dot{x}(t)=Ax(t)+Bu(t) \\ y(t)=Cx(t)+Du(t)</script><p>其中，</p>
+<ul>
+<li><p>$x(t)=[x1(t),…,xn(t)]^T$，是n维状态向量,</p>
+</li>
+<li><p>$u(t)=[u1(t),…,um(t)]^T$，是m维输入向量,</p>
+</li>
+<li><p>$y(t)=[y1(t),…,yr(t)]^T$，是r维输出向量,</p>
+</li>
+<li><p>$A(n×n)$,$B (n×m)$,$C (r×n)$,$D (r×m)$是系数矩阵。</p>
+</li>
+</ul>
+<p>当单输入/单输出时，$m=r=1$，u和y均为标量。</p>
+<p><strong>（2）几点说明</strong></p>
+<p>状态方程模型的表示方式比较标准，因此常常简记为：</p>
+<p>$Σ(A,B,C,D)$。若D=0，则简记为： $Σ(A,B,C)$。</p>
+<p>状态方程模型的表示方式比较简洁，适于用计算机求解。</p>
+<p>状态方程模型本质上就是一阶微分方程组，属于时域的模型表示。</p>
+<h1 id="三、连续系统仿真方法"><a href="#三、连续系统仿真方法" class="headerlink" title="三、连续系统仿真方法"></a>三、连续系统仿真方法</h1><h2 id="3-1-概述"><a href="#3-1-概述" class="headerlink" title="3.1 概述"></a>3.1 概述</h2><p>一般连续系统模型用微分方程形式给出，因此，连续系统仿真算法可归结为用计算机求解微分方程问题。</p>
+<p>数值积分法：就是对常微分方程建立起离散形式的数学模型—差分方程，然后求出其数值解。</p>
+<p>基本步骤：</p>
+<ol>
+<li>求得系统的高阶微分方程模型；</li>
+<li>将其转换为一阶微分方程组或状态方程形式；</li>
+<li>利用数值积分求解。</li>
+</ol>
+<h2 id="3-2-数值积分法"><a href="#3-2-数值积分法" class="headerlink" title="3.2 数值积分法"></a>3.2 数值积分法</h2><p>设：已知某系统的一阶向量微分方程及其初值为：</p>
+<script type="math/tex; mode=display">
+\dot{y}=f(𝑡,𝑦) \\𝒚(𝑡_0)=𝑦_0</script><p>其中，y为n维状态向量，f(t,y)为n维向量。</p>
+<p>数值积分法是解决在已知初值的情况下，对f(t,y)进行近似积分，对y(t)进行数值求解的方法。</p>
+<p>设上述方程在$t = t_0, t_1, … , t_n, …$处的形式上的连续解为</p>
+<script type="math/tex; mode=display">
+y(t_{n+1}) =y(t_0)+\int_{t_0}^{t_{n+1}}f(t,y)dt=y(t_n)+\int_{t_n}^{t_{n+1}}f(t,y)dt</script><p>令：</p>
+<script type="math/tex; mode=display">
+Q_n=\int_{t_n}^{t_{n+1}}f(t,y)dt</script><p>希望能够找到一个近似公式来近似连续解：</p>
+<script type="math/tex; mode=display">
+𝒚_{𝒏+𝟏})≈𝒚_𝒏+𝑸_𝒏</script><p>其中，$y_n$为准确解$y(t_n)$的近似解，$Q_n$是准确积分的近似值。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-7/14.png" alt></p>
+<p><strong>数值积分法的分类：</strong></p>
+<p>数值积分解法分类：单步法、多步法、预估-校正法。</p>
+<ul>
+<li>单步法：只由前一时刻的数值<script type="math/tex">y_n</script>来求得后一时刻的数值<script type="math/tex">y_{n+1}</script>。</li>
+<li>多步法：计算$y_{n+1}$需要用到以前的多个时刻的y值。</li>
+<li>预估-校正法。</li>
+</ul>
+<p>计算公式包括：显式公式、隐式公式。</p>
+<ul>
+<li>显式公式：计算$y_n$的公式中所用数值均已算出。</li>
+<li>隐式公式：在计算<script type="math/tex">y_n</script>的公式中含有未知量<script type="math/tex">y_{n+1}</script>的递推公式。</li>
+</ul>
+<p>误差和精度：截断误差、舍入误差。</p>
+<p>隐式公式具有更高的精度和稳定性。</p>
+<p><strong>主要数值积方法:</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>大类</th>
+<th>方法说明</th>
+<th>计算公式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>欧拉法</td>
+<td>矩形法。简单、精度低，但反映一般原理。</td>
+<td>显式公式。</td>
+</tr>
+<tr>
+<td>梯形法</td>
+<td>用梯形代替矩形计算。</td>
+<td>隐式公式。常综合采用预估-校正法。</td>
+</tr>
+<tr>
+<td>龙格-库塔法</td>
+<td>间接利用泰勒展开计算。</td>
+<td>显式、隐式、半隐式公式。</td>
+</tr>
+<tr>
+<td>线性多步法</td>
+<td>利用前面多步的信息进行计算。</td>
+<td>显式、隐式。常综合采用预估-校正法。</td>
+</tr>
+<tr>
+<td>变步长法</td>
+<td>计算过程中不断改变步长。</td>
+<td>显式、隐式、半隐式公式。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="3-3-欧拉法"><a href="#3-3-欧拉法" class="headerlink" title="3.3 欧拉法"></a>3.3 欧拉法</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-7/15.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-7/16.png" alt></p>
+<h2 id="3-4-梯形法"><a href="#3-4-梯形法" class="headerlink" title="3.4 梯形法"></a>3.4 梯形法</h2><p>基于欧拉公式的思想，用梯形面积替代矩形面积：</p>
+<script type="math/tex; mode=display">
+y_{n+1}=y_n+\frac{h}{2}[f(t_n,y_n)+f(t_{n+1},y_{n+1})]</script><p>显然，该计算公式为隐式。为求<script type="math/tex">𝑓(𝑡_{𝑛+1},𝑦_{𝑛+1} )</script>，可用欧拉公式求出<script type="math/tex">y(t_{n+1})</script>的近似值然后<script type="math/tex">y_{n+1}^p</script>带回微分方程。</p>
+<p>于是，改进的欧拉公式如下：</p>
+<script type="math/tex; mode=display">
+y_{n+1}^p=y_n+hf(t_n,y_n) \\ y_{n+1}=y_n+\frac{h}{2}[f(t_n,y_n)+f^p(t_{n+1},y_{n+1}^p)]</script><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-7/17.png" alt></p>
+<h2 id="3-5-龙格-库塔法"><a href="#3-5-龙格-库塔法" class="headerlink" title="3.5 龙格-库塔法"></a>3.5 龙格-库塔法</h2><p>（1）基本思想</p>
+<p>德国数学家Runge和Kutta先后提出间接利用泰勒展开式的方法，即用几个点上函数$y(t)$的一阶导数值得线性组合来近似代替$y(t)$在某点的各阶导数，然后用泰勒展开式确定线性组合中的各加权系数。以上方法就是龙格-库塔法（RK法）的基本思想。</p>
+<p>RK法的计算式有显式、隐式和半隐式。</p>
+<p>（2）显式RK法</p>
+<p>考虑一阶微分方程及其初值问题：</p>
+<script type="math/tex; mode=display">
+\dot{y}=𝑓(𝑡,𝑦)\\𝒚(𝑡_0)=𝑦_0</script><p>将$y(t)$展开称泰勒级数</p>
+<script type="math/tex; mode=display">
+y(t+h)=y(t)+hy(t)+\frac{h^2}{2!} \ddot{y}(t)+ ···</script><p>​     <img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-7/18.png" alt="18"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-7/19.png" alt="19"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-7/20.png" alt="20"></p>
+
+    </div>
+
+  </article>
+  <div class="toc-container">
+    
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、连续系统建模概"><span class="toc-text">一、连续系统建模概</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-连续系统的数学模型"><span class="toc-text">1.1 连续系统的数学模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-相关术语"><span class="toc-text">1.2 相关术语</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#状态变量（state-variable）"><span class="toc-text">状态变量（state variable）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#状态向量（state-vector）"><span class="toc-text">状态向量（state vector）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#状态空间（state-space）"><span class="toc-text">状态空间（state space）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#状态方程（state-equation）"><span class="toc-text">状态方程（state equation）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模拟时间-模拟时钟（simulation-clock）"><span class="toc-text">模拟时间&#x2F;模拟时钟（simulation clock）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-连续系统模型分类"><span class="toc-text">1.3 连续系统模型分类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、连续系统建模方法"><span class="toc-text">二、连续系统建模方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-基于机理建模方法"><span class="toc-text">2.1 基于机理建模方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-微分方程建模例子"><span class="toc-text">2.2 微分方程建模例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-状态方程建模"><span class="toc-text">2.3 状态方程建模</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、连续系统仿真方法"><span class="toc-text">三、连续系统仿真方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-概述"><span class="toc-text">3.1 概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-数值积分法"><span class="toc-text">3.2 数值积分法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-欧拉法"><span class="toc-text">3.3 欧拉法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-梯形法"><span class="toc-text">3.4 梯形法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-龙格-库塔法"><span class="toc-text">3.5 龙格-库塔法</span></a></li></ol></li></ol>
+  </div>
+
+
+  </div>
+</div>
+<div class="copyright">
+    <span>本作品采用</span>
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>
+    <span>进行许可。转载时请注明原文链接。</span>
+</div>
+
+
+  
+    <div class="post-nav">
+      <div class="post-nav-item post-nav-next">
+        
+          <span>〈 </span>
+          <a href="/post/System-Simulation-6/" rel="next" title="系统仿真笔记（六）基于Agent的仿真建模">
+          系统仿真笔记（六）基于Agent的仿真建模
+          </a>
+        
+      </div>
+  
+      <div class="post-nav-item post-nav-prev">
+          
+          <a href="/post/System-Simulation-8/" rel="prev" title="系统仿真笔记（八）系统动力学模拟">
+            系统仿真笔记（八）系统动力学模拟
+          </a>
+          <span>〉</span>
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+</div>
+
+<footer class="footer text-center">
+    <div id="bottom-inner">
+        <a class="bottom-item" href="" target="_blank">QH的博客</a> |
+        <a class="bottom-item">Powered by hexo</a> |
+        <a class="bottom-item">Copyright © 2023</a>  |
+        <a>博客已运行<a id="days">0</a>天</a> 
+        <script> 
+        var s1 = '2020-04-15';//设置为你的建站时间 
+        s1 = new Date(s1.replace(/-/g, "/")); 
+        s2 = new Date(); 
+        var days = s2.getTime() - s1.getTime(); 
+        var number_of_days = parseInt(days / (1000 * 60 * 60 * 24)); 
+        document.getElementById('days').innerHTML = number_of_days; 
+        </script> |
+        <a class="bottom-item" href="/atom.xml">RSS</a>
+        <script>
+			var _hmt = _hmt || [];
+			(function() {
+			  var hm = document.createElement("script");
+			  hm.src = "https://hm.baidu.com/hm.js?7241c66da4c19bc02e939e6776919ff8";
+			  var s = document.getElementsByTagName("script")[0]; 
+			  s.parentNode.insertBefore(hm, s);
+			})();
+		</script>
+    </div>
+</footer>
+
+
+
+<script>
+  (function(window, document, undefined) {
+
+    var timer = null;
+
+    function returnTop() {
+      cancelAnimationFrame(timer);
+      timer = requestAnimationFrame(function fn() {
+        var oTop = document.body.scrollTop || document.documentElement.scrollTop;
+        if (oTop > 0) {
+          document.body.scrollTop = document.documentElement.scrollTop = oTop - 50;
+          timer = requestAnimationFrame(fn);
+        } else {
+          cancelAnimationFrame(timer);
+        }
+      });
+    }
+
+    var hearts = [];
+    window.requestAnimationFrame = (function() {
+      return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(callback) {
+          setTimeout(callback, 1000 / 60);
+        }
+    })();
+    init();
+
+    function init() {
+      css(".heart{z-index:9999;width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: absolute;}.heart:after{top: -5px;}.heart:before{left: -5px;}");
+      attachEvent();
+      gameloop();
+      addMenuEvent();
+    }
+
+    function gameloop() {
+      for (var i = 0; i < hearts.length; i++) {
+        if (hearts[i].alpha <= 0) {
+          document.body.removeChild(hearts[i].el);
+          hearts.splice(i, 1);
+          continue;
+        }
+        hearts[i].y--;
+        hearts[i].scale += 0.004;
+        hearts[i].alpha -= 0.013;
+        hearts[i].el.style.cssText = "left:" + hearts[i].x + "px;top:" + hearts[i].y + "px;opacity:" + hearts[i].alpha + ";transform:scale(" + hearts[i].scale + "," + hearts[i].scale + ") rotate(45deg);background:" + hearts[i].color;
+      }
+      requestAnimationFrame(gameloop);
+    }
+
+    /**
+     * 给logo设置点击事件
+     * 
+     * - 回到顶部
+     * - 出现爱心
+     */
+    function attachEvent() {
+      var old = typeof window.onclick === "function" && window.onclick;
+      var logo = document.getElementById("logo");
+      if (logo) {
+        logo.onclick = function(event) {
+          returnTop();
+          old && old();
+          createHeart(event);
+        }
+      }
+      
+    }
+
+    function createHeart(event) {
+      var d = document.createElement("div");
+      d.className = "heart";
+      hearts.push({
+        el: d,
+        x: event.clientX - 5,
+        y: event.clientY - 5,
+        scale: 1,
+        alpha: 1,
+        color: randomColor()
+      });
+      document.body.appendChild(d);
+    }
+
+    function css(css) {
+      var style = document.createElement("style");
+      style.type = "text/css";
+      try {
+        style.appendChild(document.createTextNode(css));
+      } catch (ex) {
+        style.styleSheet.cssText = css;
+      }
+      document.getElementsByTagName('head')[0].appendChild(style);
+    }
+
+    function randomColor() {
+      // return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + ")";
+      return "#F44336";
+    }
+
+    function addMenuEvent() {
+      var menu = document.getElementById('menu-main-post');
+      if (menu) {
+        var toc = document.getElementById('toc');
+        if (toc) {
+          menu.onclick = function() {
+            if (toc) {
+              if (toc.style.display == 'block') {
+                toc.style.display = 'none';
+              } else {
+                toc.style.display = 'block';
+              }
+            }
+          };
+        } else {
+          menu.style.display = 'none';
+        }
+      }
+    }
+
+  })(window, document);
+</script>
+
+
+
+
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

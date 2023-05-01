@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#202020"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  
+    <meta name="keywords" content="系统仿真," />
+  
+
+  
+    <meta name="description" content="QH的博客" />
+  
+  
+  
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  
+  <title>系统仿真笔记（四）离散事件系统模型 - QH的博客</title>
+  
+    <!-- stylesheets list from config.yml -->
+    
+      <link rel="stylesheet" href="/css/pure-min.css">
+    
+      <link rel="stylesheet" href="/css/xoxo.css">
+    
+  
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="QH的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="nav-container">
+<nav class="home-menu pure-menu pure-menu-horizontal">
+  <a class="pure-menu-heading" href="/">
+    
+      <img class="avatar" src="https://smiler666.github.io/images/favicon.ico">
+    
+    <span class="title" style="text-transform:none">QH的博客</span>
+  </a>
+
+  <ul class="pure-menu-list clearfix">
+      
+          
+            
+              <li class="pure-menu-item"><a href="/" class="pure-menu-link">首页</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+            
+              <a href="#" id="合集" class="pure-menu-link">合集</a>
+              <ul class="pure-menu-children">
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/探索/" style="color:#202020;" class="pure-menu-link">探索</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/categories/程序/" style="color:#202020;" class="pure-menu-link">程序</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/post/py-1/" style="color:#202020;" class="pure-menu-link">Python</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/categories/数值计算/" style="color:#202020;" class="pure-menu-link">数值计算</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/机器学习/" style="color:#202020;" class="pure-menu-link">机器学习</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/RITSS/" style="color:#202020;" class="pure-menu-link">Abaqus/RITSS</a></li>
+                  
+              
+              </ul>
+            </li>
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/archives" class="pure-menu-link">文章</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/post/share-1/" class="pure-menu-link">工具</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/about" class="pure-menu-link">关于</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/search" class="pure-menu-link">搜索</a></li>
+            
+          
+      
+  </ul>
+   
+</nav>
+
+</div>
+
+<div class="container" id="content-outer">
+<div class="inner" id="content-inner">
+<div class="post-container">
+  <article class="post" id="post">
+    <header class="post-header text-center">
+      <h1 class="title">
+        系统仿真笔记（四）离散事件系统模型
+      </h1>
+      <span>
+        
+        <time class="time" datetime="2020-05-02T09:23:58.000Z">
+        2020-05-02
+      </time>
+        
+      </span>
+      <span class="slash">/</span>
+      <span class="post-meta">
+      <span class="post-tags">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F/" rel="tag">系统仿真</a></li></ul>
+      </span>
+    </span>
+      <span class="slash">/</span>
+      <span class="read">阅读耗时 54 分钟</span>
+    </header>
+
+    <div class="post-content">
+      <a id="more"></a>
+<p>之前内容请回顾：<a href="/post/System-Simulation-3/">系统仿真笔记（三）离散事件系统仿真基础</a></p>
+<p>本节笔记主要介绍离散事件系统的主要理论模型，如：排队模型、库存模型、Petri网模型、实体流图模型、活动循环图法和网络计划法。</p>
+<h1 id="一、排队模型"><a href="#一、排队模型" class="headerlink" title="一、排队模型"></a>一、排队模型</h1><p>排队模型在之前的《系统工程原理》课中有涉及到一些。</p>
+<h2 id="1-1排队模型的构成"><a href="#1-1排队模型的构成" class="headerlink" title="1.1排队模型的构成"></a>1.1排队模型的构成</h2><p>排队模型是研究排队的规律，大都用于随机服务系统中。由于在生产、经济、社会活动中许多问题都可以转化为排队问题,因此排队模型涉及范围十分广泛。排队系统解决的主要是服务与被服务的问题，是仿真的主要应用领域。排队模型的例子如下表所示。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>系统（System）</strong></th>
+<th><strong>顾客（Customers）</strong></th>
+<th><strong>服务台（Servers）</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>银行</strong></td>
+<td><strong>顾客</strong></td>
+<td><strong>窗口</strong></td>
+</tr>
+<tr>
+<td><strong>生产线系统</strong></td>
+<td><strong>工件</strong></td>
+<td><strong>机器</strong></td>
+</tr>
+<tr>
+<td><strong>医院门诊</strong></td>
+<td><strong>病人</strong></td>
+<td><strong>医生</strong></td>
+</tr>
+<tr>
+<td><strong>公路网络</strong></td>
+<td><strong>汽车</strong></td>
+<td><strong>交通灯</strong></td>
+</tr>
+<tr>
+<td><strong>仓库</strong></td>
+<td><strong>订单</strong></td>
+<td><strong>订单分拣作业</strong></td>
+</tr>
+<tr>
+<td><strong>飞机场</strong></td>
+<td><strong>飞机</strong></td>
+<td><strong>跑道</strong></td>
+</tr>
+<tr>
+<td><strong>计算机系统</strong></td>
+<td><strong>任务（Jobs）</strong></td>
+<td><strong>CPU，disk</strong></td>
+</tr>
+<tr>
+<td><strong>停车场</strong></td>
+<td><strong>汽车</strong></td>
+<td><strong>车位</strong></td>
+</tr>
+<tr>
+<td><strong>Ticket Office</strong></td>
+<td><strong>Customers</strong></td>
+<td><strong>Clerk</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/1.png" alt></p>
+<h2 id="1-2排队模型的术语"><a href="#1-2排队模型的术语" class="headerlink" title="1.2排队模型的术语"></a>1.2排队模型的术语</h2><p>两个基本单元：<strong>顾客</strong>与<strong>服务台</strong></p>
+<p>两种服务形式：<strong>顾客到达服务台</strong>与<strong>服务台到达顾客</strong></p>
+<p>术语介绍：</p>
+<h3 id="1）顾客总体-（The-calling-population）"><a href="#1）顾客总体-（The-calling-population）" class="headerlink" title="1）顾客总体 （The calling population）"></a>1）顾客总体 （The calling population）</h3><p>到达的顾客总数，可设为有限（finite）、无限(infinite)。</p>
+<ul>
+<li>对具有大量到达数量的顾客总体，可设其为无限顾客总体</li>
+<li>有限或无限顾客总体的区别在于如何定义顾客的到达率（单位时间到达的平均数:arrival rate: the average number of arrivals per unit of time）</li>
+<li>对无限顾客总体模型：到达率可设为均衡的（或称constant）</li>
+<li>对有限顾客总体：到达率可设为不均衡的（从0到某个值之间变动）</li>
+</ul>
+<h3 id="2）系统容量-（Server-Capacity）"><a href="#2）系统容量-（Server-Capacity）" class="headerlink" title="2）系统容量 （Server Capacity）"></a>2）系统容量 （Server Capacity）</h3><p>在许多排队系统中，系统能容纳顾客的数量是有限的，称为<strong>系统容量</strong>。</p>
+<p>系统容量有限时，到达率及有效到达率（单位时间到达并进入系统的平均数系统effective arrival rate: the number who arrive and enter the system per time unit）是有差异的，如：一些到达的顾客又离开了系统</p>
+<h3 id="3）到达过程-（Arrival-Process）"><a href="#3）到达过程-（Arrival-Process）" class="headerlink" title="3）到达过程 （Arrival Process）"></a>3）到达过程 （Arrival Process）</h3><p>对<strong>无限顾客总体</strong>，到达过程以相继顾客到达的时间间隔来表征的。</p>
+<p>随机时间到达：顾客以随机时间到达。</p>
+<ul>
+<li>时间间隔通常用随机分布表示。最重要的随机到达过程是<strong>泊松到达（Poisson Arrival）</strong></li>
+<li>泊松到达用于餐馆、银行、电话服务中心、服务设施等的到达过程</li>
+</ul>
+<p>规定时间到达（scheduled arrival）：</p>
+<ul>
+<li>时间间隔通常用一个固定的时间或者一个固定的时间加上一个小的随机波动因素表示。如已经预约好的病人去看医生、飞机航班等。</li>
+</ul>
+<p>批量到达：对批量到达，可以是固定批量也可以是随机批量。</p>
+<blockquote>
+<p>《概率论与数理统计》中学过泊松分布(Poisson)和指数分布(Exponential)，印象有些浅了，所以复习一下。</p>
+<p><strong>泊松分布</strong>：</p>
+<ul>
+<li>概率分布函数： </li>
+</ul>
+<script type="math/tex; mode=display">P(X=n)=
+    \begin{cases}
+        \frac{\lambda^ne^{-\lambda}}{n!}, & \text{$\lambda>0,n=0,1,2...n$}\\
+        0,& \text{others}
+    \end{cases}</script><ul>
+<li>累积分布函数：</li>
+</ul>
+<script type="math/tex; mode=display">
+F(X\leq n)=\displaystyle \sum_{i=0} \frac{e^{-\lambda}\lambda^i}{i!}</script><ul>
+<li>平均值：</li>
+</ul>
+<script type="math/tex; mode=display">
+E(x)=\lambda</script><ul>
+<li>方差：</li>
+</ul>
+<script type="math/tex; mode=display">
+D(x)=\lambda</script><p><strong>指数分布</strong>：</p>
+<ul>
+<li>概率密度函数：</li>
+</ul>
+<script type="math/tex; mode=display">
+f(x)=
+    \begin{cases}
+        \lambda e^{-\lambda x}, & \text{$x>0$}\\
+        0,& \text{$x<0$}
+    \end{cases}</script><p>概率分布函数：</p>
+<script type="math/tex; mode=display">
+F(x)=
+    \begin{cases}
+        1-e^{-\lambda x}, & \text{$x>0$}\\
+        0,& \text{$x<0$}
+    \end{cases}</script><p>平均值：</p>
+<script type="math/tex; mode=display">
+E(x)=\frac{1}{\lambda}</script><p>方差：</p>
+<script type="math/tex; mode=display">
+D(x)=\frac{1}{\lambda^2}</script></blockquote>
+<p><strong>泊松到达过程：</strong></p>
+<p>设：</p>
+<p>$S_n$ ：第n个顾客到达系统的时间，$s_0=0$</p>
+<p>$A_n$ ：顾客n和n-1之间的到达时间间隔，</p>
+<script type="math/tex; mode=display">
+A_n=S_n-S_{n-1}</script><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/2.png" alt></p>
+<p>若$N(t)$为时间间隔$[0,t)$内到达的顾客数$（t&gt;0）$，则$N(t)$为随机变量，且 <strong>{</strong>$\{N(t)|t \in (0,T) \}$<strong>}</strong> 为一随机过程。该过程有：</p>
+<p><strong>（1）</strong>对任意n个参数<script type="math/tex">(t_n>t_{n-1}>t_{n-2}>…>t_1 )≥0</script>，增量<script type="math/tex">N(t_2) -N(t_1)</script>， <script type="math/tex">N(t_3) -N(t_2)</script>，<script type="math/tex">…</script> ， <script type="math/tex">N(t_n) -N(t_{n-1})</script>分别为时间区间<script type="math/tex">[0,t_1),[t_1,t_2),…[t_{n-2,tn-1}), [t_{n-1} ,t_n)</script>区间内到达的顾客数；</p>
+<p><strong>（2）</strong>在时间区间$[t,t+∆t]$内，到达k或k个以上顾客的概率为：</p>
+<script type="math/tex; mode=display">
+P_k(t,t+∆t)=P[(N(t+∆t)-N(t))=k]=\displaystyle \sum_{k=2}^{∞}P_k(t,t+∆t)</script><p>若该过程满足下列条件：</p>
+<ol>
+<li>对任意不同的区间，顾客到达数相互独立；</li>
+<li>在时间区间$[t,t+∆t]$内，$N(t +∆t) -N(t)$只与区间长度$∆$t有关，与区间起点$t$无关；</li>
+<li>★★★对充分小的时间区间$[t,t+∆t]$，$N(t)≥2$的概率极小，可以忽略不计。</li>
+</ol>
+<p>则认为顾客到达的过程为泊松到达过程，有：</p>
+<script type="math/tex; mode=display">
+P[N(t)=n]=\frac{(\lambda t)^n}{n!}e^{-\lambda t},n=0,1,2,...,t>0</script><script type="math/tex; mode=display">
+E[N(t)]=\lambda t \\ D[N(t)=\lambda t]</script><blockquote>
+<p>定理：在排队系统中，如果到达的顾客数服从以$λ$为参数的泊松分布，则顾客相继到达的时间间隔$A_n$服从以$λ$为参数的指数分布（此时，到达率是每单位时间到达$λ$个顾客）。</p>
+</blockquote>
+<p>对任意时间$s , t, s&lt;t,  N(s,t) = N(t) - N(s)$ 表示在时间间隔$[s,t]$内到达的顾客数，则$N(s,t)$服从参数为$λ(t-s)$的泊松分布。对$n=0,1,2,…,$有</p>
+<script type="math/tex; mode=display">
+P[N(s,t)=n]=\frac{[\lambda(t-s)]^n}{n!}e^{-\lambda(t-s)}</script><p>此概率分布的均值和方差为</p>
+<script type="math/tex; mode=display">
+𝐸[𝑁(𝑡)−𝑁(𝑠)]=𝜆(𝑡−𝑠)\\D[𝑁(𝑡)−𝑁(𝑠)]=𝜆(𝑡−𝑠)</script><p>一般，在模拟过程中，需要发生在$[0, t]$间隔内第一个到达的实体作为仿真中的下一个产生的实体。可以得出：</p>
+<script type="math/tex; mode=display">
+𝑃(𝐴_1≤𝑡)=1−𝑒^{−𝜆𝑡}</script><ul>
+<li>这里，$A1$具有$E(A_1)=1/λ$的指数分布;</li>
+<li>这里，$A1,A2,…$具有$E(A_1)=1/λ$的指数分布并互相独立。</li>
+</ul>
+<p><strong>这是一个例子，大学卫生所的病人到达时间</strong>：</p>
+<p>问题描述：</p>
+<ul>
+<li><p>某大学卫生所，设病人到达符合泊松到达，到达的间隔时间平均值为2.4分钟或每小时到达25人 。</p>
+</li>
+<li><p>到达率：</p>
+</li>
+</ul>
+<p>每单位时间（分钟）的到达率$λ=1/2.4 = 0.4167$</p>
+<ul>
+<li>该到达的指数分布表示式为:</li>
+</ul>
+<script type="math/tex; mode=display">
+𝑓(𝑡)=0.4167𝑒^{−0.4167𝑡},𝑡≥0 \\ 𝐹(𝑡)=1−𝑒^{−0.4167𝑡},𝑡≥0</script><ul>
+<li>如果有一位病人已经到达，则在未来5分内再来一位病人的概率：</li>
+</ul>
+<script type="math/tex; mode=display">
+𝐹(5)=1−𝑒^{−0.4167×5}=1−0.124=0.876</script><h3 id="4）排队规则（Queue-Discipline-or-Rule）"><a href="#4）排队规则（Queue-Discipline-or-Rule）" class="headerlink" title="4）排队规则（Queue Discipline or Rule）"></a>4）排队规则（Queue Discipline or Rule）</h3><ul>
+<li><p>排队过程是顾客在队列中等待服务开始的活动。顾客可能的选择为：</p>
+<ul>
+<li><p>离开系统（leave a too long queue, balk）</p>
+</li>
+<li><p>离开队列（leave a too slow queue, renege）</p>
+</li>
+<li><p>转移队列（move from one slow line to another, jockey）</p>
+</li>
+</ul>
+</li>
+<li><p>排队规则是顾客在队列中等待服务开始的逻辑次序，它决定当服务员空闲时哪一个顾客被选择接受服务。常用的排队规则有：先进先出first-in-first-out（FIFO）、后进先出last-in-first-out （LIFO）、随机服务（SIRO）、最短处理时间服务shorest processing time first （SPT）、按优先级服务service according to priority（PR）。</p>
+</li>
+</ul>
+<h3 id="5）服务时间和服务设施（Service-Times-and-Service-Mechanism）"><a href="#5）服务时间和服务设施（Service-Times-and-Service-Mechanism）" class="headerlink" title="5）服务时间和服务设施（Service Times and Service Mechanism）"></a>5）服务时间和服务设施（Service Times and Service Mechanism）</h3><p>包括服务时间、服务结构。</p>
+<ul>
+<li>服务时间：为固定时间或随机时间。随机服务时间的分布有：指数、爱尔朗、正态、韦布尔、伽玛等。</li>
+<li>服务结构：指服务台的组成情况。如多服务台、并行服务台、网络服务台等。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/3.png" alt></p>
+<p>服务台串联布置：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/6.png" alt="6"></p>
+<p>服务台并联布置：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/5.png" alt="5"></p>
+<p>服务台混合布置：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/4.png" alt></p>
+<h3 id="6）排队模型的标注方法"><a href="#6）排队模型的标注方法" class="headerlink" title="6）排队模型的标注方法"></a>6）排队模型的标注方法</h3><p>Kendall（1953）提出了一个平行排队系统的描述方法，1971年扩充为如下符号标准。</p>
+<blockquote>
+<p>X/Y/Z/A/B/C</p>
+</blockquote>
+<ul>
+<li>X：到达间隔时间分布（interval-time distribution）</li>
+<li>Y：服务时间分布（service-time distribution）</li>
+<li>对X、Y，包括：M—泊松到达过程，D—固定模式，Ek—k阶Erlang模式，G—任意型或一般独立型。<br>Z：并行服务台的数目（the number of parallel servers）</li>
+<li>A：系统容量（system capacity）</li>
+<li>B：顾客的容量（size of calling population）</li>
+<li>C：服务规则，如FCFS, LCFS</li>
+</ul>
+<blockquote>
+<p>例：M/M/1/∞/ ∞/FCFS ：泊松到达，服务时间指数分布、单服务台、队列能力无限，潜在到达顾客无限，先到先服务。</p>
+<p>该排队系统可简写为：M/M/1。</p>
+</blockquote>
+<h2 id="1-3排队系统的性能及其测度"><a href="#1-3排队系统的性能及其测度" class="headerlink" title="1.3排队系统的性能及其测度"></a>1.3排队系统的性能及其测度</h2><h3 id="（1）排队系统的稳态特性和瞬态特性"><a href="#（1）排队系统的稳态特性和瞬态特性" class="headerlink" title="（1）排队系统的稳态特性和瞬态特性"></a>（1）排队系统的稳态特性和瞬态特性</h3><p>排队系统的特性从稳态和瞬态两个方面衡量。</p>
+<ul>
+<li>稳态性能（long-run measures of performance）是指系统在足够长的时间后，处于稳定状态时系统的性能状态的概率</li>
+<li>瞬态概率（steady-state measures of performance）是指系统在时间t，系统处于某种性能状态的概率。</li>
+</ul>
+<p>排队系统在运行的初期阶段，各项指标受初始条件的影响较显著，这一阶段为过渡阶段（瞬态阶段）。但在足够长的运行时间后，系统处于稳定状态时，各项指标不再与时间t有关。</p>
+<p>在系统分析中，人们更关心系统的稳态特性。</p>
+<h3 id="1-3-2排队系统的评价指标"><a href="#1-3-2排队系统的评价指标" class="headerlink" title="1.3.2排队系统的评价指标"></a>1.3.2排队系统的评价指标</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>指标</strong></th>
+<th><strong>定义</strong></th>
+<th><strong>意义</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>系统队长</strong></td>
+<td><strong>系统中的平均顾客数（排队等待的顾客和正在接受服务的顾客之和），系统中顾客的期望值。</strong></td>
+<td><strong>顾客和服务机构都关心，与系统空间是否合理有关。</strong></td>
+</tr>
+<tr>
+<td><strong>排队长度</strong></td>
+<td><strong>系统中排队等待服务的顾客的平均数。</strong></td>
+<td><strong>顾客和服务机构都关心，与系统空间是否合理有关。</strong></td>
+</tr>
+<tr>
+<td><strong>逗留时间</strong></td>
+<td><strong>顾客到达系统时刻起到结束服务止的平均时间长度。</strong></td>
+<td><strong>顾客最为关心，反映了系统的服务水平。</strong></td>
+</tr>
+<tr>
+<td><strong>等待时间</strong></td>
+<td><strong>顾客到达系统时刻起到开始接受服务止的平均时间长度；</strong></td>
+<td><strong>顾客最为关心，反映了系统的服务水平。</strong></td>
+</tr>
+<tr>
+<td><strong>忙期</strong></td>
+<td><strong>服务机构连续忙碌的时间；</strong></td>
+<td><strong>服务机构关心，它与系统的服务强度有关。</strong></td>
+</tr>
+<tr>
+<td><strong>闲期</strong></td>
+<td><strong>服务机构连续空闲的时间。</strong></td>
+<td><strong>服务机构关心，它与系统的服务强度有关。</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="1-3-3系统中的顾客数L"><a href="#1-3-3系统中的顾客数L" class="headerlink" title="1.3.3系统中的顾客数L"></a>1.3.3系统中的顾客数L</h3><p>设时刻$t$系统中的顾客数（系统队长）为$L(t)$，则系统中的平均顾客数定义为（time-weighted-average number in a system）：</p>
+<script type="math/tex; mode=display">
+\hat{L} = \frac{1}{T}\displaystyle \sum_i^∞iT_i=\displaystyle \sum_{i=0}^∞\frac{T_i}{T}</script><script type="math/tex; mode=display">
+\hat{L} = \frac{1}{T}\displaystyle \sum_i^∞iT_i=\frac{1}{T}\int_0^TL(t)dt</script><p>设上式中时刻$T$足够长时，系统中的顾客数为$L(t)$趋近于某个极限值$L$，称为long-run time-average number in a system。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/7.png" alt></p>
+<p>上图中可以求得：$L= (0(3)+1(12)+2(4)+3(1))/20 = 23/20 = 1.15$</p>
+<h3 id="1-3-4顾客在系统中的逗留时间"><a href="#1-3-4顾客在系统中的逗留时间" class="headerlink" title="1.3.4顾客在系统中的逗留时间"></a>1.3.4顾客在系统中的逗留时间</h3><p>设时刻$[0,T]$，顾客$i$在系统中的逗留时间为$w_i$，则顾客在系统中的平均逗留时间定义为（average time spent in system per customer）：</p>
+<script type="math/tex; mode=display">
+\hat{w}=\frac{1}{N}\displaystyle \sum_{i=1}^{N}w_i</script><p>设上式中时刻$N$足够多时，顾客在系统中的稳态平均逗留时间趋近于某个极限值$w$，称为long-run average time spent in system。</p>
+<script type="math/tex; mode=display">
+\hat{w}_Q=\frac{1}{N}\displaystyle \sum_{i=1}^{N}w^Q_i</script><h3 id="1-3-5守恒方程式"><a href="#1-3-5守恒方程式" class="headerlink" title="1.3.5守恒方程式"></a>1.3.5守恒方程式</h3><p>对前述系统，其$L$，$w$，与顾客到达率$λ$的关系为：</p>
+<script type="math/tex; mode=display">
+\hat{L}=\hat{\lambda}\hat{w}</script><p>推导如下：</p>
+<script type="math/tex; mode=display">
+\displaystyle \sum_{i=1}^{N}w_i=\int_0^TL(t)dt\\\hat{L} = \frac{1}{T}\displaystyle \sum_i^∞iT_i=\frac{N}{T}\frac{1}{N}\displaystyle \sum_{I=1}^n w_i =\hat{\lambda}\hat{w}</script><p>当$T$足够长，$N$足够多时，上述关系如下：</p>
+<script type="math/tex; mode=display">
+𝐿=𝜆𝑤</script><p>该关系称作<strong>守恒方程</strong>（Conservation Equation）</p>
+<h3 id="1-3-6服务台利用率"><a href="#1-3-6服务台利用率" class="headerlink" title="1.3.6服务台利用率"></a>1.3.6服务台利用率</h3><p>设区间$[0,T]$的服务台利用率（server utilization）为$\hat{ρ}$，其稳态服务台利用率（long-run server utilization）为$ρ$，当$T$足够长，$N$足够多时，上述关系如下：</p>
+<script type="math/tex; mode=display">
+\hat{L}=\hat{\lambda}\hat{w}</script><p><strong>顾客的逗留时间及服务台利用率(例子)：</strong></p>
+<p>本例中，可以求得：$ρ= 忙期/总时间=(\displaystyle \sum_{i=1}^{∞}T_i)/T=(T-T_0)/T=(20-3)/20=17/20$</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/8.png" alt></p>
+<p><strong>G/G/1/∞/∞系统服务台利用率:</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/9.png" alt></p>
+<p><strong>G/G/c/∞/∞系统服务台利用率:</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/10.png" alt></p>
+<h2 id="1-4-M-M-1模型"><a href="#1-4-M-M-1模型" class="headerlink" title="1.4 M/M/1模型"></a>1.4 M/M/1模型</h2><p>顾客到达模式：平稳泊松到达</p>
+<p>在t时刻到达$n$个顾客的概率 $P_n(t)=\frac{(\lambda t)^n}{n!}e^{-\lambda t}(n=1,2,3,…)$</p>
+<p>两个顾客到达的时间间隔$t$的概率密度函数$f_A (t)=λe^{-λt}$</p>
+<p>服务模式：指数服务模式，$f_s(t)=ue^{-ut}$</p>
+<p>性能指标：</p>
+<p>模型满足条件：</p>
+<p>归一化条件：$\displaystyle \sum_{i=0}^{∞}p_n=1$ 其中$p_n$—顾客数为n的稳态概率</p>
+<p>参数条件：$ρ=(λ/μ)&lt;1$ 其中</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/11.png" alt="11"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/12.png" alt="12"></p>
+<h2 id="1-5-Jackon排队网络"><a href="#1-5-Jackon排队网络" class="headerlink" title="1.5 Jackon排队网络"></a>1.5 Jackon排队网络</h2><h3 id="1-5-1-Jackon开环排队网络"><a href="#1-5-1-Jackon开环排队网络" class="headerlink" title="1.5.1 Jackon开环排队网络"></a>1.5.1 Jackon开环排队网络</h3><p>M/M/1和M/M/c都属于单服务中心的排队模型。</p>
+<p>多个具有M/M/c的特性的服务中心组成的网络称为Jackon排队网络。</p>
+<p>Jackon排队网络：开环排队网络、闭环排队网络</p>
+<p>Jackon开环排队网络的属性：</p>
+<ul>
+<li>网络中有M个服务中心，每个服务中心为M/M/c系统</li>
+<li>对第i个服务中心，顾客的到达和服务是彼此独立的</li>
+<li>所有的服务规则是FIFO</li>
+<li>顾客在第i个服务中心接受服务后，或者以概率pij转移到第j个服务中心，或者以概率pi0离开系统</li>
+<li>每个服务中心的缓冲容量无限制，即系统不会发生堵塞现象</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/13.png" alt></p>
+<h3 id="1-5-2-Jackon闭环排队网络"><a href="#1-5-2-Jackon闭环排队网络" class="headerlink" title="1.5.2  Jackon闭环排队网络"></a>1.5.2  Jackon闭环排队网络</h3><p>Jackon闭环排队网络是Jackon开环排队网络的特例，在Jackon开环排队网络中，如果没有输入、输出，就变成Jackon闭环排队网络。</p>
+<p>Jackon闭环排队网络的属性：</p>
+<ul>
+<li>Jackon闭环网络中，顾客总人数N保持恒定不变</li>
+<li>各服务中心的顾客数概率分布不再是独立的</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/14.png" alt></p>
+<h2 id="1-6-排队系统的仿真分析方法"><a href="#1-6-排队系统的仿真分析方法" class="headerlink" title="1.6 排队系统的仿真分析方法"></a>1.6 排队系统的仿真分析方法</h2><p>排队网络模型的一个主要优点是：可以得到解析形式的解。但有一个很大的局限性：对系统中的随机特性有比较严格的要求，如：平稳、独立、各态经历等，且随机变量仅仅限于几类典型的随机分布。因此，难于用于一些实际的离散事件系统建模。</p>
+<p>对于复杂、随机的实际排队系统，利用模拟仿真可以研究实际系统性能的较好的方法。可以得到一个包含随机误差的估计。</p>
+<h1 id="二、储存模型"><a href="#二、储存模型" class="headerlink" title="二、储存模型"></a>二、储存模型</h1><p>存储系统是实际生活中常见的系统。对许多存储系统，模拟被认为是唯一的分析方法。一个简单的存储系统如图所示。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/15.png" alt></p>
+<h2 id="2-1-储存模型的构成"><a href="#2-1-储存模型的构成" class="headerlink" title="2.1 储存模型的构成"></a>2.1 储存模型的构成</h2><h3 id="2-1-1-存储模型的五个基本要素"><a href="#2-1-1-存储模型的五个基本要素" class="headerlink" title="2.1.1 存储模型的五个基本要素"></a>2.1.1 存储模型的五个基本要素</h3><p>1）存储系统的目标</p>
+<ul>
+<li>利润极大化</li>
+<li>费用极小化（如何使库存总成本最低，是库存决策的主要目标）。</li>
+</ul>
+<p>2）存储系统的费用组成(Cost)</p>
+<ul>
+<li>物品费用：购买物资花费的成本。</li>
+<li>订货采购费用：订货时发生的各种费用。</li>
+<li>存储保管费用：物资在库存过程中发生的成本。</li>
+<li>缺货费用：无法满足用户的需求而产生的损失。</li>
+<li>在需求确定的前提下，增大每次订货批量有利于减低订货成本、购置成本、缺货成本，但由于库存量的增加常常导致保管成本的上升。 </li>
+</ul>
+<p>3）需求(Demand)：存储系统的输出（需求率）</p>
+<p>4）补货量或订货量：存储系统的输入（补货量，订货量）</p>
+<p>5）存储策略：周期检查策略，连续检查策略</p>
+<h3 id="2-1-2-存储策略1：周期检查策略"><a href="#2-1-2-存储策略1：周期检查策略" class="headerlink" title="2.1.2 存储策略1：周期检查策略"></a>2.1.2 存储策略1：周期检查策略</h3><p>将一段时间分为N个观察周期，则存储水平的观察分散在这N个离散点上。在每一个N时间周期内，检查存储状态$I_j$，如其在订货点L或以下，则进行订货试库存达到目标水平M，在第$j$个观察点上的订货量$Q_j$的确定方法为：</p>
+<script type="math/tex; mode=display">
+𝑄_𝑗=\begin{cases}
+        M-I_j, & \text{$I_j≤L$}\\
+        0,& \text{$I_j>L$}
+    \end{cases}</script><p>得出的三参数策略表示为周期检查策略或(M, L, N)策略。</p>
+<p>下面是周期检查 (M, L, N)策略下库存变化示意图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/16.png" alt="16"></p>
+<h3 id="2-1-3-存储策略2：连续检查策略"><a href="#2-1-3-存储策略2：连续检查策略" class="headerlink" title="2.1.3 存储策略2：连续检查策略"></a>2.1.3 存储策略2：连续检查策略</h3><p>在所有时间监视库存量并当存储水平达到某个规定点时，发出订货请求。</p>
+<p>连续检查 (M, L)策略：在任何时间t，当库存量I(t)降到订货点L或以下时，则发出订货单位为Q(t)=M－I(t) 的订货。</p>
+<p>连续检查 (Q, L)策略或固定的订货策略：如果物品是每次需要固定件，则订货量Q=M－L。于是，每当存储水平达到L单位时，做一次Q件物品的订货。</p>
+<p>下面来看一下连续检查连续检查 (M, L)策略下库存变化的示意图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/17.png" alt="17"></p>
+<h2 id="2-2-确定性存储系统与EOQ模型"><a href="#2-2-确定性存储系统与EOQ模型" class="headerlink" title="2.2 确定性存储系统与EOQ模型"></a>2.2 确定性存储系统与EOQ模型</h2><p>确定性系统模型考虑需求和提前期已知的情况，它是理解其它复杂模型的基础。</p>
+<h3 id="2-2-1-没有缺货和零提前期的经济批量（EOQ）模型"><a href="#2-2-1-没有缺货和零提前期的经济批量（EOQ）模型" class="headerlink" title="2.2.1 没有缺货和零提前期的经济批量（EOQ）模型"></a>2.2.1 没有缺货和零提前期的经济批量（EOQ）模型</h3><p>模型假设：无缺货费用，每周期的总可变费用</p>
+<p>$C_T=订货采购费用C_p+存储费用C_H$ 。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/18.png" alt="18"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/19.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/20.png" alt></p>
+<h3 id="2-2-2-具有确定性提前期的EOQ模型"><a href="#2-2-2-具有确定性提前期的EOQ模型" class="headerlink" title="2.2.2 具有确定性提前期的EOQ模型"></a>2.2.2 具有确定性提前期的EOQ模型</h3><p>模型的描述</p>
+<ul>
+<li>此模型的最优订货量和零提前期的EOQ模型相同。</li>
+<li><p>追加一个决策变量：最优订货水平。</p>
+</li>
+<li><p>最优订货水平：</p>
+</li>
+<li>其中，D—每周期的需求量，T—订货提前期。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/21.png" alt></p>
+<p>模型假设：缺货费用为$C_S$，每周期的总可变费用$C_T  = 订货采购费用C_P + 存储费用C_H + 每周期的缺货费用C_S$</p>
+<p>于是，$C_T = C_P + C_H + C_S$</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/22.png" alt></p>
+<h3 id="2-2-3-具有延期交货和确定性提前期的EOQ模型"><a href="#2-2-3-具有延期交货和确定性提前期的EOQ模型" class="headerlink" title="2.2.3 具有延期交货和确定性提前期的EOQ模型"></a>2.2.3 具有延期交货和确定性提前期的EOQ模型</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/23.png" alt></p>
+<h2 id="2-3-概率型存储系统"><a href="#2-3-概率型存储系统" class="headerlink" title="2.3 概率型存储系统"></a>2.3 概率型存储系统</h2><h3 id="2-3-1-概述"><a href="#2-3-1-概述" class="headerlink" title="2.3.1 概述"></a>2.3.1 概述</h3><p>实际的存储系统中，需求和订货提前期往往是随机变量，这就需要反映此不确定性环境的基础。<br>主要有三种形式的模型：</p>
+<ul>
+<li>单周期模型：需求出现在时间的某一点，没有补充订货。</li>
+<li>允许延期交货的周期性检查模型：需要确定最优周期长度以及目标存储（本文从略）。</li>
+<li>允许延期交货的连续检查模型：每笔业务后监控存储水平，若存储水平下降到订货点以下时，就发出规定数量的订货（本文从略） 。</li>
+</ul>
+<h3 id="2-3-2-单周期概率型存储模型"><a href="#2-3-2-单周期概率型存储模型" class="headerlink" title="2.3.2 单周期概率型存储模型"></a>2.3.2 单周期概率型存储模型</h3><h4 id="模型的背景"><a href="#模型的背景" class="headerlink" title="模型的背景"></a>模型的背景</h4><p>单周期库存模型又称单订货模型，模型假定周期末库存货物对下一个周期没有任何价值。这个问题还称为报童问题(newsboy problem)或报贩问题(newsvendor problem )，因为报童手中今天的报纸若卖不完明天就没有用了。</p>
+<p>该模型研究的是仅有一次机会存贮起来以供需求的产品，例如海产、山货、时装、生鲜食品和报纸等短销售周期产品。换句话说，它是由于产品的特殊性质或需求的特殊情况，以致产品不能存贮的一类问题.</p>
+<h4 id="经典报童问题的描述"><a href="#经典报童问题的描述" class="headerlink" title="经典报童问题的描述"></a>经典报童问题的描述</h4><p>一位报童从报刊发行处订报后零售，每卖出一份可获利a元，若订报后卖不出去，则退回发行处，每份将要赔钱b元。那么报童如何根据以往的卖报情况（每天报纸的需求量为份的概率为）来推算出每天收益达到最大的订报量？ </p>
+<p>经典报童问题即单周期库存问题,研究的是面对随机需求量,零售商应该订购多少产品以获得最大的利润。</p>
+<p>报童需决策的问题是一个关于订购量最优化的问题，优化问题的目标函数等于每天收入的期望。因此，需要考虑供过于求和供不应求的两种情况。 </p>
+<h4 id="模型的基本假设"><a href="#模型的基本假设" class="headerlink" title="模型的基本假设"></a>模型的基本假设</h4><p>设在整个需求期内只订购一次货物，订货量为Q，订购费和初始库存量均为0，每单位产品的购价（成本）为C。</p>
+<p>需求量X为唯一连续型随机变量，其概率密度为$f(x)$ 。当货物售出时，每单位产品的售价为U。<br>需求结束时，没有卖出的货物不存储而是折价出售，单位售价是V（V&lt;U)。<br>试求订购量Q ，以使期望利润最大。</p>
+<h4 id="模型的求解"><a href="#模型的求解" class="headerlink" title="模型的求解"></a>模型的求解</h4><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/24.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/25.png" alt></p>
+<p>下面再来个例题加深一下理解：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/26.png" alt></p>
+<h3 id="2-3-3-存储系统的仿真分析"><a href="#2-3-3-存储系统的仿真分析" class="headerlink" title="2.3.3 存储系统的仿真分析"></a>2.3.3 存储系统的仿真分析</h3><p>在前述的模型中，概率需求的(M,N)模型和概率需求的(Q,L)模型和实际的存储系统中最接近。</p>
+<p>这里虽然说明了数学求解的方法，但由于实际的存储系统的动态性和不稳定性，使得这些模型中直接得到的策略是不正确的。于是，模拟仿真成为研究实际策略的一种方法。</p>
+<p> (M,L)策略在实际中经常发现，但策略变量通常是任意的，(M,L)策略的推导比较困难，于是，模拟仿真成为较好的方法。</p>
+<h1 id="三、Petri网模型"><a href="#三、Petri网模型" class="headerlink" title="三、Petri网模型"></a>三、Petri网模型</h1><h2 id="3-1-概述"><a href="#3-1-概述" class="headerlink" title="3.1 概述"></a>3.1 概述</h2><p>Petri网（Petri Net）是德国人Carl Adam Petri（1926-2010）于1962年提出的离散分布并行系统或称离散事件动态系统（Discrete Event Dynamic System，DEDS ）的表示方法。</p>
+<p>Petri网模型既有严格的形式化数学表述方式，也有直观的图形表达方式。由于Petri网能表达并发的事件，被认为是自动化理论的一种。研究领域趋向认为Petri网是所有流程定义语言之母。</p>
+<p>Petri网模型和以此模型为基础发展出来的网论（net theory）在软件设计（尤其是模型驱动设计）、工作流管理、流程控制、协议验证、机械工程等领域都有广泛应用。 </p>
+<h2 id="3-2-经典Petri网定义"><a href="#3-2-经典Petri网定义" class="headerlink" title="3.2 经典Petri网定义"></a>3.2 经典Petri网定义</h2><h3 id="3-2-1基本概念"><a href="#3-2-1基本概念" class="headerlink" title="3.2.1基本概念"></a>3.2.1基本概念</h3><p>经典的Petri网是简单的过程模型，由两种节点：库所（place）和变迁（transition）、有向弧以及令牌（token）等元素组成的。 </p>
+<p>（1）库所(Place)：既状态元素，表示一个存放一定资源的场所；用圆形节点表示。</p>
+<p>（2）变迁（Transition）：资源的消耗及对应状态元素的变化；用方形节点表示。 </p>
+<p>（3）有向弧（Arc）：是库所和变迁之间的有向连接；</p>
+<p>（4）令牌（Token）：是库所中的动态对象，可以从一个库所移动到另一个库所。</p>
+<blockquote>
+<p>这里金淳将Token直译成了令牌，感觉翻译过来怪怪的，不过就叫它令牌吧。</p>
+</blockquote>
+<p>Petri网示例：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/27.png" alt></p>
+<h3 id="3-2-2-Petri的规则和行为"><a href="#3-2-2-Petri的规则和行为" class="headerlink" title="3.2.2 Petri的规则和行为"></a>3.2.2 Petri的规则和行为</h3><p><strong>Petri网的规则：</strong></p>
+<ul>
+<li>有向弧是有方向的</li>
+<li>两个库所或变迁之间不允许有弧</li>
+<li>库所可以拥有任意数量的令牌</li>
+</ul>
+<p><strong>Petri网的行为：</strong></p>
+<ul>
+<li>如果一个变迁的每个输入库所（input place）都拥有令牌，该变迁即为被允许(enable)。一个变迁被允许时，变迁将发生(fire)，输入库所(input place)的令牌被消耗，同时为输出库所(output place)产生令牌。</li>
+<li>变迁的发生是原子的</li>
+<li>有两个变迁都被允许的可能，但是一次只能发生一个变迁</li>
+<li>如果出现一个变迁，其输入库所的个数与输出库所的个数不相等，令牌的个数将发生变化 </li>
+</ul>
+<p><strong>行为示例：</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/28.png" alt></p>
+<h2 id="3-3-Petri网的形式化定义"><a href="#3-3-Petri网的形式化定义" class="headerlink" title="3.3 Petri网的形式化定义"></a>3.3 Petri网的形式化定义</h2><p>一个Petri网PN可表示为一个六元组，$P_N=（P, T, F, W, M, M_0）$</p>
+<p>$P=\{p_1,…,p_m \}$，是有限库所（place）节点的集合，$m≥𝟎$</p>
+<p>$T=\{t_1,…,t_n\}$，是有限变迁（transition）节点的集合，$m≥𝟎$</p>
+<p>$P∩𝑻=∅$（P、T不相交），$P∪T =∅$ （P、T不同时为空） </p>
+<p>$F∈(𝑷×𝑻)∪(𝑻×𝑷)$ ：F只存在于P与T之间，为有向弧，表示由一个P元素和一个T元素组成的有序偶集合，称为流关系。</p>
+<p>$W$：$F→\{𝟏,𝟐,…\}$为有向弧的权函数</p>
+<p>$M$：$𝐏→\{𝟏,𝟐,…\}$（集合P到非负整数的映射）为状态标识（marking），用令牌（token）表示</p>
+<p>$M_0$：$𝐏→\{𝟏,𝟐,…\}$（集合P到非负整数的映射）为初始状态标识（initial marking）。</p>
+<p>对$P_N$，用$N=（P, T, F, W）$表示Petri网的结构网（N, M）为标识网，为一个二元图</p>
+<h3 id="3-3-1-Petri网的定义方法"><a href="#3-3-1-Petri网的定义方法" class="headerlink" title="3.3.1 Petri网的定义方法"></a>3.3.1 Petri网的定义方法</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/29.png" alt></p>
+<h3 id="3-3-2-Petri网的建模"><a href="#3-3-2-Petri网的建模" class="headerlink" title="3.3.2 Petri网的建模"></a>3.3.2 Petri网的建模</h3><p>用Petri网对一个离散事件系统建模，需要做如下抽象化处理：</p>
+<ul>
+<li>库所：表示系统资源、活动；</li>
+<li>变迁：代表事件；</li>
+<li>令牌：表示实体及其状态（人，货物，机器，信息，条件）；</li>
+<li>弧：系统的流程。</li>
+<li>发火（fire）：代表事件的生成。</li>
+</ul>
+<h3 id="3-3-3-Petri网建模示例"><a href="#3-3-3-Petri网建模示例" class="headerlink" title="3.3.3  Petri网建模示例"></a>3.3.3  Petri网建模示例</h3><p>一个由2台机器组成的工件加工系统。工件J依次由机器M1、M2加工， M1、M2之间无缓冲区。初始状态为：有1个待加工工件，机器M1、M2均为空闲。</p>
+<p>试用Petri网建立该系统的模型。</p>
+<ul>
+<li>库所：J在机器M1、M2的加工活动定义为p1、p2，将机器M1、M2以及工件J定义为p3、p4、p5。</li>
+<li>变迁：J在机器M1、M2加工的开始事件定义为变迁t1、t2，在机器M2加工的结束事件定义为变迁t3。由于M1、M2之间无缓从区，因此无需定义工件J在M1的加工结束事件。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/30.png" alt></p>
+<p>初始状态：$M0=[M0(p1), M0(p2), ), M0(p3), M0(p4), M0(p5)]=[0,0,1,1,1]$</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/31.png" alt></p>
+<h2 id="3-4-高级Petri网"><a href="#3-4-高级Petri网" class="headerlink" title="3.4 高级Petri网"></a>3.4 高级Petri网</h2><h3 id="3-4-1经典Petri网的局限性"><a href="#3-4-1经典Petri网的局限性" class="headerlink" title="3.4.1经典Petri网的局限性"></a>3.4.1经典Petri网的局限性</h3><ul>
+<li>没有测试库所中零 </li>
+<li>模型容易变得很庞大 </li>
+<li>模型不能反映时间方面的内容 </li>
+<li>不支持构造大规模模型，如自顶向下或自底向上 </li>
+</ul>
+<h3 id="3-4-2高级Petri网："><a href="#3-4-2高级Petri网：" class="headerlink" title="3.4.2高级Petri网："></a>3.4.2高级Petri网：</h3><ul>
+<li>令牌着色：令牌具有属性</li>
+<li>时间：变迁有延迟时间</li>
+<li>层次化：一个变迁可以是一个子Petri网</li>
+<li>时序：增加时序逻辑的定义，更好的描述行为过程。</li>
+</ul>
+<h3 id="3-4-3-Petri网的流关系图"><a href="#3-4-3-Petri网的流关系图" class="headerlink" title="3.4.3 Petri网的流关系图"></a>3.4.3 Petri网的流关系图</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/32.png" alt></p>
+<h3 id="3-4-4-Petri网的特点"><a href="#3-4-4-Petri网的特点" class="headerlink" title="3.4.4 Petri网的特点"></a>3.4.4 Petri网的特点</h3><p>（1）能很好地表达离散事件动态系统（DEDS）建模中常遇到的平行、同步、冲突和因果依赖等关系；</p>
+<p>（2）为系统的形式化分析提供了良好的条件；</p>
+<p>（3）用图形进行形象化描述，提高了模型的可读性；</p>
+<p>（4）可以方便地建立层次化Petri网模型；</p>
+<p>（5）与系统结构关系密切，可描述信息流与物流，易于在控制模型基础上直接实现控制系统。</p>
+<h2 id="3-5-Petri网性能分析"><a href="#3-5-Petri网性能分析" class="headerlink" title="3.5 Petri网性能分析"></a>3.5 Petri网性能分析</h2><p>Petri网主要从逻辑角度分析离散事件系统的结构、行为和参数是否满足预期的逻辑关系。</p>
+<p>Petri网的主要指标有：</p>
+<ul>
+<li>可达性（Reachability）：Token可以达到表示的状态。分析方法：基于图的可达树法，矩阵方程分析法 </li>
+<li>有界性和安全性：</li>
+<li>有界性：对任一个$pi$，token数$𝐌(𝐩𝐢)≤K$（有限整数）（有限阻塞）</li>
+<li>安全性：对任一个$pi$，token数$𝐌(𝐩𝐢)≤1$（有限整数）（无阻塞）</li>
+<li>活性（liveness）：对某一$t$，可以找到一个发射序列</li>
+<li>死锁与陷阱（deadlock and trap）：死锁是某一变迁节点t，t都不可以发射；陷阱是对某一$p$，始终有token，输出也是输入。</li>
+<li>冲突（conflict）：多个变迁节点同时具有发射权，但其输入库所节点为共享，使得一个发射导致另一个不能发射。 </li>
+</ul>
+<h2 id="3-6-Petri网建模的适用性"><a href="#3-6-Petri网建模的适用性" class="headerlink" title="3.6 Petri网建模的适用性"></a>3.6 Petri网建模的适用性</h2><p>Petri网是一种基于逻辑层次的离散事件系统模型。</p>
+<p>分析方法：基于图的可达树法，矩阵方程分析法 </p>
+<p>Petri网是基于状态描述的，对于大规模离散事件系统来说，其模型的规模十分庞大，会产生“维数灾”问题。</p>
+<p>对实际复杂系统：普通Pertri网难以完整建模。</p>
+<p>对于Petri网模型，往往将其转换为仿真模型。</p>
+<p>对于大规模离散事件系统，一般不适于Petri网模型。</p>
+<h1 id="四、实体流图法"><a href="#四、实体流图法" class="headerlink" title="四、实体流图法"></a>四、实体流图法</h1><p>实体流图法（Entity Flow Chart, EFC）采用与计算机流程图近似的方法表示临时实体的活动过程，相对来说比较简单。来看一下之前举的例子，理发店的活动流程图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/33.png" alt></p>
+<h1 id="五、活动循环图法"><a href="#五、活动循环图法" class="headerlink" title="五、活动循环图法"></a>五、活动循环图法</h1><p>活动循环图法（activity cycle diagram, ACD）以直观的方式描述系统的活动过程。</p>
+<p>基本原则</p>
+<ol>
+<li>交替原则：寂静、激活两种状态交替出现</li>
+<li>闭合原则：每类实体的活动周期图都是闭合的</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/34.png" alt></p>
+<h1 id="六、网络计划方法"><a href="#六、网络计划方法" class="headerlink" title="六、网络计划方法"></a>六、网络计划方法</h1><p>网络计划方法是利用网络图表达计划任务的进度安排及其各项作业之间的相互关系，进而对网络图分析并计算网络图时间值，确定关键工序及关键路线，求出工期，并运用一定的技术组织优化方案的方法。</p>
+<p>网络计划方法有如下几种类型：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>No</strong></th>
+<th><strong>名称</strong></th>
+<th><strong>特点</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1</strong></td>
+<td><strong>节点式网络图AON（Activity-On-Node  Network）</strong></td>
+<td><strong>节点表示活动（Activity），箭线表示事件（Event）</strong></td>
+</tr>
+<tr>
+<td><strong>2</strong></td>
+<td><strong>决策关键线路法DCPM</strong></td>
+<td><strong>在模型中引入决策节点</strong></td>
+</tr>
+<tr>
+<td><strong>3</strong></td>
+<td><strong>综合网络技术模型GNA</strong></td>
+<td><strong>引入概率节点或概率边线</strong></td>
+</tr>
+<tr>
+<td><strong>4</strong></td>
+<td><strong>随机网络模型GERT</strong></td>
+<td><strong>GNA的发展。各参数都可具有随机性</strong></td>
+</tr>
+<tr>
+<td><strong>5</strong></td>
+<td><strong>关键路径法计划评审技术CPM/PERT</strong></td>
+<td><strong>只能表示前面活动结束后，后面的活动才能开始这一类项目</strong></td>
+</tr>
+<tr>
+<td><strong>6</strong></td>
+<td><strong>风险审技术VERT</strong></td>
+<td><strong>在模型中引入数学表达式</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>网络计划方法是用“图”建模。</p>
+<script type="math/tex; mode=display">G = （V，E）</script><p>$V(G)$：顶点Vertex集合，$E(G)$:有向边Edge集合</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/35.png" alt></p>
+<p>V1到V2的边称为弧。$V1$：弧的尾，$V2$：弧的头，数值：权</p>
+<p>路径（Path）：$V1,V2,V3,…Vn-1,Vn$，则顶点序列$（ V1,V2,V3,…Vn-1,Vn ）$为$V1$到$Vn$的路径</p>
+<p>度：与每个顶点相连的边数</p>
+<p><strong>网络图举例:</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/36.png" alt></p>
+<ul>
+<li>网络图由箭线、节点和结点与箭线连成的路径组成;</li>
+<li>箭线（矢线）：每一条箭线代表一项活动或工作（Activity）;</li>
+<li>节点（事项）：结点代表活动的开始和结束;</li>
+<li>路径（通路）：从网络图的始点事项开始到终点事项为止，由一系列首尾相连的箭线和结点所代表的活动和事项所组成的通道。</li>
+</ul>
+<h1 id="本章小结"><a href="#本章小结" class="headerlink" title="本章小结"></a>本章小结</h1><p>介绍离散事件系统的主要理论模型，如：排队模型、库存模型、Petri网模型、实体流图模型、活动循环图法和网络计划法。</p>
+
+    </div>
+
+  </article>
+  <div class="toc-container">
+    
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、排队模型"><span class="toc-text">一、排队模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1排队模型的构成"><span class="toc-text">1.1排队模型的构成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2排队模型的术语"><span class="toc-text">1.2排队模型的术语</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1）顾客总体-（The-calling-population）"><span class="toc-text">1）顾客总体 （The calling population）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2）系统容量-（Server-Capacity）"><span class="toc-text">2）系统容量 （Server Capacity）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3）到达过程-（Arrival-Process）"><span class="toc-text">3）到达过程 （Arrival Process）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4）排队规则（Queue-Discipline-or-Rule）"><span class="toc-text">4）排队规则（Queue Discipline or Rule）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5）服务时间和服务设施（Service-Times-and-Service-Mechanism）"><span class="toc-text">5）服务时间和服务设施（Service Times and Service Mechanism）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6）排队模型的标注方法"><span class="toc-text">6）排队模型的标注方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3排队系统的性能及其测度"><span class="toc-text">1.3排队系统的性能及其测度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#（1）排队系统的稳态特性和瞬态特性"><span class="toc-text">（1）排队系统的稳态特性和瞬态特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2排队系统的评价指标"><span class="toc-text">1.3.2排队系统的评价指标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3系统中的顾客数L"><span class="toc-text">1.3.3系统中的顾客数L</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-4顾客在系统中的逗留时间"><span class="toc-text">1.3.4顾客在系统中的逗留时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-5守恒方程式"><span class="toc-text">1.3.5守恒方程式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-6服务台利用率"><span class="toc-text">1.3.6服务台利用率</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-M-M-1模型"><span class="toc-text">1.4 M&#x2F;M&#x2F;1模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-Jackon排队网络"><span class="toc-text">1.5 Jackon排队网络</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-1-Jackon开环排队网络"><span class="toc-text">1.5.1 Jackon开环排队网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-2-Jackon闭环排队网络"><span class="toc-text">1.5.2  Jackon闭环排队网络</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-6-排队系统的仿真分析方法"><span class="toc-text">1.6 排队系统的仿真分析方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、储存模型"><span class="toc-text">二、储存模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-储存模型的构成"><span class="toc-text">2.1 储存模型的构成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-1-存储模型的五个基本要素"><span class="toc-text">2.1.1 存储模型的五个基本要素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-2-存储策略1：周期检查策略"><span class="toc-text">2.1.2 存储策略1：周期检查策略</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-3-存储策略2：连续检查策略"><span class="toc-text">2.1.3 存储策略2：连续检查策略</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-确定性存储系统与EOQ模型"><span class="toc-text">2.2 确定性存储系统与EOQ模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-没有缺货和零提前期的经济批量（EOQ）模型"><span class="toc-text">2.2.1 没有缺货和零提前期的经济批量（EOQ）模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-2-具有确定性提前期的EOQ模型"><span class="toc-text">2.2.2 具有确定性提前期的EOQ模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3-具有延期交货和确定性提前期的EOQ模型"><span class="toc-text">2.2.3 具有延期交货和确定性提前期的EOQ模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-概率型存储系统"><span class="toc-text">2.3 概率型存储系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-概述"><span class="toc-text">2.3.1 概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-单周期概率型存储模型"><span class="toc-text">2.3.2 单周期概率型存储模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#模型的背景"><span class="toc-text">模型的背景</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#经典报童问题的描述"><span class="toc-text">经典报童问题的描述</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模型的基本假设"><span class="toc-text">模型的基本假设</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模型的求解"><span class="toc-text">模型的求解</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-3-存储系统的仿真分析"><span class="toc-text">2.3.3 存储系统的仿真分析</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、Petri网模型"><span class="toc-text">三、Petri网模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-概述"><span class="toc-text">3.1 概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-经典Petri网定义"><span class="toc-text">3.2 经典Petri网定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1基本概念"><span class="toc-text">3.2.1基本概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2-Petri的规则和行为"><span class="toc-text">3.2.2 Petri的规则和行为</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-Petri网的形式化定义"><span class="toc-text">3.3 Petri网的形式化定义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-1-Petri网的定义方法"><span class="toc-text">3.3.1 Petri网的定义方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-2-Petri网的建模"><span class="toc-text">3.3.2 Petri网的建模</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-3-Petri网建模示例"><span class="toc-text">3.3.3  Petri网建模示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-高级Petri网"><span class="toc-text">3.4 高级Petri网</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-1经典Petri网的局限性"><span class="toc-text">3.4.1经典Petri网的局限性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-2高级Petri网："><span class="toc-text">3.4.2高级Petri网：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-3-Petri网的流关系图"><span class="toc-text">3.4.3 Petri网的流关系图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-4-Petri网的特点"><span class="toc-text">3.4.4 Petri网的特点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-Petri网性能分析"><span class="toc-text">3.5 Petri网性能分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-Petri网建模的适用性"><span class="toc-text">3.6 Petri网建模的适用性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、实体流图法"><span class="toc-text">四、实体流图法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#五、活动循环图法"><span class="toc-text">五、活动循环图法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#六、网络计划方法"><span class="toc-text">六、网络计划方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#本章小结"><span class="toc-text">本章小结</span></a></li></ol>
+  </div>
+
+
+  </div>
+</div>
+<div class="copyright">
+    <span>本作品采用</span>
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>
+    <span>进行许可。转载时请注明原文链接。</span>
+</div>
+
+
+  
+    <div class="post-nav">
+      <div class="post-nav-item post-nav-next">
+        
+          <span>〈 </span>
+          <a href="/post/software-1-dut-1/" rel="next" title="港口建设投资项目经济评价系统V1.0">
+          港口建设投资项目经济评价系统V1.0
+          </a>
+        
+      </div>
+  
+      <div class="post-nav-item post-nav-prev">
+          
+          <a href="/post/System-Simulation-5/" rel="prev" title="系统仿真笔记（五）离散事件系统仿真原理">
+            系统仿真笔记（五）离散事件系统仿真原理
+          </a>
+          <span>〉</span>
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+</div>
+
+<footer class="footer text-center">
+    <div id="bottom-inner">
+        <a class="bottom-item" href="" target="_blank">QH的博客</a> |
+        <a class="bottom-item">Powered by hexo</a> |
+        <a class="bottom-item">Copyright © 2023</a>  |
+        <a>博客已运行<a id="days">0</a>天</a> 
+        <script> 
+        var s1 = '2020-04-15';//设置为你的建站时间 
+        s1 = new Date(s1.replace(/-/g, "/")); 
+        s2 = new Date(); 
+        var days = s2.getTime() - s1.getTime(); 
+        var number_of_days = parseInt(days / (1000 * 60 * 60 * 24)); 
+        document.getElementById('days').innerHTML = number_of_days; 
+        </script> |
+        <a class="bottom-item" href="/atom.xml">RSS</a>
+        <script>
+			var _hmt = _hmt || [];
+			(function() {
+			  var hm = document.createElement("script");
+			  hm.src = "https://hm.baidu.com/hm.js?7241c66da4c19bc02e939e6776919ff8";
+			  var s = document.getElementsByTagName("script")[0]; 
+			  s.parentNode.insertBefore(hm, s);
+			})();
+		</script>
+    </div>
+</footer>
+
+
+
+<script>
+  (function(window, document, undefined) {
+
+    var timer = null;
+
+    function returnTop() {
+      cancelAnimationFrame(timer);
+      timer = requestAnimationFrame(function fn() {
+        var oTop = document.body.scrollTop || document.documentElement.scrollTop;
+        if (oTop > 0) {
+          document.body.scrollTop = document.documentElement.scrollTop = oTop - 50;
+          timer = requestAnimationFrame(fn);
+        } else {
+          cancelAnimationFrame(timer);
+        }
+      });
+    }
+
+    var hearts = [];
+    window.requestAnimationFrame = (function() {
+      return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(callback) {
+          setTimeout(callback, 1000 / 60);
+        }
+    })();
+    init();
+
+    function init() {
+      css(".heart{z-index:9999;width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: absolute;}.heart:after{top: -5px;}.heart:before{left: -5px;}");
+      attachEvent();
+      gameloop();
+      addMenuEvent();
+    }
+
+    function gameloop() {
+      for (var i = 0; i < hearts.length; i++) {
+        if (hearts[i].alpha <= 0) {
+          document.body.removeChild(hearts[i].el);
+          hearts.splice(i, 1);
+          continue;
+        }
+        hearts[i].y--;
+        hearts[i].scale += 0.004;
+        hearts[i].alpha -= 0.013;
+        hearts[i].el.style.cssText = "left:" + hearts[i].x + "px;top:" + hearts[i].y + "px;opacity:" + hearts[i].alpha + ";transform:scale(" + hearts[i].scale + "," + hearts[i].scale + ") rotate(45deg);background:" + hearts[i].color;
+      }
+      requestAnimationFrame(gameloop);
+    }
+
+    /**
+     * 给logo设置点击事件
+     * 
+     * - 回到顶部
+     * - 出现爱心
+     */
+    function attachEvent() {
+      var old = typeof window.onclick === "function" && window.onclick;
+      var logo = document.getElementById("logo");
+      if (logo) {
+        logo.onclick = function(event) {
+          returnTop();
+          old && old();
+          createHeart(event);
+        }
+      }
+      
+    }
+
+    function createHeart(event) {
+      var d = document.createElement("div");
+      d.className = "heart";
+      hearts.push({
+        el: d,
+        x: event.clientX - 5,
+        y: event.clientY - 5,
+        scale: 1,
+        alpha: 1,
+        color: randomColor()
+      });
+      document.body.appendChild(d);
+    }
+
+    function css(css) {
+      var style = document.createElement("style");
+      style.type = "text/css";
+      try {
+        style.appendChild(document.createTextNode(css));
+      } catch (ex) {
+        style.styleSheet.cssText = css;
+      }
+      document.getElementsByTagName('head')[0].appendChild(style);
+    }
+
+    function randomColor() {
+      // return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + ")";
+      return "#F44336";
+    }
+
+    function addMenuEvent() {
+      var menu = document.getElementById('menu-main-post');
+      if (menu) {
+        var toc = document.getElementById('toc');
+        if (toc) {
+          menu.onclick = function() {
+            if (toc) {
+              if (toc.style.display == 'block') {
+                toc.style.display = 'none';
+              } else {
+                toc.style.display = 'block';
+              }
+            }
+          };
+        } else {
+          menu.style.display = 'none';
+        }
+      }
+    }
+
+  })(window, document);
+</script>
+
+
+
+
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

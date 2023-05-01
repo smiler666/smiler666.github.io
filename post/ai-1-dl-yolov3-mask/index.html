@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#202020"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  
+    <meta name="keywords" content="探索,机器学习,深度学习," />
+  
+
+  
+    <meta name="description" content="QH的博客" />
+  
+  
+  
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  
+  <title>基于Yolo V3+keras实现的口罩识别小demo - QH的博客</title>
+  
+    <!-- stylesheets list from config.yml -->
+    
+      <link rel="stylesheet" href="/css/pure-min.css">
+    
+      <link rel="stylesheet" href="/css/xoxo.css">
+    
+  
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="QH的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="nav-container">
+<nav class="home-menu pure-menu pure-menu-horizontal">
+  <a class="pure-menu-heading" href="/">
+    
+      <img class="avatar" src="https://smiler666.github.io/images/favicon.ico">
+    
+    <span class="title" style="text-transform:none">QH的博客</span>
+  </a>
+
+  <ul class="pure-menu-list clearfix">
+      
+          
+            
+              <li class="pure-menu-item"><a href="/" class="pure-menu-link">首页</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+            
+              <a href="#" id="合集" class="pure-menu-link">合集</a>
+              <ul class="pure-menu-children">
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/探索/" style="color:#202020;" class="pure-menu-link">探索</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/categories/程序/" style="color:#202020;" class="pure-menu-link">程序</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/post/py-1/" style="color:#202020;" class="pure-menu-link">Python</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/categories/数值计算/" style="color:#202020;" class="pure-menu-link">数值计算</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/机器学习/" style="color:#202020;" class="pure-menu-link">机器学习</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/RITSS/" style="color:#202020;" class="pure-menu-link">Abaqus/RITSS</a></li>
+                  
+              
+              </ul>
+            </li>
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/archives" class="pure-menu-link">文章</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/post/share-1/" class="pure-menu-link">工具</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/about" class="pure-menu-link">关于</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/search" class="pure-menu-link">搜索</a></li>
+            
+          
+      
+  </ul>
+   
+</nav>
+
+</div>
+
+<div class="container" id="content-outer">
+<div class="inner" id="content-inner">
+<div class="post-container">
+  <article class="post" id="post">
+    <header class="post-header text-center">
+      <h1 class="title">
+        基于Yolo V3+keras实现的口罩识别小demo
+      </h1>
+      <span>
+        
+        <time class="time" datetime="2020-05-22T14:23:40.000Z">
+        2020-05-22
+      </time>
+        
+      </span>
+      <span class="slash">/</span>
+      <span class="post-meta">
+      <span class="post-tags">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8E%A2%E7%B4%A2/" rel="tag">探索</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li></ul>
+      </span>
+    </span>
+      <span class="slash">/</span>
+      <span class="read">阅读耗时 3 分钟</span>
+    </header>
+
+    <div class="post-content">
+      <a id="more"></a>
+<h1 id="Demo展示"><a href="#Demo展示" class="headerlink" title="Demo展示"></a>Demo展示</h1><div style="display: flex; justify-content: center;">
+<video width="500" height="450" controls controlslist="nodownload">
+  <source src="/post/ai-1-dl-yolov3-mask/1.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+</div>
+
+<h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1><p>模型：yolo v3 + keras </p>
+<p>参考：<a href="https://github.com/CodingChaozhang/yolov3_keras" target="_blank" rel="noopener">https://github.com/CodingChaozhang/yolov3_keras</a> </p>
+<h1 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h1><p>数据集爬虫自互联网，共计3164张图片，477 MB，利用<code>labelImg</code>工具对每个图片进行标注。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ai-1-dl-yolov3-mask/1.png" alt="1"></p>
+<p>数据集文件太大，暂时无法分享。</p>
+<h1 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h1><h2 id="1、预训练"><a href="#1、预训练" class="headerlink" title="1、预训练"></a>1、预训练</h2><p>下载yolo v3预训练模型权重<code>yolov3.weights</code>，使用如下命令将<code>yolov3.weights</code>转换为<code>.h5</code>文件格式：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python convert.py yolov3.cfg yolov3.weights model_data/yolo.h5</span><br><span class="line">python convert.py yolov3-tiny.cfg yolov3-tiny.weights model_data/yolov3-tiny.h5</span><br></pre></td></tr></table></figure>
+<h2 id="2、预训练效果"><a href="#2、预训练效果" class="headerlink" title="2、预训练效果"></a>2、预训练效果</h2><p>CMD运行<code>python yolo_video.py --image</code>即可。</p>
+<h2 id="3、数据集格式转换"><a href="#3、数据集格式转换" class="headerlink" title="3、数据集格式转换"></a>3、数据集格式转换</h2><p>将标签和图片分别放到目录<code>VOCdevkit/VOC2007</code>下的<code>Annotation</code>和<code>JPEGImages</code>文件夹中。然后使用<code>voc2yolo3.py</code>文件生成对应的txt文件用于yolo v3数据集的读取。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">VOCdevkit</span><br><span class="line">	-VOC2007</span><br><span class="line">		├─ImageSets    # 存放数据集列表文件，由voc2yolo3.py文件生成</span><br><span class="line">		├─Annotations  # 存放数据集图片文件</span><br><span class="line">		├─JPEGImages   # 存放图片标签，xml格式</span><br><span class="line">		└─voc2yolo3.py # 用于生成数据集列表文件</span><br></pre></td></tr></table></figure>
+<p>将<code>voc_annotation.py</code>中的classes修改为自己的类别，如：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ai-1-dl-yolov3-mask/2.png" alt="1"></p>
+<p>运行<code>voc_annotation.py</code></p>
+<p>将<code>voc_classes.txt</code>中的分类更换为自己的类别。</p>
+<h2 id="4、训练"><a href="#4、训练" class="headerlink" title="4、训练"></a>4、训练</h2><p>修改<code>train.py</code>中的<code>anchor_path</code>可选择使用<code>yolov3</code>训练还是<code>yolov3-tiny</code>训练。</p>
+<h2 id="5、应用"><a href="#5、应用" class="headerlink" title="5、应用"></a>5、应用</h2><p>修改根<code>yolo.py</code>文件，将<code>model_path</code>,<code>anchors_path</code>,<code>classes_path</code>替换为自己的路径。</p>
+<p>1.单张图片测试<br><code>python yolo_video.py --image</code> + 图片路径</p>
+<p>2.电脑摄像头实时检测<br><code>python yolo_video.py --input</code></p>
+<p>此外对应的yolo.py文件174行改为<code>vid = cv2.VideoCapture(0)</code></p>
+<p>3.测试本地视频<br><code>python yolo_video.py --input</code></p>
+<p>此外对应的<code>yolo.py</code>文件174行改为<code>vid = cv2.VideoCapture(“视频路径+视频名+视频后缀名”)</code>；</p>
+<p>4.测试本地视频并且保存视频效果<br><code>python yolo_video.py --output</code></p>
+<p>此外对应的<code>yolo.py</code>文件184行改为<code>out = cv2.VideoWriter(“视频路径+视频名+视频后缀名”, video_FourCC, video_fps, video_size)</code></p>
+
+    </div>
+
+  </article>
+  <div class="toc-container">
+    
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Demo展示"><span class="toc-text">Demo展示</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#模型"><span class="toc-text">模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据集"><span class="toc-text">数据集</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#模型训练"><span class="toc-text">模型训练</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1、预训练"><span class="toc-text">1、预训练</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2、预训练效果"><span class="toc-text">2、预训练效果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3、数据集格式转换"><span class="toc-text">3、数据集格式转换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4、训练"><span class="toc-text">4、训练</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5、应用"><span class="toc-text">5、应用</span></a></li></ol></li></ol>
+  </div>
+
+
+  </div>
+</div>
+<div class="copyright">
+    <span>本作品采用</span>
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>
+    <span>进行许可。转载时请注明原文链接。</span>
+</div>
+
+
+  
+    <div class="post-nav">
+      <div class="post-nav-item post-nav-next">
+        
+          <span>〈 </span>
+          <a href="/post/System-Simulation-8/" rel="next" title="系统仿真笔记（八）系统动力学模拟">
+          系统仿真笔记（八）系统动力学模拟
+          </a>
+        
+      </div>
+  
+      <div class="post-nav-item post-nav-prev">
+          
+          <a href="/post/software-1-dut-2/" rel="prev" title="工程经济与项目评价研学辅助系统">
+            工程经济与项目评价研学辅助系统
+          </a>
+          <span>〉</span>
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+</div>
+
+<footer class="footer text-center">
+    <div id="bottom-inner">
+        <a class="bottom-item" href="" target="_blank">QH的博客</a> |
+        <a class="bottom-item">Powered by hexo</a> |
+        <a class="bottom-item">Copyright © 2023</a>  |
+        <a>博客已运行<a id="days">0</a>天</a> 
+        <script> 
+        var s1 = '2020-04-15';//设置为你的建站时间 
+        s1 = new Date(s1.replace(/-/g, "/")); 
+        s2 = new Date(); 
+        var days = s2.getTime() - s1.getTime(); 
+        var number_of_days = parseInt(days / (1000 * 60 * 60 * 24)); 
+        document.getElementById('days').innerHTML = number_of_days; 
+        </script> |
+        <a class="bottom-item" href="/atom.xml">RSS</a>
+        <script>
+			var _hmt = _hmt || [];
+			(function() {
+			  var hm = document.createElement("script");
+			  hm.src = "https://hm.baidu.com/hm.js?7241c66da4c19bc02e939e6776919ff8";
+			  var s = document.getElementsByTagName("script")[0]; 
+			  s.parentNode.insertBefore(hm, s);
+			})();
+		</script>
+    </div>
+</footer>
+
+
+
+<script>
+  (function(window, document, undefined) {
+
+    var timer = null;
+
+    function returnTop() {
+      cancelAnimationFrame(timer);
+      timer = requestAnimationFrame(function fn() {
+        var oTop = document.body.scrollTop || document.documentElement.scrollTop;
+        if (oTop > 0) {
+          document.body.scrollTop = document.documentElement.scrollTop = oTop - 50;
+          timer = requestAnimationFrame(fn);
+        } else {
+          cancelAnimationFrame(timer);
+        }
+      });
+    }
+
+    var hearts = [];
+    window.requestAnimationFrame = (function() {
+      return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(callback) {
+          setTimeout(callback, 1000 / 60);
+        }
+    })();
+    init();
+
+    function init() {
+      css(".heart{z-index:9999;width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: absolute;}.heart:after{top: -5px;}.heart:before{left: -5px;}");
+      attachEvent();
+      gameloop();
+      addMenuEvent();
+    }
+
+    function gameloop() {
+      for (var i = 0; i < hearts.length; i++) {
+        if (hearts[i].alpha <= 0) {
+          document.body.removeChild(hearts[i].el);
+          hearts.splice(i, 1);
+          continue;
+        }
+        hearts[i].y--;
+        hearts[i].scale += 0.004;
+        hearts[i].alpha -= 0.013;
+        hearts[i].el.style.cssText = "left:" + hearts[i].x + "px;top:" + hearts[i].y + "px;opacity:" + hearts[i].alpha + ";transform:scale(" + hearts[i].scale + "," + hearts[i].scale + ") rotate(45deg);background:" + hearts[i].color;
+      }
+      requestAnimationFrame(gameloop);
+    }
+
+    /**
+     * 给logo设置点击事件
+     * 
+     * - 回到顶部
+     * - 出现爱心
+     */
+    function attachEvent() {
+      var old = typeof window.onclick === "function" && window.onclick;
+      var logo = document.getElementById("logo");
+      if (logo) {
+        logo.onclick = function(event) {
+          returnTop();
+          old && old();
+          createHeart(event);
+        }
+      }
+      
+    }
+
+    function createHeart(event) {
+      var d = document.createElement("div");
+      d.className = "heart";
+      hearts.push({
+        el: d,
+        x: event.clientX - 5,
+        y: event.clientY - 5,
+        scale: 1,
+        alpha: 1,
+        color: randomColor()
+      });
+      document.body.appendChild(d);
+    }
+
+    function css(css) {
+      var style = document.createElement("style");
+      style.type = "text/css";
+      try {
+        style.appendChild(document.createTextNode(css));
+      } catch (ex) {
+        style.styleSheet.cssText = css;
+      }
+      document.getElementsByTagName('head')[0].appendChild(style);
+    }
+
+    function randomColor() {
+      // return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + ")";
+      return "#F44336";
+    }
+
+    function addMenuEvent() {
+      var menu = document.getElementById('menu-main-post');
+      if (menu) {
+        var toc = document.getElementById('toc');
+        if (toc) {
+          menu.onclick = function() {
+            if (toc) {
+              if (toc.style.display == 'block') {
+                toc.style.display = 'none';
+              } else {
+                toc.style.display = 'block';
+              }
+            }
+          };
+        } else {
+          menu.style.display = 'none';
+        }
+      }
+    }
+
+  })(window, document);
+</script>
+
+
+
+
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

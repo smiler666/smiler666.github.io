@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#202020"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  
+    <meta name="keywords" content="ABAQUS,RITSS," />
+  
+
+  
+    <meta name="description" content="QH的博客" />
+  
+  
+  
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  
+  <title>基于ABAQUS的大变形有限元RITSS方法教程（一）基础知识 - QH的博客</title>
+  
+    <!-- stylesheets list from config.yml -->
+    
+      <link rel="stylesheet" href="/css/pure-min.css">
+    
+      <link rel="stylesheet" href="/css/xoxo.css">
+    
+  
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="QH的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="nav-container">
+<nav class="home-menu pure-menu pure-menu-horizontal">
+  <a class="pure-menu-heading" href="/">
+    
+      <img class="avatar" src="https://smiler666.github.io/images/favicon.ico">
+    
+    <span class="title" style="text-transform:none">QH的博客</span>
+  </a>
+
+  <ul class="pure-menu-list clearfix">
+      
+          
+            
+              <li class="pure-menu-item"><a href="/" class="pure-menu-link">首页</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+            
+              <a href="#" id="合集" class="pure-menu-link">合集</a>
+              <ul class="pure-menu-children">
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/探索/" style="color:#202020;" class="pure-menu-link">探索</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/categories/程序/" style="color:#202020;" class="pure-menu-link">程序</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/post/py-1/" style="color:#202020;" class="pure-menu-link">Python</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/categories/数值计算/" style="color:#202020;" class="pure-menu-link">数值计算</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/机器学习/" style="color:#202020;" class="pure-menu-link">机器学习</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/RITSS/" style="color:#202020;" class="pure-menu-link">Abaqus/RITSS</a></li>
+                  
+              
+              </ul>
+            </li>
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/archives" class="pure-menu-link">文章</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/post/share-1/" class="pure-menu-link">工具</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/about" class="pure-menu-link">关于</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/search" class="pure-menu-link">搜索</a></li>
+            
+          
+      
+  </ul>
+   
+</nav>
+
+</div>
+
+<div class="container" id="content-outer">
+<div class="inner" id="content-inner">
+<div class="post-container">
+  <article class="post" id="post">
+    <header class="post-header text-center">
+      <h1 class="title">
+        基于ABAQUS的大变形有限元RITSS方法教程（一）基础知识
+      </h1>
+      <span>
+        
+        <time class="time" datetime="2023-04-08T09:00:00.000Z">
+        2023-04-08
+      </time>
+        
+      </span>
+      <span class="slash">/</span>
+      <span class="post-meta">
+      <span class="post-tags">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ABAQUS/" rel="tag">ABAQUS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RITSS/" rel="tag">RITSS</a></li></ul>
+      </span>
+    </span>
+      <span class="slash">/</span>
+      <span class="read">阅读耗时 1 分钟</span>
+    </header>
+
+    <div class="post-content">
+      <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="63570fc5d79b90acf9edf9d5e0a46372c083bec205c039281205cb8f7f5ecf42">fddf53f1f05333f1e166df83c1b1df9fe3de9b970c0c6296a3c246ad1eb2ddf726c2e4d082cd6de52b57d0dc6c5f032a122b241c2852485207094a46db73934d18e1d82c9cecde7e3737082e55c6cfd8ec0d267ebbe89c84c7ed756fe083cf35854f6fd1dd18a8bc9f3361061018b70e5237702410212649c00e5716e36dfa0168809594265a2eeba4a8b8d23a3002d2f43c7932f2b7ccfd4596d085ab262cfc337912377c1e1b95a1c971c204d563df5272d73dbfcd37a472bc0202524591583b87fdbdb51b26adb782a84f72649a2494f6020b9a9919cc670776ec774db5e11bb70bf667569f3e6558ae64f459483055ddb06487c6ab7543d7fb4a42fcfaa38b9a4a0469ce19526417a9cedb904a58e99ecd011c3ccdff8bfbcf5bf1924c43b8a329f1d42af3f6575fcb949219b57bb35bd9b424ebc81af6753f2aecad3557f0b15c031b1b271347822b29926e3659a08a28edd7b23bdfff0aaa0086b566b68a430d24b381e2b8e4e97043d2a21712ab4c7ff570f59e61b078ffa08f7633c5400ea18a0182f1cf96de19a54c16ee738318b30c490fe67e0d4944244c6d85600af381f23256196f389af70678e031f64680f1336fe096d2f17c8e2c382504affa724f22a45fa28114d5441ce009910320971dba07f0ac1d9cb589ac03b2f63b61b58e762dad31e33db908df7d4ac71d240afd6b8d98b5e5e7a0184e575bfe695728d218e09a6a09bd4a272f6d8d4c7885e08dd2748197aa5df44ba587bebecf01aa992bd4640a6d871fd2d741196226fa30d7e0808b5a6b24599929a54bb8c6b910c93507272af3b1309ddb9a965116335329102d4f278577fad75081d247cdbedcdc9b17e57ea28f16303510d65dc7d976ba479779a889011b5601cf03412d640273d6ce571531ac7bae19687f145f51b5cb9a8a98710743c6cc907a2de01293ba8ef2c4fcad022ed95d1efec7a74c546f4571bb1d1df3a90bd5084e748cd3aa9a5948c2b6a5c7ecce544a549526a7f64002e6ac3c8d3b306001fe2f65c0ed2416b49c56849d049247366d2a03898aaed3fdf39566f2603f0657e47206fec129d5465eb6c99c7dc579716b4c75654a2d5c2caf2370ce7ea4af714b3a74de8331c7ff6f103d7ae19f9344441e75c258af3c645077c73ff061f822e3fed176091a291aa91d8f6c4a00d2fa92e6489bb243aa05c6280322c5f1ee51bf2d0fad44f09257d0a620e24d061329e3f092610aabd1339b7b8ffb18e6fee3ff98cf15d93cc91adfcc908f7e3ba87d5ab8bc3e0964b752d46f5543a7660dcbe0ce0bbc5030be832bd26e89dc86215e33b82ca8cc9d598adbf0a59c0344b34a6444cf8d781f665b29c148960d7217bb8e9ecda46cfb08d83ae093604342d5bd9cb604a0a0b13ce48dd24412063fc4b71fd175936eb65260c343f3601f0436c05432b9ce9fd0931ad8f29d657dc70cabff12545282ac18770415bb605655ecf0bfd11b660219de822a162b8448df08c13fc4b05b4825b87e3ef139e286e254bc1cf17f6fcc337b49365e3a95b321553db6e0d15d64e90728934755f4e4f5367b6c8a1de40bb87be795f346519404ea676428d6f2df150aad43cd1f6f6200c7adf2428fea570681d0e564444716c0087719616706a485f4bc1aef733ed499e8f64b773d4d6809985176f776f4371c99efb72eac030903442623b2aa349e76138b0a7e3ce5c106207faef3ec303d2b4e37b90a246f4ba9fbea2c731de15f29c2b1dbc1fd26e5ac3b1171a55a07a2c6c24253f784a6911d24096467d8ed43eba2283a06197e85a49e9f2828aec77ed92398202c233ca54fa037a14e01d42a56dba5d82c10e1d3f23070efbb600c1caa36084c3e6d0212df8951c25cb4bd475f818b21c0dbee84f7c8929f0a46ac9d78d8a68a3ba38e9b5ee861f69f2942bf1f94e6fc090e1489b6fb77d406b89c9671aa18099af75e74d918d7aa31e6256d1fc49ff5c7288355c0714df8370cc72197e161bd53d833e2b0416e46d303662c01b26790d6d92e51a1b74693e96263b622f7722ae571d126ba93e9397de90d09076019f8516d5de3da0fe0fd31caf772624fd1c8902a52ccbc64c765961f5e3ab1983d5347857da1e849edf05dc5d7ff06b509b23512923d2619576fe1dd7a6bc6998b239b9df03c5b95d99daa3f7cb76258fe2dd0179d25ef71b3dcada2b8c8f5f80043a3633f4d2e6d2cccc77128f255720f566252e733d4e19945a1a8e1c83790e3eed78b2e3d4c07c016645334a8298a42f3bf06cf40b738ae7617196c6b5639a5c3120fea21c3f6414b5027bf9d107c0abe7ce349e64ca72135aa8b7e32c01e561d9825e0d307f0f16e218bb4a874efbcc854dfa2d01726a1bccc6b3cc15de010a38a31d8a7a2c6670fe3a07b237fa740ea048d3134ef39230178efbed1bac1c2f195d6bfd32aa61ee8b6d891dce4e3489a06c832e094498078bf75b664a98cfacebe9ce77ba3ff53f3151715c71ffc667da8bc19b7d9f830c6cd735b20e123a5eb01c455f4a2de7e5df2e86e992d5c3776ebc96cbcc7e2c87e3262562a82a16f5c08008c2fb0f8b0bf932e3ac90c360f03992883ffbe31694edb472069686723de00d8e7dc8bbe3c2908c7411789af51d989e9f248dd6bb216ce8738917a1a58c01ea87b075b5d1fd0d195b7299f729e8cdc7ff21ec06af6197cbd51d4f0e8f55349d9a25e7600000534f56f92e6f1e51d49deadcbd88415f3f349bd35c9e933b4b8037ea7fbcdc1d54093189234999f7e767c32c1d026b7bed055565f5d510216476a7de53e5a4c37d73f0c9f1a9acd58968ce78aaecd1d1aebf4b8c4e361efc3a983d6406266a8044b685d034b12987ad4e66bcd619e60173d869e9a1683316befef185cbaa0ac547d653bc2356146e8dcc506b00efab7b66de443887c0d4856c03057e0d4f024975dbd4e871801275516d5237073f6d2a534ea54a722c1704e576ef314d6a2c9810bcea42a045ce63e6a8f374a30927b78a528162867bcc423a1491b9c6cbd4e8cf7e25199c285bbfed6e1ba31ede60458d5202e0781fdf249230346333e704b6a8dbe776d92c8c40859ca314731d3a3df1f72401ac69dce5aa44c30fca5b331c822438c34d2468de2875524b44c19458806ee5856effa9e180cb39ce157af7d713b83e69354156dffb625ae5d5099e080212bd51bd243395f8e379889e06d90f3eaae690f78c519d7825ba75cec900573018442a521d2fce97768dc534d50040e2181ce0083e4073a71c3493b27c01ca46eb40474f1fb4a2e3a20b846beabcf101ceed58ddc74e26eebd607ab073eb71e6078e06d0d94b19e6ddd312e92fa9780f3ea3ff62cae4ec44da69f3a268abf57967762870edb73bd8aaa8c24295fe891aa67c2c207e156192b17b30cb639b674edfabffdebcf1f5b4d056c5ad248a937a57c11b728ab05778bd8c9092e1a6b3e2d784d895d69859ba799a4cc2a5548bfbfe7232ef4b58d038732a7b53ed802929b23fe119fd406ca7ad2f39e66e6212559ff17b57f8ea1daf90c1eaac8de5ba376a034f507e3c08a688c632f862044f81dd3b1d3fb9f5017ae25456bf6a4e099757d6d196667c25b214caaca9f7520c50f1b86c1be58f780ea10c2a31f1db63e618e801a2b26052f89c5d8899bafc2d2a271d42befe2b15249313c4ce994a9bf58c1858ecaccd0bd76a6bb413270b37e89f320b4bbbd2d767115c4ff0cbaaef214524520b0a290a50164d1e05c66a14e7b99b30a43e916e67b816c97cbce6466cd419a869d28134a442a00f4c6c794b2136b57a6a7a0dfa46990de5a2794ae4fc9f03b465a5fc5e22b99105accb7e2eb2da3b4d984c4cf2de9efbcc005058e128934cc3f5a8fce800bf2002cdd0b616b7b0b1d3bb7a9e2f7aaa81d1ccf8a07292c5878b2fd9392cb8330c939c8cd803afad5a43892a56e12093bd494fd7fc33a570375f36b818786c425956e469ccd725913b457fa3593850b04da93cf5cd34291eb9cef63f0101b80c3d08f93af96d9945b802c1ee9f30ea53507c418421ecf01505fc2da27a6fbaed4f7af54f63fd5582da607e6b8b710de72dedbc81a082ee7b64559d9b6340eacc5539a6cfac05ddfeedccf14cd3473a27a4ed41c5ab1e0bf5a58862e662c0ccdb190267dc85a958620985876052e4e061bc52def41770319ad5ea76a409f4197be67f77f80dc0f0fa91bee3f99e1b4284a956bc05bb7d1e7ff8ef3baa8bc269a8bbe927d7e3f58f1d7e9f21ae83d7a3dd0bde284134f2333c86cd7888b479954443cdd25ca5bf1e54426ac8fa672b6f4684c496e976bbec609cdbc3da2fbdb156ea610f6fba4ade3e99f1673204bdfd7dae926b5c4d65847afba69fa515c0e1413659b0c77afb403ddfde92a7b4426093070f08610306482a49354f7bc8ec277086ef3e47afc777abe61d042085f4aa310108f9753f10bdf5272bd3286c3887d87f3c2d20abbd542bb02470e9e4735e5437ae64b5ef6802cdb56b2baaea38b4bdb743b6b79d126602b940c10f487784dca7570c532afec087ed6543d45ce79e4f15e53a3cd873e62bdd8aa44c3880d63e0660b9cef33edab1b701798a8aac45d3c178af095c19a2e8e8de68d219ff84dd20fc26872da37d1dba5d56b624843128d6ec2f27912a63bb918eedaa2d36f15fe7c0ba9cd026d668b5288cb2169237269f0a18dc3df6dc1872d8eaf424e9c75bc4b6da60dcee1ddb4c716f8d54cdc94b9be84a4e70b6951428f22f40516f6296cf0cec257bfbc8ab8f8221dc2f2b612305162cdc69297cbb2410550b109b06a7548b8c27dbd4041fb3a3e4d8402ef53477b59508c3f4495cca1134a685c568fd96bfd722fda05813b43625ffce424143163076eafbd532ee38cd0bcea62703880bc60e7f89a31970151d0b308409fc8c00ec2f5a6d03e7863a3a4889822821ca699d9bcf92b82964d49bc4836e78e9039699053e3da9adbc13906623baa40b578bbbb2c4d477d0eb508068a0e5c6e215d0e607d28bf855d7e2e0c6b89b923dcd0861bdcace0db466c8a0196014b4859671c6137835c8e15beb27731b25157f4ab90f828a692ee3246cc0b14a7dcfe1bc0593aef6d700a1f12f82a18a4d14c2947589ef872e7d79fc782d03dc3c0e2b2b446f657a3d449b43c96f406e35adc7ba3b338d8793d5c1aacecfa0295d0cea3dc603733890e805efbf49eee8809f2ec31569275c168a326890520e8bc16b57a345c59a52006df3ce4cf3c4e37820ce0bfe04dff04f2e7c80b1562bac21b8d86ca8322dd5f437bd1ce5d7822e68f5f86c9e35211dd8a77348619d18c6ede1199e7a7a334901baf40274222c62b4b7cede3366dbcfaa69460769eb015f47356903b5077dc58d26044efb3314e220ecf004ef1590896dea510f7fe01bd37a5075453a18b0ca78701e49b8b04f0c88b733897698afe9376518edd15cce9774f0cbcd79ec8213afd640dc31122b1331af8f50f8d52a66f594dc406e48bc27b1c96fcc1d2f949557cb828596aacb8ac27512a51553ca9b516fdb2bf6d9580dea58b3932aeb01b1aee75d338f67ec0ed61c4d694c1a646a58886b21fdda0d363cf95e6818c3a4d7305fa620666f3fbdd160834d0683d17732d8cdd7a8c9939f0c74b540e1ff69f807926094496ddf4c32fd95c962257855b74068607fc9440816e8fe50cb814c27eb58d45a52de31b0a4694908e90ea88cda180d10b89d8fcd29f56923cf9770bf5aa2b4c43ba8324ce429425db02c217a3114ad764eb626e28c4a1943cfef5f0f4e819117a1baacb0a6bf9831bec0fe35ae2bae1829a2caee2029766241e034ee285d51366e6a875bd7aa01382cbbbe4667b612945b9d96f780889bf952a3f25579b60553dc6c96a24103bc7f38ad6d6e704ec14a940de84f6cc245bc35842b7f800bff85da3faf0cf8ba3b68388afbace9cb96bedfe4a098ba452920839962a48c5172a7eb7e2b98b48e255e1c1be3fe0fee1b922af7cadb297f1f453b3132fcb2b4a45d96f46134e492a9fba6e0d9c1cf5e239db09cece535fd9de121cf973c96a67dd1fd4b7f802b34f932d8f8a97798c73e38a4925a8966fae48240eaed07a2bd87b8cd3117d11c314ca84902c4a0f73cd1390c4fd560cf16046cb394327355cf8f54e81fcd532f2e8a86d58f7cbf08e0fe5cc177ec94af157d58efe23e3959e4d850ef736b9fd5f75aa61804df0389c1f09911d9d16e55c5ce5dfb50b823f46af2b6d17b3399791e79cfb616ba380e92e9bf8b9db8266791e3ebfcd40531f67b6271ab0ec06a837342f3e8d8edc43025c38b5eefa171aa58928f1afab63a0627f5197ff263212cc4e806dcc8acfd29b4a75be3c7b1632fbb5a954651b49a88d68bffde4017ea4e5fcde9213da7c9858e52593acfc7af0742aa07c9d689a0d95f56e07ce631af0b2ea3fa07fa4a09defc4ad6171879b1bfcec16e1fe16feaf0318c54f34d785b7fac69d793a203433ac336bc2393d462762015502511f81f4b026ce863eb16e1ff0bd9e13dbb51ae701ae2d870530017e3777cefca7af043d77b96df9e40f22aac9cba53834c1</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">该文章已被加密，请在此输入密码查看！</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+    </div>
+
+  </article>
+  <div class="toc-container">
+    
+
+  </div>
+</div>
+<div class="copyright">
+    <span>本作品采用</span>
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>
+    <span>进行许可。转载时请注明原文链接。</span>
+</div>
+
+
+  
+    <div class="post-nav">
+      <div class="post-nav-item post-nav-next">
+        
+          <span>〈 </span>
+          <a href="/post/share-1/" rel="next" title="分享一些常用的在线小工具（常用在线工具汇总）">
+          分享一些常用的在线小工具（常用在线工具汇总）
+          </a>
+        
+      </div>
+  
+      <div class="post-nav-item post-nav-prev">
+          
+          <a href="/post/abaqus-1-ritss-02/" rel="prev" title="基于ABAQUS的大变形有限元RITSS方法教程（二）自动化建模及RITSS实现">
+            基于ABAQUS的大变形有限元RITSS方法教程（二）自动化建模及RITSS实现
+          </a>
+          <span>〉</span>
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+</div>
+
+<footer class="footer text-center">
+    <div id="bottom-inner">
+        <a class="bottom-item" href="" target="_blank">QH的博客</a> |
+        <a class="bottom-item">Powered by hexo</a> |
+        <a class="bottom-item">Copyright © 2023</a>  |
+        <a>博客已运行<a id="days">0</a>天</a> 
+        <script> 
+        var s1 = '2020-04-15';//设置为你的建站时间 
+        s1 = new Date(s1.replace(/-/g, "/")); 
+        s2 = new Date(); 
+        var days = s2.getTime() - s1.getTime(); 
+        var number_of_days = parseInt(days / (1000 * 60 * 60 * 24)); 
+        document.getElementById('days').innerHTML = number_of_days; 
+        </script> |
+        <a class="bottom-item" href="/atom.xml">RSS</a>
+        <script>
+			var _hmt = _hmt || [];
+			(function() {
+			  var hm = document.createElement("script");
+			  hm.src = "https://hm.baidu.com/hm.js?7241c66da4c19bc02e939e6776919ff8";
+			  var s = document.getElementsByTagName("script")[0]; 
+			  s.parentNode.insertBefore(hm, s);
+			})();
+		</script>
+    </div>
+</footer>
+
+
+
+<script>
+  (function(window, document, undefined) {
+
+    var timer = null;
+
+    function returnTop() {
+      cancelAnimationFrame(timer);
+      timer = requestAnimationFrame(function fn() {
+        var oTop = document.body.scrollTop || document.documentElement.scrollTop;
+        if (oTop > 0) {
+          document.body.scrollTop = document.documentElement.scrollTop = oTop - 50;
+          timer = requestAnimationFrame(fn);
+        } else {
+          cancelAnimationFrame(timer);
+        }
+      });
+    }
+
+    var hearts = [];
+    window.requestAnimationFrame = (function() {
+      return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(callback) {
+          setTimeout(callback, 1000 / 60);
+        }
+    })();
+    init();
+
+    function init() {
+      css(".heart{z-index:9999;width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: absolute;}.heart:after{top: -5px;}.heart:before{left: -5px;}");
+      attachEvent();
+      gameloop();
+      addMenuEvent();
+    }
+
+    function gameloop() {
+      for (var i = 0; i < hearts.length; i++) {
+        if (hearts[i].alpha <= 0) {
+          document.body.removeChild(hearts[i].el);
+          hearts.splice(i, 1);
+          continue;
+        }
+        hearts[i].y--;
+        hearts[i].scale += 0.004;
+        hearts[i].alpha -= 0.013;
+        hearts[i].el.style.cssText = "left:" + hearts[i].x + "px;top:" + hearts[i].y + "px;opacity:" + hearts[i].alpha + ";transform:scale(" + hearts[i].scale + "," + hearts[i].scale + ") rotate(45deg);background:" + hearts[i].color;
+      }
+      requestAnimationFrame(gameloop);
+    }
+
+    /**
+     * 给logo设置点击事件
+     * 
+     * - 回到顶部
+     * - 出现爱心
+     */
+    function attachEvent() {
+      var old = typeof window.onclick === "function" && window.onclick;
+      var logo = document.getElementById("logo");
+      if (logo) {
+        logo.onclick = function(event) {
+          returnTop();
+          old && old();
+          createHeart(event);
+        }
+      }
+      
+    }
+
+    function createHeart(event) {
+      var d = document.createElement("div");
+      d.className = "heart";
+      hearts.push({
+        el: d,
+        x: event.clientX - 5,
+        y: event.clientY - 5,
+        scale: 1,
+        alpha: 1,
+        color: randomColor()
+      });
+      document.body.appendChild(d);
+    }
+
+    function css(css) {
+      var style = document.createElement("style");
+      style.type = "text/css";
+      try {
+        style.appendChild(document.createTextNode(css));
+      } catch (ex) {
+        style.styleSheet.cssText = css;
+      }
+      document.getElementsByTagName('head')[0].appendChild(style);
+    }
+
+    function randomColor() {
+      // return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + ")";
+      return "#F44336";
+    }
+
+    function addMenuEvent() {
+      var menu = document.getElementById('menu-main-post');
+      if (menu) {
+        var toc = document.getElementById('toc');
+        if (toc) {
+          menu.onclick = function() {
+            if (toc) {
+              if (toc.style.display == 'block') {
+                toc.style.display = 'none';
+              } else {
+                toc.style.display = 'block';
+              }
+            }
+          };
+        } else {
+          menu.style.display = 'none';
+        }
+      }
+    }
+
+  })(window, document);
+</script>
+
+
+
+
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#202020"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  
+    <meta name="keywords" content="机器学习,深度学习,强化学习," />
+  
+
+  
+    <meta name="description" content="QH的博客" />
+  
+  
+  
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  
+  <title>机器学习系列（五）贝叶斯算法 - QH的博客</title>
+  
+    <!-- stylesheets list from config.yml -->
+    
+      <link rel="stylesheet" href="/css/pure-min.css">
+    
+      <link rel="stylesheet" href="/css/xoxo.css">
+    
+  
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="QH的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="nav-container">
+<nav class="home-menu pure-menu pure-menu-horizontal">
+  <a class="pure-menu-heading" href="/">
+    
+      <img class="avatar" src="https://smiler666.github.io/images/favicon.ico">
+    
+    <span class="title" style="text-transform:none">QH的博客</span>
+  </a>
+
+  <ul class="pure-menu-list clearfix">
+      
+          
+            
+              <li class="pure-menu-item"><a href="/" class="pure-menu-link">首页</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+            
+              <a href="#" id="合集" class="pure-menu-link">合集</a>
+              <ul class="pure-menu-children">
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/探索/" style="color:#202020;" class="pure-menu-link">探索</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/categories/程序/" style="color:#202020;" class="pure-menu-link">程序</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/post/py-1/" style="color:#202020;" class="pure-menu-link">Python</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/categories/数值计算/" style="color:#202020;" class="pure-menu-link">数值计算</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/机器学习/" style="color:#202020;" class="pure-menu-link">机器学习</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/RITSS/" style="color:#202020;" class="pure-menu-link">Abaqus/RITSS</a></li>
+                  
+              
+              </ul>
+            </li>
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/archives" class="pure-menu-link">文章</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/post/share-1/" class="pure-menu-link">工具</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/about" class="pure-menu-link">关于</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/search" class="pure-menu-link">搜索</a></li>
+            
+          
+      
+  </ul>
+   
+</nav>
+
+</div>
+
+<div class="container" id="content-outer">
+<div class="inner" id="content-inner">
+<div class="post-container">
+  <article class="post" id="post">
+    <header class="post-header text-center">
+      <h1 class="title">
+        机器学习系列（五）贝叶斯算法
+      </h1>
+      <span>
+        
+        <time class="time" datetime="2021-03-26T04:20:00.000Z">
+        2021-03-26
+      </time>
+        
+      </span>
+      <span class="slash">/</span>
+      <span class="post-meta">
+      <span class="post-tags">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag">强化学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag">深度学习</a></li></ul>
+      </span>
+    </span>
+      <span class="slash">/</span>
+      <span class="read">阅读耗时 7 分钟</span>
+    </header>
+
+    <div class="post-content">
+      <a id="more"></a>
+<h1 id="第5章：贝叶斯算法简介"><a href="#第5章：贝叶斯算法简介" class="headerlink" title="第5章：贝叶斯算法简介"></a>第5章：贝叶斯算法简介</h1><p>贝叶斯算法是一种基于统计学原理的机器学习算法，用于处理概率推断问题。它基于贝叶斯定理，通过利用先验概率和观测数据的条件概率，更新模型的后验概率。贝叶斯算法在许多领域中都有广泛的应用，例如垃圾邮件过滤、医学诊断、文本分类等。</p>
+<h2 id="5-1-算法原理"><a href="#5-1-算法原理" class="headerlink" title="5.1 算法原理"></a>5.1 算法原理</h2><p>贝叶斯算法的核心是贝叶斯定理，其数学公式表示如下：</p>
+<script type="math/tex; mode=display">
+P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}</script><p>其中，P(A|B) 表示在观测到B的条件下，事件A发生的概率；P(B|A) 表示在事件A发生的条件下，观测到B的概率；P(A) 和 P(B) 分别表示事件A和事件B的先验概率。</p>
+<p>贝叶斯算法通过计算后验概率 P(A|B) 来完成推断，其中先验概率 P(A) 和条件概率 P(B|A) 可以通过历史数据或者领域知识来估计，而后验概率 P(A|B) 则是我们想要得到的结果。</p>
+<h2 id="5-2-算法步骤"><a href="#5-2-算法步骤" class="headerlink" title="5.2 算法步骤"></a>5.2 算法步骤</h2><p>贝叶斯算法的基本步骤如下：</p>
+<ol>
+<li>收集观测数据和事件的先验概率。</li>
+<li>利用观测数据计算条件概率。</li>
+<li>利用贝叶斯定理计算后验概率。</li>
+<li>根据后验概率做出推断或者决策。</li>
+</ol>
+<h2 id="5-3-例子：垃圾邮件过滤"><a href="#5-3-例子：垃圾邮件过滤" class="headerlink" title="5.3 例子：垃圾邮件过滤"></a>5.3 例子：垃圾邮件过滤</h2><p>以垃圾邮件过滤为例，假设我们有一些已经被标记为垃圾邮件和非垃圾邮件的邮件样本数据，并且我们已经计算了这些邮件属于垃圾邮件和非垃圾邮件的先验概率。现在，我们希望通过贝叶斯算法来判断一封新的邮件是否是垃圾邮件。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 导入必要的库</span></span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算先验概率</span></span><br><span class="line">P_spam = <span class="number">0.3</span></span><br><span class="line">P_non_spam = <span class="number">0.7</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算条件概率</span></span><br><span class="line">P_word_given_spam = <span class="number">0.8</span></span><br><span class="line">P_word_given_non_spam = <span class="number">0.2</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取待判断邮件的单词列表</span></span><br><span class="line">words = [<span class="string">'free'</span>, <span class="string">'money'</span>, <span class="string">'win'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 初始化后验概率</span></span><br><span class="line">P_spam_given_words = P_spam</span><br><span class="line">P_non_spam_given_words = P_non_spam</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算后验概率</span></span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 对于垃圾邮件的条件概率累乘</span></span><br><span class="line">    P_spam_given_words *= P_word_given_spam</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 对于非垃圾邮件的条件概率累乘</span></span><br><span class="line">    P_non_spam_given_words *= P_word_given_non_spam</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 根据贝叶斯定理计算后验概率</span></span><br><span class="line">    P_spam_given_words /= (P_spam_given_words + P_non_spam_given_words)</span><br><span class="line">    P_non_spam_given_words /= (P_spam_given_words + P_non_spam_given_words)</span><br><span class="line">    <span class="comment"># 判断邮件是否为垃圾邮件</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> P_spam_given_words &gt; P_non_spam_given_words:</span><br><span class="line">    print(<span class="string">"这封邮件被判断为垃圾邮件"</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">"这封邮件被判断为非垃圾邮件"</span>)</span><br></pre></td></tr></table></figure>
+<p>以上代码演示了如何通过贝叶斯算法判断一封邮件是否为垃圾邮件。通过计算先验概率和条件概率，然后利用贝叶斯定理计算后验概率，最终判断邮件的类别。这是一个简化的例子，实际应用中可能需要考虑更多的因素和处理更复杂的数据。</p>
+<h2 id="5-4-使用scikit-learn库进行朴素贝叶斯分类"><a href="#5-4-使用scikit-learn库进行朴素贝叶斯分类" class="headerlink" title="5.4 使用scikit-learn库进行朴素贝叶斯分类"></a>5.4 使用scikit-learn库进行朴素贝叶斯分类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">from sklearn.feature_extraction.text import CountVectorizer</span><br><span class="line">from sklearn.naive_bayes import MultinomialNB</span><br><span class="line"></span><br><span class="line"># 准备训练数据和测试数据</span><br><span class="line">train_data &#x3D; [&quot;这是一封垃圾邮件&quot;, &quot;这是一封正常邮件&quot;, &quot;垃圾邮件太多了&quot;, &quot;正常邮件很重要&quot;]</span><br><span class="line">train_labels &#x3D; [&quot;spam&quot;, &quot;non-spam&quot;, &quot;spam&quot;, &quot;non-spam&quot;]</span><br><span class="line"></span><br><span class="line">test_data &#x3D; [&quot;这是一封测试邮件&quot;]</span><br><span class="line"></span><br><span class="line"># 特征提取</span><br><span class="line">vectorizer &#x3D; CountVectorizer()</span><br><span class="line">X_train &#x3D; vectorizer.fit_transform(train_data)</span><br><span class="line">X_test &#x3D; vectorizer.transform(test_data)</span><br><span class="line"></span><br><span class="line"># 创建朴素贝叶斯分类器</span><br><span class="line">clf &#x3D; MultinomialNB()</span><br><span class="line">clf.fit(X_train, train_labels)</span><br><span class="line"></span><br><span class="line"># 进行分类预测</span><br><span class="line">prediction &#x3D; clf.predict(X_test)</span><br><span class="line"></span><br><span class="line"># 打印预测结果</span><br><span class="line">if prediction[0] &#x3D;&#x3D; &quot;spam&quot;:</span><br><span class="line">    print(&quot;这封邮件被判断为垃圾邮件&quot;)</span><br><span class="line">else:</span><br><span class="line">    print(&quot;这封邮件被判断为非垃圾邮件&quot;)</span><br></pre></td></tr></table></figure>
+<p>以上代码使用了scikit-learn库中的<code>CountVectorizer</code>进行文本特征提取，使用了<code>MultinomialNB</code>朴素贝叶斯分类器进行垃圾邮件分类的示例。这个例子演示了如何使用scikit-learn库来实现朴素贝叶斯分类，并对一封测试邮件进行分类预测。这是一个简化的例子，实际应用中可能需要更多的数据预处理和模型调优等步骤。</p>
+<h2 id="5-5-总结"><a href="#5-5-总结" class="headerlink" title="5.5 总结"></a>5.5 总结</h2><p>贝叶斯算法是一种强大的机器学习算法，可以在很多实际问题中得到应用，并且有着广泛的研究和发展空间。</p>
+
+    </div>
+
+  </article>
+  <div class="toc-container">
+    
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第5章：贝叶斯算法简介"><span class="toc-text">第5章：贝叶斯算法简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-算法原理"><span class="toc-text">5.1 算法原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-算法步骤"><span class="toc-text">5.2 算法步骤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-例子：垃圾邮件过滤"><span class="toc-text">5.3 例子：垃圾邮件过滤</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-使用scikit-learn库进行朴素贝叶斯分类"><span class="toc-text">5.4 使用scikit-learn库进行朴素贝叶斯分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-5-总结"><span class="toc-text">5.5 总结</span></a></li></ol></li></ol>
+  </div>
+
+
+  </div>
+</div>
+<div class="copyright">
+    <span>本作品采用</span>
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>
+    <span>进行许可。转载时请注明原文链接。</span>
+</div>
+
+
+  
+    <div class="post-nav">
+      <div class="post-nav-item post-nav-next">
+        
+          <span>〈 </span>
+          <a href="/post/ai-0-ml-4/" rel="next" title="机器学习系列（四）逻辑回归">
+          机器学习系列（四）逻辑回归
+          </a>
+        
+      </div>
+  
+      <div class="post-nav-item post-nav-prev">
+          
+          <a href="/post/ai-0-ml-6/" rel="prev" title="机器学习系列（六）K近邻算法">
+            机器学习系列（六）K近邻算法
+          </a>
+          <span>〉</span>
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+</div>
+
+<footer class="footer text-center">
+    <div id="bottom-inner">
+        <a class="bottom-item" href="" target="_blank">QH的博客</a> |
+        <a class="bottom-item">Powered by hexo</a> |
+        <a class="bottom-item">Copyright © 2023</a>  |
+        <a>博客已运行<a id="days">0</a>天</a> 
+        <script> 
+        var s1 = '2020-04-15';//设置为你的建站时间 
+        s1 = new Date(s1.replace(/-/g, "/")); 
+        s2 = new Date(); 
+        var days = s2.getTime() - s1.getTime(); 
+        var number_of_days = parseInt(days / (1000 * 60 * 60 * 24)); 
+        document.getElementById('days').innerHTML = number_of_days; 
+        </script> |
+        <a class="bottom-item" href="/atom.xml">RSS</a>
+        <script>
+			var _hmt = _hmt || [];
+			(function() {
+			  var hm = document.createElement("script");
+			  hm.src = "https://hm.baidu.com/hm.js?7241c66da4c19bc02e939e6776919ff8";
+			  var s = document.getElementsByTagName("script")[0]; 
+			  s.parentNode.insertBefore(hm, s);
+			})();
+		</script>
+    </div>
+</footer>
+
+
+
+<script>
+  (function(window, document, undefined) {
+
+    var timer = null;
+
+    function returnTop() {
+      cancelAnimationFrame(timer);
+      timer = requestAnimationFrame(function fn() {
+        var oTop = document.body.scrollTop || document.documentElement.scrollTop;
+        if (oTop > 0) {
+          document.body.scrollTop = document.documentElement.scrollTop = oTop - 50;
+          timer = requestAnimationFrame(fn);
+        } else {
+          cancelAnimationFrame(timer);
+        }
+      });
+    }
+
+    var hearts = [];
+    window.requestAnimationFrame = (function() {
+      return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(callback) {
+          setTimeout(callback, 1000 / 60);
+        }
+    })();
+    init();
+
+    function init() {
+      css(".heart{z-index:9999;width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: absolute;}.heart:after{top: -5px;}.heart:before{left: -5px;}");
+      attachEvent();
+      gameloop();
+      addMenuEvent();
+    }
+
+    function gameloop() {
+      for (var i = 0; i < hearts.length; i++) {
+        if (hearts[i].alpha <= 0) {
+          document.body.removeChild(hearts[i].el);
+          hearts.splice(i, 1);
+          continue;
+        }
+        hearts[i].y--;
+        hearts[i].scale += 0.004;
+        hearts[i].alpha -= 0.013;
+        hearts[i].el.style.cssText = "left:" + hearts[i].x + "px;top:" + hearts[i].y + "px;opacity:" + hearts[i].alpha + ";transform:scale(" + hearts[i].scale + "," + hearts[i].scale + ") rotate(45deg);background:" + hearts[i].color;
+      }
+      requestAnimationFrame(gameloop);
+    }
+
+    /**
+     * 给logo设置点击事件
+     * 
+     * - 回到顶部
+     * - 出现爱心
+     */
+    function attachEvent() {
+      var old = typeof window.onclick === "function" && window.onclick;
+      var logo = document.getElementById("logo");
+      if (logo) {
+        logo.onclick = function(event) {
+          returnTop();
+          old && old();
+          createHeart(event);
+        }
+      }
+      
+    }
+
+    function createHeart(event) {
+      var d = document.createElement("div");
+      d.className = "heart";
+      hearts.push({
+        el: d,
+        x: event.clientX - 5,
+        y: event.clientY - 5,
+        scale: 1,
+        alpha: 1,
+        color: randomColor()
+      });
+      document.body.appendChild(d);
+    }
+
+    function css(css) {
+      var style = document.createElement("style");
+      style.type = "text/css";
+      try {
+        style.appendChild(document.createTextNode(css));
+      } catch (ex) {
+        style.styleSheet.cssText = css;
+      }
+      document.getElementsByTagName('head')[0].appendChild(style);
+    }
+
+    function randomColor() {
+      // return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + ")";
+      return "#F44336";
+    }
+
+    function addMenuEvent() {
+      var menu = document.getElementById('menu-main-post');
+      if (menu) {
+        var toc = document.getElementById('toc');
+        if (toc) {
+          menu.onclick = function() {
+            if (toc) {
+              if (toc.style.display == 'block') {
+                toc.style.display = 'none';
+              } else {
+                toc.style.display = 'block';
+              }
+            }
+          };
+        } else {
+          menu.style.display = 'none';
+        }
+      }
+    }
+
+  })(window, document);
+</script>
+
+
+
+
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

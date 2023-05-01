@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#202020"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  
+    <meta name="keywords" content="系统仿真," />
+  
+
+  
+    <meta name="description" content="QH的博客" />
+  
+  
+  
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  
+  <title>系统仿真笔记（九）系统动力学模拟 - QH的博客</title>
+  
+    <!-- stylesheets list from config.yml -->
+    
+      <link rel="stylesheet" href="/css/pure-min.css">
+    
+      <link rel="stylesheet" href="/css/xoxo.css">
+    
+  
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="QH的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="nav-container">
+<nav class="home-menu pure-menu pure-menu-horizontal">
+  <a class="pure-menu-heading" href="/">
+    
+      <img class="avatar" src="https://smiler666.github.io/images/favicon.ico">
+    
+    <span class="title" style="text-transform:none">QH的博客</span>
+  </a>
+
+  <ul class="pure-menu-list clearfix">
+      
+          
+            
+              <li class="pure-menu-item"><a href="/" class="pure-menu-link">首页</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+            
+              <a href="#" id="合集" class="pure-menu-link">合集</a>
+              <ul class="pure-menu-children">
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/探索/" style="color:#202020;" class="pure-menu-link">探索</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/categories/程序/" style="color:#202020;" class="pure-menu-link">程序</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/post/py-1/" style="color:#202020;" class="pure-menu-link">Python</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/categories/数值计算/" style="color:#202020;" class="pure-menu-link">数值计算</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/机器学习/" style="color:#202020;" class="pure-menu-link">机器学习</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/RITSS/" style="color:#202020;" class="pure-menu-link">Abaqus/RITSS</a></li>
+                  
+              
+              </ul>
+            </li>
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/archives" class="pure-menu-link">文章</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/post/share-1/" class="pure-menu-link">工具</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/about" class="pure-menu-link">关于</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/search" class="pure-menu-link">搜索</a></li>
+            
+          
+      
+  </ul>
+   
+</nav>
+
+</div>
+
+<div class="container" id="content-outer">
+<div class="inner" id="content-inner">
+<div class="post-container">
+  <article class="post" id="post">
+    <header class="post-header text-center">
+      <h1 class="title">
+        系统仿真笔记（九）系统动力学模拟
+      </h1>
+      <span>
+        
+        <time class="time" datetime="2020-06-10T12:58:55.000Z">
+        2020-06-10
+      </time>
+        
+      </span>
+      <span class="slash">/</span>
+      <span class="post-meta">
+      <span class="post-tags">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F/" rel="tag">系统仿真</a></li></ul>
+      </span>
+    </span>
+      <span class="slash">/</span>
+      <span class="read">阅读耗时 32 分钟</span>
+    </header>
+
+    <div class="post-content">
+      <a id="more"></a>
+<p>从这章开始进入了第二部分的学习，系统仿真技术，包括随机数和随机变量的生成、输入数据分析、输出数据分析及比较、模型的校核和验证、常用的系统仿真工具。</p>
+<p>本章为随机数和随机变量的生成的相关内容，理解随机变量的性质和随机分布的种类，掌握随机数的生成方法，掌握随机变量的生成方法等。</p>
+<h1 id="一、随机系统中随机变量和随机分布"><a href="#一、随机系统中随机变量和随机分布" class="headerlink" title="一、随机系统中随机变量和随机分布"></a>一、随机系统中随机变量和随机分布</h1><h2 id="1-1-随机变量的定义和性质"><a href="#1-1-随机变量的定义和性质" class="headerlink" title="1.1 随机变量的定义和性质"></a>1.1 随机变量的定义和性质</h2><h3 id="1-1-1-确定性活动与随机活动"><a href="#1-1-1-确定性活动与随机活动" class="headerlink" title="1.1.1 确定性活动与随机活动"></a>1.1.1 确定性活动与随机活动</h3><p>确定性活动：是可以事先预言的，即在准确地重复一定的条件下，其变化的结果总是确定的，或者根据其过去的状态，相同的条件下可以预言将来的发展变化。确定性活动可以用一个确定的数学形式来描述：$f(t)$ 等。 </p>
+<p>随机性活动：其变化的结果是事先不可预言的，即在相同的条件下进行重复实验，每次结果未必相同，或者是知道其过去的状况，在相同的条件、未来的发展事先都不能确定。随机性活动可通过数学统计的方法描述。</p>
+<h3 id="1-1-2-随机变量的定义"><a href="#1-1-2-随机变量的定义" class="headerlink" title="1.1.2 随机变量的定义"></a>1.1.2 随机变量的定义</h3><p>定义：对于随机活动的不同结果我们可以用不同的数值与其对应。这样，就可以用一个变量来描述随机活动。变量按一定的概率取某个值，对应于随机活动按一定的概率取某个结果。这类变量称为随机变量。</p>
+<ul>
+<li>离散型随机变量：若随机变量只取有限个数值或可列无穷多个数值。</li>
+<li>连续型随机变量：若随机变量可以取值于某个区间中的任一数。  </li>
+</ul>
+<h4 id="离散型随机变量的定义"><a href="#离散型随机变量的定义" class="headerlink" title="离散型随机变量的定义"></a>离散型随机变量的定义</h4><p>定义：如果一个随机变量 $x$ 的一切可能取值为$x1，x2，…，xn，…，$并且$X$ 取值$x_n$的概率为 $P_n$，则 $X$为一个离散型随机变量，$\{p1，p2，…，pn，…\}$称为 X 的概率函数（分布律）。其中 $P_n$必须满足下列两个条件：</p>
+<ul>
+<li><p>$P_n&gt;0，n=1,2,…N,$</p>
+</li>
+<li><p>$\displaystyle \sum_{n=1}^{N}p_n=1 \quad P_n&gt;0，n=1, 2,…，N$</p>
+</li>
+</ul>
+<h4 id="离散型随机变量的概率分布函数"><a href="#离散型随机变量的概率分布函数" class="headerlink" title="离散型随机变量的概率分布函数"></a>离散型随机变量的概率分布函数</h4><p>离散型随机变量X 的累积分布函数定义：当 $X$ 小于或等于某个给定值 $x$ 的概率函数，记为 $P(X≤x) = F(x)$。</p>
+<p>设随机变量 X 可能取值$x1，x2，…，xn，…，$则$X$ 的累积分布函数为</p>
+<script type="math/tex; mode=display">
+F(x)= \displaystyle \sum_{X<\infty}P(X=X_i)=\displaystyle \sum_{X_i}P_n</script><p>其中$P_i$为 $X$ 取值 $P_x$ 的概率。</p>
+<p>由定义可见，$F(x) ≤1$，当 $x&lt;y$ 时，$F(x)≤F(y)$，即 $F(x)$ 是个单调增加的函数。</p>
+<h4 id="连续型随机变量的定义"><a href="#连续型随机变量的定义" class="headerlink" title="连续型随机变量的定义"></a>连续型随机变量的定义</h4><p>定义：若存在非负函数 $f (x)$，使得随机变量 $X$ 取值于任一区间 $(a，b)$的概率为</p>
+<script type="math/tex; mode=display">
+P(a\leq x\leq b)=\int_a^b f(x)dx</script><p>则称 $X$ 为连续型随机变量，$f(x)$ 称为$X$的密度函数。</p>
+<p>对于密度函数 $f (x)$ 有   $f (x)≧0$, $\int_{-\infty}^{\infty}f(x)dx=1$</p>
+<h4 id="连续型随机变量的概率密度函数和累计分布函数"><a href="#连续型随机变量的概率密度函数和累计分布函数" class="headerlink" title="连续型随机变量的概率密度函数和累计分布函数"></a>连续型随机变量的概率密度函数和累计分布函数</h4><p>连续型随机变量的累积分布函数$F(x)$定义为随机变量小于或等于$x$的概率。</p>
+<script type="math/tex; mode=display">
+F(x)=\displaystyle \sum_{- \infty}^{x}f(x)dx</script><p>由累积分布函数定义可知，$F(x)≤1$，当$x1&lt;x2$时，$F(x1)≤F(x2)$，即$F(x)$是个单调增加的函数。</p>
+<p>随机变量$X$落入区间$(a，b)$内的概率是$F(b) －F(a)$。</p>
+<h2 id="1-2-随机变量的数字特征"><a href="#1-2-随机变量的数字特征" class="headerlink" title="1.2 随机变量的数字特征"></a>1.2 随机变量的数字特征</h2><h3 id="1-2-1-离散型随机变量的数字特征"><a href="#1-2-1-离散型随机变量的数字特征" class="headerlink" title="1.2.1 离散型随机变量的数字特征"></a>1.2.1 离散型随机变量的数字特征</h3><p>平均值（数学期望值）：设 $X$ 为离散随机变量，根据前面的定义，当$X= x_i$时的概率为 $P_i$，则:</p>
+<p>X 的数学期望值：$E(x)=\displaystyle \sum_{i=0} ^{\infty}x_i P_i$ </p>
+<p>数学方差：$D(x)=E[x-E(x)]^2=\displaystyle \sum_{i=0} ^{\infty}E[x-E(x)]^2 P_i$ </p>
+<h3 id="1-2-2-连续型随机变量的数字特征"><a href="#1-2-2-连续型随机变量的数字特征" class="headerlink" title="1.2.2 连续型随机变量的数字特征"></a>1.2.2 连续型随机变量的数字特征</h3><p>平均值：设$X$为随机变量，其概率密度函数为 $f (x)$，则该随机变量的平均值为：$E(x)=∫_{- {\infty}}^ {\infty}xf(x)dx$</p>
+<p>数学方差：$D(x)=E[x-E(x)]^2=∫_{i=0} ^{\infty}E[x-E(x)]^2 f(x)dx$ </p>
+<h3 id="1-2-3-数理统计中的基本运算规则"><a href="#1-2-3-数理统计中的基本运算规则" class="headerlink" title="1.2.3 数理统计中的基本运算规则"></a>1.2.3 数理统计中的基本运算规则</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/1.png" alt></p>
+<h3 id="1-2-4-协方差与相关系数"><a href="#1-2-4-协方差与相关系数" class="headerlink" title="1.2.4 协方差与相关系数"></a>1.2.4 协方差与相关系数</h3><p>具体查阅数理统计教材。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/2.png" alt></p>
+<h2 id="1-3-常用随机变量的分布"><a href="#1-3-常用随机变量的分布" class="headerlink" title="1.3 常用随机变量的分布"></a>1.3 常用随机变量的分布</h2><h3 id="1-3-1-伯努利分布"><a href="#1-3-1-伯努利分布" class="headerlink" title="1.3.1 伯努利分布"></a>1.3.1 伯努利分布</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/3.png" alt></p>
+<h3 id="1-3-2-泊松分布Poisson-a"><a href="#1-3-2-泊松分布Poisson-a" class="headerlink" title="1.3.2 泊松分布Poisson(a)"></a>1.3.2 泊松分布Poisson(a)</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/4.png" alt></p>
+<h3 id="1-3-3-均匀分布-U-a-b"><a href="#1-3-3-均匀分布-U-a-b" class="headerlink" title="1.3.3 均匀分布 U(a,b)"></a>1.3.3 均匀分布 U(a,b)</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/5.png" alt></p>
+<h3 id="1-3-4-指数分布-EXPON-a-1-λ"><a href="#1-3-4-指数分布-EXPON-a-1-λ" class="headerlink" title="1.3.4 指数分布 EXPON(a)(1/λ)"></a>1.3.4 指数分布 EXPON(a)(1/λ)</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/6.png" alt></p>
+<h3 id="1-3-5-正态分布"><a href="#1-3-5-正态分布" class="headerlink" title="1.3.5 正态分布"></a>1.3.5 正态分布</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/7.png" alt></p>
+<h3 id="1-3-6-对数正态分布"><a href="#1-3-6-对数正态分布" class="headerlink" title="1.3.6 对数正态分布"></a>1.3.6 对数正态分布</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/8.png" alt></p>
+<h3 id="1-3-7-爱尔朗分布-Erlang-a-k"><a href="#1-3-7-爱尔朗分布-Erlang-a-k" class="headerlink" title="1.3.7 爱尔朗分布 Erlang(a, k)"></a>1.3.7 爱尔朗分布 Erlang(a, k)</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/9.png" alt></p>
+<h3 id="1-3-8-威布尔分布-Weibull-a-𝛽"><a href="#1-3-8-威布尔分布-Weibull-a-𝛽" class="headerlink" title="1.3.8 威布尔分布 Weibull(a,𝛽)"></a>1.3.8 威布尔分布 Weibull(a,𝛽)</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/10.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/11.png" alt></p>
+<h3 id="1-3-9-伽马分布-Gamma-𝜷-𝜽"><a href="#1-3-9-伽马分布-Gamma-𝜷-𝜽" class="headerlink" title="1.3.9 伽马分布 Gamma(𝜷,𝜽)"></a>1.3.9 伽马分布 Gamma(𝜷,𝜽)</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/12.png" alt="13"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/13.png" alt="12"></p>
+<h3 id="1-3-10-三角分布"><a href="#1-3-10-三角分布" class="headerlink" title="1.3.10 三角分布"></a>1.3.10 三角分布</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/14.png" alt></p>
+<h1 id="二、随机数的产生"><a href="#二、随机数的产生" class="headerlink" title="二、随机数的产生"></a>二、随机数的产生</h1><h2 id="2-1-随机数在仿真中的作用"><a href="#2-1-随机数在仿真中的作用" class="headerlink" title="2.1 随机数在仿真中的作用"></a>2.1 随机数在仿真中的作用</h2><ul>
+<li>离散事件系统：包含1个以上的随机变量。</li>
+<li>离散事件系统仿真时，将随机变量包含在仿真模型。</li>
+<li>产生随机变量的基础：发生(0，1)区间上的均匀分布随机数（随机数发生器）。</li>
+<li>其他分布都可以由(0，1)均匀分布随机数经过变换和计算来实现。</li>
+</ul>
+<h2 id="2-2-随机数的性质"><a href="#2-2-随机数的性质" class="headerlink" title="2.2 随机数的性质"></a>2.2 随机数的性质</h2><ul>
+<li>随机数(random number)：随机数就是随机变量的样本取样值。</li>
+<li>均匀分布的随机数：随机变量x在其可能值范围中的任一区间出现的概率正比于此区间的大小与可能值范围的比值。</li>
+<li>(0，1)均匀分布随机数：在各种分布的随机数中，最常用和最重要的是在(0，1)区间上的均匀分布随机数。其他许多分布的随机数都可以由(0，1)均匀分布随机数经过变换和计算来产生。</li>
+</ul>
+<p><strong>(0，1)均匀分布随机数的定义：</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/15.png" alt></p>
+<h2 id="2-3-伪随机数的产生方法"><a href="#2-3-伪随机数的产生方法" class="headerlink" title="2.3 伪随机数的产生方法"></a>2.3 伪随机数的产生方法</h2><h3 id="2-3-1-伪随机数-pseudo-random-number-的产生"><a href="#2-3-1-伪随机数-pseudo-random-number-的产生" class="headerlink" title="2.3.1 伪随机数(pseudo random number)的产生"></a>2.3.1 伪随机数(pseudo random number)的产生</h3><p>产生随机数的目的，是为了发生[0，1]之间的一组数的序列，使之尽可能的模仿具有类似于均匀分布随机变量的独立取样值性质的数。由于随机数是利用计算机程序按照一定的算法计算出来的，会有一定的周期性，因而被称为伪随机数。</p>
+<p>利用随机数来对随机活动的统计分析，只要伪随机数的数理统计性质能够满足实际需要即可。一般计算机上产生随机数的函数为（0，1）均匀分布的随机数。</p>
+<h3 id="2-3-2-计算机产生随机数的要求"><a href="#2-3-2-计算机产生随机数的要求" class="headerlink" title="2.3.2 计算机产生随机数的要求"></a>2.3.2 计算机产生随机数的要求</h3><p>伪随机数具有一定的周期性。对随机数值序列的要求有：</p>
+<ul>
+<li>分布的均匀性、抽样的随机性、试验的独立性以及前后的一致性。</li>
+<li>足够长的周期，以满足的实际需要。</li>
+<li>产生的速度要快，占用的内存空间要小。</li>
+</ul>
+<h3 id="2-3-3-计算机产生随机数的算法"><a href="#2-3-3-计算机产生随机数的算法" class="headerlink" title="2.3.3 计算机产生随机数的算法"></a>2.3.3 计算机产生随机数的算法</h3><p>计算机产生随机数的通常方法是利用一个递推公式：</p>
+<script type="math/tex; mode=display">
+X_{k+1}=f(X_k)</script><p>给定了第k个初始值，就可以利用这个递推公式推算出第k+1个数$X_k+1$；</p>
+<p>递推公式有多种形式，其中最常见的有两种：</p>
+<ul>
+<li>平方取中法</li>
+<li>同余法</li>
+</ul>
+<p>目前使用最多的是线性同余发生器（Lehmer，1951）。</p>
+<h3 id="2-3-4-平方取中法"><a href="#2-3-4-平方取中法" class="headerlink" title="2.3.4 平方取中法"></a>2.3.4 平方取中法</h3><p>首先给出一个初始数，或称种子。把这个数平方，然后取中间位的数，再放上小数点就得到一个随机数。这个中间位的数再平方取中得到第二个随机数。</p>
+<p>其递推公式为：</p>
+<script type="math/tex; mode=display">
+\left\{
+    \begin{array}{c}
+        x_n=[\frac{x_{n-1}^2}{10^2}]mod 10^2\\
+        u_n=x_n/10^{2k}
+    \end{array}
+\right.</script><p>初值为$x_0$</p>
+<p>其中，x0为2k位的非负整数，[x]表示取x的整数部分，NmodM为对N进行模为M的求余运算，即：</p>
+<p><strong>平方取中法例题：</strong></p>
+<p>任取一4位正整数：5497。即，k=2，x0=5497。</p>
+<p>x0=5497，平方x1=x0×x0=30217009，取中x1=2170，R1=2170/104=0.2170</p>
+<p>x1=2170，平方x2=x1×x1=04708900，取中x2=7089，R2=7089/104=0. 7089</p>
+<p>x2=7089，平方x3=x2×x2=50253921，取中x3=2539，R3=2539/104=0. 2539</p>
+<p>该方法的问题：产生的随机数可能产生退化，的到的Ri值趋于0或者重复相同的$R_i$值</p>
+<p>平方取中法有许多改进型，如：</p>
+<ul>
+<li>乘积取中法；</li>
+<li>常数乘子法；</li>
+<li>Fibonacci法等。</li>
+</ul>
+<h3 id="2-3-5-同余法"><a href="#2-3-5-同余法" class="headerlink" title="2.3.5 同余法"></a>2.3.5 同余法</h3><p>同余法是将一组数据通过一系列特定的数字运算，最后利用一个数字的整除求余，所得的数值就是一个伪随机数。因为这个计算过程，则称该求随机数的方法为同余法。</p>
+<p>同余法的有三种：加同余法（Linear Congruence Generator）、乘同余法和混合同余法。其中以混合同余法产生的随机数统计性质较好，因而应用最为广泛。混合同余法的递推公式：</p>
+<script type="math/tex; mode=display">
+\left\{
+    \begin{array}{c}
+        x_n=(ax_{n-1}+c)modm\\
+        u_n=x_n/m\\
+        初值x_0
+    \end{array}
+\right.</script><p>其中：m为模数（为随机数的周期），a为乘子（乘数或乘法因子），c为增量（加数或加法因子），且　$x_0$，m，a均为非负整数，c&gt;0。</p>
+<p>同余法产生（0，1）均匀分布的随机数的基本条件：</p>
+<p>c和m互质，即没有大于1的公因子。</p>
+<p>m的每个质数因子也是　a-1的因子。</p>
+<p>若4是m的因子，则4也是a-1的因子。</p>
+<p>为延长随机数的周期，通常取$m=2^b$。</p>
+<p><strong>混合同余法例题:</strong></p>
+<p>取m=8，a=3，c=1，x0=1，迭代结果如下表。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/16.png" alt></p>
+<p>可见平方$x_1=x_5=4$，从n=5开始$x_n$及$u_n$循环取$x_1$到$x_4$的值。周期Ｔ&lt;m。如Ｔ=m，则称为满周期。</p>
+<p>同余法具有计算简便的优点。</p>
+<h2 id="2-4-随机数的检验"><a href="#2-4-随机数的检验" class="headerlink" title="2.4 随机数的检验"></a>2.4 随机数的检验</h2><p>用任何一种方法产生的随机数序列在把它用到实际问题中去之前都必须进行一些统计检验，看它是否能够令人满意地作为随机变量的独立取样值(显著性检验)，是否有较好的独立性和均匀性。从理论上说，统计检验并不能得出完全肯定的结论，但是却可以使我们有较大的把握获得具有较好统计性质的随机数序列。</p>
+<p>五种随机数检验方法：</p>
+<ul>
+<li>频率检验（用于检验均匀性）</li>
+<li>趋势检验（用于检验独立性）</li>
+<li>自相关检验（用于检验独立性）</li>
+<li>间隙检验（用于检验独立性）</li>
+<li>扑克检验（用于检验独立性）</li>
+</ul>
+<h2 id="2-5-均匀性检验"><a href="#2-5-均匀性检验" class="headerlink" title="2.5 均匀性检验"></a>2.5 均匀性检验</h2><p>均匀性检验要求随机数均匀地分布在（0,1）区间。</p>
+<p>分布均匀性检验又称频率检验，是对经验频率和理论频率之间的差异进行检验。</p>
+<p>均匀性检验有两种方法：</p>
+<ul>
+<li>柯尔莫哥洛夫-斯米尔洛夫检验(Kolmogorov-Smirnov Test)</li>
+<li>卡方检验（ Chi-Square Test ）</li>
+</ul>
+<blockquote>
+<p>具体查阅数理统计教材</p>
+</blockquote>
+<h2 id="2-6-独立性检验"><a href="#2-6-独立性检验" class="headerlink" title="2.6 独立性检验"></a>2.6 独立性检验</h2><p>独立性检验的常用方法是利用相关系数进行随机数的。一个序列可以是均匀分布，但却不一定是独立。如果它们相互独立，那么它们的相关系数应为0（反之不一定）。</p>
+<p>设给定N个随机数$U_i：x_1，x_2，…，x_N$，假设$ j$ 阶自相关系数为$ρ_j=0（j =1,2,…,m）$。考虑样本的 $j$ 阶自相关系数</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/17.png" alt></p>
+<blockquote>
+<p>独立性检验的步骤查阅数理统计教材</p>
+</blockquote>
+<h1 id="三、随机变量的产生"><a href="#三、随机变量的产生" class="headerlink" title="三、随机变量的产生"></a>三、随机变量的产生</h1><h2 id="3-1-随机变量的产生方法概述"><a href="#3-1-随机变量的产生方法概述" class="headerlink" title="3.1 随机变量的产生方法概述"></a>3.1 随机变量的产生方法概述</h2><p>前提：已经得到服从独立同分布的U(0,1)随机数</p>
+<p>任务：进一步构造所需的某随机变量</p>
+<p>条件：所生成的随机变量X符合其概率分布函数F(X)。</p>
+<ol>
+<li>递增函数</li>
+<li>0-1范围</li>
+</ol>
+<p><strong>随机变量的产生方法:</strong></p>
+<p>逆变换方法，函数变换法，卷积法，接受-拒绝方法，合成法等。</p>
+<p>这里所有方法都假定：在区间(0,1)中的随机数$x_1，x_2，…，x_N$是随时可用的，这里，每个$x_i$的pdf是</p>
+<script type="math/tex; mode=display">
+f_R(x)=
+\begin{cases}
+        1, & \text{0 ≤ x ≤ 1}\\
+        0,& \text{others}
+    \end{cases}</script><p>每个$x_i$的cdf是</p>
+<script type="math/tex; mode=display">
+F_R(x)=
+\begin{cases}
+        1, & \text{x<0}\\
+        1, & \text{0 ≤ x ≤ 1}\\
+        0,& \text{x>1}
+    \end{cases}</script><p>所有分布的随机变量的产生都是从符合均匀分布U(0,1)的随机数x，或$x_i$开始。其他分布的随机变量的产生过程由下图列出的随机变量的产生算法的树结构表示。</p>
+<p><strong>随机变量的产生算法树:</strong></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/18.png" alt></p>
+<h2 id="3-2-逆变换方法-inverse-transform"><a href="#3-2-逆变换方法-inverse-transform" class="headerlink" title="3.2 逆变换方法(inverse transform)"></a>3.2 逆变换方法(inverse transform)</h2><p>由前可知，如果$U～U(0,1)$，而$F^{-1}(.)$是分布函数$F(x)$的反函数，则：</p>
+<script type="math/tex; mode=display">
+X=F^{-1}(U)\rightarrow F(X)</script><p>利用上述公式，可以由$U～U(0,1)$ 随机数$\{x_i\}$，直接生成规定分布$F(x)$的随机数$\{u_i\}$的方法叫做逆变换法或反函数法。</p>
+<p>逆变换法的步骤为：</p>
+<p>第一步：产生独立的$U(0,1)$随机数$x_i$；</p>
+<p>第二步：令$x_i=F^{-1}(u_i)$,$i=1,2,…,n$，则$\{ x_1，x_2，x_i，…，x_N，\}$就是给定分布$F(x)$的随机数序列。</p>
+<p><strong>用逆变换法产生各种离散分布的随机变量:</strong></p>
+<h3 id="3-2-1-均匀分布随机变量的产生"><a href="#3-2-1-均匀分布随机变量的产生" class="headerlink" title="3.2.1 均匀分布随机变量的产生"></a>3.2.1 均匀分布随机变量的产生</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/19.png" alt></p>
+<h3 id="3-2-2-负指数分布"><a href="#3-2-2-负指数分布" class="headerlink" title="3.2.2 负指数分布"></a>3.2.2 负指数分布</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/20.png" alt></p>
+<h3 id="3-2-3-威布尔分布"><a href="#3-2-3-威布尔分布" class="headerlink" title="3.2.3 威布尔分布"></a>3.2.3 威布尔分布</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/21.png" alt></p>
+<h3 id="3-2-4-任意离散分布"><a href="#3-2-4-任意离散分布" class="headerlink" title="3.2.4 任意离散分布"></a>3.2.4 任意离散分布</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/22.png" alt></p>
+<h2 id="3-3-函数变换方法"><a href="#3-3-函数变换方法" class="headerlink" title="3.3 函数变换方法"></a>3.3 函数变换方法</h2><p>函数变换法是关于随机变量的函数（仍为随机变量）的抽样法。通过随机变量间的关系式可导出其分布函数间的关系式，故可用常用分布的随机数生成某个确定分布的随机数。该方法的理论依据依据下述定理。</p>
+<p>[定理] 设随机变量X具有密度函数$f(x)$，$Y=g(x)$是随机变量X的函数，又设：$x= g^{-1}(y) = h(y)$存在且有一阶连续导数。则$Y=g(X)$的密度函数为：</p>
+<script type="math/tex; mode=display">
+𝑝(𝑦)=𝑓[ℎ(𝑦)][ℎ^′ (𝑦)]</script><p>设常用随机变量X的分布函数为$F(x)$，X的函数$Y=g(x)$也是随机变量，其分布函数为</p>
+<p>利用逆变换法可得函数变换法的抽样公式为$ Y=g(X)$</p>
+<p>于是由F(x) 的随机数生成G(x)的随机数的方法为：</p>
+<p>第一步：产生独立的$F(x)$随机数$\{ x1，x2，xi，…，xN，\}$；</p>
+<p>第二步：令$y_i=g(x_i)$，$i=1,2,…,n$，则$\{ y_1，y_2，y_i，…，y_N，\}$就是G(x)的随机数序列。</p>
+<p>由此可知，逆变换法是一种特殊的函数变换法，相当于取$X～U(0,1)$的随机变量U。</p>
+<h2 id="3-4-用函数变换法产生随机变量"><a href="#3-4-用函数变换法产生随机变量" class="headerlink" title="3.4 用函数变换法产生随机变量"></a>3.4 用函数变换法产生随机变量</h2><h3 id="3-4-1-正态分布"><a href="#3-4-1-正态分布" class="headerlink" title="3.4.1 正态分布"></a>3.4.1 正态分布</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/23.png" alt></p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/24.png" alt></p>
+<h3 id="3-4-2-对数正态分布"><a href="#3-4-2-对数正态分布" class="headerlink" title="3.4.2 对数正态分布"></a>3.4.2 对数正态分布</h3><p>若$X～N(μ,σ^2)$，则称$Y=e^X$所服从的分布为对数正态分布$LN(μ,σ^2)$。</p>
+<p>利用正态分布和对数正态分布的关系可以生成$LN(μ，σ^2)$随机数，具体算法如下：</p>
+<p>第一步：产生独立的标准正态分布$N(0，1)$随机数$\{ x_1，x_2，x_i，…，x_N，\}$（步骤见前面的正态分布生成方法）；</p>
+<p>第二步：计算 $y_i=σx_i+μ，i=1,2,…,N$;</p>
+<p>第三步：产生独立的$F(y)$随机数$\{ y_1，y_2，y_i，…，y_N，\}$；</p>
+<p>第四步：令$Z_i=e^{y_i}$，$i=1,2,…,N$，则$\{ z_1，z_2，z_i，…，z_N，\}$就是对数正态分布$LN(μ，σ^2)$随机数。</p>
+<h2 id="3-5-卷积法"><a href="#3-5-卷积法" class="headerlink" title="3.5 卷积法"></a>3.5 卷积法</h2><p>一些重要概率分布的随机变量，可以表示为两个或多个独立随机变量之和。由于新构成的随机变量的概率密度函数是原始变量的概率密度函数的卷积，因此用这种方法生成随机变量的方法称为卷积法（convolution）。</p>
+<p>卷积法是一种特殊的函数变换法，相当于取抽样公式</p>
+<script type="math/tex; mode=display">
+𝑌=𝑔(𝑋_1,𝑋_2,...,𝑋_𝑛)=𝑋_1+𝑋_2+...+𝑋_𝑛</script><p>卷积法应用对象：爱尔朗分布，泊松分布，二项分布，近似正态分布。</p>
+<h3 id="3-5-1-爱尔朗分布（Erlang）"><a href="#3-5-1-爱尔朗分布（Erlang）" class="headerlink" title="3.5.1 爱尔朗分布（Erlang）"></a>3.5.1 爱尔朗分布（Erlang）</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/25.png" alt></p>
+<h3 id="3-5-2-泊松分布"><a href="#3-5-2-泊松分布" class="headerlink" title="3.5.2 泊松分布"></a>3.5.2 泊松分布</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/26.png" alt></p>
+<h2 id="3-6-组合法"><a href="#3-6-组合法" class="headerlink" title="3.6 组合法"></a>3.6 组合法</h2><p>当希望抽样的分布函数F(x)可以表成若干个其他分布函数$F_1(x)，F_2(x)，…$的凸组合，即               ，其中$F(x)=\displaystyle \sum_j p_jF(x)$ ,其中$p_j≥0$，$\displaystyle \sum_j p_j=1$,且$F_j(x)$的随机数易于抽取时，常采用组合法由$F_j(x)$ 的随机数来生成F(x)的随机数。</p>
+<p>具体算法如下：</p>
+<p>第一步：随机产生一个正整数J，使得$P\{J=j\}=p_j(j=1,2,3,…)$</p>
+<p>第二步：生成一个分布为$F_j(x)$ 的随机数x，x就是F(x)的随机数。</p>
+<p>重复上述步骤，即可产生F(x)的随机数序列$\{x_1，x_2，x_i，…，x_N\}$；可以证明X～F(x)。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/27.png" alt></p>
+<h2 id="3-7-取舍法"><a href="#3-7-取舍法" class="headerlink" title="3.7 取舍法"></a>3.7 取舍法</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/28.png" alt></p>
+<h3 id="3-7-1-伽马分布"><a href="#3-7-1-伽马分布" class="headerlink" title="3.7.1 伽马分布"></a>3.7.1 伽马分布</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/29.png" alt></p>
+<h3 id="3-7-2-贝塔分布"><a href="#3-7-2-贝塔分布" class="headerlink" title="3.7.2 贝塔分布"></a>3.7.2 贝塔分布</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/30.png" alt></p>
+<h1 id="四、随机向量的生成"><a href="#四、随机向量的生成" class="headerlink" title="四、随机向量的生成"></a>四、随机向量的生成</h1><p>在很多系统仿真过程中，需要生成随机向量$X=(X_1,X_2,…,X_n)^T$。若X的各分量相互独立，可使用前述说明的不同抽样方法，对分量$X_1,X_2,…,X_n$分别独立地进行抽样。但在实际问题中，X的各分量经常是相关的，所以要考虑这种情况下随机向量的生成方法。</p>
+<p>常用以下几种方法：</p>
+<ul>
+<li>条件分布法</li>
+<li>取舍法</li>
+<li>多维正态随机向量的抽样方法</li>
+</ul>
+<h2 id="4-1-条件分布法"><a href="#4-1-条件分布法" class="headerlink" title="4.1 条件分布法"></a>4.1 条件分布法</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/31.png" alt></p>
+<h2 id="4-2-取舍法"><a href="#4-2-取舍法" class="headerlink" title="4.2 取舍法"></a>4.2 取舍法</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/32.png" alt></p>
+<h2 id="4-3-多维正态随机向量的抽样方法"><a href="#4-3-多维正态随机向量的抽样方法" class="headerlink" title="4.3 多维正态随机向量的抽样方法"></a>4.3 多维正态随机向量的抽样方法</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-9/33.png" alt></p>
+
+    </div>
+
+  </article>
+  <div class="toc-container">
+    
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、随机系统中随机变量和随机分布"><span class="toc-text">一、随机系统中随机变量和随机分布</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-随机变量的定义和性质"><span class="toc-text">1.1 随机变量的定义和性质</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1-确定性活动与随机活动"><span class="toc-text">1.1.1 确定性活动与随机活动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-随机变量的定义"><span class="toc-text">1.1.2 随机变量的定义</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#离散型随机变量的定义"><span class="toc-text">离散型随机变量的定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#离散型随机变量的概率分布函数"><span class="toc-text">离散型随机变量的概率分布函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#连续型随机变量的定义"><span class="toc-text">连续型随机变量的定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#连续型随机变量的概率密度函数和累计分布函数"><span class="toc-text">连续型随机变量的概率密度函数和累计分布函数</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-随机变量的数字特征"><span class="toc-text">1.2 随机变量的数字特征</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-离散型随机变量的数字特征"><span class="toc-text">1.2.1 离散型随机变量的数字特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-连续型随机变量的数字特征"><span class="toc-text">1.2.2 连续型随机变量的数字特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3-数理统计中的基本运算规则"><span class="toc-text">1.2.3 数理统计中的基本运算规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-4-协方差与相关系数"><span class="toc-text">1.2.4 协方差与相关系数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-常用随机变量的分布"><span class="toc-text">1.3 常用随机变量的分布</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-1-伯努利分布"><span class="toc-text">1.3.1 伯努利分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-2-泊松分布Poisson-a"><span class="toc-text">1.3.2 泊松分布Poisson(a)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-3-均匀分布-U-a-b"><span class="toc-text">1.3.3 均匀分布 U(a,b)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-4-指数分布-EXPON-a-1-λ"><span class="toc-text">1.3.4 指数分布 EXPON(a)(1&#x2F;λ)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-5-正态分布"><span class="toc-text">1.3.5 正态分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-6-对数正态分布"><span class="toc-text">1.3.6 对数正态分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-7-爱尔朗分布-Erlang-a-k"><span class="toc-text">1.3.7 爱尔朗分布 Erlang(a, k)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-8-威布尔分布-Weibull-a-𝛽"><span class="toc-text">1.3.8 威布尔分布 Weibull(a,𝛽)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-9-伽马分布-Gamma-𝜷-𝜽"><span class="toc-text">1.3.9 伽马分布 Gamma(𝜷,𝜽)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-10-三角分布"><span class="toc-text">1.3.10 三角分布</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、随机数的产生"><span class="toc-text">二、随机数的产生</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-随机数在仿真中的作用"><span class="toc-text">2.1 随机数在仿真中的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-随机数的性质"><span class="toc-text">2.2 随机数的性质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-伪随机数的产生方法"><span class="toc-text">2.3 伪随机数的产生方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-伪随机数-pseudo-random-number-的产生"><span class="toc-text">2.3.1 伪随机数(pseudo random number)的产生</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-计算机产生随机数的要求"><span class="toc-text">2.3.2 计算机产生随机数的要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-3-计算机产生随机数的算法"><span class="toc-text">2.3.3 计算机产生随机数的算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-4-平方取中法"><span class="toc-text">2.3.4 平方取中法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-5-同余法"><span class="toc-text">2.3.5 同余法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-随机数的检验"><span class="toc-text">2.4 随机数的检验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-均匀性检验"><span class="toc-text">2.5 均匀性检验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-独立性检验"><span class="toc-text">2.6 独立性检验</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、随机变量的产生"><span class="toc-text">三、随机变量的产生</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-随机变量的产生方法概述"><span class="toc-text">3.1 随机变量的产生方法概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-逆变换方法-inverse-transform"><span class="toc-text">3.2 逆变换方法(inverse transform)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1-均匀分布随机变量的产生"><span class="toc-text">3.2.1 均匀分布随机变量的产生</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2-负指数分布"><span class="toc-text">3.2.2 负指数分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-3-威布尔分布"><span class="toc-text">3.2.3 威布尔分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-4-任意离散分布"><span class="toc-text">3.2.4 任意离散分布</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-函数变换方法"><span class="toc-text">3.3 函数变换方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-用函数变换法产生随机变量"><span class="toc-text">3.4 用函数变换法产生随机变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-1-正态分布"><span class="toc-text">3.4.1 正态分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-2-对数正态分布"><span class="toc-text">3.4.2 对数正态分布</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-卷积法"><span class="toc-text">3.5 卷积法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-1-爱尔朗分布（Erlang）"><span class="toc-text">3.5.1 爱尔朗分布（Erlang）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-2-泊松分布"><span class="toc-text">3.5.2 泊松分布</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-组合法"><span class="toc-text">3.6 组合法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-7-取舍法"><span class="toc-text">3.7 取舍法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7-1-伽马分布"><span class="toc-text">3.7.1 伽马分布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7-2-贝塔分布"><span class="toc-text">3.7.2 贝塔分布</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、随机向量的生成"><span class="toc-text">四、随机向量的生成</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-条件分布法"><span class="toc-text">4.1 条件分布法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-取舍法"><span class="toc-text">4.2 取舍法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-多维正态随机向量的抽样方法"><span class="toc-text">4.3 多维正态随机向量的抽样方法</span></a></li></ol></li></ol>
+  </div>
+
+
+  </div>
+</div>
+<div class="copyright">
+    <span>本作品采用</span>
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>
+    <span>进行许可。转载时请注明原文链接。</span>
+</div>
+
+
+  
+    <div class="post-nav">
+      <div class="post-nav-item post-nav-next">
+        
+          <span>〈 </span>
+          <a href="/post/software-1-dut-2/" rel="next" title="工程经济与项目评价研学辅助系统">
+          工程经济与项目评价研学辅助系统
+          </a>
+        
+      </div>
+  
+      <div class="post-nav-item post-nav-prev">
+          
+          <a href="/post/ai-1-dl-tensorflow2-note-1/" rel="prev" title="TensorFlow2.1安装、GPU加速设置及第三方库常用源">
+            TensorFlow2.1安装、GPU加速设置及第三方库常用源
+          </a>
+          <span>〉</span>
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+</div>
+
+<footer class="footer text-center">
+    <div id="bottom-inner">
+        <a class="bottom-item" href="" target="_blank">QH的博客</a> |
+        <a class="bottom-item">Powered by hexo</a> |
+        <a class="bottom-item">Copyright © 2023</a>  |
+        <a>博客已运行<a id="days">0</a>天</a> 
+        <script> 
+        var s1 = '2020-04-15';//设置为你的建站时间 
+        s1 = new Date(s1.replace(/-/g, "/")); 
+        s2 = new Date(); 
+        var days = s2.getTime() - s1.getTime(); 
+        var number_of_days = parseInt(days / (1000 * 60 * 60 * 24)); 
+        document.getElementById('days').innerHTML = number_of_days; 
+        </script> |
+        <a class="bottom-item" href="/atom.xml">RSS</a>
+        <script>
+			var _hmt = _hmt || [];
+			(function() {
+			  var hm = document.createElement("script");
+			  hm.src = "https://hm.baidu.com/hm.js?7241c66da4c19bc02e939e6776919ff8";
+			  var s = document.getElementsByTagName("script")[0]; 
+			  s.parentNode.insertBefore(hm, s);
+			})();
+		</script>
+    </div>
+</footer>
+
+
+
+<script>
+  (function(window, document, undefined) {
+
+    var timer = null;
+
+    function returnTop() {
+      cancelAnimationFrame(timer);
+      timer = requestAnimationFrame(function fn() {
+        var oTop = document.body.scrollTop || document.documentElement.scrollTop;
+        if (oTop > 0) {
+          document.body.scrollTop = document.documentElement.scrollTop = oTop - 50;
+          timer = requestAnimationFrame(fn);
+        } else {
+          cancelAnimationFrame(timer);
+        }
+      });
+    }
+
+    var hearts = [];
+    window.requestAnimationFrame = (function() {
+      return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(callback) {
+          setTimeout(callback, 1000 / 60);
+        }
+    })();
+    init();
+
+    function init() {
+      css(".heart{z-index:9999;width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: absolute;}.heart:after{top: -5px;}.heart:before{left: -5px;}");
+      attachEvent();
+      gameloop();
+      addMenuEvent();
+    }
+
+    function gameloop() {
+      for (var i = 0; i < hearts.length; i++) {
+        if (hearts[i].alpha <= 0) {
+          document.body.removeChild(hearts[i].el);
+          hearts.splice(i, 1);
+          continue;
+        }
+        hearts[i].y--;
+        hearts[i].scale += 0.004;
+        hearts[i].alpha -= 0.013;
+        hearts[i].el.style.cssText = "left:" + hearts[i].x + "px;top:" + hearts[i].y + "px;opacity:" + hearts[i].alpha + ";transform:scale(" + hearts[i].scale + "," + hearts[i].scale + ") rotate(45deg);background:" + hearts[i].color;
+      }
+      requestAnimationFrame(gameloop);
+    }
+
+    /**
+     * 给logo设置点击事件
+     * 
+     * - 回到顶部
+     * - 出现爱心
+     */
+    function attachEvent() {
+      var old = typeof window.onclick === "function" && window.onclick;
+      var logo = document.getElementById("logo");
+      if (logo) {
+        logo.onclick = function(event) {
+          returnTop();
+          old && old();
+          createHeart(event);
+        }
+      }
+      
+    }
+
+    function createHeart(event) {
+      var d = document.createElement("div");
+      d.className = "heart";
+      hearts.push({
+        el: d,
+        x: event.clientX - 5,
+        y: event.clientY - 5,
+        scale: 1,
+        alpha: 1,
+        color: randomColor()
+      });
+      document.body.appendChild(d);
+    }
+
+    function css(css) {
+      var style = document.createElement("style");
+      style.type = "text/css";
+      try {
+        style.appendChild(document.createTextNode(css));
+      } catch (ex) {
+        style.styleSheet.cssText = css;
+      }
+      document.getElementsByTagName('head')[0].appendChild(style);
+    }
+
+    function randomColor() {
+      // return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + ")";
+      return "#F44336";
+    }
+
+    function addMenuEvent() {
+      var menu = document.getElementById('menu-main-post');
+      if (menu) {
+        var toc = document.getElementById('toc');
+        if (toc) {
+          menu.onclick = function() {
+            if (toc) {
+              if (toc.style.display == 'block') {
+                toc.style.display = 'none';
+              } else {
+                toc.style.display = 'block';
+              }
+            }
+          };
+        } else {
+          menu.style.display = 'none';
+        }
+      }
+    }
+
+  })(window, document);
+</script>
+
+
+
+
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

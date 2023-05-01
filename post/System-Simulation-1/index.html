@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#202020"/>
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  
+    <meta name="keywords" content="系统仿真," />
+  
+
+  
+    <meta name="description" content="QH的博客" />
+  
+  
+  
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  
+  <title>系统仿真笔记（一）绪论及概述 - QH的博客</title>
+  
+    <!-- stylesheets list from config.yml -->
+    
+      <link rel="stylesheet" href="/css/pure-min.css">
+    
+      <link rel="stylesheet" href="/css/xoxo.css">
+    
+  
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="QH的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="nav-container">
+<nav class="home-menu pure-menu pure-menu-horizontal">
+  <a class="pure-menu-heading" href="/">
+    
+      <img class="avatar" src="https://smiler666.github.io/images/favicon.ico">
+    
+    <span class="title" style="text-transform:none">QH的博客</span>
+  </a>
+
+  <ul class="pure-menu-list clearfix">
+      
+          
+            
+              <li class="pure-menu-item"><a href="/" class="pure-menu-link">首页</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+            
+              <a href="#" id="合集" class="pure-menu-link">合集</a>
+              <ul class="pure-menu-children">
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/探索/" style="color:#202020;" class="pure-menu-link">探索</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/categories/程序/" style="color:#202020;" class="pure-menu-link">程序</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/post/py-1/" style="color:#202020;" class="pure-menu-link">Python</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/categories/数值计算/" style="color:#202020;" class="pure-menu-link">数值计算</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/机器学习/" style="color:#202020;" class="pure-menu-link">机器学习</a></li>
+                  
+              
+                  
+                    <li class="pure-menu-item"><a href="/tags/RITSS/" style="color:#202020;" class="pure-menu-link">Abaqus/RITSS</a></li>
+                  
+              
+              </ul>
+            </li>
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/archives" class="pure-menu-link">文章</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/post/share-1/" class="pure-menu-link">工具</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/about" class="pure-menu-link">关于</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/search" class="pure-menu-link">搜索</a></li>
+            
+          
+      
+  </ul>
+   
+</nav>
+
+</div>
+
+<div class="container" id="content-outer">
+<div class="inner" id="content-inner">
+<div class="post-container">
+  <article class="post" id="post">
+    <header class="post-header text-center">
+      <h1 class="title">
+        系统仿真笔记（一）绪论及概述
+      </h1>
+      <span>
+        
+        <time class="time" datetime="2020-04-25T13:32:01.000Z">
+        2020-04-25
+      </time>
+        
+      </span>
+      <span class="slash">/</span>
+      <span class="post-meta">
+      <span class="post-tags">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E4%BB%BF%E7%9C%9F/" rel="tag">系统仿真</a></li></ul>
+      </span>
+    </span>
+      <span class="slash">/</span>
+      <span class="read">阅读耗时 38 分钟</span>
+    </header>
+
+    <div class="post-content">
+      <a id="more"></a>
+<p>《系统仿真》课程相关资料，由大连理工大学<a href="http://faculty.dlut.edu.cn/1989011023/zh_CN/index.htm" target="_blank" rel="noopener">金淳</a>教授主讲，参考其课程相关课件，内容比较基础，希望碎片化的知识可以得到融会贯通。</p>
+<h1 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h1><h2 id="1-课程要求"><a href="#1-课程要求" class="headerlink" title="1.课程要求"></a>1.课程要求</h2><ul>
+<li>基础知识：概率论和数理统计，运筹学，系统分析方法</li>
+<li>程序设计：理解C++、JAVA、VB、C#、Excel</li>
+</ul>
+<h2 id="2-学习方法"><a href="#2-学习方法" class="headerlink" title="2.学习方法"></a>2.学习方法</h2><ul>
+<li>多动手实践</li>
+<li>尽可能学习掌握一种仿真工具，如ARENA，Em_Plant，AnyLogic，Simio，FlexSim，VenSim，NetLogo，Matlab等。。。</li>
+</ul>
+<h2 id="3-参考书目"><a href="#3-参考书目" class="headerlink" title="3.参考书目"></a>3.参考书目</h2><ul>
+<li>《管理系统模拟》，卫强，陈国清，高等教育出版社</li>
+<li>《离散事件系统仿真》，[美]J.Banks ，第4版，机械工业出版社，肖田元等译</li>
+<li>《系统仿真导论》， 肖田元等，清华大学出版社</li>
+<li>《离散系统仿真》，冯允成，邹志红等，机械工业出版社</li>
+<li>《系统建模与仿真》，胡斌，周明等，清华大学出版社</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-1/1.png" alt="1"></p>
+<h1 id="二、系统仿真概述"><a href="#二、系统仿真概述" class="headerlink" title="二、系统仿真概述"></a>二、系统仿真概述</h1><h2 id="2-1-管理与决策"><a href="#2-1-管理与决策" class="headerlink" title="2.1 管理与决策"></a>2.1 管理与决策</h2><ul>
+<li>决策是管理的职能之一；</li>
+<li>决策是一个面向系统（组织）的决定；</li>
+<li>仿真是来做决策支持的。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-1/2.png" alt="2"></p>
+<h3 id="管理决策的特点"><a href="#管理决策的特点" class="headerlink" title="管理决策的特点"></a>管理决策的特点</h3><p><strong>1、决策的类型</strong></p>
+<p>​      结构性（程序性因果确定）、非结构性（需要创造性）</p>
+<p><strong>2、不确定性和风险</strong></p>
+<p>​      信息不确定、结果不确定—-不能确切地预测结果—-面临风险</p>
+<p><strong>3、冲突性</strong></p>
+<p>​      管理者所设立的目标、不同部门之间、上下级之间</p>
+<p><strong>决策的6阶段：</strong></p>
+<p>确认问题—-提出备选方案—-评估备选方案—-选择—-实施—评价</p>
+<p><strong>如何评价决策的好坏？</strong></p>
+<p>（1）结果出来以后就知道了。——管理者的失职。 </p>
+<p>如果决策是错误的，造成的损失：时间、财产、信誉、。。。</p>
+<p>（2）决策实施之前判断。——管理者的素质和水平</p>
+<p>如何判断？①管理者自身的才能；②借助科学技术工具。</p>
+<h3 id="管理决策技术的类型"><a href="#管理决策技术的类型" class="headerlink" title="管理决策技术的类型"></a>管理决策技术的类型</h3><p><strong>管理决策技术适用管理决策的问题</strong>：</p>
+<ol>
+<li>程序型、结构型决策</li>
+<li>信息确定型</li>
+<li>目标可以数量化型</li>
+</ol>
+<p><strong>典型管理决策问题举例（利用运筹学）</strong>：</p>
+<ol>
+<li>运输/库存问题</li>
+<li>生产计划问题</li>
+<li>排队/服务问题</li>
+<li>网络计划问题</li>
+</ol>
+<h3 id="管理决策面临的挑战"><a href="#管理决策面临的挑战" class="headerlink" title="管理决策面临的挑战"></a>管理决策面临的挑战</h3><p>当前，管理决策对象的特点：</p>
+<ol>
+<li>管理的对象是一个系统。我们要面对日趋复杂的系统问题：生态环境、供应链网络、交通网络、社会系统、互联网系统、经济系统。。。</li>
+<li>管理决策工作是一个复杂的系统工程。我们要面对日趋复杂的系统分析与决策问题：环境治理策略、供应链管理、交通管理、灾害对策、经济政策。。。</li>
+<li>上述分析与决策问题对我们管理决策技术提出了挑战！</li>
+</ol>
+<ul>
+<li>对复杂、庞大、随机变化系统，如何构建好的模型？<strong>准！</strong></li>
+<li>如何快速求解这些模型？<strong>快！</strong></li>
+<li>如何发现一个好的解决方案？<strong>好！</strong></li>
+</ul>
+<blockquote>
+<p><strong>回答：采用计算机模拟方法求解</strong>。</p>
+</blockquote>
+<p><strong>管理决策技术方法</strong>：</p>
+<ol>
+<li>运筹学：一种数学分析方法</li>
+<li>系统模拟（系统仿真）：一种系统分析方法</li>
+</ol>
+<p>系统模拟方法通过在计算机上建立仿真模型对系统的运行过程进行再现，求解问题的数值解。</p>
+<p>首先，让我们从<strong>系统</strong>谈起。</p>
+<h2 id="2-2-系统的定义和分类"><a href="#2-2-系统的定义和分类" class="headerlink" title="2.2 系统的定义和分类"></a>2.2 系统的定义和分类</h2><h3 id="系统定义"><a href="#系统定义" class="headerlink" title="系统定义"></a>系统定义</h3><p>中国著名学者钱学森是这样定义系统的：系统是由相互作用相互依赖的若干组成部分结合而成的，具有特定功能的有机整体，而且这个有机整体又是它从属的更大系统的组成部分。</p>
+<p>在系统科学中，一个系统以其内在特征及表征而区别于其他系统。</p>
+<ul>
+<li>内在特征：实体的集合、实体的属性、系统的活动、由此构成系统的三大要素。 </li>
+<li>表征：系统的环境（系统界面状态，约束和干扰等）。</li>
+</ul>
+<p>模型作为系统的抽象，必须能够描述系统的表征及内在特征。</p>
+<h3 id="系统的分类"><a href="#系统的分类" class="headerlink" title="系统的分类"></a>系统的分类</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>分类特征</strong></th>
+<th><strong>类别</strong></th>
+<th><strong>举例</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>物理特征</strong></td>
+<td>工程系统  非工程系统</td>
+<td>电气，机械、化工、热力等  经济、交通、管理、生态等</td>
+</tr>
+<tr>
+<td><strong>状态变化</strong></td>
+<td>连续系统<br> 离散系统 <br>连续离散混合系统</td>
+<td>飞机，导弹，流体及机械的运动  生产、医院、通信、交通系统等  上述系统的混合</td>
+</tr>
+<tr>
+<td><strong>自然属性</strong></td>
+<td>自然系统<br>人造系统（社会、概念等）</td>
+<td>天体、生物、生态  企业、计算机，</td>
+</tr>
+<tr>
+<td><strong>规模状况</strong></td>
+<td>简单小系统<br>复杂大系统</td>
+<td>机械  生态，种群，宇宙</td>
+</tr>
+<tr>
+<td><strong>时变属性</strong></td>
+<td>静态系统（static）<br>动态系统（dynamic）</td>
+<td>大桥、公路、房屋    交通系统</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="按状态变化分类"><a href="#按状态变化分类" class="headerlink" title="按状态变化分类"></a>按状态变化分类</h3><p>按系统中起主导作用的状态的变化是否连续，分为连续系统、离散系统，连续-离散混合系统。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>分类特征</strong></th>
+<th><strong>类别</strong></th>
+<th><strong>举例</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>连续系统</strong></td>
+<td><strong>系统的状态随时间连续变化</strong></td>
+<td><strong>飞机，导弹，流体及机械运动</strong></td>
+</tr>
+<tr>
+<td><strong>离散系统</strong></td>
+<td><strong>系统的状态变化只在时间的离散时刻发生，且往往随机。</strong></td>
+<td><strong>生产、医院、通信、交通系统</strong></td>
+</tr>
+<tr>
+<td><strong>连续-离散混合系统</strong></td>
+<td><strong>系统的状态既包括随时间连续变化的参量，也包括只在离散时刻发生变化的参量。</strong></td>
+<td><strong>上述系统的混合</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p>小结：从系统建模及仿真的角度，把系统分为连续系统、离散系统，连续-离散混合系统有益于进行系统的分析和仿真建模。     </p>
+</blockquote>
+<h2 id="2-3-系统模型"><a href="#2-3-系统模型" class="headerlink" title="2.3 系统模型"></a>2.3 系统模型</h2><h3 id="系统模型的概念"><a href="#系统模型的概念" class="headerlink" title="系统模型的概念"></a>系统模型的概念</h3><p>系统模型是系统的一种表示，是为研究系统而开发的，对系统的内在联系及其与外界关系的一种描述。</p>
+<p>系统模型按模型的表示方法分为：</p>
+<ul>
+<li>物理模型：又称实体模型，它是实际系统在尺寸上缩小或放大后的相似体。例：地图、沙盘。</li>
+<li>数学模型：是用数学方程来描述实际系统的结构和性能的模型，如果模型中不含时间因素，则称静态模型，若模型与时间有关，则称动态模型。例：麦克斯韦方程。</li>
+<li>半实物模型：上述两种模型的混合</li>
+</ul>
+<h3 id="连续系统的数学模型"><a href="#连续系统的数学模型" class="headerlink" title="连续系统的数学模型"></a>连续系统的数学模型</h3><p>连续系统是指一个系统的状态随时间连续变化。</p>
+<p>数学模型可以用微分方程或差分方程表示。</p>
+<p>设连续系统的状态变量为：</p>
+<script type="math/tex; mode=display">
+x(t)=(x_1,x_2,......,x_n)</script><p>则系统的系统状态值可表示为：</p>
+<script type="math/tex; mode=display">
+y(x,t)=(x_1,x_2,......,x_n,t)</script><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-1/3.png" alt="3"></p>
+<h3 id="离散系统数学模型"><a href="#离散系统数学模型" class="headerlink" title="离散系统数学模型"></a>离散系统数学模型</h3><p>离散系统是指系统的状态变化只在时间的离散时刻发生，而且往往又是随机的。</p>
+<p>设离散系统的状态变量为：</p>
+<script type="math/tex; mode=display">
+x(t)=(x_1,x_2,......,x_n)</script><p>系统的状态值为在有限离散的时间点上的离散量。</p>
+<p>其运动方程不可以用微分方程表示。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-1/4.png" alt="4"></p>
+<h2 id="2-4-系统仿真的概念和技术特点"><a href="#2-4-系统仿真的概念和技术特点" class="headerlink" title="2.4 系统仿真的概念和技术特点"></a>2.4 系统仿真的概念和技术特点</h2><h3 id="仿真的定义"><a href="#仿真的定义" class="headerlink" title="仿真的定义"></a>仿真的定义</h3><p><strong>仿真定义1：</strong> 从技术应用角度，系统仿真是以相似原理、控制理论、计算技术、信息技术及应用领域的专业技术为基础，以计算机和各种物理效应设备为工具，利用数学模型或部分实物对实际或设想的系统进行动态实验研究的一门综合性技术。 </p>
+<p><strong>仿真定义2：</strong>系统仿真是根据被研究的真实系统的模型，利用计算机进行实验研究的一种方法。它是建立在系统科学、系统识别、控制理论、计算技术与控制工程基础上的一门综合性很强的实验科学技术，是分析、综合各类系统，特别是大系统的一种研究方法和有力的工具。</p>
+<p><strong>仿真定义3：</strong>从技术特征角度，系统仿真是以系统理论、形式化原理、随机过程及统计学理论、优化理论为基础，以计算机软、硬件系统为工具，对现实或未来系统进行动态实验研究的理论和方法。</p>
+<blockquote>
+<p>用一句话定义系统仿真的概念：<strong>系统仿真</strong>是利用计算机对系统模型进行动态实验研究的一种方法。</p>
+</blockquote>
+<h3 id="系统仿真的分类"><a href="#系统仿真的分类" class="headerlink" title="系统仿真的分类"></a>系统仿真的分类</h3><p>系统模拟/仿真分类可从不同的角度分为以下几类：</p>
+<ul>
+<li>模型的种类：物理模拟、数学模拟、半实物模拟</li>
+<li>模拟时钟与实际时钟的比：实时、亚实时、超实时模拟</li>
+<li>模型对象特征：连续系统、离散系统、混合系统模拟</li>
+<li>应用领域：工程领域仿真、非工程领域仿真</li>
+<li>功能用途：工程仿真和训练仿真。 </li>
+<li>虚实结合程度：结构仿真、虚拟仿真、实况仿真</li>
+</ul>
+<p>按模拟时钟与实际时钟的比例关系分类：</p>
+<ul>
+<li><p>实际动态系统的时间基准为实际时钟</p>
+</li>
+<li><p>系统模拟时模型所采用的时钟称为模拟时钟。</p>
+</li>
+<li><p>根据模拟时钟与实际时钟之间的比例关系，系统模拟分为以下三种：</p>
+<p><strong>- 实时模拟：</strong>即模拟时钟与实际时钟完全一致，一般也称为在线模拟。其意义在于可以与实际系统并行进行。如QUAKE等游戏。</p>
+<p><strong>- 亚实时模拟：</strong>即模拟时钟慢于实际时钟。特别是在模拟速度要求不苛刻的情况下均是亚实时模拟。大多数离线研究和分析，也称为离线模拟。</p>
+<p><strong>- 超实时模拟：</strong>即模拟时钟快于实际时钟。例如，社会经济系统模拟，气象实验预测、交通系统模拟等。</p>
+</li>
+</ul>
+<p>按系统模型的特性分类：</p>
+<ul>
+<li><p>从模拟实现的角度看，系统模型特性可分为两大类</p>
+<ul>
+<li><p>连续系统</p>
+</li>
+<li><p>离散事件系统</p>
+</li>
+</ul>
+</li>
+<li><p>由于这两类系统固有运动规律的不同，因而描述其运动规律的模型形式就有很大的差别，相应的，系统模拟技术也分为两大类：</p>
+<ul>
+<li><p>连续系统模拟（自然和工程系统）</p>
+</li>
+<li><p>离散事件系统模拟（人造系统）</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>连续系统模拟（successive event system）：</strong>是指系统状态随时间连续变化的系统的模拟。</p>
+<p>在工程领域内连续系统的模拟可以分为4大类：</p>
+<ul>
+<li>数学仿真（Mathematical Simulation）</li>
+<li>硬件在回路仿真（Hardware-in-loop Simulation）</li>
+<li>软件在回路仿真（Software-in-loop Simulation）</li>
+<li>人在回路仿真（Man-in-loop Simulation）</li>
+</ul>
+<p><strong>离散系统模拟（discrete event system）：</strong>是指系统状态在某些随机时间点上发生离散变化的系统，它与连续系统的主要区别在于：</p>
+<ul>
+<li>状态变化发生在随机时间点上。这种引起状态变化的行为称为“事件”，因而这类系统可以视为由事件驱动的；</li>
+<li>而且“事件”往往发生在随机时间点上，亦称为随机事件，因而离散事件系统一般都具有随机特性；</li>
+<li>系统的状态变量往往是离散变化的。例如，银行排队服务系统、库存系统等</li>
+</ul>
+<blockquote>
+<p>许多管理领域中的问题都可视为离散事件系统。</p>
+</blockquote>
+<h3 id="系统仿真的特点"><a href="#系统仿真的特点" class="headerlink" title="系统仿真的特点"></a>系统仿真的特点</h3><p><strong>系统仿真具有以下技术特点：</strong></p>
+<ul>
+<li><p>仿真模型是实际系统的近似抽象化。</p>
+</li>
+<li><p>仿真是基于计算机的数值实验技术和试验环境。</p>
+</li>
+<li><p>仿真运行是一个对系统行为的抽样过程，它包括两个方面：</p>
+<ul>
+<li><p>一次仿真运行结果实际上是对系统行为的一次随机抽样</p>
+</li>
+<li><p>多次仿真运行结果实际上是一定样本量的随机抽样。</p>
+</li>
+</ul>
+</li>
+<li><p>仿真结果需要通过统计推断，才能得出系统真实的性能估计</p>
+</li>
+</ul>
+<p><strong>系统仿真的优点：</strong></p>
+<ol>
+<li>经济性。系统仿真是利用计算机，对仿真模型进行试验，它具有利用模型进行试验的一系列优点，如费用低、易于进行真实系统难以实现的各种试验等。</li>
+<li>简单性。有些系统的模型难以用一般的数学形式表达；有的虽然能用数学形式表达，但没有解析方法可求解；有的虽然有解析解，但其数学过程过于复杂、计算量过大。用计算机仿真方法则不受这些限制，从而便于仿真技术的推广。</li>
+<li>安全性。在真实系统中要实现完全相同条件下的重复试验是很困难的，在计算机仿真试验中则很容易实现。</li>
+<li>最优性。通过系统仿真分析复杂系统的特性，并通过方案比较得到最优方案。</li>
+<li>预见性。对于经济、金融、社会、战争等非工程系统，直接实验是不可能的，通过计算机仿真可以研究控制的策略。</li>
+</ol>
+<p><strong>系统仿真的缺点：</strong></p>
+<ul>
+<li>工作量大：仿真试验多次重复运行，数据量大这些特点使它占用相当多的机时和存储空间，系统仿真的工作量也很大，消耗的人力和计算机费用是十分可观的。</li>
+<li>近似求解：仿真方法得到的解是近似解而非精确解，而且其精度又不容易控制。</li>
+<li>特殊解：仿真方法得到的解是特殊解而通解，所以需要在不同条件下大量运行模拟以求最优解。</li>
+<li>备选性：系统仿真的方法只有在难以建立用解析方法求解的数学模型的时候，才考虑使用。在使用时要针对系统的特定情况，分析使用仿真方法的利弊。</li>
+</ul>
+<h3 id="系统仿真与解析法的比较"><a href="#系统仿真与解析法的比较" class="headerlink" title="系统仿真与解析法的比较"></a>系统仿真与解析法的比较</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>项目</strong></th>
+<th><strong>仿真方法</strong></th>
+<th><strong>解析法</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>建模精度</strong></td>
+<td><strong>用于由于随机因素而无法用准确的数学模型表示的实际系统。</strong></td>
+<td><strong>实际系统的高度抽象化</strong></td>
+</tr>
+<tr>
+<td><strong>动态系统建模</strong></td>
+<td><strong>仿真可以分析一个长期的系统变化过程。</strong></td>
+<td><strong>对于动态随机系统不方便</strong></td>
+</tr>
+<tr>
+<td><strong>方案选优</strong></td>
+<td><strong>在实际系统建成以前分析系统的变化规律并选择最佳方案。</strong></td>
+<td><strong>对于动态随机系统不方便</strong></td>
+</tr>
+<tr>
+<td><strong>复杂系统建模</strong></td>
+<td><strong>系统仿真是求解复杂实际系统的重要工具</strong></td>
+<td><strong>不方便</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="系统仿真的必要性"><a href="#系统仿真的必要性" class="headerlink" title="系统仿真的必要性"></a>系统仿真的必要性</h3><p>通常在以下条件下需要采用系统仿真手段解决问题：</p>
+<ol>
+<li>系统太大，需要缩小。如宇宙、天体、地球等；</li>
+<li>系统太复杂，无法描述，需要简化；</li>
+<li>系统太贵重，需要节省。如飞机、卫星、导弹等；</li>
+<li>系统的试验时间太长，需要方便和省时，如宇宙演化，地质变迁等；</li>
+<li>实施太危险，需要安全，如核武器、战争等；</li>
+<li>系统太小或无法观察，需要缩小。如原子、地球内部等；</li>
+<li>系统作试验后，会破坏原系统，无法复原；</li>
+<li>真实系统上需要作多次试验时，难以保证每一次的实验条件都相同，导致无法判断试验结果；</li>
+<li>人是试验的一部分时，有时会和平时不一样，这往往影响试验结果；</li>
+<li>系统处于设计阶段，因此不可能在真实的系统上作试验。</li>
+</ol>
+<h3 id="对系统仿真技术方法的认识"><a href="#对系统仿真技术方法的认识" class="headerlink" title="对系统仿真技术方法的认识"></a>对系统仿真技术方法的认识</h3><p><strong>认识新手段：</strong>是继理论分析、实物试验后，人类认识世界的新兴手段。</p>
+<p><strong>思考方法论：</strong>在理论上体现了试验思考的方法论。</p>
+<p><strong>求解复杂性：</strong>是求解复杂系统的重要工具。 </p>
+<p><strong>建模简单化：</strong>系统仿真模型与实际系统的运行过程具有形式上和逻辑上的对应性。</p>
+<p><strong>高科技：</strong>已经跻身于高科技领域，与人工智能、网络技术、优化理论、图形技术、虚拟现实技术等融为一体。</p>
+<h2 id="2-5-系统仿真在管理系统中的应用"><a href="#2-5-系统仿真在管理系统中的应用" class="headerlink" title="2.5 系统仿真在管理系统中的应用"></a>2.5 系统仿真在管理系统中的应用</h2><h3 id="（1）应用于系统全寿命周期"><a href="#（1）应用于系统全寿命周期" class="headerlink" title="（1）应用于系统全寿命周期"></a>（1）应用于系统全寿命周期</h3><p>一个真实系统的实现从开始提出到最后实现，要经历几个阶段：方案论证、系统分析、初步设计、具体设计、系统试验、投入运行、人员培训。在上述各个阶段中，都可以应用计算机模拟技术</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th><strong>阶段</strong></th>
+<th><strong>应用内容</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>方案论证</strong></td>
+<td><strong>对各种方案进行技术经济比较、选择合理方案</strong></td>
+</tr>
+<tr>
+<td><strong>系统分析</strong></td>
+<td><strong>分析系统的特性，确立数学模型，分析系统瓶颈</strong></td>
+</tr>
+<tr>
+<td><strong>初步设计</strong></td>
+<td><strong>选择合理的系统构造，确定某些部分的合理结构</strong></td>
+</tr>
+<tr>
+<td><strong>具体设计</strong></td>
+<td><strong>优化系统参数，协调各部分功能</strong></td>
+</tr>
+<tr>
+<td><strong>系统试验</strong></td>
+<td><strong>将系统样机接入模拟系统进行模拟实验，考核系统设计效果</strong></td>
+</tr>
+<tr>
+<td><strong>投入运行</strong></td>
+<td><strong>调整、改进系统某些参数，使系统达到最佳状态</strong></td>
+</tr>
+<tr>
+<td><strong>人员培训</strong></td>
+<td><strong>对人员进行操作训练，系统控制模拟演练</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="（2）在管理与经济等领域的应用"><a href="#（2）在管理与经济等领域的应用" class="headerlink" title="（2）在管理与经济等领域的应用"></a>（2）在管理与经济等领域的应用</h3><p>系统仿真技术广泛应用于如下领域的运行管理，方案论证，企业诊断，决策、策略与风险分析等。</p>
+<ul>
+<li>国民经济、人口、生态、能源规划</li>
+<li>企业经营、市场，销售预测系统、供应链物流管理</li>
+<li>企业生产及库存系统（流程、离散工业，能源矿山）</li>
+<li>航空航天系统、交通运输系统</li>
+<li>电力网络、计算机及通信网络结构分析、系统流程分析</li>
+<li>医院系统、服务系统、资源分配、布局规划</li>
+<li>军事作战</li>
+<li>人员培训：飞行员、电厂操作、武器系统、航空航天</li>
+</ul>
+<h2 id="2-6-系统仿真的实施过程概要"><a href="#2-6-系统仿真的实施过程概要" class="headerlink" title="2.6 系统仿真的实施过程概要"></a>2.6 系统仿真的实施过程概要</h2><h3 id="系统仿真三要素"><a href="#系统仿真三要素" class="headerlink" title="系统仿真三要素"></a>系统仿真三要素</h3><p>系统仿真过程的三要素及其关系如下图所示</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-1/5.png" alt="5"></p>
+<h3 id="系统仿真的三个阶段"><a href="#系统仿真的三个阶段" class="headerlink" title="系统仿真的三个阶段"></a>系统仿真的三个阶段</h3><p>1、建模阶段：</p>
+<ul>
+<li><p>根据研究目的、系统的先验知识以及观察的数据，对系统进行分析，确定组成要素、状态变量和参数之间的逻辑关系，建立被系统的数学逻辑模型。形成概念模型。</p>
+<p>2、模型变换阶段</p>
+</li>
+<li><p>根据原始数学逻辑模型的形式、计算机的类型以及仿真目的将原始数学逻辑模型转换为适合于计算机处理的仿真模型。 </p>
+</li>
+</ul>
+<p>3、仿真运行阶段</p>
+<ul>
+<li>对模型进行装载试验，并使它在计算机上运转起来。根据运行结果对模型进行验证，最后按试验要求整理成报告输出。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-1/6.png" alt="6"></p>
+<h3 id="系统仿真的实施步骤"><a href="#系统仿真的实施步骤" class="headerlink" title="系统仿真的实施步骤"></a>系统仿真的实施步骤</h3><p><strong>1、问题的阐述</strong></p>
+<p>每一项研究应从说明问题开始。主要任务是问题描述与系统定义，明确仿真对象，亦即确定被仿真系统的边界，确定仿真的目标及任务。</p>
+<p><strong>2、设置目标及总的具体计划</strong></p>
+<p>目标表示由模拟回答问题，以便确定对所陈述的问题和所说明目标模拟是否合适。本步骤的任务在于明确项目的需求。</p>
+<p><strong>3、建立模型</strong></p>
+<p>构造一个系统模型为转换为仿真模型打下基础。一般用流程图的形式加以描述，重点描述临时实体的产生规律，历经系统的过程，永久实体对临时实体的作用规则、条件及结果。</p>
+<p><strong>4、数据收集</strong></p>
+<p>在构造模型和收集所需数据之间经常相互影响。随机变量模型的确定在离散事件系统建模中占有十分重要的地位，要搜集足够多的原始数据以便较好地确定其分布的类型及参数。</p>
+<p><strong>5、仿真开发</strong></p>
+<p>确定仿真方法（确定随机变量和建模策略）、系统模型的抽象（事件调度法、采用活动扫描法或进程交互法）、设计仿真程序（基于某仿真平台进行编程开发）。</p>
+<p><strong>6、验证（Verify）</strong></p>
+<p>验证与模拟模型的计算机程序有关。首先要校验仿真程序的正确性，然后校验仿真模型的正确性——验证经过验证是正确的仿真模型才能进行仿真试验。</p>
+<p><strong>7、 确认（Validate）</strong></p>
+<p>确定模型是否精确地代表实际系统。</p>
+<p><strong>8、试验设计</strong></p>
+<p>确定进行模拟的方案。如运行长度和次数等。仿真试验条件及运行次数与输出分析的要求有密切关系，这是与连续系统仿真的又一重要的区别。</p>
+<p><strong>9、生产性运行和分析</strong></p>
+<p>用于估计所模拟的系统设计的性能测度。</p>
+<p><strong>10、 进一步运行</strong></p>
+<p>根据已完成的运行分析，确定是否还需增加运行以及应遵循什么样的附加试验设计。</p>
+<p><strong>11、 程序说明和报表结果</strong></p>
+<p>仿真输出作为系统评价的依据。</p>
+<p><strong>12、实现</strong></p>
+<p>实现阶段是否成功取决于前面已执行的结果是否合适。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-1/7.png" alt="7"></p>
+<h1 id="三、本章小结"><a href="#三、本章小结" class="headerlink" title="三、本章小结"></a>三、本章小结</h1><ol>
+<li>系统：系统是指互相联系又互相作用的对象的有机结合。系统可按不同方法分类。</li>
+<li>模型：环境、实体（集合、属性）活动。</li>
+<li>系统的数学模型：连续系统的数学模型、离散系统模型、混合系统数学模型。</li>
+<li>系统仿真的定义：利用数学模型或部分实物对实际或设想的系统进行动态实验研究的一门综合性技术。</li>
+<li>仿真法与解析法的比较。</li>
+<li>系统仿真的优点、缺点。</li>
+<li>系统仿真在管理系统中应用的必要性。</li>
+<li>系统仿真实施的三阶段：概念模型、仿真模型、仿真运行</li>
+</ol>
+
+    </div>
+
+  </article>
+  <div class="toc-container">
+    
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、前言"><span class="toc-text">一、前言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-课程要求"><span class="toc-text">1.课程要求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-学习方法"><span class="toc-text">2.学习方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-参考书目"><span class="toc-text">3.参考书目</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、系统仿真概述"><span class="toc-text">二、系统仿真概述</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-管理与决策"><span class="toc-text">2.1 管理与决策</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#管理决策的特点"><span class="toc-text">管理决策的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#管理决策技术的类型"><span class="toc-text">管理决策技术的类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#管理决策面临的挑战"><span class="toc-text">管理决策面临的挑战</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-系统的定义和分类"><span class="toc-text">2.2 系统的定义和分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#系统定义"><span class="toc-text">系统定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系统的分类"><span class="toc-text">系统的分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#按状态变化分类"><span class="toc-text">按状态变化分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-系统模型"><span class="toc-text">2.3 系统模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#系统模型的概念"><span class="toc-text">系统模型的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#连续系统的数学模型"><span class="toc-text">连续系统的数学模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#离散系统数学模型"><span class="toc-text">离散系统数学模型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-系统仿真的概念和技术特点"><span class="toc-text">2.4 系统仿真的概念和技术特点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#仿真的定义"><span class="toc-text">仿真的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系统仿真的分类"><span class="toc-text">系统仿真的分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系统仿真的特点"><span class="toc-text">系统仿真的特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系统仿真与解析法的比较"><span class="toc-text">系统仿真与解析法的比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系统仿真的必要性"><span class="toc-text">系统仿真的必要性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对系统仿真技术方法的认识"><span class="toc-text">对系统仿真技术方法的认识</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-系统仿真在管理系统中的应用"><span class="toc-text">2.5 系统仿真在管理系统中的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#（1）应用于系统全寿命周期"><span class="toc-text">（1）应用于系统全寿命周期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#（2）在管理与经济等领域的应用"><span class="toc-text">（2）在管理与经济等领域的应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-6-系统仿真的实施过程概要"><span class="toc-text">2.6 系统仿真的实施过程概要</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#系统仿真三要素"><span class="toc-text">系统仿真三要素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系统仿真的三个阶段"><span class="toc-text">系统仿真的三个阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系统仿真的实施步骤"><span class="toc-text">系统仿真的实施步骤</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、本章小结"><span class="toc-text">三、本章小结</span></a></li></ol>
+  </div>
+
+
+  </div>
+</div>
+<div class="copyright">
+    <span>本作品采用</span>
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>
+    <span>进行许可。转载时请注明原文链接。</span>
+</div>
+
+
+  
+    <div class="post-nav">
+      <div class="post-nav-item post-nav-next">
+        
+          <span>〈 </span>
+          <a href="/post/port-logistics-4/" rel="next" title="现代港口物流管理（四）新技术与智慧港口">
+          现代港口物流管理（四）新技术与智慧港口
+          </a>
+        
+      </div>
+  
+      <div class="post-nav-item post-nav-prev">
+          
+          <a href="/post/System-Simulation-2/" rel="prev" title="系统仿真笔记（二）建模方法概述">
+            系统仿真笔记（二）建模方法概述
+          </a>
+          <span>〉</span>
+        
+      </div>
+    </div>
+  
+
+
+
+</div>
+</div>
+
+<footer class="footer text-center">
+    <div id="bottom-inner">
+        <a class="bottom-item" href="" target="_blank">QH的博客</a> |
+        <a class="bottom-item">Powered by hexo</a> |
+        <a class="bottom-item">Copyright © 2023</a>  |
+        <a>博客已运行<a id="days">0</a>天</a> 
+        <script> 
+        var s1 = '2020-04-15';//设置为你的建站时间 
+        s1 = new Date(s1.replace(/-/g, "/")); 
+        s2 = new Date(); 
+        var days = s2.getTime() - s1.getTime(); 
+        var number_of_days = parseInt(days / (1000 * 60 * 60 * 24)); 
+        document.getElementById('days').innerHTML = number_of_days; 
+        </script> |
+        <a class="bottom-item" href="/atom.xml">RSS</a>
+        <script>
+			var _hmt = _hmt || [];
+			(function() {
+			  var hm = document.createElement("script");
+			  hm.src = "https://hm.baidu.com/hm.js?7241c66da4c19bc02e939e6776919ff8";
+			  var s = document.getElementsByTagName("script")[0]; 
+			  s.parentNode.insertBefore(hm, s);
+			})();
+		</script>
+    </div>
+</footer>
+
+
+
+<script>
+  (function(window, document, undefined) {
+
+    var timer = null;
+
+    function returnTop() {
+      cancelAnimationFrame(timer);
+      timer = requestAnimationFrame(function fn() {
+        var oTop = document.body.scrollTop || document.documentElement.scrollTop;
+        if (oTop > 0) {
+          document.body.scrollTop = document.documentElement.scrollTop = oTop - 50;
+          timer = requestAnimationFrame(fn);
+        } else {
+          cancelAnimationFrame(timer);
+        }
+      });
+    }
+
+    var hearts = [];
+    window.requestAnimationFrame = (function() {
+      return window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(callback) {
+          setTimeout(callback, 1000 / 60);
+        }
+    })();
+    init();
+
+    function init() {
+      css(".heart{z-index:9999;width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: absolute;}.heart:after{top: -5px;}.heart:before{left: -5px;}");
+      attachEvent();
+      gameloop();
+      addMenuEvent();
+    }
+
+    function gameloop() {
+      for (var i = 0; i < hearts.length; i++) {
+        if (hearts[i].alpha <= 0) {
+          document.body.removeChild(hearts[i].el);
+          hearts.splice(i, 1);
+          continue;
+        }
+        hearts[i].y--;
+        hearts[i].scale += 0.004;
+        hearts[i].alpha -= 0.013;
+        hearts[i].el.style.cssText = "left:" + hearts[i].x + "px;top:" + hearts[i].y + "px;opacity:" + hearts[i].alpha + ";transform:scale(" + hearts[i].scale + "," + hearts[i].scale + ") rotate(45deg);background:" + hearts[i].color;
+      }
+      requestAnimationFrame(gameloop);
+    }
+
+    /**
+     * 给logo设置点击事件
+     * 
+     * - 回到顶部
+     * - 出现爱心
+     */
+    function attachEvent() {
+      var old = typeof window.onclick === "function" && window.onclick;
+      var logo = document.getElementById("logo");
+      if (logo) {
+        logo.onclick = function(event) {
+          returnTop();
+          old && old();
+          createHeart(event);
+        }
+      }
+      
+    }
+
+    function createHeart(event) {
+      var d = document.createElement("div");
+      d.className = "heart";
+      hearts.push({
+        el: d,
+        x: event.clientX - 5,
+        y: event.clientY - 5,
+        scale: 1,
+        alpha: 1,
+        color: randomColor()
+      });
+      document.body.appendChild(d);
+    }
+
+    function css(css) {
+      var style = document.createElement("style");
+      style.type = "text/css";
+      try {
+        style.appendChild(document.createTextNode(css));
+      } catch (ex) {
+        style.styleSheet.cssText = css;
+      }
+      document.getElementsByTagName('head')[0].appendChild(style);
+    }
+
+    function randomColor() {
+      // return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + ")";
+      return "#F44336";
+    }
+
+    function addMenuEvent() {
+      var menu = document.getElementById('menu-main-post');
+      if (menu) {
+        var toc = document.getElementById('toc');
+        if (toc) {
+          menu.onclick = function() {
+            if (toc) {
+              if (toc.style.display == 'block') {
+                toc.style.display = 'none';
+              } else {
+                toc.style.display = 'block';
+              }
+            }
+          };
+        } else {
+          menu.style.display = 'none';
+        }
+      }
+    }
+
+  })(window, document);
+</script>
+
+
+
+
+
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
