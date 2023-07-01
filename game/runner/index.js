@@ -2042,7 +2042,12 @@
                 }
             } else {
                 // Control flashing of the score on reaching acheivement.
-                if (this.flashIterations <= this.config.flash_iterations) { this.flashtimer +="deltaTime;" if (this.flashtimer < this.config.flash_duration) paint="false;" } else>
+                if (this.flashIterations <= this.config.FLASH_ITERATIONS) {
+                    this.flashTimer += deltaTime;
+
+                    if (this.flashTimer < this.config.FLASH_DURATION) {
+                        paint = false;
+                    } else if (this.flashTimer >
                         this.config.FLASH_DURATION * 2) {
                         this.flashTimer = 0;
                         this.flashIterations++;
@@ -2448,7 +2453,126 @@
             this.xPos[line1] -= increment;
             this.xPos[line2] = this.xPos[line1] + this.dimensions.WIDTH;
 
-            if (this.xPos[line1] <= 6 1000 -this.dimensions.width) { this.xpos[line1] +="this.dimensions.WIDTH" * 2; this.xpos[line2]="this.xPos[line1]" - this.dimensions.width; this.sourcexpos[line1]="this.getRandomType()" this.spritepos.x; } }, ** update the horizon line. @param {number} deltatime speed update: function (deltatime, speed) var increment="Math.floor(speed" (fps 1000) deltatime); if (this.xpos[0] <="0)" this.updatexpos(0, increment); else this.updatexpos(1, this.draw(); reset to starting position. reset: () this.xpos[0]="0;" this.xpos[1]="HorizonLine.dimensions.WIDTH;" }; ****************************************************************************** background class. {htmlcanvaselement} canvas {object} spritepos sprite positioning. dimensions dimensions. gapcoefficient @constructor horizon(canvas, spritepos, dimensions, gapcoefficient) this.canvas="canvas;" this.canvasctx="this.canvas.getContext('2d');" this.config="Horizon.config;" this.dimensions="dimensions;" this.gapcoefficient="gapCoefficient;" this.obstacles="[];" this.obstaclehistory="[];" this.horizonoffsets="[0," 0]; this.cloudfrequency="this.config.CLOUD_FREQUENCY;" this.spritepos="spritePos;" this.nightmode="null;" cloud this.clouds="[];" this.cloudspeed="this.config.BG_CLOUD_SPEED;" this.horizonline="null;" this.init(); config. @enum horizon.config="{" bg_cloud_speed: 0.2, bumpy_threshold: .3, cloud_frequency: .5, horizon_height: 16, max_clouds: horizon.prototype="{" initialise horizon. just add line and a cloud. no obstacles. init: this.addcloud(); horizonline(this.canvas, this.spritepos.horizon); nightmode(this.canvas, this.spritepos.moon, this.dimensions.width); currentspeed {boolean} updateobstacles used as an override prevent obstacles from being updated added. this happens in ease section. shownightmode night mode activated. currentspeed, updateobstacles, shownightmode) this.runningtime this.horizonline.update(deltatime, currentspeed); this.nightmode.update(shownightmode); this.updateclouds(deltatime, (updateobstacles) this.updateobstacles(deltatime, positions. updateclouds: cloudspeed="this.cloudSpeed" speed; numclouds="this.clouds.length;" (numclouds) for (var i="numClouds" 1;>= 0; i--) {
+            if (this.xPos[line1] <= -this.dimensions.WIDTH) {
+                this.xPos[line1] += this.dimensions.WIDTH * 2;
+                this.xPos[line2] = this.xPos[line1] - this.dimensions.WIDTH;
+                this.sourceXPos[line1] = this.getRandomType() + this.spritePos.x;
+            }
+        },
+
+        /**
+         * Update the horizon line.
+         * @param {number} deltaTime
+         * @param {number} speed
+         */
+        update: function (deltaTime, speed) {
+            var increment = Math.floor(speed * (FPS / 1000) * deltaTime);
+
+            if (this.xPos[0] <= 0) {
+                this.updateXPos(0, increment);
+            } else {
+                this.updateXPos(1, increment);
+            }
+            this.draw();
+        },
+
+        /**
+         * Reset horizon to the starting position.
+         */
+        reset: function () {
+            this.xPos[0] = 0;
+            this.xPos[1] = HorizonLine.dimensions.WIDTH;
+        }
+    };
+
+
+    //******************************************************************************
+
+    /**
+     * Horizon background class.
+     * @param {HTMLCanvasElement} canvas
+     * @param {Object} spritePos Sprite positioning.
+     * @param {Object} dimensions Canvas dimensions.
+     * @param {number} gapCoefficient
+     * @constructor
+     */
+    function Horizon(canvas, spritePos, dimensions, gapCoefficient) {
+        this.canvas = canvas;
+        this.canvasCtx = this.canvas.getContext('2d');
+        this.config = Horizon.config;
+        this.dimensions = dimensions;
+        this.gapCoefficient = gapCoefficient;
+        this.obstacles = [];
+        this.obstacleHistory = [];
+        this.horizonOffsets = [0, 0];
+        this.cloudFrequency = this.config.CLOUD_FREQUENCY;
+        this.spritePos = spritePos;
+        this.nightMode = null;
+
+        // Cloud
+        this.clouds = [];
+        this.cloudSpeed = this.config.BG_CLOUD_SPEED;
+
+        // Horizon
+        this.horizonLine = null;
+        this.init();
+    };
+
+
+    /**
+     * Horizon config.
+     * @enum {number}
+     */
+    Horizon.config = {
+        BG_CLOUD_SPEED: 0.2,
+        BUMPY_THRESHOLD: .3,
+        CLOUD_FREQUENCY: .5,
+        HORIZON_HEIGHT: 16,
+        MAX_CLOUDS: 6
+    };
+
+
+    Horizon.prototype = {
+        /**
+         * Initialise the horizon. Just add the line and a cloud. No obstacles.
+         */
+        init: function () {
+            this.addCloud();
+            this.horizonLine = new HorizonLine(this.canvas, this.spritePos.HORIZON);
+            this.nightMode = new NightMode(this.canvas, this.spritePos.MOON,
+                this.dimensions.WIDTH);
+        },
+
+        /**
+         * @param {number} deltaTime
+         * @param {number} currentSpeed
+         * @param {boolean} updateObstacles Used as an override to prevent
+         *     the obstacles from being updated / added. This happens in the
+         *     ease in section.
+         * @param {boolean} showNightMode Night mode activated.
+         */
+        update: function (deltaTime, currentSpeed, updateObstacles, showNightMode) {
+            this.runningTime += deltaTime;
+            this.horizonLine.update(deltaTime, currentSpeed);
+            this.nightMode.update(showNightMode);
+            this.updateClouds(deltaTime, currentSpeed);
+
+            if (updateObstacles) {
+                this.updateObstacles(deltaTime, currentSpeed);
+            }
+        },
+
+        /**
+         * Update the cloud positions.
+         * @param {number} deltaTime
+         * @param {number} currentSpeed
+         */
+        updateClouds: function (deltaTime, speed) {
+            var cloudSpeed = this.cloudSpeed / 1000 * deltaTime * speed;
+            var numClouds = this.clouds.length;
+
+            if (numClouds) {
+                for (var i = numClouds - 1; i >= 0; i--) {
                     this.clouds[i].update(cloudSpeed);
                 }
 
@@ -2589,4 +2713,3 @@ function onDocumentLoad() {
 }
 
 document.addEventListener('DOMContentLoaded', onDocumentLoad);
-</=></=></number></CollisionBox></-----></---></-></CollisionBox>
