@@ -9,7 +9,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   
-    <meta name="keywords" content="土木工程,水利工程,港口海岸及近海工程,水利水电工程,人工智能,机器学习,深度学习,强化学习, 个人博客" />
+    <meta name="keywords" content="探索,遗传算法," />
   
 
   
@@ -19,7 +19,7 @@
   
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
   
-  <title>分类 - QH的博客</title>
+  <title>遗传算法求解多元极值优化问题（附Python代码） - QH的博客</title>
   
     <!-- stylesheets list from config.yml -->
     
@@ -82,15 +82,107 @@
 
 <div class="container" id="content-outer">
 <div class="inner" id="content-inner">
-<article class="post page" id="page">
-  <header class="post-header text-center">
-  </header>
-  <div class="post-content">
+<div class="post-container">
+  <article class="post" id="post">
+    <header class="post-header text-center">
+      <h1 class="title">
+        遗传算法求解多元极值优化问题（附Python代码）
+      </h1>
+      <span>
+        
+        <time class="time" datetime="2020-07-01T14:00:00.000Z">
+        2020-07-01
+      </time>
+        
+      </span>
+      <span class="slash">/</span>
+      <span class="post-meta">
+      <span class="post-tags">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8E%A2%E7%B4%A2/" rel="tag">探索</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/" rel="tag">遗传算法</a></li></ul>
+      </span>
+    </span>
+      <span class="slash">/</span>
+      <span class="read">阅读耗时 9 分钟</span>
+    </header>
+
+    <div class="post-content">
+      <a id="more"></a>
+<h1 id="一、遗传算法"><a href="#一、遗传算法" class="headerlink" title="一、遗传算法"></a>一、遗传算法</h1><p>遗传算法（Genetic Algorithm，GA）是一种受自然选择和遗传机制启发的优化算法。它是通过模拟生物进化的过程来寻找最优解的一种启发式算法。遗传算法最初由美国计算机科学家John Holland在1970年代提出，并在优化问题中取得了广泛应用。</p>
+<p>遗传算法的基本思想是通过模拟自然界的进化过程，使用遗传操作（<strong>交叉、变异和选择</strong>）对一个初始种群进行迭代演化，以寻找最优解或接近最优解的解决方案。它从一个初始的随机种群开始，通过选择、交叉和变异等操作产生新的种群，并利用适应度评价函数对个体的适应度进行评估。适应度高的个体具有更大的生存和繁殖机会，从而更有可能传递其优秀的基因信息给下一代个体。随着迭代的进行，种群逐渐进化，直到达到满足终止条件的最优解或近似最优解。</p>
+<p>遗传算法的优点包括：</p>
+<ul>
+<li>适用性广泛：遗传算法适用于各种类型的优化问题，包括连续优化、离散优化和组合优化等。</li>
+<li>并行性：由于遗传算法是一种种群搜索算法，可以很容易地实现并行计算，加速搜索过程。</li>
+<li>可解释性：遗传算法基于生物进化的概念，其操作和原理相对直观，易于理解和解释。</li>
+<li>鲁棒性：遗传算法对问题的初始条件不敏感，能够处理具有噪声和不确定性的优化问题。</li>
+</ul>
+<p>然而，遗传算法也存在一些局限性：</p>
+<ul>
+<li>参数设置：遗传算法的性能受到参数设置的影响，需要仔细调整参数以获得较好的结果。</li>
+<li>可能陷入局部最优解：由于遗传算法是一种随机搜索算法，存在着陷入局部最优解的风险，可能无法找到全局最优解。</li>
+<li>计算复杂度高：遗传算法的计算复杂度较高，尤其是在处理大规模问题时。</li>
+</ul>
+<p>总之，遗传算法是一种强大的优化算法，适用于各种优化问题。通过模拟生物进化的过程，遗传算法能够在复杂的搜索空间中寻找最优解或近似最优解。</p>
+<h1 id="二、步骤"><a href="#二、步骤" class="headerlink" title="二、步骤"></a>二、步骤</h1><p>遗传算法（Genetic Algorithm，GA）是一种基于生物进化理论的优化算法。它通过模拟自然界中的进化过程，通过遗传操作（选择、交叉和变异）对一个初始种群进行迭代演化，以寻找最优解或接近最优解的解决方案。下面是遗传算法的基本步骤：</p>
+<ol>
+<li><strong>初始化种群</strong>：随机生成一组个体作为初始种群。每个个体由一组染色体（通常是二进制编码）表示，染色体包含问题的变量或参数的值。</li>
+<li><strong>评估适应度</strong>：使用适应度函数对每个个体的适应度进行评估。适应度函数度量个体对问题的解的质量，通常是将问题的目标函数应用于个体的染色体解码后的值。</li>
+<li><strong>选择</strong>：根据个体的适应度，选择一部分优秀的个体作为父代，用于产生下一代种群。选择过程通常使用轮盘赌选择、排名选择或锦标赛选择等方法。</li>
+<li><strong>交叉</strong>：从选定的父代中选择一对个体，通过染色体的交叉操作生成子代。交叉操作模拟了生物界中的基因组合过程，产生具有父代基因组合特征的新个体。</li>
+<li><strong>变异</strong>：对某些子代个体进行变异操作，以引入新的基因变化。变异操作模拟了生物界中的基因突变现象，通过改变个体染色体中的一个或多个基因来增加种群的多样性。</li>
+<li><strong>生成下一代种群</strong>：使用选择、交叉和变异操作生成新的种群。新的种群将包含父代和子代个体。</li>
+<li><strong>重复迭代</strong>：重复进行步骤2至步骤6，直到达到终止条件。终止条件可以是达到指定的迭代次数、找到满足特定适应度阈值的解，或者经过一定数量的迭代后适应度不再改变。</li>
+<li><strong>输出结果</strong>：输出经过指定迭代次数后具有最优适应度的个体，即最优解。根据具体问题，还可以输出其他与最优解相关的信息。</li>
+</ol>
+<p>遗传算法的步骤可以根据具体问题的需求进行调整和扩展。通过迭代的进化过程，遗传算法能够在搜索空间中逐步优化个体，找到最优解或近似最优解。</p>
+<h1 id="三、问题描述"><a href="#三、问题描述" class="headerlink" title="三、问题描述"></a>三、问题描述</h1><p>求解多元函数最大值：</p>
+<script type="math/tex; mode=display">
+\text{max } z = 3 * (1 - x)^2 * e^{-(x^2) - (y + 1)^2} - 10 * (x / 5 - x^3 - y^5) * e^{-x^2 - y^2} - \frac{1}{3} * e^{-(x + 1)^2 - y^2}\\
+-3 \leq x \leq 3 \\ -3 \leq y \leq 3</script><p>四、Python代码</p>
+
+    </div>
+
+  </article>
+  <div class="toc-container">
     
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/AI%E6%96%B0%E6%8A%80%E6%9C%AF/">AI新技术</a><span class="category-list-count">18</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BB%BF%E7%9C%9F%E6%A8%A1%E6%8B%9F/">仿真模拟</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%9C%9F%E6%9C%A8%E6%B0%B4%E5%88%A9/">土木水利</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A8%B1%E4%B9%90/">娱乐</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/">数值计算</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E7%8E%A9/">文玩</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A8%8B%E5%BA%8F/">程序</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BB%8F%E5%8E%86/">经历</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/">资源分享</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%97%B2%E8%B0%88/">闲谈</a><span class="category-list-count">2</span></li></ul>
-      
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、遗传算法"><span class="toc-text">一、遗传算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、步骤"><span class="toc-text">二、步骤</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、问题描述"><span class="toc-text">三、问题描述</span></a></li></ol>
   </div>
-</article>
+
+
+  </div>
+</div>
+<div class="copyright">
+    <span>本作品采用</span>
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh" target="_blank" rel="noopener">署名-非商业性使用-禁止演绎 4.0 国际许可协议</a>
+    <span>进行许可。转载时请注明原文链接。</span>
+</div>
+
+
+  
+    <div class="post-nav">
+      <div class="post-nav-item post-nav-next">
+        
+          <span>〈 </span>
+          <a href="/post/System-Simulation-9/" rel="next" title="系统仿真笔记（九）系统动力学模拟">
+          系统仿真笔记（九）系统动力学模拟
+          </a>
+        
+      </div>
+  
+      <div class="post-nav-item post-nav-prev">
+          
+          <a href="/post/ai-1-dl-tensorflow2-note-1/" rel="prev" title="TensorFlow2.1安装、GPU加速设置及第三方库常用源">
+            TensorFlow2.1安装、GPU加速设置及第三方库常用源
+          </a>
+          <span>〉</span>
+        
+      </div>
+    </div>
+  
+
+
 
 </div>
 </div>
