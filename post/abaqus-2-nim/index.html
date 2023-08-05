@@ -118,11 +118,11 @@
 <h2 id="（2）切向粘性"><a href="#（2）切向粘性" class="headerlink" title="（2）切向粘性"></a>（2）切向粘性</h2><p><strong>参考论文：</strong><a href="https://www.sciencedirect.com/science/article/abs/pii/S0266352X21003256" target="_blank" rel="noopener">Liu W, Tian Y, Cassidy M J. An interface to numerically model undrained soil-structure interactions[J]. Computers and Geotechnics, 2021, 138: 104327.</a>  </p>
 <p>关于切向行为，参考文献使用<code>FRIC</code>子程序实现，本文采用<code>UINTER</code>子程序实现。</p>
 <p>切向粘性行为的验证对比如下图，可以看到与参考文献的结果基本一致。</p>
-<h3 id="案例1：刚体滑动"><a href="#案例1：刚体滑动" class="headerlink" title="案例1：刚体滑动"></a>案例1：刚体滑动</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/abaqus-2-nim/2.png" alt="abaqus刚体滑动"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/abaqus-2-nim/3.png" alt="UINTER子程序定义结构与粘土粘性接触"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/abaqus-2-nim/4.png" alt="UINTER子程序定义结构与粘土粘性接触"></p>
-<h3 id="案例2：T-bar深埋贯入"><a href="#案例2：T-bar深埋贯入" class="headerlink" title="案例2：T-bar深埋贯入"></a>案例2：T-bar深埋贯入</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/abaqus-2-nim/6.png" alt="T-bar大变形贯入"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/abaqus-2-nim/5.png" alt="T-bar大变形贯入"></p>
+<h3 id="案例1：刚体滑动"><a href="#案例1：刚体滑动" class="headerlink" title="案例1：刚体滑动"></a>案例1：刚体滑动</h3><p><img src="/post/abaqus-2-nim/2.png" alt="abaqus刚体滑动"></p>
+<p><img src="/post/abaqus-2-nim/3.png" alt="UINTER子程序定义结构与粘土粘性接触"></p>
+<p><img src="/post/abaqus-2-nim/4.png" alt="UINTER子程序定义结构与粘土粘性接触"></p>
+<h3 id="案例2：T-bar深埋贯入"><a href="#案例2：T-bar深埋贯入" class="headerlink" title="案例2：T-bar深埋贯入"></a>案例2：T-bar深埋贯入</h3><p><img src="/post/abaqus-2-nim/6.png" alt="T-bar大变形贯入"></p>
+<p><img src="/post/abaqus-2-nim/5.png" alt="T-bar大变形贯入"></p>
 
     </div>
 
@@ -346,20 +346,5 @@
 </script>
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

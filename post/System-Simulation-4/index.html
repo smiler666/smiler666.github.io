@@ -102,7 +102,7 @@
       </span>
     </span>
       <span class="slash">/</span>
-      <span class="read">阅读耗时 54 分钟</span>
+      <span class="read">阅读耗时 51 分钟</span>
     </header>
 
     <div class="post-content">
@@ -169,7 +169,7 @@
 </tbody>
 </table>
 </div>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/1.png" alt></p>
+<p><img src="/post/System-Simulation-4/1.png" alt></p>
 <h2 id="1-2排队模型的术语"><a href="#1-2排队模型的术语" class="headerlink" title="1.2排队模型的术语"></a>1.2排队模型的术语</h2><p>两个基本单元：<strong>顾客</strong>与<strong>服务台</strong></p>
 <p>两种服务形式：<strong>顾客到达服务台</strong>与<strong>服务台到达顾客</strong></p>
 <p>术语介绍：</p>
@@ -240,7 +240,7 @@ D(x)=\frac{1}{\lambda^2}</script></blockquote>
 <p>$S_n$ ：第n个顾客到达系统的时间，$s_0=0$</p>
 <p>$A_n$ ：顾客n和n-1之间的到达时间间隔，</p>
 <script type="math/tex; mode=display">
-A_n=S_n-S_{n-1}</script><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/2.png" alt></p>
+A_n=S_n-S_{n-1}</script><p><img src="/post/System-Simulation-4/2.png" alt></p>
 <p>若$N(t)$为时间间隔$[0,t)$内到达的顾客数$（t&gt;0）$，则$N(t)$为随机变量，且 <strong>{</strong>$\{N(t)|t \in (0,T) \}$<strong>}</strong> 为一随机过程。该过程有：</p>
 <p><strong>（1）</strong>对任意n个参数<script type="math/tex">(t_n>t_{n-1}>t_{n-2}>…>t_1 )≥0</script>，增量<script type="math/tex">N(t_2) -N(t_1)</script>， <script type="math/tex">N(t_3) -N(t_2)</script>，<script type="math/tex">…</script> ， <script type="math/tex">N(t_n) -N(t_{n-1})</script>分别为时间区间<script type="math/tex">[0,t_1),[t_1,t_2),…[t_{n-2,tn-1}), [t_{n-1} ,t_n)</script>区间内到达的顾客数；</p>
 <p><strong>（2）</strong>在时间区间$[t,t+∆t]$内，到达k或k个以上顾客的概率为：</p>
@@ -303,13 +303,13 @@ P[N(s,t)=n]=\frac{[\lambda(t-s)]^n}{n!}e^{-\lambda(t-s)}</script><p>此概率分
 <li>服务时间：为固定时间或随机时间。随机服务时间的分布有：指数、爱尔朗、正态、韦布尔、伽玛等。</li>
 <li>服务结构：指服务台的组成情况。如多服务台、并行服务台、网络服务台等。</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/3.png" alt></p>
+<p><img src="/post/System-Simulation-4/3.png" alt></p>
 <p>服务台串联布置：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/6.png" alt="6"></p>
+<p><img src="/post/System-Simulation-4/6.png" alt="6"></p>
 <p>服务台并联布置：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/5.png" alt="5"></p>
+<p><img src="/post/System-Simulation-4/5.png" alt="5"></p>
 <p>服务台混合布置：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/4.png" alt></p>
+<p><img src="/post/System-Simulation-4/4.png" alt></p>
 <h3 id="6）排队模型的标注方法"><a href="#6）排队模型的标注方法" class="headerlink" title="6）排队模型的标注方法"></a>6）排队模型的标注方法</h3><p>Kendall（1953）提出了一个平行排队系统的描述方法，1971年扩充为如下符号标准。</p>
 <blockquote>
 <p>X/Y/Z/A/B/C</p>
@@ -380,7 +380,7 @@ P[N(s,t)=n]=\frac{[\lambda(t-s)]^n}{n!}e^{-\lambda(t-s)}</script><p>此概率分
 <script type="math/tex; mode=display">
 \hat{L} = \frac{1}{T}\displaystyle \sum_i^∞iT_i=\displaystyle \sum_{i=0}^∞\frac{T_i}{T}</script><script type="math/tex; mode=display">
 \hat{L} = \frac{1}{T}\displaystyle \sum_i^∞iT_i=\frac{1}{T}\int_0^TL(t)dt</script><p>设上式中时刻$T$足够长时，系统中的顾客数为$L(t)$趋近于某个极限值$L$，称为long-run time-average number in a system。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/7.png" alt></p>
+<p><img src="/post/System-Simulation-4/7.png" alt></p>
 <p>上图中可以求得：$L= (0(3)+1(12)+2(4)+3(1))/20 = 23/20 = 1.15$</p>
 <h3 id="1-3-4顾客在系统中的逗留时间"><a href="#1-3-4顾客在系统中的逗留时间" class="headerlink" title="1.3.4顾客在系统中的逗留时间"></a>1.3.4顾客在系统中的逗留时间</h3><p>设时刻$[0,T]$，顾客$i$在系统中的逗留时间为$w_i$，则顾客在系统中的平均逗留时间定义为（average time spent in system per customer）：</p>
 <script type="math/tex; mode=display">
@@ -397,11 +397,11 @@ P[N(s,t)=n]=\frac{[\lambda(t-s)]^n}{n!}e^{-\lambda(t-s)}</script><p>此概率分
 <script type="math/tex; mode=display">
 \hat{L}=\hat{\lambda}\hat{w}</script><p><strong>顾客的逗留时间及服务台利用率(例子)：</strong></p>
 <p>本例中，可以求得：$ρ= 忙期/总时间=(\displaystyle \sum_{i=1}^{∞}T_i)/T=(T-T_0)/T=(20-3)/20=17/20$</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/8.png" alt></p>
+<p><img src="/post/System-Simulation-4/8.png" alt></p>
 <p><strong>G/G/1/∞/∞系统服务台利用率:</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/9.png" alt></p>
+<p><img src="/post/System-Simulation-4/9.png" alt></p>
 <p><strong>G/G/c/∞/∞系统服务台利用率:</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/10.png" alt></p>
+<p><img src="/post/System-Simulation-4/10.png" alt></p>
 <h2 id="1-4-M-M-1模型"><a href="#1-4-M-M-1模型" class="headerlink" title="1.4 M/M/1模型"></a>1.4 M/M/1模型</h2><p>顾客到达模式：平稳泊松到达</p>
 <p>在t时刻到达$n$个顾客的概率 $P_n(t)=\frac{(\lambda t)^n}{n!}e^{-\lambda t}(n=1,2,3,…)$</p>
 <p>两个顾客到达的时间间隔$t$的概率密度函数$f_A (t)=λe^{-λt}$</p>
@@ -410,8 +410,8 @@ P[N(s,t)=n]=\frac{[\lambda(t-s)]^n}{n!}e^{-\lambda(t-s)}</script><p>此概率分
 <p>模型满足条件：</p>
 <p>归一化条件：$\displaystyle \sum_{i=0}^{∞}p_n=1$ 其中$p_n$—顾客数为n的稳态概率</p>
 <p>参数条件：$ρ=(λ/μ)&lt;1$ 其中</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/11.png" alt="11"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/12.png" alt="12"></p>
+<p><img src="/post/System-Simulation-4/11.png" alt="11"></p>
+<p><img src="/post/System-Simulation-4/12.png" alt="12"></p>
 <h2 id="1-5-Jackon排队网络"><a href="#1-5-Jackon排队网络" class="headerlink" title="1.5 Jackon排队网络"></a>1.5 Jackon排队网络</h2><h3 id="1-5-1-Jackon开环排队网络"><a href="#1-5-1-Jackon开环排队网络" class="headerlink" title="1.5.1 Jackon开环排队网络"></a>1.5.1 Jackon开环排队网络</h3><p>M/M/1和M/M/c都属于单服务中心的排队模型。</p>
 <p>多个具有M/M/c的特性的服务中心组成的网络称为Jackon排队网络。</p>
 <p>Jackon排队网络：开环排队网络、闭环排队网络</p>
@@ -423,18 +423,18 @@ P[N(s,t)=n]=\frac{[\lambda(t-s)]^n}{n!}e^{-\lambda(t-s)}</script><p>此概率分
 <li>顾客在第i个服务中心接受服务后，或者以概率pij转移到第j个服务中心，或者以概率pi0离开系统</li>
 <li>每个服务中心的缓冲容量无限制，即系统不会发生堵塞现象</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/13.png" alt></p>
+<p><img src="/post/System-Simulation-4/13.png" alt></p>
 <h3 id="1-5-2-Jackon闭环排队网络"><a href="#1-5-2-Jackon闭环排队网络" class="headerlink" title="1.5.2  Jackon闭环排队网络"></a>1.5.2  Jackon闭环排队网络</h3><p>Jackon闭环排队网络是Jackon开环排队网络的特例，在Jackon开环排队网络中，如果没有输入、输出，就变成Jackon闭环排队网络。</p>
 <p>Jackon闭环排队网络的属性：</p>
 <ul>
 <li>Jackon闭环网络中，顾客总人数N保持恒定不变</li>
 <li>各服务中心的顾客数概率分布不再是独立的</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/14.png" alt></p>
+<p><img src="/post/System-Simulation-4/14.png" alt></p>
 <h2 id="1-6-排队系统的仿真分析方法"><a href="#1-6-排队系统的仿真分析方法" class="headerlink" title="1.6 排队系统的仿真分析方法"></a>1.6 排队系统的仿真分析方法</h2><p>排队网络模型的一个主要优点是：可以得到解析形式的解。但有一个很大的局限性：对系统中的随机特性有比较严格的要求，如：平稳、独立、各态经历等，且随机变量仅仅限于几类典型的随机分布。因此，难于用于一些实际的离散事件系统建模。</p>
 <p>对于复杂、随机的实际排队系统，利用模拟仿真可以研究实际系统性能的较好的方法。可以得到一个包含随机误差的估计。</p>
 <h1 id="二、储存模型"><a href="#二、储存模型" class="headerlink" title="二、储存模型"></a>二、储存模型</h1><p>存储系统是实际生活中常见的系统。对许多存储系统，模拟被认为是唯一的分析方法。一个简单的存储系统如图所示。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/15.png" alt></p>
+<p><img src="/post/System-Simulation-4/15.png" alt></p>
 <h2 id="2-1-储存模型的构成"><a href="#2-1-储存模型的构成" class="headerlink" title="2.1 储存模型的构成"></a>2.1 储存模型的构成</h2><h3 id="2-1-1-存储模型的五个基本要素"><a href="#2-1-1-存储模型的五个基本要素" class="headerlink" title="2.1.1 存储模型的五个基本要素"></a>2.1.1 存储模型的五个基本要素</h3><p>1）存储系统的目标</p>
 <ul>
 <li>利润极大化</li>
@@ -458,18 +458,18 @@ P[N(s,t)=n]=\frac{[\lambda(t-s)]^n}{n!}e^{-\lambda(t-s)}</script><p>此概率分
         0,& \text{$I_j>L$}
     \end{cases}</script><p>得出的三参数策略表示为周期检查策略或(M, L, N)策略。</p>
 <p>下面是周期检查 (M, L, N)策略下库存变化示意图：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/16.png" alt="16"></p>
+<p><img src="/post/System-Simulation-4/16.png" alt="16"></p>
 <h3 id="2-1-3-存储策略2：连续检查策略"><a href="#2-1-3-存储策略2：连续检查策略" class="headerlink" title="2.1.3 存储策略2：连续检查策略"></a>2.1.3 存储策略2：连续检查策略</h3><p>在所有时间监视库存量并当存储水平达到某个规定点时，发出订货请求。</p>
 <p>连续检查 (M, L)策略：在任何时间t，当库存量I(t)降到订货点L或以下时，则发出订货单位为Q(t)=M－I(t) 的订货。</p>
 <p>连续检查 (Q, L)策略或固定的订货策略：如果物品是每次需要固定件，则订货量Q=M－L。于是，每当存储水平达到L单位时，做一次Q件物品的订货。</p>
 <p>下面来看一下连续检查连续检查 (M, L)策略下库存变化的示意图</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/17.png" alt="17"></p>
+<p><img src="/post/System-Simulation-4/17.png" alt="17"></p>
 <h2 id="2-2-确定性存储系统与EOQ模型"><a href="#2-2-确定性存储系统与EOQ模型" class="headerlink" title="2.2 确定性存储系统与EOQ模型"></a>2.2 确定性存储系统与EOQ模型</h2><p>确定性系统模型考虑需求和提前期已知的情况，它是理解其它复杂模型的基础。</p>
 <h3 id="2-2-1-没有缺货和零提前期的经济批量（EOQ）模型"><a href="#2-2-1-没有缺货和零提前期的经济批量（EOQ）模型" class="headerlink" title="2.2.1 没有缺货和零提前期的经济批量（EOQ）模型"></a>2.2.1 没有缺货和零提前期的经济批量（EOQ）模型</h3><p>模型假设：无缺货费用，每周期的总可变费用</p>
 <p>$C_T=订货采购费用C_p+存储费用C_H$ 。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/18.png" alt="18"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/19.png" alt></p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/20.png" alt></p>
+<p><img src="/post/System-Simulation-4/18.png" alt="18"></p>
+<p><img src="/post/System-Simulation-4/19.png" alt></p>
+<p><img src="/post/System-Simulation-4/20.png" alt></p>
 <h3 id="2-2-2-具有确定性提前期的EOQ模型"><a href="#2-2-2-具有确定性提前期的EOQ模型" class="headerlink" title="2.2.2 具有确定性提前期的EOQ模型"></a>2.2.2 具有确定性提前期的EOQ模型</h3><p>模型的描述</p>
 <ul>
 <li>此模型的最优订货量和零提前期的EOQ模型相同。</li>
@@ -479,11 +479,11 @@ P[N(s,t)=n]=\frac{[\lambda(t-s)]^n}{n!}e^{-\lambda(t-s)}</script><p>此概率分
 </li>
 <li>其中，D—每周期的需求量，T—订货提前期。</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/21.png" alt></p>
+<p><img src="/post/System-Simulation-4/21.png" alt></p>
 <p>模型假设：缺货费用为$C_S$，每周期的总可变费用$C_T  = 订货采购费用C_P + 存储费用C_H + 每周期的缺货费用C_S$</p>
 <p>于是，$C_T = C_P + C_H + C_S$</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/22.png" alt></p>
-<h3 id="2-2-3-具有延期交货和确定性提前期的EOQ模型"><a href="#2-2-3-具有延期交货和确定性提前期的EOQ模型" class="headerlink" title="2.2.3 具有延期交货和确定性提前期的EOQ模型"></a>2.2.3 具有延期交货和确定性提前期的EOQ模型</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/23.png" alt></p>
+<p><img src="/post/System-Simulation-4/22.png" alt></p>
+<h3 id="2-2-3-具有延期交货和确定性提前期的EOQ模型"><a href="#2-2-3-具有延期交货和确定性提前期的EOQ模型" class="headerlink" title="2.2.3 具有延期交货和确定性提前期的EOQ模型"></a>2.2.3 具有延期交货和确定性提前期的EOQ模型</h3><p><img src="/post/System-Simulation-4/23.png" alt></p>
 <h2 id="2-3-概率型存储系统"><a href="#2-3-概率型存储系统" class="headerlink" title="2.3 概率型存储系统"></a>2.3 概率型存储系统</h2><h3 id="2-3-1-概述"><a href="#2-3-1-概述" class="headerlink" title="2.3.1 概述"></a>2.3.1 概述</h3><p>实际的存储系统中，需求和订货提前期往往是随机变量，这就需要反映此不确定性环境的基础。<br>主要有三种形式的模型：</p>
 <ul>
 <li>单周期模型：需求出现在时间的某一点，没有补充订货。</li>
@@ -497,10 +497,10 @@ P[N(s,t)=n]=\frac{[\lambda(t-s)]^n}{n!}e^{-\lambda(t-s)}</script><p>此概率分
 <p>报童需决策的问题是一个关于订购量最优化的问题，优化问题的目标函数等于每天收入的期望。因此，需要考虑供过于求和供不应求的两种情况。 </p>
 <h4 id="模型的基本假设"><a href="#模型的基本假设" class="headerlink" title="模型的基本假设"></a>模型的基本假设</h4><p>设在整个需求期内只订购一次货物，订货量为Q，订购费和初始库存量均为0，每单位产品的购价（成本）为C。</p>
 <p>需求量X为唯一连续型随机变量，其概率密度为$f(x)$ 。当货物售出时，每单位产品的售价为U。<br>需求结束时，没有卖出的货物不存储而是折价出售，单位售价是V（V&lt;U)。<br>试求订购量Q ，以使期望利润最大。</p>
-<h4 id="模型的求解"><a href="#模型的求解" class="headerlink" title="模型的求解"></a>模型的求解</h4><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/24.png" alt></p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/25.png" alt></p>
+<h4 id="模型的求解"><a href="#模型的求解" class="headerlink" title="模型的求解"></a>模型的求解</h4><p><img src="/post/System-Simulation-4/24.png" alt></p>
+<p><img src="/post/System-Simulation-4/25.png" alt></p>
 <p>下面再来个例题加深一下理解：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/26.png" alt></p>
+<p><img src="/post/System-Simulation-4/26.png" alt></p>
 <h3 id="2-3-3-存储系统的仿真分析"><a href="#2-3-3-存储系统的仿真分析" class="headerlink" title="2.3.3 存储系统的仿真分析"></a>2.3.3 存储系统的仿真分析</h3><p>在前述的模型中，概率需求的(M,N)模型和概率需求的(Q,L)模型和实际的存储系统中最接近。</p>
 <p>这里虽然说明了数学求解的方法，但由于实际的存储系统的动态性和不稳定性，使得这些模型中直接得到的策略是不正确的。于是，模拟仿真成为研究实际策略的一种方法。</p>
 <p> (M,L)策略在实际中经常发现，但策略变量通常是任意的，(M,L)策略的推导比较困难，于是，模拟仿真成为较好的方法。</p>
@@ -516,7 +516,7 @@ P[N(s,t)=n]=\frac{[\lambda(t-s)]^n}{n!}e^{-\lambda(t-s)}</script><p>此概率分
 <p>这里金淳将Token直译成了令牌，感觉翻译过来怪怪的，不过就叫它令牌吧。</p>
 </blockquote>
 <p>Petri网示例：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/27.png" alt></p>
+<p><img src="/post/System-Simulation-4/27.png" alt></p>
 <h3 id="3-2-2-Petri的规则和行为"><a href="#3-2-2-Petri的规则和行为" class="headerlink" title="3.2.2 Petri的规则和行为"></a>3.2.2 Petri的规则和行为</h3><p><strong>Petri网的规则：</strong></p>
 <ul>
 <li>有向弧是有方向的</li>
@@ -531,7 +531,7 @@ P[N(s,t)=n]=\frac{[\lambda(t-s)]^n}{n!}e^{-\lambda(t-s)}</script><p>此概率分
 <li>如果出现一个变迁，其输入库所的个数与输出库所的个数不相等，令牌的个数将发生变化 </li>
 </ul>
 <p><strong>行为示例：</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/28.png" alt></p>
+<p><img src="/post/System-Simulation-4/28.png" alt></p>
 <h2 id="3-3-Petri网的形式化定义"><a href="#3-3-Petri网的形式化定义" class="headerlink" title="3.3 Petri网的形式化定义"></a>3.3 Petri网的形式化定义</h2><p>一个Petri网PN可表示为一个六元组，$P_N=（P, T, F, W, M, M_0）$</p>
 <p>$P=\{p_1,…,p_m \}$，是有限库所（place）节点的集合，$m≥𝟎$</p>
 <p>$T=\{t_1,…,t_n\}$，是有限变迁（transition）节点的集合，$m≥𝟎$</p>
@@ -541,7 +541,7 @@ P[N(s,t)=n]=\frac{[\lambda(t-s)]^n}{n!}e^{-\lambda(t-s)}</script><p>此概率分
 <p>$M$：$𝐏→\{𝟏,𝟐,…\}$（集合P到非负整数的映射）为状态标识（marking），用令牌（token）表示</p>
 <p>$M_0$：$𝐏→\{𝟏,𝟐,…\}$（集合P到非负整数的映射）为初始状态标识（initial marking）。</p>
 <p>对$P_N$，用$N=（P, T, F, W）$表示Petri网的结构网（N, M）为标识网，为一个二元图</p>
-<h3 id="3-3-1-Petri网的定义方法"><a href="#3-3-1-Petri网的定义方法" class="headerlink" title="3.3.1 Petri网的定义方法"></a>3.3.1 Petri网的定义方法</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/29.png" alt></p>
+<h3 id="3-3-1-Petri网的定义方法"><a href="#3-3-1-Petri网的定义方法" class="headerlink" title="3.3.1 Petri网的定义方法"></a>3.3.1 Petri网的定义方法</h3><p><img src="/post/System-Simulation-4/29.png" alt></p>
 <h3 id="3-3-2-Petri网的建模"><a href="#3-3-2-Petri网的建模" class="headerlink" title="3.3.2 Petri网的建模"></a>3.3.2 Petri网的建模</h3><p>用Petri网对一个离散事件系统建模，需要做如下抽象化处理：</p>
 <ul>
 <li>库所：表示系统资源、活动；</li>
@@ -556,9 +556,9 @@ P[N(s,t)=n]=\frac{[\lambda(t-s)]^n}{n!}e^{-\lambda(t-s)}</script><p>此概率分
 <li>库所：J在机器M1、M2的加工活动定义为p1、p2，将机器M1、M2以及工件J定义为p3、p4、p5。</li>
 <li>变迁：J在机器M1、M2加工的开始事件定义为变迁t1、t2，在机器M2加工的结束事件定义为变迁t3。由于M1、M2之间无缓从区，因此无需定义工件J在M1的加工结束事件。</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/30.png" alt></p>
+<p><img src="/post/System-Simulation-4/30.png" alt></p>
 <p>初始状态：$M0=[M0(p1), M0(p2), ), M0(p3), M0(p4), M0(p5)]=[0,0,1,1,1]$</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/31.png" alt></p>
+<p><img src="/post/System-Simulation-4/31.png" alt></p>
 <h2 id="3-4-高级Petri网"><a href="#3-4-高级Petri网" class="headerlink" title="3.4 高级Petri网"></a>3.4 高级Petri网</h2><h3 id="3-4-1经典Petri网的局限性"><a href="#3-4-1经典Petri网的局限性" class="headerlink" title="3.4.1经典Petri网的局限性"></a>3.4.1经典Petri网的局限性</h3><ul>
 <li>没有测试库所中零 </li>
 <li>模型容易变得很庞大 </li>
@@ -571,7 +571,7 @@ P[N(s,t)=n]=\frac{[\lambda(t-s)]^n}{n!}e^{-\lambda(t-s)}</script><p>此概率分
 <li>层次化：一个变迁可以是一个子Petri网</li>
 <li>时序：增加时序逻辑的定义，更好的描述行为过程。</li>
 </ul>
-<h3 id="3-4-3-Petri网的流关系图"><a href="#3-4-3-Petri网的流关系图" class="headerlink" title="3.4.3 Petri网的流关系图"></a>3.4.3 Petri网的流关系图</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/32.png" alt></p>
+<h3 id="3-4-3-Petri网的流关系图"><a href="#3-4-3-Petri网的流关系图" class="headerlink" title="3.4.3 Petri网的流关系图"></a>3.4.3 Petri网的流关系图</h3><p><img src="/post/System-Simulation-4/32.png" alt></p>
 <h3 id="3-4-4-Petri网的特点"><a href="#3-4-4-Petri网的特点" class="headerlink" title="3.4.4 Petri网的特点"></a>3.4.4 Petri网的特点</h3><p>（1）能很好地表达离散事件动态系统（DEDS）建模中常遇到的平行、同步、冲突和因果依赖等关系；</p>
 <p>（2）为系统的形式化分析提供了良好的条件；</p>
 <p>（3）用图形进行形象化描述，提高了模型的可读性；</p>
@@ -595,14 +595,14 @@ P[N(s,t)=n]=\frac{[\lambda(t-s)]^n}{n!}e^{-\lambda(t-s)}</script><p>此概率分
 <p>对于Petri网模型，往往将其转换为仿真模型。</p>
 <p>对于大规模离散事件系统，一般不适于Petri网模型。</p>
 <h1 id="四、实体流图法"><a href="#四、实体流图法" class="headerlink" title="四、实体流图法"></a>四、实体流图法</h1><p>实体流图法（Entity Flow Chart, EFC）采用与计算机流程图近似的方法表示临时实体的活动过程，相对来说比较简单。来看一下之前举的例子，理发店的活动流程图</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/33.png" alt></p>
+<p><img src="/post/System-Simulation-4/33.png" alt></p>
 <h1 id="五、活动循环图法"><a href="#五、活动循环图法" class="headerlink" title="五、活动循环图法"></a>五、活动循环图法</h1><p>活动循环图法（activity cycle diagram, ACD）以直观的方式描述系统的活动过程。</p>
 <p>基本原则</p>
 <ol>
 <li>交替原则：寂静、激活两种状态交替出现</li>
 <li>闭合原则：每类实体的活动周期图都是闭合的</li>
 </ol>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/34.png" alt></p>
+<p><img src="/post/System-Simulation-4/34.png" alt></p>
 <h1 id="六、网络计划方法"><a href="#六、网络计划方法" class="headerlink" title="六、网络计划方法"></a>六、网络计划方法</h1><p>网络计划方法是利用网络图表达计划任务的进度安排及其各项作业之间的相互关系，进而对网络图分析并计算网络图时间值，确定关键工序及关键路线，求出工期，并运用一定的技术组织优化方案的方法。</p>
 <p>网络计划方法有如下几种类型：</p>
 <div class="table-container">
@@ -650,12 +650,12 @@ P[N(s,t)=n]=\frac{[\lambda(t-s)]^n}{n!}e^{-\lambda(t-s)}</script><p>此概率分
 </div>
 <p>网络计划方法是用“图”建模。</p>
 <script type="math/tex; mode=display">G = （V，E）</script><p>$V(G)$：顶点Vertex集合，$E(G)$:有向边Edge集合</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/35.png" alt></p>
+<p><img src="/post/System-Simulation-4/35.png" alt></p>
 <p>V1到V2的边称为弧。$V1$：弧的尾，$V2$：弧的头，数值：权</p>
 <p>路径（Path）：$V1,V2,V3,…Vn-1,Vn$，则顶点序列$（ V1,V2,V3,…Vn-1,Vn ）$为$V1$到$Vn$的路径</p>
 <p>度：与每个顶点相连的边数</p>
 <p><strong>网络图举例:</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-4/36.png" alt></p>
+<p><img src="/post/System-Simulation-4/36.png" alt></p>
 <ul>
 <li>网络图由箭线、节点和结点与箭线连成的路径组成;</li>
 <li>箭线（矢线）：每一条箭线代表一项活动或工作（Activity）;</li>
@@ -886,20 +886,5 @@ P[N(s,t)=n]=\frac{[\lambda(t-s)]^n}{n!}e^{-\lambda(t-s)}</script><p>此概率分
 </script>
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

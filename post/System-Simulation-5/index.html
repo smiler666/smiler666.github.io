@@ -102,7 +102,7 @@
       </span>
     </span>
       <span class="slash">/</span>
-      <span class="read">阅读耗时 41 分钟</span>
+      <span class="read">阅读耗时 40 分钟</span>
     </header>
 
     <div class="post-content">
@@ -118,7 +118,7 @@
 <h2 id="1-2-DEVS基本模型："><a href="#1-2-DEVS基本模型：" class="headerlink" title="1.2 DEVS基本模型："></a>1.2 DEVS基本模型：</h2><p>一个DEVS基本模型可表示为一个七元组结构 <script type="math/tex">Atomic DEVS = <S, ta, fint, X, fext, Y, O></script></p>
 <p>X：外部输入事件集；</p>
 <p>Y：输出集：向外部输出事件。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/1.png" alt></p>
+<p><img src="/post/System-Simulation-5/1.png" alt></p>
 <p>模型结构说明：</p>
 <p>$S$：系统状态集，即状态变量与参数的集合。定义系统的总状态： $Q=\{(s,e)│ s∈𝑺,𝟎≤e ≤ ta(s)\}$,其中，e表示在状态s停留的时间，(s,e)表示总状态。</p>
 <p>$T$：模型时间基，$T ∈R$， $ta$为时间推进函数，用于控制内部转移的时间。$ta(s)$表示在没有外部时间到达时系统状态保持为s的时间；$ta(s)=0$表示瞬态，仿真钟不推进。</p>
@@ -130,14 +130,14 @@
 <p>$\{M_i\}$：基本模型成员集，$\{M_i│i∈D\}$且<script type="math/tex">Mi = <S_i, tai, fint,i, X_i, fext,i, Y_i, O_i></script></p>
 <p>$I_i$：内部耦合</p>
 <p>$Z_{i,j}$：外部输入耦合</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/2.png" alt></p>
+<p><img src="/post/System-Simulation-5/2.png" alt></p>
 <h2 id="1-4-耦合模型与基本模型的关系"><a href="#1-4-耦合模型与基本模型的关系" class="headerlink" title="1.4 耦合模型与基本模型的关系"></a>1.4 耦合模型与基本模型的关系</h2><p>对任一个DEVS耦合模型，可以构造出一个与之等价的基本模型<script type="math/tex">Coupled DEVS = <X_self, Y_self, D,\{M_i\}, \{I_i\},\{Z_{i,j}\}, select></script></p>
 <script type="math/tex; mode=display">M_i = <S_i, tai, fint,i, X_i, fext,i, Y_i, O_i></script><p>等价于基本模型<script type="math/tex">M = <S, ta, fint, X, fext, Y, O></script></p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/3.png" alt></p>
+<p><img src="/post/System-Simulation-5/3.png" alt></p>
 <h2 id="1-5-DEVS模型实现"><a href="#1-5-DEVS模型实现" class="headerlink" title="1.5 DEVS模型实现"></a>1.5 DEVS模型实现</h2><p>一个DEVS耦合模型可以是一个层次结构</p>
 <p>这个层次结构还可以嵌套</p>
 <p>一个DEVS耦合模型的实现算法是一个递归算法（recursion algorithm）</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/4.png" alt></p>
+<p><img src="/post/System-Simulation-5/4.png" alt></p>
 <h1 id="二、表的处理方法"><a href="#二、表的处理方法" class="headerlink" title="二、表的处理方法"></a>二、表的处理方法</h1><p>由控制论可知，系统行为就是在给定时间t的系统的全部状态的变化过程形成的，而状态则是描述系统行为所需变量的最小集合。同样，离散事件系统仿真的核心问题是：如何建立描述系统行为的逻辑模型。离散事件系统某一时刻t的状态用表来表示，如下所示。</p>
 <div class="table-container">
 <table>
@@ -217,7 +217,7 @@
 <li>ArrayList：动态数组</li>
 <li>LinkList：链表操作</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/5.png" alt></p>
+<p><img src="/post/System-Simulation-5/5.png" alt></p>
 <h1 id="三、离散事件系统模拟策略概述"><a href="#三、离散事件系统模拟策略概述" class="headerlink" title="三、离散事件系统模拟策略概述"></a>三、离散事件系统模拟策略概述</h1><h2 id="3-1-系统模拟的一般步骤"><a href="#3-1-系统模拟的一般步骤" class="headerlink" title="3.1 系统模拟的一般步骤"></a>3.1 系统模拟的一般步骤</h2><p>一般地，一个离散系统的计算机模拟过程是一个包括时间的推进、系统状态的更新等操作的迭代过程，通用过程如下：</p>
 <p><strong>Step1</strong>:预置状态变量<script type="math/tex">X=\{x_1,…,x_m\}</script>的值为<script type="math/tex">Y=\{y_1,…,y_m\}</script>,描述变量<script type="math/tex">Y_d=\{y_{m+1},…,y_n\}</script> ；</p>
 <p><strong>Step2</strong>:预置时标为$t=tM$；</p>
@@ -233,12 +233,12 @@
 <li>进程交互法（PI）</li>
 </ul>
 <h1 id="四、事件调度法"><a href="#四、事件调度法" class="headerlink" title="四、事件调度法"></a>四、事件调度法</h1><h2 id="4-1-基本思想"><a href="#4-1-基本思想" class="headerlink" title="4.1 基本思想"></a>4.1 基本思想</h2><p>事件调度法（Event Scheduling，ES）是用“事件”的观点来抽象真实系统，即：定义事件及每一事件发生对系统状态的影响，并按事件发生时间顺序来确定每类事件发生时系统中的各实体之间的逻辑关系及其状态。事件调度法的模拟时钟的推进，是按照下一事件的发生时刻来触发。大多数发生的事件，两个相邻事件发生的时间间隔一般是随机的，因此事件调度法是变步长法。</p>
-<h2 id="4-2-事件调度法仿真时钟的推进"><a href="#4-2-事件调度法仿真时钟的推进" class="headerlink" title="4.2 事件调度法仿真时钟的推进"></a>4.2 事件调度法仿真时钟的推进</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/6.png" alt></p>
+<h2 id="4-2-事件调度法仿真时钟的推进"><a href="#4-2-事件调度法仿真时钟的推进" class="headerlink" title="4.2 事件调度法仿真时钟的推进"></a>4.2 事件调度法仿真时钟的推进</h2><p><img src="/post/System-Simulation-5/6.png" alt></p>
 <blockquote>
 <p>仿真钟的推进:按事件发生的时间间隔进行</p>
 </blockquote>
 <h2 id="4-3-事件调度法具体描述"><a href="#4-3-事件调度法具体描述" class="headerlink" title="4.3 事件调度法具体描述"></a>4.3 事件调度法具体描述</h2><p>仿真模型中所有事件均按时间先后顺序存放在事件表中；</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/7.png" alt></p>
+<p><img src="/post/System-Simulation-5/7.png" alt></p>
 <p>模型中要设计一个时间控制部件实现仿真钟的管理与控制。每当处理一类事件时，它总是从事件表中选择最早发生的事件；并将仿真钟推进到该事件发生的时间；然后调用与该事件相应的事件处理模块；</p>
 <p>事件处理模块在执行完后都必须返回到时间控制部件。这样，事件的选择与处理不断地进行，仿真钟按事件时间往前推进，直到仿真终止的条件满足为止。</p>
 <h2 id="4-4-事件调度法的算法"><a href="#4-4-事件调度法的算法" class="headerlink" title="4.4 事件调度法的算法"></a>4.4 事件调度法的算法</h2><p>1）执行初始化操作：仿真时钟TIME、系统状态及统计量等置初始值：</p>
@@ -267,8 +267,8 @@
 <li>endwhile</li>
 </ul>
 <p>5）分析收集的统计数据，产生报告。</p>
-<h2 id="4-5事件调度法流程图"><a href="#4-5事件调度法流程图" class="headerlink" title="4.5事件调度法流程图"></a>4.5事件调度法流程图</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/8.png" alt></p>
-<h2 id="4-6-事件调度法的流程控制"><a href="#4-6-事件调度法的流程控制" class="headerlink" title="4.6 事件调度法的流程控制"></a>4.6 事件调度法的流程控制</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/9.png" alt="9"></p>
+<h2 id="4-5事件调度法流程图"><a href="#4-5事件调度法流程图" class="headerlink" title="4.5事件调度法流程图"></a>4.5事件调度法流程图</h2><p><img src="/post/System-Simulation-5/8.png" alt></p>
+<h2 id="4-6-事件调度法的流程控制"><a href="#4-6-事件调度法的流程控制" class="headerlink" title="4.6 事件调度法的流程控制"></a>4.6 事件调度法的流程控制</h2><p><img src="/post/System-Simulation-5/9.png" alt="9"></p>
 <h2 id="4-7-事件调度法的注意事项"><a href="#4-7-事件调度法的注意事项" class="headerlink" title="4.7 事件调度法的注意事项"></a>4.7 事件调度法的注意事项</h2><p>两个特别注意的基本问题</p>
 <ul>
 <li>第一是所谓“同时事件”。即具有相同发生时间的事件，模型中必须事先规定其处理顺序，亦称为规定“解结规则”，因为在任何时刻，计算机只能执行某一个事件的程序。<strong>这一般是通过定义事件的优先级来解决的。</strong></li>
@@ -282,7 +282,7 @@
 <li>阻塞状态（blocked）：实体处于等待状态，一旦满足某种条件，实体马上就会被激活。这种实体叫做条件活动实体；</li>
 <li>锁定状态（locked）：类似于阻塞状态，实体被监控，解除锁定后进入阻塞状态。</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/10.png" alt></p>
+<p><img src="/post/System-Simulation-5/10.png" alt></p>
 <h1 id="五、活动扫描法"><a href="#五、活动扫描法" class="headerlink" title="五、活动扫描法"></a>五、活动扫描法</h1><h2 id="5-1-事件调度法的弱点"><a href="#5-1-事件调度法的弱点" class="headerlink" title="5.1 事件调度法的弱点"></a>5.1 事件调度法的弱点</h2><p>事件调度法具有省时间的优点，但是它的实现和设计较复杂。</p>
 <p>仿真钟的推进：仅依据对最早发生的事件的扫描。因此，事件调度法是一种“预订事件发生时间”的策略。</p>
 <p>这样，仿真模型中必须预先设定系统中最先发生的事件，以便启动仿真进程。在每一类事件处理程序中，需要：①处理该事件，②相应的改变状态；③预定本类事件的下一次事件发生的时间。所以，事件调度策略对于系统活动时间的确定性较强（服从某种分布的随机变量）的系统来说，比较方便。</p>
@@ -306,7 +306,7 @@
 </ul>
 <p>如果实体处于等待服务状态，对于绝对时间法，实体的时间元应小于当前仿真时刻；对于相对时间法，实体的时间元应小于0.</p>
 <p><strong>活动扫描法仿真时钟的推进：</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/11.png" alt></p>
+<p><img src="/post/System-Simulation-5/11.png" alt></p>
 <p>ta&gt;TIME，表示该活动在将来某一时刻可能发生；</p>
 <p>ta=TIME，表示该活动如果条件满足立即发生；</p>
 <p>ta&lt;TIME，表示该活动按预定时间早该发生，但因条件没满足，到目前实际上没发生。当前是否发生，需要判断其发生的条件。</p>
@@ -332,8 +332,8 @@
 <li>$TIME=min(t_a|a∈FUTURE(S))$</li>
 </ul>
 <p>end while</p>
-<h2 id="5-5-活动扫描法流程图"><a href="#5-5-活动扫描法流程图" class="headerlink" title="5.5 活动扫描法流程图"></a>5.5 活动扫描法流程图</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/12.png" alt></p>
-<h2 id="5-6-活动扫面发的流程控制"><a href="#5-6-活动扫面发的流程控制" class="headerlink" title="5.6 活动扫面发的流程控制"></a>5.6 活动扫面发的流程控制</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/13.png" alt></p>
+<h2 id="5-5-活动扫描法流程图"><a href="#5-5-活动扫描法流程图" class="headerlink" title="5.5 活动扫描法流程图"></a>5.5 活动扫描法流程图</h2><p><img src="/post/System-Simulation-5/12.png" alt></p>
+<h2 id="5-6-活动扫面发的流程控制"><a href="#5-6-活动扫面发的流程控制" class="headerlink" title="5.6 活动扫面发的流程控制"></a>5.6 活动扫面发的流程控制</h2><p><img src="/post/System-Simulation-5/13.png" alt></p>
 <h2 id="5-7-活动表AL-Activity-List"><a href="#5-7-活动表AL-Activity-List" class="headerlink" title="5.7 活动表AL(Activity List)"></a>5.7 活动表AL(Activity List)</h2><div class="table-container">
 <table>
 <thead>
@@ -404,9 +404,9 @@
 <ul>
 <li>同“时间片”属性，仅当“可用性”为False时，该属性才有意义，它表示“时间片”所预期的B类活动。</li>
 </ul>
-<h2 id="6-2-三阶段扫描法策略流程图"><a href="#6-2-三阶段扫描法策略流程图" class="headerlink" title="6.2 三阶段扫描法策略流程图"></a>6.2 三阶段扫描法策略流程图</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/14.png" alt></p>
+<h2 id="6-2-三阶段扫描法策略流程图"><a href="#6-2-三阶段扫描法策略流程图" class="headerlink" title="6.2 三阶段扫描法策略流程图"></a>6.2 三阶段扫描法策略流程图</h2><p><img src="/post/System-Simulation-5/14.png" alt></p>
 <p>下面是三阶段法中每个实体分配的记录表：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/15.png" alt></p>
+<p><img src="/post/System-Simulation-5/15.png" alt></p>
 <h2 id="6-3-三阶段法的基本描述"><a href="#6-3-三阶段法的基本描述" class="headerlink" title="6.3 三阶段法的基本描述"></a>6.3 三阶段法的基本描述</h2><h3 id="A阶段"><a href="#A阶段" class="headerlink" title="A阶段"></a>A阶段</h3><p>A阶段：时间扫描</p>
 <p>扫描事件表，找出下一最早发生事件。将系统仿真时钟推进到该事件发生的时刻。系统时钟一直保持这一时刻直到下一个A阶段发生。具体做法是：</p>
 <p>仿真控制程序搜寻出那些“可用性”属性为“False”且具有最小时间片（time cell）的实体，并将time cell 作为下一最早事件发生时刻。因为可能有多个B类活动在下一时刻发生，所以仿真控制程序必须记录在该时刻所有的不可用实体而形成一个DueNow列表。</p>
@@ -428,8 +428,8 @@
 <li>当前事件表（CEL，Current Event List），它存放着从当前时间点开始有资格执行的事件的记录，该事件是否能发生的条件尚未判断。</li>
 <li>将来事件表（FEL，Future Event List），它包含在将来某个仿真时刻发生的事件的事件记录。每一个事件记录中有包括该事件的若干个属性项，其中必须有一个属性，说明该事件所在进程及在该进程中所处位置的指针。</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/16.png" alt></p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/17.png" alt></p>
+<p><img src="/post/System-Simulation-5/16.png" alt></p>
+<p><img src="/post/System-Simulation-5/17.png" alt></p>
 <h2 id="7-4-进程交互法调度算法"><a href="#7-4-进程交互法调度算法" class="headerlink" title="7.4 进程交互法调度算法"></a>7.4 进程交互法调度算法</h2><p>执行初始化操作，包括：</p>
 <p>设置开始时间$t=t_0$,结束时间$t_∞$</p>
 <p>设置初始化事件，并置于FEL中</p>
@@ -450,8 +450,8 @@
 <p>将FEL中所在TIME时刻发生的事件记录移到CEL中</p>
 <p>end if</p>
 <p>end while</p>
-<h2 id="7-5-进程交互法流程图"><a href="#7-5-进程交互法流程图" class="headerlink" title="7.5 进程交互法流程图"></a>7.5 进程交互法流程图</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/18.png" alt></p>
-<h2 id="7-6-进程交互法的流程控制"><a href="#7-6-进程交互法的流程控制" class="headerlink" title="7.6 进程交互法的流程控制"></a>7.6 进程交互法的流程控制</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-5/19.png" alt></p>
+<h2 id="7-5-进程交互法流程图"><a href="#7-5-进程交互法流程图" class="headerlink" title="7.5 进程交互法流程图"></a>7.5 进程交互法流程图</h2><p><img src="/post/System-Simulation-5/18.png" alt></p>
+<h2 id="7-6-进程交互法的流程控制"><a href="#7-6-进程交互法的流程控制" class="headerlink" title="7.6 进程交互法的流程控制"></a>7.6 进程交互法的流程控制</h2><p><img src="/post/System-Simulation-5/19.png" alt></p>
 <h2 id="7-7-基本描述"><a href="#7-7-基本描述" class="headerlink" title="7.7 基本描述"></a>7.7 基本描述</h2><p>进程交互法的处理过程是：</p>
 <p>​    ① 推进系统仿真钟 TIME。</p>
 <p>​    ② 把满足Ta&lt;=TIME 的所有事件从 FEL移动到 CEL 。</p>
@@ -736,20 +736,5 @@
 </script>
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

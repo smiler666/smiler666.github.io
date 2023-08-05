@@ -102,7 +102,7 @@
       </span>
     </span>
       <span class="slash">/</span>
-      <span class="read">阅读耗时 18 分钟</span>
+      <span class="read">阅读耗时 17 分钟</span>
     </header>
 
     <div class="post-content">
@@ -160,7 +160,7 @@
 <p>对系统施加一定的实验信号，跟据输入、输出数据进行分析，得到较好描述输入-输出关系的数学模型。</p>
 <p>本课程学习基于机理建模的微分方程建模法，下面举例说明。</p>
 <h2 id="2-2-微分方程建模例子"><a href="#2-2-微分方程建模例子" class="headerlink" title="2.2 微分方程建模例子"></a>2.2 微分方程建模例子</h2><p><strong>例7.1</strong>：如图的RLC电路系统，其中：系统的输入量$u(t)$，输出量$u_c(t)$，试建立该系统的微分方程模型。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-7/9.png" alt></p>
+<p><img src="/post/System-Simulation-7/9.png" alt></p>
 <p>解：</p>
 <p>根据电路基本定律，列出如下的微分方程</p>
 <script type="math/tex; mode=display">
@@ -186,17 +186,17 @@ LCd^2uc (t)/dt^2 + RCdu_c (t)/dt + u_c(t) = u(t)</script><p>该微分方程的�
 <li>系统的传递函数等于系统单位脉冲相应的拉普拉斯函数。</li>
 <li>可由系统的高阶微分方程转换到传递函数形式。</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-7/10.png" alt></p>
+<p><img src="/post/System-Simulation-7/10.png" alt></p>
 <h2 id="2-3-状态方程建模"><a href="#2-3-状态方程建模" class="headerlink" title="2.3 状态方程建模"></a>2.3 状态方程建模</h2><p><strong>（1）状态方程</strong></p>
 <p>状态方程实际上就是前述的一阶微分方程组，只不过表示成矩阵和向量的形式，因而更加简洁。<br>前述一阶微分方程组为：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-7/11.png" alt></p>
+<p><img src="/post/System-Simulation-7/11.png" alt></p>
 <p>则上式可以写成如下矩阵形式：</p>
 <script type="math/tex; mode=display">
 \frac{dx(t)}{dt} =Ax(t) + Bu(t)</script><p>其中，x称为状态向量，其中的元素称为状态变量。一般输出用$y$表示，则$y (t) =u_c (t)$, 则输出可表示为：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-7/12.png" alt></p>
+<p><img src="/post/System-Simulation-7/12.png" alt></p>
 <p>于是，本系统的状态方程为：</p>
 <script type="math/tex; mode=display">
-\dot{x}(t)=Ax(t)+Bu(t) \\ y(t)=Cx(t)</script><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-7/13.png" alt></p>
+\dot{x}(t)=Ax(t)+Bu(t) \\ y(t)=Cx(t)</script><p><img src="/post/System-Simulation-7/13.png" alt></p>
 <p>一般系统情况下，系统的状态方程模型可表示为：</p>
 <script type="math/tex; mode=display">
 \dot{x}(t)=Ax(t)+Bu(t) \\ y(t)=Cx(t)+Du(t)</script><p>其中，</p>
@@ -235,7 +235,7 @@ y(t_{n+1}) =y(t_0)+\int_{t_0}^{t_{n+1}}f(t,y)dt=y(t_n)+\int_{t_n}^{t_{n+1}}f(t,y
 Q_n=\int_{t_n}^{t_{n+1}}f(t,y)dt</script><p>希望能够找到一个近似公式来近似连续解：</p>
 <script type="math/tex; mode=display">
 𝒚_{𝒏+𝟏})≈𝒚_𝒏+𝑸_𝒏</script><p>其中，$y_n$为准确解$y(t_n)$的近似解，$Q_n$是准确积分的近似值。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-7/14.png" alt></p>
+<p><img src="/post/System-Simulation-7/14.png" alt></p>
 <p><strong>数值积分法的分类：</strong></p>
 <p>数值积分解法分类：单步法、多步法、预估-校正法。</p>
 <ul>
@@ -289,14 +289,14 @@ Q_n=\int_{t_n}^{t_{n+1}}f(t,y)dt</script><p>希望能够找到一个近似公式
 </tbody>
 </table>
 </div>
-<h2 id="3-3-欧拉法"><a href="#3-3-欧拉法" class="headerlink" title="3.3 欧拉法"></a>3.3 欧拉法</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-7/15.png" alt></p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-7/16.png" alt></p>
+<h2 id="3-3-欧拉法"><a href="#3-3-欧拉法" class="headerlink" title="3.3 欧拉法"></a>3.3 欧拉法</h2><p><img src="/post/System-Simulation-7/15.png" alt></p>
+<p><img src="/post/System-Simulation-7/16.png" alt></p>
 <h2 id="3-4-梯形法"><a href="#3-4-梯形法" class="headerlink" title="3.4 梯形法"></a>3.4 梯形法</h2><p>基于欧拉公式的思想，用梯形面积替代矩形面积：</p>
 <script type="math/tex; mode=display">
 y_{n+1}=y_n+\frac{h}{2}[f(t_n,y_n)+f(t_{n+1},y_{n+1})]</script><p>显然，该计算公式为隐式。为求<script type="math/tex">𝑓(𝑡_{𝑛+1},𝑦_{𝑛+1} )</script>，可用欧拉公式求出<script type="math/tex">y(t_{n+1})</script>的近似值然后<script type="math/tex">y_{n+1}^p</script>带回微分方程。</p>
 <p>于是，改进的欧拉公式如下：</p>
 <script type="math/tex; mode=display">
-y_{n+1}^p=y_n+hf(t_n,y_n) \\ y_{n+1}=y_n+\frac{h}{2}[f(t_n,y_n)+f^p(t_{n+1},y_{n+1}^p)]</script><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-7/17.png" alt></p>
+y_{n+1}^p=y_n+hf(t_n,y_n) \\ y_{n+1}=y_n+\frac{h}{2}[f(t_n,y_n)+f^p(t_{n+1},y_{n+1}^p)]</script><p><img src="/post/System-Simulation-7/17.png" alt></p>
 <h2 id="3-5-龙格-库塔法"><a href="#3-5-龙格-库塔法" class="headerlink" title="3.5 龙格-库塔法"></a>3.5 龙格-库塔法</h2><p>（1）基本思想</p>
 <p>德国数学家Runge和Kutta先后提出间接利用泰勒展开式的方法，即用几个点上函数$y(t)$的一阶导数值得线性组合来近似代替$y(t)$在某点的各阶导数，然后用泰勒展开式确定线性组合中的各加权系数。以上方法就是龙格-库塔法（RK法）的基本思想。</p>
 <p>RK法的计算式有显式、隐式和半隐式。</p>
@@ -305,9 +305,9 @@ y_{n+1}^p=y_n+hf(t_n,y_n) \\ y_{n+1}=y_n+\frac{h}{2}[f(t_n,y_n)+f^p(t_{n+1},y_{n
 <script type="math/tex; mode=display">
 \dot{y}=𝑓(𝑡,𝑦)\\𝒚(𝑡_0)=𝑦_0</script><p>将$y(t)$展开称泰勒级数</p>
 <script type="math/tex; mode=display">
-y(t+h)=y(t)+hy(t)+\frac{h^2}{2!} \ddot{y}(t)+ ···</script><p>​     <img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-7/18.png" alt="18"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-7/19.png" alt="19"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-7/20.png" alt="20"></p>
+y(t+h)=y(t)+hy(t)+\frac{h^2}{2!} \ddot{y}(t)+ ···</script><p>​     <img src="/post/System-Simulation-7/18.png" alt="18"></p>
+<p><img src="/post/System-Simulation-7/19.png" alt="19"></p>
+<p><img src="/post/System-Simulation-7/20.png" alt="20"></p>
 
     </div>
 
@@ -531,20 +531,5 @@ y(t+h)=y(t)+hy(t)+\frac{h^2}{2!} \ddot{y}(t)+ ···</script><p>​     <img src
 </script>
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

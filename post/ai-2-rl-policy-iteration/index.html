@@ -102,16 +102,16 @@
       </span>
     </span>
       <span class="slash">/</span>
-      <span class="read">阅读耗时 16 分钟</span>
+      <span class="read">阅读耗时 15 分钟</span>
     </header>
 
     <div class="post-content">
       <a id="more"></a>
 <h1 id="策略迭代"><a href="#策略迭代" class="headerlink" title="策略迭代"></a>策略迭代</h1><p>策略迭代包括<strong>策略评估(Policy Evaluation)</strong>和<strong>策略改进(Policy Improvement)</strong>。</p>
 <p>基本过程是从一个初始化的策略出发，先进行策略评估，然后策略改进，评估改进的策略，再进一步改进策略，经过不断迭代更新，直达策略收敛。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ai-2-rl-policy-iteration/1.png" alt="策略评估和策略改进"></p>
+<p><img src="/post/ai-2-rl-policy-iteration/1.png" alt="策略评估和策略改进"></p>
 <p><strong>算法的伪代码如下：</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ai-2-rl-policy-iteration/2.png" alt="策略迭代算法伪代码"></p>
+<p><img src="/post/ai-2-rl-policy-iteration/2.png" alt="策略迭代算法伪代码"></p>
 <p><strong>算法过程：</strong></p>
 <p><strong>1. Initialization</strong></p>
 <p>初始化所有状态的$v(s)$以及$π(s)$（初始化为随机策略） </p>
@@ -124,7 +124,7 @@
 <script type="math/tex; mode=display">
 v_{k+1}(s_t)=\sum_{a∈A}\pi(a|s)[R(s,a)+\gamma \sum_{s∈S}p(s'|s,a)v_t(s')]</script><p>下面介绍一个策略评估的例子：</p>
 <p>这是一个经典的Grid World的例子。这里有一个$4*4$的的格子世界。只有左上和右下的格子是终止格子。该位置的价值固定为0，个体如果到达了该2个格子，则停止移动，此后每轮奖励都是0。个体在16宫格其他格的每次移动，得到的即时奖励$R$都是-1。注意个体每次只能移动一个格子，且只能上下左右4种移动选择，不能斜着走, 如果在边界格往外走，则会直接移动回到之前的边界格。衰减因子我们定义为$γ=1$。由于这里每次移动，下一格都是固定的，因此所有可行的的状态转化概率$P=1$。这里给定的策略是随机策略，即每个格子里有25%的概率向周围的4个格子移动。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ai-2-rl-policy-iteration/3.jpg" alt></p>
+<p><img src="/post/ai-2-rl-policy-iteration/3.jpg" alt></p>
 <p>首先我们初始化所有格子的状态价值为0，如上图k=0的时候。现在我们开始策略迭代了。由于终止格子的价值固定为0，我们可以不将其加入迭代过程。在$k=1$的时候，我们利用上面的贝尔曼方程先计算第二行第一个格子的价值：</p>
 <script type="math/tex; mode=display">v_1^{21}=\frac{1}{4}[(−1+0)+(−1+0)+(−1+0)+(−1+0)]=−1</script><p>第二行第二个格子的价值是：</p>
 <script type="math/tex; mode=display">v_1^{22}=\frac{1}{4}[(−1+0)+(−1+0)+(−1+0)+(−1+0)]=−1</script><p>其余的以此类推，第一轮的状态价值迭代的结果如上图$k=1$的时候。现在我们第一轮迭代完了。开始动态规划迭代第二轮了。还是看第二行第一个格子的价值：</p>
@@ -137,11 +137,11 @@ v_{k+1}(s_t)=\sum_{a∈A}\pi(a|s)[R(s,a)+\gamma \sum_{s∈S}p(s'|s,a)v_t(s')]</s
 <p>遍历每一个状态，对每个可能的动作$a$，都计算一下采取这个动作后到达的下一个状态的期望价值。用贪婪法看看哪个动作可以到达的状态的期望价值函数最大，就选取这个动作，以此更新了$π(s)$公式如下：</p>
 <script type="math/tex; mode=display">q^{\pi_i}(s,a)=[R(s,a)+\gamma \sum_{s'∈S}p(s'|st,a)v^{\pi_i}(s')]</script><script type="math/tex; mode=display">\pi_{i+1}(s)={\underset {a}{\operatorname {arg\max} }}q^{\pi_i}(s,a)</script><h1 id="价值迭代"><a href="#价值迭代" class="headerlink" title="价值迭代"></a>价值迭代</h1><p>价值迭代就比较简单了，和策略迭代差不多，对每一个当前状态$s$ ,对每个可能的动作$a$ 都计算一下采取这个动作后到达的下一个状态的期望价值。看看哪个动作可以到达的状态的期望价值函数最大，就将这个最大的期望价值函数作为当前状态的价值函数 $V(s)$循环执行这个步骤，直到价值函数收敛。<br>期望价值计算公式：</p>
 <script type="math/tex; mode=display">q_{k+1}(s,a)=R(s,a)+\gamma \sum_{s∈S} P(s'|s,a)v_k(s')</script><script type="math/tex; mode=display">V_{k+1}(s)={\underset {a}{\operatorname {max} }}q_{k+1}(s,a)</script><p><strong>算法的伪代码如下：</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/rl-policy-iteration/5.png" alt></p>
+<p><img src="/post/rl-policy-iteration/5.png" alt></p>
 <p><strong>价值迭代算法过程：</strong></p>
 <p><strong>１.Initialization</strong><br>初始化所有状态的$v(s)$<br><strong>２.Finding optimal value function（找到最优的价值函数）</strong><br>注意伪代码里的$max$，对每一个当前状态$s$,对每个可能的动作$a$,都计算一下采取这个动作后到达的下一个状态的期望价值。看看哪个动作可以到达的状态的期望价值函数最大，就将这个最大的期望价值函数作为当前状态的价值函数$v(s)$循环执行这个步骤，直到价值函数收敛,就可以得到最优的价值函数了<br><strong>3.Policy extraction</strong><br>利用上面步骤得到的最优价值函数，就可得到每个状态应该采取的最优动作,这个是我们的deterministic policy。</p>
 <p>还是以下图为例，我们如果用贪婪法调整动作策略，那么当k=3的时候，我们就已经得到了最优的动作策略。而不用一直迭代到状态价值收敛才去调整策略。那么此时我们的策略迭代优化为价值迭代。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ai-2-rl-policy-iteration/3.jpg" alt></p>
+<p><img src="/post/ai-2-rl-policy-iteration/3.jpg" alt></p>
 <p>如上面的图右边。比如当$k=2$时，第二行第一个格子周围的价值分别是0,-2,-2，此时我们用贪婪法，则我们调整行动策略为向状态价值为0的方向移动，而不是随机移动。也就是图中箭头向上。而此时第二行第二个格子周围的价值分别是-1.7,-1.7,-2, -2。那么我们整行动策略为向状态价值为-1.7的方向移动，也就是图中的向左向上。</p>
 <p>和策略迭代相比，我们没有等到状态价值收敛才调整策略，而是随着状态价值的迭代及时调整策略, 这样可以大大减少迭代次数。此时我们的状态价值的更新方法也和策略迭代不同。可见由于策略调整，我们现在价值每次更新倾向于贪婪法选择的最优策略对应的后续状态价值，这样收敛更快。</p>
 <h1 id="两者区别"><a href="#两者区别" class="headerlink" title="两者区别"></a>两者区别</h1><p>一开始没有理解策略迭代和价值迭代的区别，导致后面的学习稀里糊涂。</p>
@@ -151,7 +151,7 @@ v_{k+1}(s_t)=\sum_{a∈A}\pi(a|s)[R(s,a)+\gamma \sum_{s∈S}p(s'|s,a)v_t(s')]</s
 <li>策略迭代的收敛速度更快一些，在状态空间较小时，最好选用策略迭代方法。当状态空间较大时，值迭代的计算量更小一些。</li>
 </ul>
 <h1 id="代码-例子"><a href="#代码-例子" class="headerlink" title="代码(例子)"></a>代码(例子)</h1><p>下面给出一个具体的例子</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ai-2-rl-policy-iteration/6.jpg" alt="动态规划中价值迭代和策略迭代的例子"></p>
+<p><img src="/post/ai-2-rl-policy-iteration/6.jpg" alt="动态规划中价值迭代和策略迭代的例子"></p>
 <p>MDP的五元组分别为：</p>
 <ul>
 <li>状态：1和2</li>
@@ -396,20 +396,5 @@ v_{k+1}(s_t)=\sum_{a∈A}\pi(a|s)[R(s,a)+\gamma \sum_{s∈S}p(s'|s,a)v_t(s')]</s
 </script>
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

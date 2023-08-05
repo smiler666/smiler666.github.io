@@ -117,7 +117,7 @@
 <h1 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h1><p>模型：yolo v3 + keras </p>
 <p>参考：<a href="https://github.com/CodingChaozhang/yolov3_keras" target="_blank" rel="noopener">https://github.com/CodingChaozhang/yolov3_keras</a> </p>
 <h1 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h1><p>数据集爬虫自互联网，共计3164张图片，477 MB，利用<code>labelImg</code>工具对每个图片进行标注。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ai-1-dl-yolov3-mask/1.png" alt="1"></p>
+<p><img src="/post/ai-1-dl-yolov3-mask/1.png" alt="1"></p>
 <p>数据集文件太大，暂时无法分享。</p>
 <h1 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h1><h2 id="1、预训练"><a href="#1、预训练" class="headerlink" title="1、预训练"></a>1、预训练</h2><p>下载yolo v3预训练模型权重<code>yolov3.weights</code>，使用如下命令将<code>yolov3.weights</code>转换为<code>.h5</code>文件格式：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python convert.py yolov3.cfg yolov3.weights model_data/yolo.h5</span><br><span class="line">python convert.py yolov3-tiny.cfg yolov3-tiny.weights model_data/yolov3-tiny.h5</span><br></pre></td></tr></table></figure>
@@ -125,7 +125,7 @@
 <h2 id="3、数据集格式转换"><a href="#3、数据集格式转换" class="headerlink" title="3、数据集格式转换"></a>3、数据集格式转换</h2><p>将标签和图片分别放到目录<code>VOCdevkit/VOC2007</code>下的<code>Annotation</code>和<code>JPEGImages</code>文件夹中。然后使用<code>voc2yolo3.py</code>文件生成对应的txt文件用于yolo v3数据集的读取。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">VOCdevkit</span><br><span class="line">	-VOC2007</span><br><span class="line">		├─ImageSets    # 存放数据集列表文件，由voc2yolo3.py文件生成</span><br><span class="line">		├─Annotations  # 存放数据集图片文件</span><br><span class="line">		├─JPEGImages   # 存放图片标签，xml格式</span><br><span class="line">		└─voc2yolo3.py # 用于生成数据集列表文件</span><br></pre></td></tr></table></figure>
 <p>将<code>voc_annotation.py</code>中的classes修改为自己的类别，如：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/ai-1-dl-yolov3-mask/2.png" alt="1"></p>
+<p><img src="/post/ai-1-dl-yolov3-mask/2.png" alt="1"></p>
 <p>运行<code>voc_annotation.py</code></p>
 <p>将<code>voc_classes.txt</code>中的分类更换为自己的类别。</p>
 <h2 id="4、训练"><a href="#4、训练" class="headerlink" title="4、训练"></a>4、训练</h2><p>修改<code>train.py</code>中的<code>anchor_path</code>可选择使用<code>yolov3</code>训练还是<code>yolov3-tiny</code>训练。</p>
@@ -360,20 +360,5 @@
 </script>
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

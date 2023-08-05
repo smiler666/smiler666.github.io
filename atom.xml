@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://smiler666.github.io/"/>
-  <updated>2023-07-03T07:47:07.813Z</updated>
+  <updated>2023-07-21T09:17:29.325Z</updated>
   <id>https://smiler666.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ABAQUS中使用CEL大变形有限元模拟T-Bar贯入仪在应变软化粘土中贯入教程</title>
+    <link href="https://smiler666.github.io/post/abaqus-3-cel-tbar/"/>
+    <id>https://smiler666.github.io/post/abaqus-3-cel-tbar/</id>
+    <published>2023-07-21T04:00:00.000Z</published>
+    <updated>2023-07-21T09:17:29.325Z</updated>
+    
+    <summary type="html">
+    
+      文章已加密，请输入密码查看！
+    
+    </summary>
+    
+    
+      <category term="数值计算" scheme="https://smiler666.github.io/categories/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/"/>
+    
+    
+      <category term="ABAQUS" scheme="https://smiler666.github.io/tags/ABAQUS/"/>
+    
+      <category term="探索" scheme="https://smiler666.github.io/tags/%E6%8E%A2%E7%B4%A2/"/>
+    
+  </entry>
   
   <entry>
     <title>国家法律法规数据库和国家规章库</title>
@@ -92,7 +115,7 @@
 &lt;p&gt;分享14份大连理工大学专属毕业答辩PPT模板&lt;/p&gt;
 &lt;p&gt;大连理工大学官微制作&lt;/p&gt;
 &lt;p&gt;包含简约风、浪漫余晖、大工蓝、清新绿等多种风格&lt;/p&gt;
-&lt;p&gt;&lt;img
+&lt;p&gt;&lt;img src=&quot;/post/share-4-ppt-1/1.png&quot;
         
       
     
@@ -170,44 +193,11 @@
   </entry>
   
   <entry>
-    <title>关于ABAQUS/RITSS大变形有限元分析方法相关的一些论文</title>
-    <link href="https://smiler666.github.io/post/share-2-paper-ritss-1/"/>
-    <id>https://smiler666.github.io/post/share-2-paper-ritss-1/</id>
-    <published>2023-04-30T12:18:18.000Z</published>
-    <updated>2023-04-30T12:50:40.451Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;备份并分享一些关于ABAQUS/RITSS大变形有限元分析方法的一些论文。&lt;/p&gt;
-&lt;h1 id=&quot;RITSS提出&quot;&gt;&lt;a href=&quot;#RITSS提出&quot; class=&quot;headerlink&quot;
-        
-      
-    
-    </summary>
-    
-    
-      <category term="资源分享" scheme="https://smiler666.github.io/categories/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/"/>
-    
-    
-      <category term="ABAQUS" scheme="https://smiler666.github.io/tags/ABAQUS/"/>
-    
-      <category term="RITSS" scheme="https://smiler666.github.io/tags/RITSS/"/>
-    
-      <category term="资源分享" scheme="https://smiler666.github.io/tags/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/"/>
-    
-  </entry>
-  
-  <entry>
     <title>基于ABAQUS的大变形有限元RITSS方法教程（四）例子：管道从土体表面连续贯入</title>
     <link href="https://smiler666.github.io/post/abaqus-1-ritss-04/"/>
     <id>https://smiler666.github.io/post/abaqus-1-ritss-04/</id>
     <published>2023-04-11T09:00:00.000Z</published>
-    <updated>2023-04-30T10:59:12.970Z</updated>
+    <updated>2023-07-20T02:50:28.480Z</updated>
     
     <summary type="html">
     
@@ -230,7 +220,7 @@
     <link href="https://smiler666.github.io/post/abaqus-1-ritss-03/"/>
     <id>https://smiler666.github.io/post/abaqus-1-ritss-03/</id>
     <published>2023-04-10T09:00:00.000Z</published>
-    <updated>2023-06-01T03:28:41.972Z</updated>
+    <updated>2023-07-20T02:45:51.540Z</updated>
     
     <summary type="html">
     
@@ -249,11 +239,11 @@
   </entry>
   
   <entry>
-    <title>基于ABAQUS的大变形有限元RITSS方法教程（二）自动化建模及RITSS实现</title>
+    <title>基于ABAQUS的大变形有限元RITSS方法教程（二）自动化建模及RITSS实现框架</title>
     <link href="https://smiler666.github.io/post/abaqus-1-ritss-02/"/>
     <id>https://smiler666.github.io/post/abaqus-1-ritss-02/</id>
     <published>2023-04-09T09:00:00.000Z</published>
-    <updated>2023-05-02T02:30:43.114Z</updated>
+    <updated>2023-07-21T08:57:28.473Z</updated>
     
     <summary type="html">
     
@@ -276,7 +266,7 @@
     <link href="https://smiler666.github.io/post/abaqus-1-ritss-01/"/>
     <id>https://smiler666.github.io/post/abaqus-1-ritss-01/</id>
     <published>2023-04-08T09:00:00.000Z</published>
-    <updated>2023-05-01T06:18:57.702Z</updated>
+    <updated>2023-07-20T03:17:49.545Z</updated>
     
     <summary type="html">
     
@@ -396,7 +386,8 @@
         
         
           &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/experience-2/1.jpg&quot; alt=&quot;1&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/post/experience-2/1.jpg&quot; alt=&quot;1&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/post/experience-2/2.jpg&quot; alt=&quot;2&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img
         
       
@@ -447,7 +438,7 @@
     <link href="https://smiler666.github.io/post/abaqus-1-ritss-1/"/>
     <id>https://smiler666.github.io/post/abaqus-1-ritss-1/</id>
     <published>2022-09-11T12:31:16.000Z</published>
-    <updated>2023-04-30T11:09:20.155Z</updated>
+    <updated>2023-07-21T08:54:26.961Z</updated>
     
     <summary type="html">
     

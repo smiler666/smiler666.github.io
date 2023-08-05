@@ -102,7 +102,7 @@
       </span>
     </span>
       <span class="slash">/</span>
-      <span class="read">阅读耗时 66 分钟</span>
+      <span class="read">阅读耗时 64 分钟</span>
     </header>
 
     <div class="post-content">
@@ -115,7 +115,7 @@
 <li>许多问题中既存在如经济量那样的定量的东西，又存在如价值观念等偏于定性的东西。这就给问题的处理带来很大的困难。</li>
 </ul>
 <p>新的问题迫切需要有新的方法来处理；另一方面，在技术上由于电子计算机技术的突破使得新的方法有了产生的可能。于是系统动力学便应运而生。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/1.png" alt></p>
+<p><img src="/post/System-Simulation-8/1.png" alt></p>
 <p>J.W.Forrester教授自50年代中期开创系统动力学以来，在一系列社会经济系统问题的研究中取得了令人瞩目的创造性成果。J.W.Forrester等在系统动力学方面的主要成果如下：</p>
 <ul>
 <li>1958年，工业动力学的概念首次被提出。</li>
@@ -162,7 +162,7 @@ L=PR \\ \left[\begin{matrix}R\\A\end{matrix}\right]=\left[\begin{matrix}L\\A\end
 L—状态变量向量；\\R—速率变量向量；\\A—辅助变量向量；\\L—纯速率变量向量；\\P—转移矩阵；\\W—关系矩阵。</script><h3 id="2-2-2-系统动力学的系统-System-描述"><a href="#2-2-2-系统动力学的系统-System-描述" class="headerlink" title="2.2.2 系统动力学的系统(System)描述"></a>2.2.2 系统动力学的系统(System)描述</h3><p>系统可以用一组随时间变化的状态变量$X=(x_1,x_2,..x_n)$描述：系统的相空间</p>
 <p>系统有一定的输入： $U=(u_1, u_2, ..,u_m)$： 控制量</p>
 <p>系统是通过相互作用而发展变化的：$X’=f(X,U,t)$ </p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/2.png" alt></p>
+<p><img src="/post/System-Simulation-8/2.png" alt></p>
 <p>系统由多个子系统组成，最小的子系统是一阶反馈回路，它包含：状态量，速率量，及辅助变量，是一个多元一阶微分方程。</p>
 <p>系统的未来发展取决于其结构及初始条件: $U$, $f(X,U,t))$ </p>
 <p>系统动力学的模型，相当于这组微分方程组： $X’=f(X,U,t) $</p>
@@ -190,7 +190,7 @@ L—状态变量向量；\\R—速率变量向量；\\A—辅助变量向量；\
 <li>反映库存当前水平的信息经过订货与生产部门的传递最终又以来自生产部门的货物的形式返回库存。</li>
 </ul>
 <p>下面简单看一个例子：<strong>库存信息反馈调节过程</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/3.png" alt></p>
+<p><img src="/post/System-Simulation-8/3.png" alt></p>
 <p>库存订货系统是一个简单的反馈系统。从图中可知它形成闭合的回路(或称环)，称之为<strong>反馈回路</strong>(或环)。反馈回路就是由一系列的因果与相互作用链组成的闭合回路或者说是由信息与动作构成的闭合路径。</p>
 <h3 id="2-3-3-回路、闭环系统、开环系统"><a href="#2-3-3-回路、闭环系统、开环系统" class="headerlink" title="2.3.3 回路、闭环系统、开环系统"></a>2.3.3 回路、闭环系统、开环系统</h3><p>反馈系统就是相互联结与作用的一组回路。</p>
 <p>反馈系统就是闭环系统。</p>
@@ -201,30 +201,30 @@ L—状态变量向量；\\R—速率变量向量；\\A—辅助变量向量；\
 <ul>
 <li>指数增长（正反馈）/寻的（负反馈）/震荡（时间延迟的负反馈）</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/4.png" alt></p>
+<p><img src="/post/System-Simulation-8/4.png" alt></p>
 <ul>
 <li>S形增长（带承载力约束的正-负反馈）</li>
 <li>过度调整的增长（时间延迟的S形增长）</li>
 <li>过度调整并崩溃（承载能力消耗的S形增长）</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/5.png" alt></p>
+<p><img src="/post/System-Simulation-8/5.png" alt></p>
 <h3 id="2-3-5-反馈系统的分类"><a href="#2-3-5-反馈系统的分类" class="headerlink" title="2.3.5 反馈系统的分类"></a>2.3.5 反馈系统的分类</h3><p>反馈系统分为<strong>正反馈系统</strong>和<strong>负反馈系统</strong>。</p>
 <h4 id="2-3-5-1-正反馈回路的特点"><a href="#2-3-5-1-正反馈回路的特点" class="headerlink" title="2.3.5.1 正反馈回路的特点"></a>2.3.5.1 正反馈回路的特点</h4><p>正反馈回路的特点是，发生于其回路中任何一处的初始偏离与动作循回路一周将获得增大与加强。</p>
 <p>正反馈回路可具有诸如非稳定的、非平衡的、增长的和自增强的多种特性。</p>
 <p>在实际系统中，就系统产生的后果而言，正反馈回路可导致良性循环与恶性循环两类。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/6.png" alt></p>
+<p><img src="/post/System-Simulation-8/6.png" alt></p>
 <h4 id="2-3-5-2-负反馈回路的特点"><a href="#2-3-5-2-负反馈回路的特点" class="headerlink" title="2.3.5.2 负反馈回路的特点"></a>2.3.5.2 负反馈回路的特点</h4><p>负反馈回路的特点是，它力图缩小系统状态相对于目标状态(或某平衡状态)的偏离。</p>
 <p>负反馈回路亦可称为稳定回路，平衡回路或自校正回路。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/7.png" alt></p>
+<p><img src="/post/System-Simulation-8/7.png" alt></p>
 <p>库存—订货系统是一个闭环的反馈系统</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/8.png" alt></p>
+<p><img src="/post/System-Simulation-8/8.png" alt></p>
 <p>系统中的库存缺货信息的收集与向生产部门提出订货的要求均由管理人员承担，假设系统中无管理人员或管理人员失职，则系统中<strong>失去反馈环节与反馈作用</strong>，处于无人管理状态，也就成为开环系统了。库存量就不可能保持在合理的水平。</p>
-<h2 id="2-4-系统动力学解决问题的一般过程"><a href="#2-4-系统动力学解决问题的一般过程" class="headerlink" title="2.4 系统动力学解决问题的一般过程"></a>2.4 系统动力学解决问题的一般过程</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/9.png" alt></p>
+<h2 id="2-4-系统动力学解决问题的一般过程"><a href="#2-4-系统动力学解决问题的一般过程" class="headerlink" title="2.4 系统动力学解决问题的一般过程"></a>2.4 系统动力学解决问题的一般过程</h2><p><img src="/post/System-Simulation-8/9.png" alt></p>
 <p><strong>提出问题</strong>：明确建立模型的目的。即要明确要研究和解决什么问题。</p>
 <p><strong>参考行为模式分析</strong>：分析系统的事件，及实际存在的行为模式，提出设想和期望的系统行为模式。作为改善和调整系统结构的目标。</p>
 <p><strong>提出假设建立模型</strong>：由行为模式，提出系统的结构假设。由假设出发，设计系统的因果关系图，流图，并列出方程，定义参数。从而将一系列的系统动力学假设，表示成了清晰的数学关系集合。</p>
 <p><strong>模型模拟</strong>：调整参数，运行模型，产生行为模式。建立好的模型是一个实验室，可以由试验参数和结构的变化理解结构与系统行为模式的关系。</p>
-<h2 id="2-5-系统动力学建模流程"><a href="#2-5-系统动力学建模流程" class="headerlink" title="2.5 系统动力学建模流程"></a>2.5 系统动力学建模流程</h2><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/10.png" alt></p>
+<h2 id="2-5-系统动力学建模流程"><a href="#2-5-系统动力学建模流程" class="headerlink" title="2.5 系统动力学建模流程"></a>2.5 系统动力学建模流程</h2><p><img src="/post/System-Simulation-8/10.png" alt></p>
 <h1 id="三、-建模初期的几个重要环节"><a href="#三、-建模初期的几个重要环节" class="headerlink" title="三、 建模初期的几个重要环节"></a>三、 建模初期的几个重要环节</h1><p>建模初期有几个重要环节：</p>
 <ul>
 <li>系统框图</li>
@@ -232,24 +232,24 @@ L—状态变量向量；\\R—速率变量向量；\\A—辅助变量向量；\
 <li>模型流图构建</li>
 </ul>
 <h2 id="3-1-系统框图（分解的结果）"><a href="#3-1-系统框图（分解的结果）" class="headerlink" title="3.1 系统框图（分解的结果）"></a>3.1 系统框图（分解的结果）</h2><p>建模的系统结构性构建（系统分析的结果）</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/11.png" alt></p>
+<p><img src="/post/System-Simulation-8/11.png" alt></p>
 <h2 id="3-2-因果回路图构建"><a href="#3-2-因果回路图构建" class="headerlink" title="3.2 因果回路图构建"></a>3.2 因果回路图构建</h2><h3 id="3-2-1-因果回路图"><a href="#3-2-1-因果回路图" class="headerlink" title="3.2.1 因果回路图"></a>3.2.1 因果回路图</h3><p>因果回路图(causal  loop diagram, CLD)用于表达系统中变量的动态因果关系。用途如下</p>
 <ol>
 <li>构思模型的初始阶段；</li>
 <li>非技术性地、直观地描述模型结构，便于与建模的相关人员交流讨论。 </li>
 </ol>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/12.png" alt></p>
+<p><img src="/post/System-Simulation-8/12.png" alt></p>
 <h3 id="3-2-2-因果图的记号"><a href="#3-2-2-因果图的记号" class="headerlink" title="3.2.2 因果图的记号"></a>3.2.2 因果图的记号</h3><p>因果链与反馈分析需要注意的几点：</p>
 <ul>
 <li>每个链条代表变量之间的因果关系，不是相关关系</li>
 <li>反馈结构应形成闭合回路，下图的结构是开环回路。</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/13.png" alt></p>
+<p><img src="/post/System-Simulation-8/13.png" alt></p>
 <h3 id="3-2-3-因果链与反馈分析-符号"><a href="#3-2-3-因果链与反馈分析-符号" class="headerlink" title="3.2.3 因果链与反馈分析-符号"></a>3.2.3 因果链与反馈分析-符号</h3><ul>
 <li>在因果与相互关系图中采用名词或名词的短语，不用动词。变量之间的影响与作用以带箭头的因果链表示。</li>
 <li>左图是错误的，右图才是正确的；</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/14.png" alt></p>
+<p><img src="/post/System-Simulation-8/14.png" alt></p>
 <h3 id="3-2-4-因果链与反馈分析：极性"><a href="#3-2-4-因果链与反馈分析：极性" class="headerlink" title="3.2.4 因果链与反馈分析：极性"></a>3.2.4 因果链与反馈分析：极性</h3><p><strong>因果链极性</strong> </p>
 <p>因果链$X→+ Y$：连接$X$与$YB$的因果链取正号，</p>
 <ol>
@@ -272,27 +272,27 @@ L—状态变量向量；\\R—速率变量向量；\\A—辅助变量向量；\
 <li>若反馈回路包含偶数个负的因果链，则其极性为正；</li>
 <li>若反馈回路包含奇数个负的因果链，则其极性为负。</li>
 </ol>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/15.png" alt></p>
+<p><img src="/post/System-Simulation-8/15.png" alt></p>
 <h3 id="3-2-5-因果回路图分析——延迟"><a href="#3-2-5-因果回路图分析——延迟" class="headerlink" title="3.2.5 因果回路图分析——延迟"></a>3.2.5 因果回路图分析——延迟</h3><p>指出因果链中的重要延迟</p>
 <ol>
 <li>延迟十分重要：延迟使系统产生惰性、产生震荡；</li>
 <li>延迟的标注。</li>
 </ol>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/16.png" alt></p>
-<h3 id="3-2-6-几个因果回路图的分析"><a href="#3-2-6-几个因果回路图的分析" class="headerlink" title="3.2.6 几个因果回路图的分析"></a>3.2.6 几个因果回路图的分析</h3><h4 id="3-2-6-1-富者愈富基模"><a href="#3-2-6-1-富者愈富基模" class="headerlink" title="3.2.6.1 富者愈富基模"></a>3.2.6.1 富者愈富基模</h4><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/17.png" alt></p>
+<p><img src="/post/System-Simulation-8/16.png" alt></p>
+<h3 id="3-2-6-几个因果回路图的分析"><a href="#3-2-6-几个因果回路图的分析" class="headerlink" title="3.2.6 几个因果回路图的分析"></a>3.2.6 几个因果回路图的分析</h3><h4 id="3-2-6-1-富者愈富基模"><a href="#3-2-6-1-富者愈富基模" class="headerlink" title="3.2.6.1 富者愈富基模"></a>3.2.6.1 富者愈富基模</h4><p><img src="/post/System-Simulation-8/17.png" alt></p>
 <h4 id="3-2-6-2-恶性竞争（两败俱伤）基模"><a href="#3-2-6-2-恶性竞争（两败俱伤）基模" class="headerlink" title="3.2.6.2 恶性竞争（两败俱伤）基模"></a>3.2.6.2 恶性竞争（两败俱伤）基模</h4><p>只把注意力放在对方的威胁上</p>
 <p>在一个平衡水平上上下波动</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/18.png" alt></p>
+<p><img src="/post/System-Simulation-8/18.png" alt></p>
 <h4 id="3-2-6-3-成长的上限基模"><a href="#3-2-6-3-成长的上限基模" class="headerlink" title="3.2.6.3 成长的上限基模"></a>3.2.6.3 成长的上限基模</h4><p>左边部分是促进成长的正反馈环</p>
 <p>右边部分是抑制成长的负反馈环</p>
 <p>刻画了各种组织运行的基本结构</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/19.png" alt></p>
+<p><img src="/post/System-Simulation-8/19.png" alt></p>
 <p>成长与投资不足基模</p>
 <ul>
 <li>上半部分为成长上限基模</li>
 <li>下半部分为投资不足负反馈环</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/20.png" alt></p>
+<p><img src="/post/System-Simulation-8/20.png" alt></p>
 <h2 id="3-3-流图的构建"><a href="#3-3-流图的构建" class="headerlink" title="3.3 流图的构建"></a>3.3 流图的构建</h2><p>因果回路图表现系统中变量间的因果关系，属于定性描述。</p>
 <p>当进一步建立变量间量化关系时，需要建立存量流量图。</p>
 <h3 id="3-3-1-存量和流量的概念"><a href="#3-3-1-存量和流量的概念" class="headerlink" title="3.3.1 存量和流量的概念"></a>3.3.1 存量和流量的概念</h3><p>以浴缸里的水为例：</p>
@@ -307,7 +307,7 @@ L—状态变量向量；\\R—速率变量向量；\\A—辅助变量向量；\
 <li>职工数：招募人数—〉职工数—〉辞、退、离职人数 </li>
 </ul>
 <h3 id="3-3-2-流图的表达"><a href="#3-3-2-流图的表达" class="headerlink" title="3.3.2 流图的表达"></a>3.3.2 流图的表达</h3><p>流图的构成如图所示：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/21.png" alt></p>
+<p><img src="/post/System-Simulation-8/21.png" alt></p>
 <h3 id="3-3-3-流图的数学描述"><a href="#3-3-3-流图的数学描述" class="headerlink" title="3.3.3 流图的数学描述"></a>3.3.3 流图的数学描述</h3><p>流图的结构可用数学公式描述为：</p>
 <script type="math/tex; mode=display">
 𝑺𝒕𝒐𝒄𝒌(𝒕)=\int_{t_0}^t [𝑰𝒏𝒇𝒍𝒐𝒘(𝒔)−𝑶𝒖𝒕𝒇𝒍𝒐𝒘(𝒔)]𝒅𝒔+𝑺𝒕𝒐𝒄𝒌(𝒕_𝟎)</script><p>其中：</p>
@@ -322,7 +322,7 @@ L—状态变量向量；\\R—速率变量向量；\\A—辅助变量向量；\
 𝒅(𝑺𝒕𝒐𝒄𝒌)∕𝒅𝒕=𝑰𝒏𝒇𝒍𝒐𝒘(𝒕)−𝑶𝒖𝒕𝒇𝒍𝒐𝒘(𝒕)</script><p>因此，流量实际上是一个瞬间值，及速率的含义（导数）</p>
 <p><strong>存量流图例：劳动力的两状态流图</strong></p>
 <p>劳动力队伍一般可分成两部分，一部分为已具有劳动技能的正式工人；另一部分为尚在培训的工人，培训需要一定时问，如半年或一年，称为培训延迟。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/22.png" alt></p>
+<p><img src="/post/System-Simulation-8/22.png" alt></p>
 <h3 id="3-3-4-存量流量与系统动态性"><a href="#3-3-4-存量流量与系统动态性" class="headerlink" title="3.3.4 存量流量与系统动态性"></a>3.3.4 存量流量与系统动态性</h3><p>水平变量和系统的状态及连续性</p>
 <p>水平变量与系统状态本身虽不能自我产生变化，但由于它的存在，才使我们能在不同的时间间隔感觉到系统的连续性（如：水槽中水量），有了水平变量的概念，才能建立系统连续性的概念（如水槽水量的动态变化）。</p>
 <p>水平变量是延迟的来源</p>
@@ -331,9 +331,9 @@ L—状态变量向量；\\R—速率变量向量；\\A—辅助变量向量；\
 <p>如：粮食的库存，生产的库存。</p>
 <h3 id="3-3-5-流图中的反馈回路"><a href="#3-3-5-流图中的反馈回路" class="headerlink" title="3.3.5 流图中的反馈回路"></a>3.3.5 流图中的反馈回路</h3><p>就系统整体来说，反馈回路事实上就是联系决策、行动、系统水平变量(系统的状态)以及信息再回到决策点的整个闭合回路。</p>
 <p>从下图中可以看到，决策控制行动，行动影响系统状况，系统状态的新信息又将决策修改，如此不断进行。所以，系统的动态现象是由反馈回路的决策过程所形成的。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/23.png" alt></p>
+<p><img src="/post/System-Simulation-8/23.png" alt></p>
 <p><strong>流图的举例：</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/24.png" alt></p>
+<p><img src="/post/System-Simulation-8/24.png" alt></p>
 <h3 id="3-3-6-辅助变量与常量"><a href="#3-3-6-辅助变量与常量" class="headerlink" title="3.3.6 辅助变量与常量"></a>3.3.6 辅助变量与常量</h3><p>辅助变量（Auxiliary variable）</p>
 <ul>
 <li>辅助变量表达决策过程的中间变量。用来描述决策过程中水平变量、速率变量之间信息传递和转换过程。辅助变量只随某些变量的变化而随时变化。</li>
@@ -347,7 +347,7 @@ L—状态变量向量；\\R—速率变量向量；\\A—辅助变量向量；\
 <li>运用辅助变量和常量，可以丰富模型的逻辑描述，易于建模和理解。</li>
 </ul>
 <h1 id="四、建模中期：建立模型方程"><a href="#四、建模中期：建立模型方程" class="headerlink" title="四、建模中期：建立模型方程"></a>四、建模中期：建立模型方程</h1><h3 id="4-1-一个简单的库存系统—引例"><a href="#4-1-一个简单的库存系统—引例" class="headerlink" title="4.1 一个简单的库存系统—引例"></a>4.1 一个简单的库存系统—引例</h3><p>考虑简单的库存系统，输入、输出速率为常数。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/25.png" alt></p>
+<p><img src="/post/System-Simulation-8/25.png" alt></p>
 <h3 id="4-1-1-案例说明"><a href="#4-1-1-案例说明" class="headerlink" title="4.1.1 案例说明"></a>4.1.1 案例说明</h3><p>考虑简单的库存系统，输入、输出速率为常数。</p>
 <p>库存量在5个月前为l200件，假定每月发货与入库各为100与80件，则库存INV每月减少20件。即：</p>
 <script type="math/tex; mode=display">
@@ -357,7 +357,7 @@ INV现在＝INV过去 + (时间间隔)×(净速率)</script><p>则：</p>
 <script type="math/tex; mode=display">
 INV现在＝1200件+(5月) ×(80件/月-100件/月)        ＝1200+5× (-20)    ＝1200-100   ＝1100(件)</script><p>当速率随时间变化时，可以把连续的时间分割成小的时间间隔，并假定在各小间隔内速率是固定的；然后，藉助计算机逐段地加以计算。若计算的时间间隔足够小，速率变动不大，则此结果将与从微分方程获得的精确解(如果可能求得的话)十分接近。</p>
 <p>给变量带上时间下标以区别在时间上的先后。如下图所示：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/26.png" alt></p>
+<p><img src="/post/System-Simulation-8/26.png" alt></p>
 <p>K表示现在，J表示刚刚过去的那一时刻，L表示紧随当前的未来的那一时刻。DT表示J与K或K与L之间的时间长度。</p>
 <p>库存方程表示如下：</p>
 <script type="math/tex; mode=display">
@@ -402,7 +402,7 @@ L  \qquad  INV.K＝INV.J+(DT)*(ORRE.JK-SH.JK) \\N  \qquad  INV＝1000</script><p
 <script type="math/tex; mode=display">
 C  \qquad  OPL = 3</script><h2 id="4-2-库存与劳动力模型—应用例举"><a href="#4-2-库存与劳动力模型—应用例举" class="headerlink" title="4.2 库存与劳动力模型—应用例举"></a>4.2 库存与劳动力模型—应用例举</h2><p>库存与劳动力模型为一个二阶系统模型，属于复合模拟（SyntheSim）</p>
 <p>二阶系统中，一般包括2个独立的状态变量，并且在同一回路中。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/27.png" alt></p>
+<p><img src="/post/System-Simulation-8/27.png" alt></p>
 <p><strong>建模步骤：</strong></p>
 <ol>
 <li><p>确定问题 </p>
@@ -425,7 +425,7 @@ C  \qquad  OPL = 3</script><h2 id="4-2-库存与劳动力模型—应用例举">
 <li><p>反馈结构流图与建立模型的方程式 </p>
 </li>
 </ol>
-<h3 id="4-2-1-确定问题（数学描述）"><a href="#4-2-1-确定问题（数学描述）" class="headerlink" title="4.2.1 确定问题（数学描述）"></a>4.2.1 确定问题（数学描述）</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/28.png" alt></p>
+<h3 id="4-2-1-确定问题（数学描述）"><a href="#4-2-1-确定问题（数学描述）" class="headerlink" title="4.2.1 确定问题（数学描述）"></a>4.2.1 确定问题（数学描述）</h3><p><img src="/post/System-Simulation-8/28.png" alt></p>
 <blockquote>
 <p>注：图中红色圈标出的：</p>
 <p>STEP(height, step time)：阶跃函数</p>
@@ -443,9 +443,9 @@ C  \qquad  OPL = 3</script><h2 id="4-2-库存与劳动力模型—应用例举">
 <ul>
 <li>系统的反馈结构</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/29.png" alt></p>
+<p><img src="/post/System-Simulation-8/29.png" alt></p>
 <h3 id="4-2-4-系统流图"><a href="#4-2-4-系统流图" class="headerlink" title="4.2.4 系统流图"></a>4.2.4 系统流图</h3><p>库存与劳动力模型</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/30.png" alt></p>
+<p><img src="/post/System-Simulation-8/30.png" alt></p>
 <h3 id="4-2-5-模型基本参数"><a href="#4-2-5-模型基本参数" class="headerlink" title="4.2.5 模型基本参数"></a>4.2.5 模型基本参数</h3><div class="table-container">
 <table>
 <thead>
@@ -524,7 +524,7 @@ C  \qquad  OPL = 3</script><h2 id="4-2-库存与劳动力模型—应用例举">
 </tbody>
 </table>
 </div>
-<h3 id="4-2-7-库存与劳动力模型-系统的行为"><a href="#4-2-7-库存与劳动力模型-系统的行为" class="headerlink" title="4.2.7 库存与劳动力模型-系统的行为"></a>4.2.7 库存与劳动力模型-系统的行为</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/31.png" alt></p>
+<h3 id="4-2-7-库存与劳动力模型-系统的行为"><a href="#4-2-7-库存与劳动力模型-系统的行为" class="headerlink" title="4.2.7 库存与劳动力模型-系统的行为"></a>4.2.7 库存与劳动力模型-系统的行为</h3><p><img src="/post/System-Simulation-8/31.png" alt></p>
 <h1 id="五、简单系统与行为模式"><a href="#五、简单系统与行为模式" class="headerlink" title="五、简单系统与行为模式"></a>五、简单系统与行为模式</h1><p>本节讨论简单系统的结构和行为，及两者之间的关系。</p>
 <ul>
 <li>一阶系统的行为模式</li>
@@ -547,20 +547,20 @@ C  \qquad  OPL = 3</script><h2 id="4-2-库存与劳动力模型—应用例举">
 <p>$u(t)=[u_1(t),…,u_m(t)]^T$，是m维输入向量,</p>
 <p>$ y(t)=[y_1(t),…,y_r(t)]^T$，是r维输出向量,</p>
 <p>$A(1×1),B (1×m),C (r×1),D (r×m)$是系数矩阵。当单输入/单输出时，m=r=1，u和y均为标量。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/32.png" alt></p>
+<p><img src="/post/System-Simulation-8/32.png" alt></p>
 <h3 id="5-1-3-一阶系统的结构形式"><a href="#5-1-3-一阶系统的结构形式" class="headerlink" title="5.1.3 一阶系统的结构形式"></a>5.1.3 一阶系统的结构形式</h3><p>系统动力学对一阶系统的认识</p>
 <ul>
 <li>系统动力学认为一阶反馈回路是构成系统的基本结构。一个复杂系统则是由这些相互作用的反馈回路组成的。</li>
 <li>一阶系统的基本结构</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/33.png" alt></p>
-<h3 id="5-1-4-一阶正反馈回路"><a href="#5-1-4-一阶正反馈回路" class="headerlink" title="5.1.4 一阶正反馈回路"></a>5.1.4 一阶正反馈回路</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/34.png" alt></p>
-<h3 id="5-1-5-一阶负反馈回路"><a href="#5-1-5-一阶负反馈回路" class="headerlink" title="5.1.5 一阶负反馈回路"></a>5.1.5 一阶负反馈回路</h3><p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/35.png" alt></p>
+<p><img src="/post/System-Simulation-8/33.png" alt></p>
+<h3 id="5-1-4-一阶正反馈回路"><a href="#5-1-4-一阶正反馈回路" class="headerlink" title="5.1.4 一阶正反馈回路"></a>5.1.4 一阶正反馈回路</h3><p><img src="/post/System-Simulation-8/34.png" alt></p>
+<h3 id="5-1-5-一阶负反馈回路"><a href="#5-1-5-一阶负反馈回路" class="headerlink" title="5.1.5 一阶负反馈回路"></a>5.1.5 一阶负反馈回路</h3><p><img src="/post/System-Simulation-8/35.png" alt></p>
 <h3 id="5-1-6-一阶系统与行为"><a href="#5-1-6-一阶系统与行为" class="headerlink" title="5.1.6 一阶系统与行为"></a>5.1.6 一阶系统与行为</h3><p>S增长理论应用举例（多反馈回路）</p>
 <ul>
 <li>Hype Cycle for IT Services（ Source: Gartner, Hype Cycle for IT Services, 2003 ）</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/36.png" alt></p>
+<p><img src="/post/System-Simulation-8/36.png" alt></p>
 <h2 id="5-2-二阶系统与行为"><a href="#5-2-二阶系统与行为" class="headerlink" title="5.2 二阶系统与行为"></a>5.2 二阶系统与行为</h2><h3 id="5-2-1-二阶系统系统概述"><a href="#5-2-1-二阶系统系统概述" class="headerlink" title="5.2.1 二阶系统系统概述"></a>5.2.1 二阶系统系统概述</h3><p>二阶系统的数学描述:</p>
 <p>一般系统情况下，系统的状态方程模型可表示为：</p>
 <script type="math/tex; mode=display">
@@ -570,23 +570,23 @@ C  \qquad  OPL = 3</script><h2 id="4-2-库存与劳动力模型—应用例举">
 <p>$u(t)=[u_1(t),…,u_m(t)]^T$，是m维输入向量,</p>
 <p>$ y(t)=[y_1(t),…,y_r(t)]^T$，是r维输出向量,</p>
 <p>$A(2×2),B (2×m),C (r×2),D (r×m)$是系数矩阵。当单输入/单输出时，m=r=1，u和y均为标量。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/37.png" alt></p>
+<p><img src="/post/System-Simulation-8/37.png" alt></p>
 <h3 id="5-2-2-二阶系统的行为模式"><a href="#5-2-2-二阶系统的行为模式" class="headerlink" title="5.2.2 二阶系统的行为模式"></a>5.2.2 二阶系统的行为模式</h3><p>常系数二阶系统系统的行为模式</p>
 <ul>
 <li>非震荡模式：阶跃、渐进增长、超调</li>
 <li>震荡模式：减幅震荡、等幅震荡、增幅震荡 </li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/38.png" alt></p>
+<p><img src="/post/System-Simulation-8/38.png" alt></p>
 <p>典型的二阶系统举例（库存与劳动力模型）：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/39.png" alt></p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/40.png" alt></p>
+<p><img src="/post/System-Simulation-8/39.png" alt></p>
+<p><img src="/post/System-Simulation-8/40.png" alt></p>
 <h1 id="六、系统结构与动态：延迟"><a href="#六、系统结构与动态：延迟" class="headerlink" title="六、系统结构与动态：延迟"></a>六、系统结构与动态：延迟</h1><h2 id="6-1-延迟的定义"><a href="#6-1-延迟的定义" class="headerlink" title="6.1 延迟的定义"></a>6.1 延迟的定义</h2><p>延迟是一种过程，其输出以某种模式滞后其输入。</p>
 <p>任何延迟都包括一个存量，它用来积累输入与输出之间的差异</p>
 <ul>
 <li>物质延迟（material delay）：物质流动过程中产生的，如库存系统。物质延迟系统是守恒系统。</li>
 <li>信息延迟（information delay）：感知（perception）和认定（beliefs）的逐渐调整，其存量在于对过去信息的认知，如销售量预测。信息延迟系统是非守恒系统。</li>
 </ul>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/41.png" alt></p>
+<p><img src="/post/System-Simulation-8/41.png" alt></p>
 <h2 id="6-2-物质延迟系统的结构和行为"><a href="#6-2-物质延迟系统的结构和行为" class="headerlink" title="6.2 物质延迟系统的结构和行为"></a>6.2 物质延迟系统的结构和行为</h2><h3 id="6-2-1-概述"><a href="#6-2-1-概述" class="headerlink" title="6.2.1 概述"></a>6.2.1 概述</h3><p>由前图的存量、流量结构，分析决定输出速率的规则。</p>
 <ol>
 <li>存量的输出流受到各种资源的限制。如：生产系统中，劳动力、资本、原材料影响了生产系统的输出。</li>
@@ -601,7 +601,7 @@ C  \qquad  OPL = 3</script><h2 id="4-2-库存与劳动力模型—应用例举">
 <p>其次，和处理的时间长短有关。</p>
 <p>所以，分析延迟时，除了要确定平均延迟时间外，还要确定输出流在平均延迟时间附近的分布情况。</p>
 <h3 id="6-2-4-管道延迟"><a href="#6-2-4-管道延迟" class="headerlink" title="6.2.4 管道延迟"></a>6.2.4 管道延迟</h3><p>物品进入顺序与输出顺序是一致的，延迟时间为常数，这种延迟称为管道延迟（pipeline delay）或运输滞后（transportation lag）。如：工件进入汽车装配线。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/42.png" alt></p>
+<p><img src="/post/System-Simulation-8/42.png" alt></p>
 <p>例：途中的在途货物，用存量、流量表达式：</p>
 <script type="math/tex; mode=display">
 MT(t) = Integral（Inflow(t) – Outflow(t), MT(0))</script><p>对于管道延迟，输出流如下，D为平均延迟时间：</p>
@@ -611,7 +611,7 @@ Outflow(t)＝ Inflow(t-D)</script><h2 id="6-3-信息延迟的结构与行为"><a
 <p>由于没有实实在在的存量，所以信息延迟不能使用物料延迟那样的模型结构。</p>
 <p>特点：非守恒，将影响延迟速率的信息加入到延迟过程中。</p>
 <h3 id="6-3-2-为感知建模"><a href="#6-3-2-为感知建模" class="headerlink" title="6.3.2 为感知建模"></a>6.3.2 为感知建模</h3><p>最广泛最简单的信息延迟模型，是指数平滑（exponential smoothing），或自适应预期（adaptive expectation）。它是指一个判断向变量的实际值逐渐调整。如图为模型的反馈结构：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/43.png" alt></p>
+<p><img src="/post/System-Simulation-8/43.png" alt></p>
 <p>输入量的感知值Y是一个存量：</p>
 <script type="math/tex; mode=display">
 Y(t) = Integral（感知值的变化速率, Y(0))</script><p>感知值的变化速率：与X，Y之间的差距成正比：</p>
@@ -657,7 +657,7 @@ p(t) = (1/D)exp(-t/D)</script><p>物料平均延迟时间 $Tr = (\int_0^ \infty 
 <p>体育比赛：马太效应。</p>
 <p>网络经济效应：网站使用人数越多，越能生存，越有竞争力。</p>
 <h1 id="八、系统结构与动态：老化链与协流"><a href="#八、系统结构与动态：老化链与协流" class="headerlink" title="八、系统结构与动态：老化链与协流"></a>八、系统结构与动态：老化链与协流</h1><h2 id="8-1-老化链定义"><a href="#8-1-老化链定义" class="headerlink" title="8.1 老化链定义"></a>8.1 老化链定义</h2><p>系统动态性取决于系统的存量流量结构。如延迟特性来源于输入输出之间的差异。很多情况下，系统的某些中间阶段也会存在输入流和输出流，这种存量流量结构称之为老化链（aging chains）。如图，两个存量流量结构上都有各自的输入流和输出流。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/44.png" alt></p>
+<p><img src="/post/System-Simulation-8/44.png" alt></p>
 <h2 id="8-2-老化链一般结构"><a href="#8-2-老化链一般结构" class="headerlink" title="8.2 老化链一般结构"></a>8.2 老化链一般结构</h2><p>一个老化链可以包含任意多个存量，这些存量成为群。每个群可以有任意多个输入或输出流。</p>
 <p>设有n个群，第i个群的存量C(i)，输入流I(i)和输出流O(i)。群i的物品以转换率T(I,i+1)移动到i+1中，则有以下表达式：</p>
 <script type="math/tex; mode=display">
@@ -677,7 +677,7 @@ T(i,i+1) = C(i)/YPC(i)</script><p>YPC(i)为群i中的物品移动到下一个群
 </ul>
 <h2 id="8-4-协流：为存量的属性建模"><a href="#8-4-协流：为存量的属性建模" class="headerlink" title="8.4 协流：为存量的属性建模"></a>8.4 协流：为存量的属性建模</h2><p>协流（coflow）结构用来记录一个系统的存量流量结构中流动的物品属性。例：员工的技能、生产率、经验水平、年龄等属性。</p>
 <p>例：企业采购新设备——追加职工人数；设备不断自动化——所需工人数越来越少；试预测未来设备投资和职工人数减少带来的成本与效益关系。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/smiler666/smiler666.github.io/post/System-Simulation-8/45.png" alt></p>
+<p><img src="/post/System-Simulation-8/45.png" alt></p>
 <h1 id="本章小结"><a href="#本章小结" class="headerlink" title="本章小结"></a>本章小结</h1><p>主要介绍了系统动力学的基本概念，建模初期、中期的知识细节，简单系统与行为模式，系统结构与动态的相关知识，如延迟、路径依赖、老化链等</p>
 
     </div>
@@ -902,20 +902,5 @@ T(i,i+1) = C(i)/YPC(i)</script><p>YPC(i)为群i中的物品移动到下一个群
 </script>
 
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>
