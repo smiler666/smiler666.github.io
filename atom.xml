@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://smiler666.github.io/"/>
-  <updated>2023-07-21T09:17:29.325Z</updated>
+  <updated>2023-10-14T09:02:30.808Z</updated>
   <id>https://smiler666.github.io/</id>
   
   <author>
@@ -17,11 +17,39 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Abaqus2020 + VS2015 + IVF2016关联子程序</title>
+    <link href="https://smiler666.github.io/post/abaqus-note-1/"/>
+    <id>https://smiler666.github.io/post/abaqus-note-1/</id>
+    <published>2023-10-14T09:00:00.000Z</published>
+    <updated>2023-10-14T09:02:30.808Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Abaqus2020 + VS2015 + IVF2016关联子程序。&lt;/p&gt;
+&lt;h1 id=&quot;1、软件对应版本&quot;&gt;&lt;a href=&quot;#1、软件对应版本&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="数值计算" scheme="https://smiler666.github.io/categories/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/"/>
+    
+    
+      <category term="ABAQUS" scheme="https://smiler666.github.io/tags/ABAQUS/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ABAQUS中使用CEL大变形有限元模拟T-Bar贯入仪在应变软化粘土中贯入教程</title>
     <link href="https://smiler666.github.io/post/abaqus-3-cel-tbar/"/>
     <id>https://smiler666.github.io/post/abaqus-3-cel-tbar/</id>
     <published>2023-07-21T04:00:00.000Z</published>
-    <updated>2023-07-21T09:17:29.325Z</updated>
+    <updated>2023-08-04T13:21:57.942Z</updated>
     
     <summary type="html">
     
@@ -44,7 +72,7 @@
     <link href="https://smiler666.github.io/post/share-5-data-1/"/>
     <id>https://smiler666.github.io/post/share-5-data-1/</id>
     <published>2023-07-03T07:00:00.000Z</published>
-    <updated>2023-07-03T07:47:07.813Z</updated>
+    <updated>2023-07-03T07:47:08.000Z</updated>
     
     <summary type="html">
     
@@ -74,7 +102,7 @@
     <link href="https://smiler666.github.io/post/ramble-2/"/>
     <id>https://smiler666.github.io/post/ramble-2/</id>
     <published>2023-06-05T08:30:00.000Z</published>
-    <updated>2023-06-09T01:53:06.234Z</updated>
+    <updated>2023-06-09T01:53:08.000Z</updated>
     
     <summary type="html">
     
@@ -103,7 +131,7 @@
     <link href="https://smiler666.github.io/post/share-4-ppt-1/"/>
     <id>https://smiler666.github.io/post/share-4-ppt-1/</id>
     <published>2023-06-02T12:00:00.000Z</published>
-    <updated>2023-06-02T12:40:17.764Z</updated>
+    <updated>2023-06-02T12:40:18.000Z</updated>
     
     <summary type="html">
     
@@ -136,7 +164,7 @@
     <link href="https://smiler666.github.io/post/wenwan-2/"/>
     <id>https://smiler666.github.io/post/wenwan-2/</id>
     <published>2023-05-15T09:00:00.000Z</published>
-    <updated>2023-05-15T12:14:47.564Z</updated>
+    <updated>2023-05-15T12:14:48.000Z</updated>
     
     <summary type="html">
     
@@ -166,7 +194,7 @@
     <link href="https://smiler666.github.io/post/share-3-book-1/"/>
     <id>https://smiler666.github.io/post/share-3-book-1/</id>
     <published>2023-05-04T10:00:00.000Z</published>
-    <updated>2023-06-14T14:03:24.071Z</updated>
+    <updated>2023-06-14T14:03:26.000Z</updated>
     
     <summary type="html">
     
@@ -197,7 +225,7 @@
     <link href="https://smiler666.github.io/post/abaqus-1-ritss-04/"/>
     <id>https://smiler666.github.io/post/abaqus-1-ritss-04/</id>
     <published>2023-04-11T09:00:00.000Z</published>
-    <updated>2023-07-20T02:50:28.480Z</updated>
+    <updated>2023-08-04T13:21:57.926Z</updated>
     
     <summary type="html">
     
@@ -220,7 +248,7 @@
     <link href="https://smiler666.github.io/post/abaqus-1-ritss-03/"/>
     <id>https://smiler666.github.io/post/abaqus-1-ritss-03/</id>
     <published>2023-04-10T09:00:00.000Z</published>
-    <updated>2023-07-20T02:45:51.540Z</updated>
+    <updated>2023-08-04T13:21:57.926Z</updated>
     
     <summary type="html">
     
@@ -243,7 +271,7 @@
     <link href="https://smiler666.github.io/post/abaqus-1-ritss-02/"/>
     <id>https://smiler666.github.io/post/abaqus-1-ritss-02/</id>
     <published>2023-04-09T09:00:00.000Z</published>
-    <updated>2023-07-21T08:57:28.473Z</updated>
+    <updated>2023-08-04T13:21:57.926Z</updated>
     
     <summary type="html">
     
@@ -266,7 +294,7 @@
     <link href="https://smiler666.github.io/post/abaqus-1-ritss-01/"/>
     <id>https://smiler666.github.io/post/abaqus-1-ritss-01/</id>
     <published>2023-04-08T09:00:00.000Z</published>
-    <updated>2023-07-20T03:17:49.545Z</updated>
+    <updated>2023-08-04T13:21:57.926Z</updated>
     
     <summary type="html">
     
@@ -289,7 +317,7 @@
     <link href="https://smiler666.github.io/post/share-1/"/>
     <id>https://smiler666.github.io/post/share-1/</id>
     <published>2023-04-05T00:24:21.000Z</published>
-    <updated>2023-10-09T01:19:53.291Z</updated>
+    <updated>2023-10-14T08:35:37.263Z</updated>
     
     <summary type="html">
     
@@ -318,7 +346,7 @@
     <link href="https://smiler666.github.io/post/ramble-1/"/>
     <id>https://smiler666.github.io/post/ramble-1/</id>
     <published>2023-04-04T09:00:00.000Z</published>
-    <updated>2023-04-08T13:48:42.850Z</updated>
+    <updated>2023-04-08T13:48:44.000Z</updated>
     
     <summary type="html">
     
@@ -348,7 +376,7 @@
     <link href="https://smiler666.github.io/post/wenwan-1/"/>
     <id>https://smiler666.github.io/post/wenwan-1/</id>
     <published>2023-02-06T09:00:00.000Z</published>
-    <updated>2023-06-02T13:08:07.880Z</updated>
+    <updated>2023-06-02T13:08:08.000Z</updated>
     
     <summary type="html">
     
@@ -377,7 +405,7 @@
     <link href="https://smiler666.github.io/post/experience-2/"/>
     <id>https://smiler666.github.io/post/experience-2/</id>
     <published>2023-01-16T09:00:00.000Z</published>
-    <updated>2023-04-28T12:33:18.789Z</updated>
+    <updated>2023-04-28T12:33:20.000Z</updated>
     
     <summary type="html">
     
@@ -407,7 +435,7 @@
     <link href="https://smiler666.github.io/post/ent-2-game-1/"/>
     <id>https://smiler666.github.io/post/ent-2-game-1/</id>
     <published>2022-12-11T04:00:00.000Z</published>
-    <updated>2023-05-04T13:17:41.558Z</updated>
+    <updated>2023-05-04T13:17:42.000Z</updated>
     
     <summary type="html">
     
@@ -438,7 +466,7 @@
     <link href="https://smiler666.github.io/post/abaqus-1-ritss-1/"/>
     <id>https://smiler666.github.io/post/abaqus-1-ritss-1/</id>
     <published>2022-09-11T12:31:16.000Z</published>
-    <updated>2023-07-21T08:54:26.961Z</updated>
+    <updated>2023-08-04T13:21:57.926Z</updated>
     
     <summary type="html">
     
@@ -471,7 +499,7 @@
     <link href="https://smiler666.github.io/post/experience-1/"/>
     <id>https://smiler666.github.io/post/experience-1/</id>
     <published>2022-09-01T09:00:00.000Z</published>
-    <updated>2023-04-22T02:01:45.210Z</updated>
+    <updated>2023-04-22T02:01:46.000Z</updated>
     
     <summary type="html">
     
@@ -500,7 +528,7 @@
     <link href="https://smiler666.github.io/post/ent-1-lizhi-5/"/>
     <id>https://smiler666.github.io/post/ent-1-lizhi-5/</id>
     <published>2022-06-01T15:30:00.000Z</published>
-    <updated>2023-04-23T13:09:39.128Z</updated>
+    <updated>2023-04-23T13:09:40.000Z</updated>
     
     <summary type="html">
     
@@ -529,37 +557,7 @@
     <link href="https://smiler666.github.io/post/ent-1-lizhi-4/"/>
     <id>https://smiler666.github.io/post/ent-1-lizhi-4/</id>
     <published>2022-06-01T14:30:00.000Z</published>
-    <updated>2023-04-23T13:05:41.070Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;div class=&quot;video-container&quot;&gt;
-  &lt;!-- 引入 hls.js 库 --&gt;
-  &lt;script
-        
-      
-    
-    </summary>
-    
-    
-      <category term="娱乐" scheme="https://smiler666.github.io/categories/%E5%A8%B1%E4%B9%90/"/>
-    
-    
-      <category term="歌曲" scheme="https://smiler666.github.io/tags/%E6%AD%8C%E6%9B%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>B哥2015看见北京站直播实录</title>
-    <link href="https://smiler666.github.io/post/ent-1-lizhi-3/"/>
-    <id>https://smiler666.github.io/post/ent-1-lizhi-3/</id>
-    <published>2022-06-01T13:30:00.000Z</published>
-    <updated>2023-04-23T13:05:33.024Z</updated>
+    <updated>2023-04-23T13:05:42.000Z</updated>
     
     <summary type="html">
     
