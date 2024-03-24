@@ -244,6 +244,29 @@
   </entry>
   
   <entry>
+    <title>基于ABAQUS的大变形有限元RITSS方法教程（五）例子：考虑土体应变软化的RITSS实现（子程序）</title>
+    <link href="https://smiler666.github.io/post/abaqus-1-ritss-05/"/>
+    <id>https://smiler666.github.io/post/abaqus-1-ritss-05/</id>
+    <published>2023-04-11T09:00:00.000Z</published>
+    <updated>2024-01-16T11:09:26.123Z</updated>
+    
+    <summary type="html">
+    
+      文章已加密，请输入密码查看！
+    
+    </summary>
+    
+    
+      <category term="数值计算" scheme="https://smiler666.github.io/categories/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/"/>
+    
+    
+      <category term="ABAQUS" scheme="https://smiler666.github.io/tags/ABAQUS/"/>
+    
+      <category term="RITSS" scheme="https://smiler666.github.io/tags/RITSS/"/>
+    
+  </entry>
+  
+  <entry>
     <title>基于ABAQUS的大变形有限元RITSS方法教程（三）例子：贯入仪在土中深埋贯入</title>
     <link href="https://smiler666.github.io/post/abaqus-1-ritss-03/"/>
     <id>https://smiler666.github.io/post/abaqus-1-ritss-03/</id>
@@ -317,7 +340,7 @@
     <link href="https://smiler666.github.io/post/share-1/"/>
     <id>https://smiler666.github.io/post/share-1/</id>
     <published>2023-04-05T00:24:21.000Z</published>
-    <updated>2024-01-14T13:47:11.244Z</updated>
+    <updated>2024-03-24T08:46:43.267Z</updated>
     
     <summary type="html">
     
@@ -539,36 +562,6 @@
           &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;歌曲地址（复制下载即可）：&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
-        
-      
-    
-    </summary>
-    
-    
-      <category term="娱乐" scheme="https://smiler666.github.io/categories/%E5%A8%B1%E4%B9%90/"/>
-    
-    
-      <category term="歌曲" scheme="https://smiler666.github.io/tags/%E6%AD%8C%E6%9B%B2/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>B哥2018洗心革面跨年演唱会</title>
-    <link href="https://smiler666.github.io/post/ent-1-lizhi-4/"/>
-    <id>https://smiler666.github.io/post/ent-1-lizhi-4/</id>
-    <published>2022-06-01T14:30:00.000Z</published>
-    <updated>2023-04-23T13:05:42.000Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;div class=&quot;video-container&quot;&gt;
-  &lt;!-- 引入 hls.js 库 --&gt;
-  &lt;script
         
       
     
