@@ -9,7 +9,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   
-    <meta name="keywords" content="探索,强化学习," />
+    <meta name="keywords" content="强化学习,探索," />
   
 
   
@@ -47,6 +47,12 @@
           
             
               <li class="pure-menu-item"><a href="/" class="pure-menu-link">首页</a></li>
+            
+          
+      
+          
+            
+              <li class="pure-menu-item"><a href="/tags/教程" class="pure-menu-link">教程</a></li>
             
           
       
@@ -148,8 +154,8 @@ Q(S_t,A_t)\leftarrow Q(S_t,A_t)+\alpha\left[R_{t+1}+\gamma  \max\limits_aQ(S_{t+
   
       <div class="post-nav-item post-nav-prev">
           
-          <a href="/post/port-logistics-1/" rel="prev" title="现代港口物流管理（一）现代港口物流绪论">
-            现代港口物流管理（一）现代港口物流绪论
+          <a href="/post/ai-2-rl-policy-iteration/" rel="prev" title="强化学习笔记：策略迭代与价值迭代及其代码实现">
+            强化学习笔记：策略迭代与价值迭代及其代码实现
           </a>
           <span>〉</span>
         
@@ -337,5 +343,20 @@ Q(S_t,A_t)\leftarrow Q(S_t,A_t)+\alpha\left[R_{t+1}+\gamma  \max\limits_aQ(S_{t+
 </script>
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>

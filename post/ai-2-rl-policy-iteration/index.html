@@ -52,6 +52,12 @@
       
           
             
+              <li class="pure-menu-item"><a href="/tags/教程" class="pure-menu-link">教程</a></li>
+            
+          
+      
+          
+            
               <li class="pure-menu-item"><a href="/archives" class="pure-menu-link">文章</a></li>
             
           
@@ -199,16 +205,16 @@ v_{k+1}(s_t)=\sum_{a∈A}\pi(a|s)[R(s,a)+\gamma \sum_{s∈S}p(s'|s,a)v_t(s')]</s
       <div class="post-nav-item post-nav-next">
         
           <span>〈 </span>
-          <a href="/post/System-Simulation-2/" rel="next" title="系统仿真笔记（二）建模方法概述">
-          系统仿真笔记（二）建模方法概述
+          <a href="/post/ai-2-rl-q-learning/" rel="next" title="强化学习Q-learning走迷宫小例子（附Python代码）">
+          强化学习Q-learning走迷宫小例子（附Python代码）
           </a>
         
       </div>
   
       <div class="post-nav-item post-nav-prev">
           
-          <a href="/post/System-Simulation-3/" rel="prev" title="系统仿真笔记（三）离散事件系统仿真基础">
-            系统仿真笔记（三）离散事件系统仿真基础
+          <a href="/post/software-1-dut-1/" rel="prev" title="港口建设投资项目经济评价系统V1.0">
+            港口建设投资项目经济评价系统V1.0
           </a>
           <span>〉</span>
         
@@ -396,5 +402,20 @@ v_{k+1}(s_t)=\sum_{a∈A}\pi(a|s)[R(s,a)+\gamma \sum_{s∈S}p(s'|s,a)v_t(s')]</s
 </script>
 
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>
