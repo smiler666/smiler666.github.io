@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://smiler666.github.io/"/>
-  <updated>2024-04-04T13:22:44.406Z</updated>
+  <updated>2024-04-28T12:05:03.737Z</updated>
   <id>https://smiler666.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>基于ABAQUS的大变形有限元RITSS方法教程（五）例子：考虑土体应变软化RITSS实现(子程序)</title>
+    <title>基于ABAQUS的大变形有限元RITSS方法教程（五）例子：考虑土体应变软化和率效应（子程序）</title>
     <link href="https://smiler666.github.io/post/abaqus-1-ritss-05/"/>
     <id>https://smiler666.github.io/post/abaqus-1-ritss-05/</id>
     <published>2024-03-18T09:00:00.000Z</published>
-    <updated>2024-04-04T13:22:44.406Z</updated>
+    <updated>2024-04-28T12:05:03.737Z</updated>
     
     <summary type="html">
     
@@ -66,31 +66,6 @@
     
     
       <category term="ABAQUS" scheme="https://smiler666.github.io/tags/ABAQUS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ABAQUS中使用CEL大变形有限元模拟T-Bar贯入仪在应变软化粘土中贯入教程</title>
-    <link href="https://smiler666.github.io/post/abaqus-3-cel-tbar/"/>
-    <id>https://smiler666.github.io/post/abaqus-3-cel-tbar/</id>
-    <published>2023-07-21T04:00:00.000Z</published>
-    <updated>2024-04-04T13:23:13.472Z</updated>
-    
-    <summary type="html">
-    
-      文章已加密，请输入密码查看！
-    
-    </summary>
-    
-    
-      <category term="数值计算" scheme="https://smiler666.github.io/categories/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/"/>
-    
-    
-      <category term="ABAQUS" scheme="https://smiler666.github.io/tags/ABAQUS/"/>
-    
-      <category term="教程" scheme="https://smiler666.github.io/tags/%E6%95%99%E7%A8%8B/"/>
-    
-      <category term="CEL" scheme="https://smiler666.github.io/tags/CEL/"/>
     
   </entry>
   
@@ -259,7 +234,7 @@
     <link href="https://smiler666.github.io/post/share-1/"/>
     <id>https://smiler666.github.io/post/share-1/</id>
     <published>2023-04-05T00:24:21.000Z</published>
-    <updated>2024-03-24T08:46:43.267Z</updated>
+    <updated>2024-04-29T01:58:10.248Z</updated>
     
     <summary type="html">
     
@@ -583,6 +558,36 @@
       <category term="ABAQUS" scheme="https://smiler666.github.io/tags/ABAQUS/"/>
     
       <category term="探索" scheme="https://smiler666.github.io/tags/%E6%8E%A2%E7%B4%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>分享一本余海岁的《岩土塑性理论》英文原版和中译本</title>
+    <link href="https://smiler666.github.io/post/share-0-geobook-2/"/>
+    <id>https://smiler666.github.io/post/share-0-geobook-2/</id>
+    <published>2021-10-01T00:24:21.000Z</published>
+    <updated>2023-08-04T13:21:57.942Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;最近读过的一本比较好的岩土工程方面的书籍，推荐阅读英文原版，比较容易理解。同时也提供周国庆、刘恩龙和商翔宇的中译本，便于对照学习。 
+        
+      
+    
+    </summary>
+    
+    
+      <category term="资源分享" scheme="https://smiler666.github.io/categories/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="资源分享" scheme="https://smiler666.github.io/tags/%E8%B5%84%E6%BA%90%E5%88%86%E4%BA%AB/"/>
+    
+      <category term="书籍" scheme="https://smiler666.github.io/tags/%E4%B9%A6%E7%B1%8D/"/>
     
   </entry>
   
