@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>基于ABAQUS/RITSS的T-Bar贯入结果对比验证</title>
+      <link href="/post/abaqus-1-ritss-2/"/>
+      <url>/post/abaqus-1-ritss-2/</url>
+      
+        <content type="html"><![CDATA[<p>大变形有限元分析网格重剖分和插值技术（Remeshing and Interpolation Technique with Small Strain，简称RITSS）是基于传统小变形有限元发展起来的，可用于二维和三维分析。</p><p>本博客的RITSS模型（T-bar贯入仪例子）结果与以下两篇论文的结果进行对比：</p><ul><li><p><a href="/post/abaqus-1-ritss-03/">基于ABAQUS的大变形有限元RITSS方法教程（三）例子：贯入仪在土中深埋贯入</a></p></li><li><p>Tian Y, Wang D, Cassidy MJ. Large deformation finite element analysis of offshore penetration tests. In: The second international symposium on computational geomechanics (ComGeo II), Cavtat-Dubrovnik, Croatia, 2011.</p></li><li>Tian Y, Cassidy M J, Randolph M F, et al. A simple implementation of RITSS and its application in large deformation analysis[J]. Computers and Geotechnics, 2014, 56: 160-167.</li></ul><p>对比结果如下图所示：</p><p><img src="/post/abaqus-1-ritss-2/1.png" alt="1"></p><p>可以看到本博客的RITSS模型与其他两篇论文的结果几乎一致，结果得到了验证。</p><p>若敢兴趣，可以查看ABAQUS/RITSS系列教程：</p><ul><li><a href="/post/abaqus-1-ritss-01/">基于ABAQUS的大变形有限元RITSS方法教程（一）基础知识</a></li><li><a href="/post/abaqus-1-ritss-02/">基于ABAQUS的大变形有限元RITSS方法教程（二）自动化建模及RITSS实现框架</a></li><li><a href="/post/abaqus-1-ritss-03/">基于ABAQUS的大变形有限元RITSS方法教程（三）例子：贯入仪在土中深埋贯入</a></li><li><a href="/post/abaqus-1-ritss-04/">基于ABAQUS的大变形有限元RITSS方法教程（四）例子：管道从土体表面连续贯入</a></li><li><a href="/post/abaqus-1-ritss-05/">基于ABAQUS的大变形有限元RITSS方法教程（五）例子：考虑土体应变软化和率效应（子程序）</a></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 数值计算 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ABAQUS </tag>
+            
+            <tag> RITSS </tag>
+            
+            <tag> 探索 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>基于ABAQUS的大变形有限元RITSS方法教程（五）例子：考虑土体应变软化和率效应（子程序）</title>
       <link href="/post/abaqus-1-ritss-05/"/>
       <url>/post/abaqus-1-ritss-05/</url>
@@ -305,7 +334,7 @@
       <link href="/post/abaqus-1-ritss-1/"/>
       <url>/post/abaqus-1-ritss-1/</url>
       
-        <content type="html"><![CDATA[<div style="display: flex; justify-content: center;"><video width="640" height="360" controls controlslist="nodownload">  <source src="/post/abaqus-1-ritss-1/1.mp4" type="video/mp4">  Your browser does not support the video tag.</video></div><p>大变形有限元分析网格重剖分和插值技术（Remeshing and Interpolation Technique with Small Strain，简称RITSS）是基于传统小变形有限元发展起来的，可用于二维和三维分析。</p><p>基于ABAQUS大变形有限元RITSS分析的球型贯入仪从土体表面连续贯入：</p><div style="display: flex; justify-content: center;"><video width="640" height="360" controls controlslist="nodownload">  <source src="/post/abaqus-1-ritss-1/2.mp4" type="video/mp4">  Your browser does not support the video tag.</video></div><p>ABAQUS/RITSS系列教程：</p><ul><li><a href="/post/abaqus-1-ritss-01/">基于ABAQUS的大变形有限元RITSS方法教程（一）基础知识</a></li><li><a href="/post/abaqus-1-ritss-02/">基于ABAQUS的大变形有限元RITSS方法教程（二）自动化建模及RITSS实现框架</a></li><li><a href="/post/abaqus-1-ritss-03/">基于ABAQUS的大变形有限元RITSS方法教程（三）例子：贯入仪在土中深埋贯入</a></li><li><a href="/post/abaqus-1-ritss-04/">基于ABAQUS的大变形有限元RITSS方法教程（四）例子：管道从土体表面连续贯入</a></li></ul>]]></content>
+        <content type="html"><![CDATA[<div style="display: flex; justify-content: center;"><video width="640" height="360" controls controlslist="nodownload">  <source src="/post/abaqus-1-ritss-1/1.mp4" type="video/mp4">  Your browser does not support the video tag.</video></div><p>大变形有限元分析网格重剖分和插值技术（Remeshing and Interpolation Technique with Small Strain，简称RITSS）是基于传统小变形有限元发展起来的，可用于二维和三维分析。</p><p>基于ABAQUS大变形有限元RITSS分析的球型贯入仪从土体表面连续贯入：</p><div style="display: flex; justify-content: center;"><video width="640" height="360" controls controlslist="nodownload">  <source src="/post/abaqus-1-ritss-1/2.mp4" type="video/mp4">  Your browser does not support the video tag.</video></div><p>ABAQUS/RITSS系列教程：</p><ul><li><a href="/post/abaqus-1-ritss-01/">基于ABAQUS的大变形有限元RITSS方法教程（一）基础知识</a></li><li><a href="/post/abaqus-1-ritss-02/">基于ABAQUS的大变形有限元RITSS方法教程（二）自动化建模及RITSS实现框架</a></li><li><a href="/post/abaqus-1-ritss-03/">基于ABAQUS的大变形有限元RITSS方法教程（三）例子：贯入仪在土中深埋贯入</a></li><li><a href="/post/abaqus-1-ritss-04/">基于ABAQUS的大变形有限元RITSS方法教程（四）例子：管道从土体表面连续贯入</a></li><li><a href="/post/abaqus-1-ritss-05/">基于ABAQUS的大变形有限元RITSS方法教程（五）例子：考虑土体应变软化和率效应（子程序）</a></li></ul>]]></content>
       
       
       <categories>
